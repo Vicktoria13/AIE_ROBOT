@@ -2,21 +2,33 @@
 #define GAMEPLAY_HPP
 
 #include "Screen.hpp"
+#include "WelcomeScreen.hpp"
 #include <vector>
+
+
+#define HAUTEUR_FENETRE 600
+#define LARGEUR_FENETRE 800
+
 class GamePlay
 {
 private:
     /* Attributs */
 
-    sf::RenderWindow fenetre;
+    sf::RenderWindow *fenetre;
     sf::Event event;
     sf::Clock clock;
 
     std::vector<Screen*> EcransDisponibles;
+
+  
     
 public:
-    GamePlay(/* args */);
+    GamePlay();
     ~GamePlay();
+
+    void WaitForExit();
+
+
 };
 
 

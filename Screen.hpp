@@ -5,10 +5,11 @@
 class Screen
 {
 private:
-    
+    sf::RenderWindow* window;
 public:
-    Screen();
-    ~Screen();
+// pas de constructeur car c'est une classe abstraite : pas d'inst
+
+
 };
 
 

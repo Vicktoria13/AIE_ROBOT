@@ -12,20 +12,20 @@ EXES= GamePlay
 
 all: $(EXES)
 
-GamePlay: main.o GamePlay.o Screen.o SFMLRenderer.o
-	$(LD) $(LDFLAGS) main.o GamePlay.o Screen.o SFMLRenderer.o -o GamePlay $(LIBS)
+GamePlay: main.o GamePlay.o WelcomeScreen.o Bouton.o
+	$(LD) $(LDFLAGS) main.o GamePlay.o   -o GamePlay $(LIBS)
 
-main.o: main.cpp GamePlay.cpp Screen.cpp SFMLRenderer.hpp
+main.o: main.cpp GamePlay.cpp 
 	$(CPP) $(CPPFLAGS) -c main.cpp
 
 GamePlay.o: GamePlay.cpp 
 	$(CPP) $(CPPFLAGS) -c GamePlay.cpp
 
-Screen.o: Screen.cpp
-	$(CPP) $(CPPFLAGS) -c Screen.cpp
+WelcomeScreen.o : WelcomeScreen.cpp
+	$(CPP) $(CPPFLAGS) -c WelcomeScreen.cpp
 
-SFMLRenderer.o: SFMLRenderer.cpp
-	$(CPP) $(CPPFLAGS) -c SFMLRenderer.cpp
+Bouton.o : Bouton.cpp
+	$(CPP) $(CPPFLAGS) -c Bouton.cpp
 
 clean:
 	rm -f *.o $(EXES)
