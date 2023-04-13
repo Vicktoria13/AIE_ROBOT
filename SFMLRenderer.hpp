@@ -1,33 +1,32 @@
+#ifndef SFMLRENDERER_HPP
+#define SFMLRENDERER_HPP
+
 #include <SFML/Graphics.hpp>
 #include "Renderer.hpp"
 
+
 /**
  * @brief Classe SFMLRenderer
- * @class SFMLRenderer
- * @author Victoria
- * 
  * 
  */
 
 
-class SFMLRenderer : public Renderer{
+class SFMLRenderer : public Renderer {
 
-    private:
-        
-        // Pointeur vers une fenetre SFML : alloc dynamique
-        sf::RenderWindow* fenetre_jeu;
+// attributs
+private:
+     sf::RenderWindow* fenetre;
+
+public:
+    SFMLRenderer();
+    ~SFMLRenderer();
+    
+    void waitForExit();
+    
+    sf::RenderWindow& getWindow() {return *fenetre;};
 
 
-    public:
-
-        // constructeur : alloc dynamique
-        SFMLRenderer();
-
-        // donc destructeur : free dynamique
-        ~SFMLRenderer();
-        void waitExit();
-
-        //getter
-        sf::RenderWindow& getFenetreJeu();
-        
 };
+
+
+#endif

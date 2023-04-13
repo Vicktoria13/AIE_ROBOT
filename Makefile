@@ -4,29 +4,28 @@
 CPP=g++
 LD=g++
 
-
 CPPFLAGS=-std=c++14
 LDFLAGS=-std=c++14
 LIBS=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio
-EXES= jeu
+EXES= GamePlay
+
 
 all: $(EXES)
 
-jeu: main.o PlateauJeu.o SFMLRenderer.o 
-	$(LD) $(LDFLAGS) main.o PlateauJeu.o SFMLRenderer.o -o jeu $(LIBS)
+GamePlay: main.o GamePlay.o Screen.o SFMLRenderer.o
+	$(LD) $(LDFLAGS) main.o GamePlay.o Screen.o SFMLRenderer.o -o GamePlay $(LIBS)
 
-
-main.o : main.cpp SFMLRenderer.cpp PlateauJeu.cpp
+main.o: main.cpp GamePlay.cpp Screen.cpp SFMLRenderer.hpp
 	$(CPP) $(CPPFLAGS) -c main.cpp
 
-PlateauJeu.o : PlateauJeu.cpp Labyrinthe2D.cpp
-	$(CPP) $(CPPFLAGS) -c PlateauJeu.cpp
+GamePlay.o: GamePlay.cpp 
+	$(CPP) $(CPPFLAGS) -c GamePlay.cpp
 
-SFMLRenderer.o : SFMLRenderer.cpp
+Screen.o: Screen.cpp
+	$(CPP) $(CPPFLAGS) -c Screen.cpp
+
+SFMLRenderer.o: SFMLRenderer.cpp
 	$(CPP) $(CPPFLAGS) -c SFMLRenderer.cpp
-
-Labyrinthe2D.o : Labyrinthe2D.cpp
-	$(CPP) $(CPPFLAGS) -c Labyrinthe2D.cpp
 
 clean:
 	rm -f *.o $(EXES)

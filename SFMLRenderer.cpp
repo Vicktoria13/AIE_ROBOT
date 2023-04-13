@@ -1,54 +1,40 @@
+
+
 #include "SFMLRenderer.hpp"
 #include <iostream>
 
 
-#define WIDTH 640
-#define HEIGHT 640
-
-SFMLRenderer::SFMLRenderer(){
-    /**
-     * @brief Constructeur d'un renderer via alloc dyn
-     * 
-     */
-    this->fenetre_jeu = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Aie Robot !");
-    this->fenetre_jeu->clear(sf::Color::White);
+/**
+ * @brief Initialise la fenêtre SFML en fond noir
+ * 
+ */
+SFMLRenderer::SFMLRenderer()
+{
+    fenetre = new sf::RenderWindow(sf::VideoMode(800, 600), "Fenêtre SFML");
+    fenetre->clear(sf::Color::Black);
 }
-
-
 
 SFMLRenderer::~SFMLRenderer()
 {
-    delete fenetre_jeu;
+    delete fenetre;
 }
 
-void SFMLRenderer::waitExit(){
-    /**
-     * @brief Fonction qui attend la fermeture de la fenetre
-     * @param aucun
-     * @return aucun
-     */ 
 
-    this->fenetre_jeu->display();
-        
-    while (this->fenetre_jeu->isOpen())
+void SFMLRenderer::waitForExit()
+{
+    fenetre->display();
+    
+    std::cout << "Fermez la fenêtre pour continuer." <<  std::endl;
+    
+    while (fenetre->isOpen())
     {
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
-        while (this->fenetre_jeu->pollEvent(event))
+        while (fenetre->pollEvent(event))
         {
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
-                this->fenetre_jeu->close();
+                fenetre->close(); // on sort de la boucle
         }
     }
-
-}
-
-sf::RenderWindow& SFMLRenderer::getFenetreJeu(){
-    /**
-     * @brief Fonction qui retourne la fenetre SFML
-     * @param aucun
-     * @return fenetre_jeu
-     */ 
-    return *fenetre_jeu;
 }
