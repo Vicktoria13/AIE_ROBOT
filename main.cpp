@@ -6,8 +6,6 @@
 int main()
 {
     
-    GamePlay partie;
-    partie.WaitForExit();
-    
+
     return 0;
 }

@@ -13,27 +13,37 @@ class Bouton
 private:
     bool isActivated;
 
-    /* visuel */
-    sf::RectangleShape formeBouton;
+    /* position dans l'écran */
+
+    float pos_x;
+    float pos_y;
+
+    /* taille dans l'écran */
+    float width;
+    float height;
+
+
+
+    /* visuel du texte*/
     sf::Text texteBouton;
-    sf::Font police;
-    sf :: Color couleurBouton;
     sf :: Color couleurTexte;
-    sf :: Color couleurBoutonActif;
-    sf :: Color hoverBouton; // couleur quand on passe la souris dessus
+    
+
+    /* couleur du fond du bouton */
+    sf :: Color couleurBouton;
 
 
 public:
     /* Constructeur */
+
     Bouton();
+   Bouton(float pos_x, float pos_y, float width, float height, std::string texte,  sf::Color couleurTexte,sf::Color couleurBouton);
 
-
-    Bouton(float pos_x, float pos_y, float width, float height, 
-                 std::string texte, sf::Font police, sf::Color couleurBouton);
+    /* Destructeur */
     ~Bouton();
 
    
-    void Pressed();
+    void HasBeenPressed();
     bool getIsActivated() const;
 };
 
