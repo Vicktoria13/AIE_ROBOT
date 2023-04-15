@@ -9,13 +9,13 @@ GamePlay::GamePlay()
     fenetre->setFramerateLimit(20);
 
     /* on ajoute les ecrans disponibles */
-    this->EcransDisponibles.push_back(new WelcomeScreen());
+    //this->EcransDisponibles.push_back(new WelcomeScreen());
 
+    Ajout_Ecran("Accueil",new WelcomeScreen());
 
-    std::cout<< " il y a " << EcransDisponibles.size()<< " ecrans dispo" << std::endl;
+    std::cout<< " il y a " << MapEcransDisponibles.size()<< " ecrans dispo" << std::endl;
   
    
-    
    
 }
 
@@ -24,22 +24,23 @@ GamePlay::GamePlay()
 GamePlay::~GamePlay()
 {
     delete fenetre;
-    delete EcransDisponibles[0];
+    delete MapEcransDisponibles["Accueil"];
     
 }
 
 
-void GamePlay::Ajout_Ecran(Screen *ecran)
+void GamePlay::Ajout_Ecran(std::string name, Screen *ecran)
 {
-    EcransDisponibles.push_back(ecran);
+    //EcransDisponibles.push_back(ecran);
+    this->MapEcransDisponibles[name] = ecran;
 }
 
-void GamePlay::Affichage_Ecran(int index)
+void GamePlay::Affichage_Ecran(std::string name)
 {
     this->fenetre->clear(sf::Color::Black);
     // on affiche l'ecran voulu
-    EcransDisponibles[index]->drawScreens((this->fenetre));
-    this->fenetre->display();
+    MapEcransDisponibles[name]->drawScreens((this->fenetre));
+    
     
 }
 
@@ -54,7 +55,13 @@ void GamePlay::WaitForExit(){
         {
             if (event.type == sf::Event::Closed)
                 this->fenetre->close();
+
         }
+
+        fenetre->clear();
+        Affichage_Ecran("Accueil");
+        this->fenetre->display();
+
         
        
     }
@@ -63,7 +70,6 @@ void GamePlay::WaitForExit(){
 void GamePlay::Run()
 {
     // on affiche l'ecran d'accueil
-    this->Affichage_Ecran(0);
     WaitForExit();
     
 }

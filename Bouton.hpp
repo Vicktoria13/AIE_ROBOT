@@ -46,7 +46,7 @@ public:
     /* Destructeur */
 
     /*rendu dessin d'un Bouton*/
-    void draw(sf::RenderWindow& window);
+    void drawButton(sf::RenderWindow& window);
 
 
 

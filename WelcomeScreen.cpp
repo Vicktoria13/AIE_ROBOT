@@ -10,11 +10,10 @@
 
 void WelcomeScreen::ajouterBouton(){
 
-    MapBoutons["Play"] = new Bouton(500, 500, 200, 100, "Play", sf::Color::Green);
-    MapBoutons["Quit"] = new Bouton(800, 500, 200, 100, "Quit", sf::Color::Green);
+    MapBoutons["Play"] = new Bouton(400, 800, 200, 100, "Play",  sf::Color(100,20,20,200));
+    MapBoutons["Quit"] = new Bouton(1300, 800, 200, 100, "Quit",  sf::Color(100,20,20,200));
     std::cout << "Ajout des boutons" << std::endl;
 }
-
 
 
 
@@ -33,6 +32,7 @@ WelcomeScreen::WelcomeScreen()
     //Ajout des boutons a la liste de boutons : Play et Quit
     this->ajouterBouton();
 
+   
     // Chargement de l'image de fond
 
     fullBackground.setSize(sf::Vector2f(1920,1080));
@@ -41,9 +41,20 @@ WelcomeScreen::WelcomeScreen()
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }
 
-    // on applique la texture au rectangle
-    
+    // on applique la texture au rectangle    
     fullBackground.setTexture(&backgroundTexture);
+
+     // On ajoute le titre
+
+    if(!this->fontTitle.loadFromFile("ccwild.ttf")){
+        throw("ERROR FONT LOAD");}
+
+
+    Title.setFont(fontTitle);
+    Title.setPosition(380,80);
+    Title.setCharacterSize(80);
+    Title.setString("Welcome to Aie Robot");
+
 
    
 }
@@ -61,20 +72,21 @@ WelcomeScreen::WelcomeScreen()
 
 
 void WelcomeScreen::drawScreens(sf::RenderWindow* window){
-                std::cout << "dans la fonction draw :Dessin de l'ecran d'accueil" << std::endl;
-                std::cout <<window<<std::endl;
+               
 
-                window->clear(sf::Color::Red);
+                window->clear();
                 // d'abord le fond
+
                 window->draw(fullBackground);
 
                 // puis les boutons
                 for (auto& bouton : MapBoutons)
                 {
-                    bouton.second->draw(*window);
+                    bouton.second->drawButton(*window);
                 }
 
-
+                // puis le titre
+                window->draw(Title);
 
         }
 

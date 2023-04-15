@@ -23,9 +23,9 @@ private:
     sf::Clock clock;
 
   
-    //std::shared_ptr<Screen> EcransDisponibles;
-    std::vector<Screen*> EcransDisponibles;
-    //std::vector<std::unique_ptr<Screen>> EcransDisponibles;
+    //std::vector<Screen*> EcransDisponibles;
+
+    std::map<std::string,Screen*> MapEcransDisponibles;
 
   
     
@@ -33,9 +33,9 @@ public:
     GamePlay();
     ~GamePlay();
 
-    void Ajout_Ecran( Screen* ecran);
+    void Ajout_Ecran( std::string name, Screen* ecran);
 
-    void Affichage_Ecran(int index);
+    void Affichage_Ecran(std::string name);
 
     void Run();
 

@@ -69,15 +69,15 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
 
 
 
-    /* Texte du bouton + config */
+    /* Texte du bouton +*/
     texteBouton.setString(text);
-    texteBouton.setFillColor(sf::Color::White);
-    texteBouton.setCharacterSize(12);
+    texteBouton.setFillColor(sf::Color::Black);
+    texteBouton.setCharacterSize(30);
     texteBouton.setPosition(
         formeBouton.getPosition().x + (formeBouton.getGlobalBounds().width/2.f) - texteBouton.getGlobalBounds().width/2.f,
         formeBouton.getPosition().y + (formeBouton.getGlobalBounds().height/2.f) - texteBouton.getGlobalBounds().height/2.f);
     
-
+    
     
 }
 
@@ -90,7 +90,7 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
  * @param window 
  */
 
-void Bouton::draw(sf::RenderWindow& window){
+void Bouton::drawButton(sf::RenderWindow& window){
     window.draw(formeBouton);
     window.draw(texteBouton);
 }
