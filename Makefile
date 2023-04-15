@@ -7,24 +7,24 @@ LD=g++
 CPPFLAGS=-std=c++14
 LDFLAGS=-std=c++14
 LIBS=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio
-EXES= GamePlay
+EXES= main
 
 
 all: $(EXES)
 
-GamePlay: main.o GamePlay.o WelcomeScreen.o Bouton.o
-	$(LD) $(LDFLAGS) main.o GamePlay.o   -o GamePlay $(LIBS)
+main: main.o GamePlay.o WelcomeScreen.o Bouton.o
+	$(LD) $(LDFLAGS) main.o GamePlay.o  WelcomeScreen.o Bouton.o -o main $(LIBS)
 
-main.o: main.cpp GamePlay.cpp 
+main.o: main.cpp GamePlay.hpp
 	$(CPP) $(CPPFLAGS) -c main.cpp
 
-GamePlay.o: GamePlay.cpp 
+GamePlay.o: GamePlay.cpp GamePlay.hpp WelcomeScreen.hpp
 	$(CPP) $(CPPFLAGS) -c GamePlay.cpp
 
-WelcomeScreen.o : WelcomeScreen.cpp
-	$(CPP) $(CPPFLAGS) -c WelcomeScreen.cpp
+WelcomeScreen.o : WelcomeScreen.cpp WelcomeScreen.hpp Bouton.hpp 
+	$(CPP) $(CPPFLAGS) -c WelcomeScreen.cpp 
 
-Bouton.o : Bouton.cpp
+Bouton.o : Bouton.cpp Bouton.hpp
 	$(CPP) $(CPPFLAGS) -c Bouton.cpp
 
 clean:

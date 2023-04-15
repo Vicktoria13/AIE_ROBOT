@@ -22,7 +22,7 @@ class WelcomeScreen : public Screen{
 
     public:
 
-
+        WelcomeScreen();
         WelcomeScreen(float pos_x_1, float pos_y_1, float width_1, float height_1, 
                  std::string textePlay,  sf::Color PlayColor,sf::Color ColorTextPlay,
 

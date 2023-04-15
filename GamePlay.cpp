@@ -2,28 +2,43 @@
 #include <iostream>
 
 
-
-/**
- * @brief Construit une nouvelle partie
- * 
- */
-GamePlay::GamePlay()
+GamePlay::GamePlay() 
 {
-    // Intialisation d'une partie
-
-    // on commence par créer la fenêtre
-    std::cout << "creation de la partie !" << std::endl;
-    this->fenetre = new sf::RenderWindow(sf::VideoMode(HAUTEUR_FENETRE, LARGEUR_FENETRE), "SFML works!",sf::Style::Resize);
+    /* on cree la fenetre de jeu !*/
+    fenetre = new sf::RenderWindow(sf::VideoMode(800, 600), "SFML works!");
+    
+    /* on ajoute les ecrans disponibles */
+    Ajout_Ecran(new WelcomeScreen());
 
 }
+
 
 
 GamePlay::~GamePlay()
 {
     delete fenetre;
+    delete EcransDisponibles[0];
+    
 }
 
+
+void GamePlay::Ajout_Ecran(Screen *ecran)
+{
+    EcransDisponibles.push_back(ecran);
+}
+
+void GamePlay::Affichage_Ecran(int index)
+{
+    
+    EcransDisponibles[index]->draw(*fenetre);
+    std::cout << "Affichage de l'ecran " << index << std::endl;
+    
+}
+
+
 void GamePlay::WaitForExit(){
+
+
     while (this->fenetre->isOpen())
     {
         while (this->fenetre->pollEvent(this->event))
@@ -32,7 +47,13 @@ void GamePlay::WaitForExit(){
                 this->fenetre->close();
         }
 
-        this->fenetre->clear();
-        this->fenetre->display();
+       
     }
+}
+
+void GamePlay::Run()
+{
+    Affichage_Ecran(0);
+    WaitForExit();
+    
 }

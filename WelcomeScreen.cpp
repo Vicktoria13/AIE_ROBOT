@@ -31,8 +31,72 @@ WelcomeScreen::WelcomeScreen(float pos_x_1, float pos_y_1, float width_1, float 
     }
 
     this->backgroundSprite.setTexture(backgroundTexture);
+    this->backgroundSprite.setColor(sf::Color(255, 255, 255, 200));
+
+    
 }
 
 
+/*
+*L'ecran d'accueil par defaut a un bouton Play au centre et un background
+
+*/
+WelcomeScreen::WelcomeScreen()
+{
+    PlayBouton = Bouton(100, 100, 100, 100, "Play", sf::Color::Red, sf::Color::Green);
+
+    if (!backgroundTexture.loadFromFile("Accueil.jpg"))
+    {
+        // erreur...
+        std::cout << "erreur" << std::endl;
+    }
+
+    this->backgroundSprite.setTexture(backgroundTexture);
+    this->backgroundSprite.setColor(sf::Color(255, 255, 255, 200));
+    std::cout << "creation d'un nouveau WelcomeScreen" << std::endl;
+}
 
 
+/**
+ * @brief Dessine tous ses composants sur la fenêtre (ici, le fond d'écran et les boutons)
+ * 
+ * @param window 
+ */
+
+void WelcomeScreen::draw(sf::RenderWindow& window)
+{
+    
+    float scaleX = static_cast<float>(window.getSize().x) / static_cast<float>(backgroundTexture.getSize().x);
+    float scaleY = static_cast<float>(window.getSize().y) / static_cast<float>(backgroundTexture.getSize().y);
+    if (scaleX > scaleY)
+    {
+        backgroundSprite.setScale(scaleX, scaleX);
+    }
+    else
+    {
+        backgroundSprite.setScale(scaleY, scaleY);
+    }
+
+    // Centrage du sprite
+    backgroundSprite.setPosition((window.getSize().x - backgroundSprite.getGlobalBounds().width) / 2,
+                        (window.getSize().y - backgroundSprite.getGlobalBounds().height) / 2);
+
+
+
+    // affichage
+    window.clear(sf::Color::Black);
+    window.draw(backgroundSprite);
+    //PlayBouton.drawAtGivenPosition(window);
+    window.display();
+}
+
+
+void WelcomeScreen::handleEvent(const sf::Event& event)
+{
+  
+}
+
+WelcomeScreen::~WelcomeScreen()
+{   
+    std::cout << "Destruction de l'ecran d'accueil" << std::endl;
+}
