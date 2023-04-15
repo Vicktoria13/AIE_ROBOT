@@ -37,7 +37,6 @@
 Bouton::Bouton()
 {
     std::cout << "creation d'un nouveau Bouton" << std::endl;
-
     this->isActivated = false;
 }
 
@@ -47,9 +46,9 @@ Bouton::Bouton()
  * @brief Permet d'initialiser un bouton a une pose donnée
  */
 
-
+/*
 Bouton::Bouton(float pos_x, float pos_y, float width, float height, 
-                 std::string texte,  sf::Color couleurTexte,sf::Color couleurBouton) : texteBouton(texte, sf::Font(), 20), couleurTexte(couleurTexte), couleurBouton(couleurBouton) {
+                 std::string texte, sf::Color couleurBouton) : texteBouton(texte, sf::Font(), 20), couleurBouton(couleurBouton) {
 
     
     // ici on met les autres attributs , qui sont des types de bases
@@ -59,6 +58,30 @@ Bouton::Bouton(float pos_x, float pos_y, float width, float height,
     this->pos_y = pos_y;
 
 }
+*/
+
+Bouton::Bouton(float x, float y, float width, float height, std::string text, sf::Color couleurBouton){
+
+    /* fond du bouton*/
+    formeBouton.setPosition(sf::Vector2f(x,y));
+    formeBouton.setSize(sf::Vector2f(width,height));
+    formeBouton.setFillColor(couleurBouton);
+
+
+
+    /* Texte du bouton + config */
+    texteBouton.setString(text);
+    texteBouton.setFillColor(sf::Color::White);
+    texteBouton.setCharacterSize(12);
+    texteBouton.setPosition(
+        formeBouton.getPosition().x + (formeBouton.getGlobalBounds().width/2.f) - texteBouton.getGlobalBounds().width/2.f,
+        formeBouton.getPosition().y + (formeBouton.getGlobalBounds().height/2.f) - texteBouton.getGlobalBounds().height/2.f);
+    
+
+    
+}
+
+
 
 
 /**
@@ -66,38 +89,13 @@ Bouton::Bouton(float pos_x, float pos_y, float width, float height,
  * 
  * @param window 
  */
-void Bouton::drawCenter(sf::RenderWindow& window){
 
-    // cree une forme rectangulaire de bouton
-    sf::RectangleShape MonBouton(sf::Vector2f(this->width, this->height));
-    MonBouton.setFillColor(this->couleurBouton);
-
-    sf::FloatRect windowBounds = window.getView().getViewport();
-
-    // Centrer le bouton sur la fenêtre
-    MonBouton.setPosition(windowBounds.left + windowBounds.width/2.0f - MonBouton.getSize().x/2.0f, 
-                               windowBounds.top + windowBounds.height/2.0f - MonBouton.getSize().y/2.0f);
-
-    window.draw(MonBouton);
-    //window.draw(this->texteBouton);
+void Bouton::draw(sf::RenderWindow& window){
+    window.draw(formeBouton);
+    window.draw(texteBouton);
 }
 
 
-
-void Bouton::drawAtGivenPosition(sf::RenderWindow& window){
-
-    // cree une forme rectangulaire de bouton
-    sf::RectangleShape MonBouton(sf::Vector2f(this->width, this->height));
-    MonBouton.setFillColor(this->couleurBouton);
-
-    // Centrer le bouton sur la fenêtre
-    MonBouton.setPosition(this->pos_x, this->pos_y);
-    window.draw(MonBouton);
-}
-/**
- * @brief Construct a new Bouton:: Pressed object
- * 
- */
 
 void Bouton::HasBeenPressed(){
     this->isActivated = true;

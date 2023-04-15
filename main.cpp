@@ -4,11 +4,10 @@
 
 int main()
 {
-    GamePlay* partie = new GamePlay();
+    GamePlay partie;
 
-    partie->Run();
+    partie.Run();
 
-    delete partie;
 
     return 0;
 }

@@ -14,7 +14,7 @@ public:
 
 
     /* methode virtuelle pure */
-    virtual void draw(sf::RenderWindow& window) = 0;
+    virtual void drawScreens(sf::RenderWindow* window) = 0;
 
     /* methode virtuelle pure */
     virtual void handleEvent(const sf::Event& event) = 0;

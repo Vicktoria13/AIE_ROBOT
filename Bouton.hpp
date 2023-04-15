@@ -23,10 +23,11 @@ private:
     float height;
 
 
+    /* forme rectangulaire */
+    sf::RectangleShape formeBouton;
 
     /* visuel du texte*/
     sf::Text texteBouton;
-    sf :: Color couleurTexte;
     
 
     /* couleur du fond du bouton */
@@ -37,13 +38,15 @@ public:
     /* Constructeur */
 
     Bouton();
-    Bouton(float pos_x, float pos_y, float width, float height, std::string texte,  sf::Color couleurTexte,sf::Color couleurBouton);
+    
+    //Bouton(float pos_x, float pos_y, float width, float height, 
+    //             std::string texte, sf::Color couleurBouton);
 
+    Bouton(float x, float y, float width, float height, std::string text, sf::Color couleurBouton);
     /* Destructeur */
 
     /*rendu dessin d'un Bouton*/
-    void drawAtGivenPosition(sf::RenderWindow& window);
-    void drawCenter(sf::RenderWindow& window);
+    void draw(sf::RenderWindow& window);
 
 
 

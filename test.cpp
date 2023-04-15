@@ -3,36 +3,26 @@
 int main()
 {
     // Création de la fenêtre
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Fenêtre SFML");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Ma fenêtre SFML");
 
-    // Chargement de l'image
-    sf::Texture texture;
-    if (!texture.loadFromFile("Accueil.jpg"))
+    // Chargement de la texture du fond d'écran
+    sf::Texture backgroundTexture;
+    if (!backgroundTexture.loadFromFile("Accueil.jpg"))
     {
-        // Gestion de l'erreur si le chargement de l'image échoue
-        return EXIT_FAILURE;
+        // Erreur lors du chargement de la texture
+        return 1;
     }
 
-    // Création du sprite
-    sf::Sprite sprite;
-    sprite.setTexture(texture);
-    sprite.setColor(sf::Color(255, 255, 255, 200));
+    // Création du sprite du fond d'écran
+    sf::Sprite background(backgroundTexture);
 
-    // Redimensionnement du sprite pour qu'il soit proportionnel à la fenêtre
-    float scaleX = static_cast<float>(window.getSize().x) / static_cast<float>(texture.getSize().x);
-    float scaleY = static_cast<float>(window.getSize().y) / static_cast<float>(texture.getSize().y);
-    if (scaleX > scaleY)
-    {
-        sprite.setScale(scaleX, scaleX);
-    }
-    else
-    {
-        sprite.setScale(scaleY, scaleY);
-    }
+    // Création du rectangle
+    sf::RectangleShape rectangle(sf::Vector2f(200, 100));
+    rectangle.setFillColor(sf::Color::Red);
+    rectangle.setOrigin(rectangle.getSize() / 2.0f);
 
-    // Centrage du sprite
-    sprite.setPosition((window.getSize().x - sprite.getGlobalBounds().width) / 2,
-                        (window.getSize().y - sprite.getGlobalBounds().height) / 2);
+    // Calcul de la position initiale du rectangle
+    rectangle.setPosition(window.getSize().x / 2.0f, window.getSize().y / 2.0f);
 
     // Boucle principale
     while (window.isOpen())
@@ -47,15 +37,16 @@ int main()
             }
         }
 
-        // Affichage du fond d'écran
-        window.clear(sf::Color::White);
-        window.draw(sprite);
+        // Effacement de la fenêtre
+        window.clear();
 
-        // Actualisation de la fenêtre
+        // Affichage du fond d'écran et du rectangle
+        window.draw(background);
+        window.draw(rectangle);
+
+        // Affichage de la fenêtre
         window.display();
     }
 
-    return EXIT_SUCCESS;
+    return 0;
 }
-
-//g++ test.cpp -o test -lsfml-graphics -lsfml-window -lsfml-system

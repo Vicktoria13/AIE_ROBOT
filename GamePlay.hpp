@@ -22,6 +22,7 @@ private:
     sf::Event event;
     sf::Clock clock;
 
+  
     //std::shared_ptr<Screen> EcransDisponibles;
     std::vector<Screen*> EcransDisponibles;
     //std::vector<std::unique_ptr<Screen>> EcransDisponibles;
