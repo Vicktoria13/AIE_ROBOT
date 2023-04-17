@@ -1,33 +1,26 @@
 #include <SFML/Graphics.hpp>
-#include <iostream>
+
+void drawRectangle(sf::RenderWindow& window,  sf::RectangleShape& rectangle)
+{
+    rectangle.setFillColor(sf::Color::White);
+    rectangle.setOutlineThickness(5);
+    rectangle.setOutlineColor(sf::Color(139, 0, 0)); // Rouge foncé
+    window.draw(rectangle);
+}
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Window");
+    // Crée la fenêtre
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Exemple de rectangle");
 
-    sf::Font font;
-    if (!font.loadFromFile("ccwild.ttf"))
-    {
-        std::cout << "Error loading font\n";
-        return 1;
-    }
+    // Crée le rectangle
+    sf::RectangleShape rectangle(sf::Vector2f(50, 100));
+    rectangle.setPosition(300, 250);
 
-    sf::Text text1("Joueur 1", font, 60);
-    text1.setFillColor(sf::Color::White);
-    text1.setStyle(sf::Text::Bold);
-    sf::FloatRect text1Bounds = text1.getLocalBounds();
-    text1.setOrigin(text1Bounds.left + text1Bounds.width / 2.0f, text1Bounds.top + text1Bounds.height / 2.0f);
-    text1.setPosition(window.getSize().x / 2.0f, window.getSize().y / 3.0f);
-
-    sf::Text text2("Joueur 2", font, 60);
-    text2.setFillColor(sf::Color::White);
-    text2.setStyle(sf::Text::Bold);
-    sf::FloatRect text2Bounds = text2.getLocalBounds();
-    text2.setOrigin(text2Bounds.left + text2Bounds.width / 2.0f, text2Bounds.top + text2Bounds.height / 2.0f);
-    text2.setPosition(window.getSize().x / 2.0f, window.getSize().y / 3.0f * 2);
-
+    // Boucle principale
     while (window.isOpen())
     {
+        // Gère les événements
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -37,9 +30,11 @@ int main()
             }
         }
 
-        window.clear(sf::Color::Black);
-        window.draw(text1);
-        window.draw(text2);
+        // Dessine le rectangle
+        window.clear();
+        drawRectangle(window, rectangle);
+
+        // Affiche le rendu à l'écran
         window.display();
     }
 

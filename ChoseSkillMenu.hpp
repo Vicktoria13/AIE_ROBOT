@@ -1,6 +1,9 @@
 #ifndef ChoseSkillMenu_HPP
 #define ChoseSkillMenu_HPP
 
+#include "Screen.hpp"
+#include "Bouton.hpp"
+#include <iostream>
 
 class ChoseSkillMenu
 {
@@ -21,11 +24,11 @@ private:
 
 public:
 
-    
+    ChoseSkillMenu();
 
     void ajoutBouton();
     void ajoutTexte();
-    void drawScreens(sf::RenderWindow* window);
+    void drawScreens(sf::RenderWindow& window);
 
    
 };

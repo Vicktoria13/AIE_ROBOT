@@ -12,7 +12,7 @@ EXES= main
 
 all: $(EXES)
 
-main: main.o GamePlay.o WelcomeScreen.o Bouton.o
+main: main.o GamePlay.o WelcomeScreen.o Bouton.o ChoseSkillMenu.o
 	$(LD) $(LDFLAGS) main.o GamePlay.o  WelcomeScreen.o Bouton.o -o main $(LIBS)
 
 main.o: main.cpp GamePlay.hpp
@@ -23,6 +23,9 @@ GamePlay.o: GamePlay.cpp GamePlay.hpp WelcomeScreen.hpp
 
 WelcomeScreen.o : WelcomeScreen.cpp WelcomeScreen.hpp Bouton.hpp 
 	$(CPP) $(CPPFLAGS) -c WelcomeScreen.cpp 
+
+ChoseSkillMenu.o : ChoseSkillMenu.cpp ChoseSkillMenu.hpp Bouton.hpp 
+	$(CPP) $(CPPFLAGS) -c ChoseSkillMenu.cpp
 
 Bouton.o : Bouton.cpp Bouton.hpp
 	$(CPP) $(CPPFLAGS) -c Bouton.cpp

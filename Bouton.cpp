@@ -62,7 +62,7 @@ Bouton::Bouton()
  * @param couleurBouton  couleur du bouton
  */
 
-Bouton::Bouton(float x, float y, float width, float height, std::string text, sf::Color couleurBouton) 
+Bouton::Bouton(float x, float y, float width, float height, std::string text, sf::Color couleurBouton,bool Activate) 
     {
 
     std::cout << "creation d'un nouveau Bouton constructeur 1 : nom = " << text << std::endl;
@@ -99,7 +99,7 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
     sf::Vector2f((formeBouton.getSize().x - texteBouton.getGlobalBounds().width) / 2.f, 
     (formeBouton.getSize().y - texteBouton.getGlobalBounds().height) / 2.f));
 
-    this->isActivated = false;
+    this->isActivated = Activate;
 
     // couleur si je passe la souris : gris
     this->couleurMouseOn = sf::Color(100, 100, 100, 100);
@@ -122,9 +122,6 @@ void Bouton::drawButton(sf::RenderWindow& window){
 
 
 
-void Bouton::HasBeenPressed(){
-    this->isActivated = true;
-}
 
 
 bool Bouton::getIsActivated() const{
@@ -147,28 +144,27 @@ void Bouton::AfficheInfos() const{
 }
 
 
+
+
+
+
+
 /**
- * @brief Permet de savoir si la souris est sur le bouton
+ * @brief Permet de dessiner les contours du bouton sur une fenêtre
  * 
- * @param x coordonnée x de la souris
- * @param y coordonnée y de la souris
+ * @param window fenêtre sur laquelle on dessine
  */
-void Bouton::MouseAction(int x, int y){
-
-    if (this->formeBouton.getGlobalBounds().contains(x,y)){
-        this->HasBeenPressed();
-        // On change la couleur du bouton
-        this->formeBouton.setFillColor(this->couleurMouseOn);
-    }
-
-    else {
-        // on garde la couleur originelle
-        this->formeBouton.setFillColor(this->couleurBouton);
-
-    }
+void Bouton::drawContoursBoutton(sf::RenderWindow& window){
+   this->formeBouton.setOutlineThickness(2);
+   this->formeBouton.setOutlineColor(sf::Color::Red);
+   window.draw(this->formeBouton);
 }
 
 
+
+int Bouton::getPosX() const{
+    return this->pos_x;
+}
 /**
  * @brief detruit le  Bouton
  * 

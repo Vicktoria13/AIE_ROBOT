@@ -7,14 +7,12 @@ GamePlay::GamePlay()
     /* on cree la fenetre de jeu !*/
     fenetre = new sf::RenderWindow(sf::VideoMode(1920,1080), "Aie Robot!");
     fenetre->setFramerateLimit(20);
-
-    /* on ajoute les ecrans disponibles */
-    //this->EcransDisponibles.push_back(new WelcomeScreen());
-
     Ajout_Ecran("Accueil",new WelcomeScreen());
 
 
 
+    // on met l'ecran d'accueil comme ecran actuel
+    EcranActuel = MapEcransDisponibles["Accueil"];
 
 
     std::cout<< " il y a " << MapEcransDisponibles.size()<< " ecrans dispo" << std::endl;
@@ -37,12 +35,12 @@ void GamePlay::Ajout_Ecran(std::string name, Screen *ecran)
 {
     //EcransDisponibles.push_back(ecran);
     this->MapEcransDisponibles[name] = ecran;
+    std::cout << "Ajout de l'ecran " << name << std::endl;
 }
 
 void GamePlay::Affichage_Ecran(std::string name)
 {
     this->fenetre->clear(sf::Color::Black);
-    // on affiche l'ecran voulu
     MapEcransDisponibles[name]->drawScreens((this->fenetre));
     
     
@@ -63,11 +61,11 @@ void GamePlay::WaitForExit(){
         }
 
         fenetre->clear();
-        Affichage_Ecran("Accueil");
+        //Affichage_Ecran("Accueil");
+        DisplayCurrentScreen();
         fenetre->display();
-        
 
-        
+   
        
     }
 }

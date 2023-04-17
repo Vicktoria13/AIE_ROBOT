@@ -42,5 +42,16 @@ class WelcomeScreen : public Screen{
         
         void ajouterBouton();
 
+
+
+        // getters
+
+        bool getIsPlay() const;
+        Bouton* getBouton(std::string name) const;
+
+        Bouton* getTheLeftButton();
+
+
+     
 };
 #endif

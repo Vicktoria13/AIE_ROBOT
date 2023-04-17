@@ -16,8 +16,10 @@ public:
     /* methode virtuelle pure */
     virtual void drawScreens(sf::RenderWindow* window) = 0;
 
-    /* methode virtuelle pure permet de gerer les evenements dans chaque screen */
+    /* methode virtuelle pure permet de gerer les evenements clavier dans chaque screen */
     virtual void handleEvent() = 0;
+
+
 };
 
 

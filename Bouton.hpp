@@ -34,6 +34,7 @@ private:
     /* couleur du fond du bouton */
     sf :: Color couleurBouton;
     sf::Color couleurMouseOn;
+    sf::Color couleurPressed;
 
 
 public:
@@ -44,7 +45,7 @@ public:
     //Bouton(float pos_x, float pos_y, float width, float height, 
     //             std::string texte, sf::Color couleurBouton);
 
-    Bouton(float x, float y, float width, float height, std::string text, sf::Color couleurBouton);
+    Bouton(float x, float y, float width, float height, std::string text, sf::Color couleurBouton,bool Activate);
     /* Destructeur */
     ~Bouton();
 
@@ -54,10 +55,13 @@ public:
 
     void AfficheInfos() const;
    
-    void HasBeenPressed();
     bool getIsActivated() const;
 
-    void MouseAction(int x, int y);
+
+    void drawContoursBoutton(sf::RenderWindow& window);
+
+    //getters
+    int getPosX() const;
 
 };
 
