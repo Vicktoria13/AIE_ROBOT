@@ -140,6 +140,7 @@ void Bouton::AfficheInfos() const{
     std::cout << "width : " << this->width << std::endl;
     std::cout << "height : " << this->height << std::endl;
     std::cout << "isActivated : " << this->isActivated << std::endl;
+    std::cout<<"\n"<<std::endl;
 
 }
 
@@ -155,7 +156,8 @@ void Bouton::AfficheInfos() const{
  * @param window fenêtre sur laquelle on dessine
  */
 void Bouton::drawContoursBoutton(sf::RenderWindow& window){
-   this->formeBouton.setOutlineThickness(2);
+   std::cout << "drawContoursBoutton" << std::endl;
+   this->formeBouton.setOutlineThickness(5);
    this->formeBouton.setOutlineColor(sf::Color::Red);
    window.draw(this->formeBouton);
 }
@@ -164,6 +166,14 @@ void Bouton::drawContoursBoutton(sf::RenderWindow& window){
 
 int Bouton::getPosX() const{
     return this->pos_x;
+}
+
+int Bouton::getPosY() const{
+    return this->pos_y;
+}
+
+void Bouton::setFlagActivated(bool flag){
+    this->isActivated = flag;
 }
 /**
  * @brief detruit le  Bouton

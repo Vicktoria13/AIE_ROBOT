@@ -49,7 +49,11 @@ class WelcomeScreen : public Screen{
         bool getIsPlay() const;
         Bouton* getBouton(std::string name) const;
 
-        Bouton* getTheLeftButton();
+        void getTheMostLeftButton();
+
+        void getLeftButton(Bouton *boutonActif);
+
+        
 
 
      

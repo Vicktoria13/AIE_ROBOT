@@ -62,6 +62,11 @@ public:
 
     //getters
     int getPosX() const;
+    int getPosY() const;
+
+    //setters
+
+    void setFlagActivated(bool flag);
 
 };
 

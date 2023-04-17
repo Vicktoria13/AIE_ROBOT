@@ -61,12 +61,10 @@ void GamePlay::WaitForExit(){
         }
 
         fenetre->clear();
-        //Affichage_Ecran("Accueil");
+        EcranActuel->handleEvent();
         DisplayCurrentScreen();
         fenetre->display();
 
-   
-       
     }
 }
 
@@ -76,7 +74,6 @@ void GamePlay::WaitForExit(){
  * 
  */
 void GamePlay::DisplayCurrentScreen(){
-    this->fenetre->clear(sf::Color::Black);
     EcranActuel->drawScreens((this->fenetre));
 }
 
