@@ -65,7 +65,6 @@ Bouton::Bouton()
 Bouton::Bouton(float x, float y, float width, float height, std::string text, sf::Color couleurBouton,bool Activate) 
     {
 
-    std::cout << "creation d'un nouveau Bouton constructeur 1 : nom = " << text << std::endl;
     /* fond du bouton*/
 
     this->pos_x = x;
@@ -109,16 +108,7 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
 
 
 
-/**
- * @brief Permet de dessiner un bouton au centre dans la fenêtre
- * 
- * @param window  fenêtre dans laquelle on dessine : par référence
- */
 
-void Bouton::drawButton(sf::RenderWindow& window){
-    window.draw(formeBouton);
-    window.draw(this->texteBouton);
-}
 
 
 
@@ -152,15 +142,31 @@ void Bouton::AfficheInfos() const{
 
 /**
  * @brief Permet de dessiner les contours du bouton sur une fenêtre
+ * Cette fonction dessine le bouton ET son contour !!
  * 
  * @param window fenêtre sur laquelle on dessine
  */
 void Bouton::drawContoursBoutton(sf::RenderWindow& window){
-   std::cout << "drawContoursBoutton" << std::endl;
    this->formeBouton.setOutlineThickness(5);
    this->formeBouton.setOutlineColor(sf::Color::Red);
    window.draw(this->formeBouton);
+   window.draw(this->texteBouton);
 }
+
+
+/**
+ * @brief Permet de dessiner un bouton + son texte
+ * 
+ * @param window  fenêtre dans laquelle on dessine : par référence
+ */
+
+void Bouton::drawButton(sf::RenderWindow& window){
+    // on n'oublie pas de remettre le contour a 0 !!
+    this->formeBouton.setOutlineThickness(0);
+    window.draw(formeBouton);
+    window.draw(this->texteBouton);
+}
+
 
 
 

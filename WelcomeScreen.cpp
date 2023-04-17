@@ -91,6 +91,7 @@ void WelcomeScreen::drawScreens(sf::RenderWindow* window){
 
                 window->draw(fullBackground);
 
+                // puis le titre
                 window->draw(Title);
 
                 // puis les boutons
@@ -99,18 +100,13 @@ void WelcomeScreen::drawScreens(sf::RenderWindow* window){
                     
                     if (bouton.second->getIsActivated() == true ){
                         
-                        bouton.second->drawButton(*window);
                         bouton.second->drawContoursBoutton(*window);
-                        std::cout << "Bouton " << bouton.first << " est actif" << std::endl;
                         
                     }
 
-                    else{
+                    else if (bouton.second->getIsActivated() == false){
                         bouton.second->drawButton(*window);
-                        std::cout<< "Bouton " << bouton.first << " n'est pas actif" << std::endl;
                     }
-                    
-                    bouton.second->AfficheInfos();
                 }
 
                 // puis le titre
@@ -177,6 +173,7 @@ void WelcomeScreen::handleEvent()
             MapBoutons["Quit"]->setFlagActivated(true);
         }
         
+    
         // sinon : on ne fait rien, car on ne peut pas aller plus loin a droite
     }
 
