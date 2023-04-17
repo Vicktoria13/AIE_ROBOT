@@ -13,6 +13,10 @@ GamePlay::GamePlay()
 
     Ajout_Ecran("Accueil",new WelcomeScreen());
 
+
+
+
+
     std::cout<< " il y a " << MapEcransDisponibles.size()<< " ecrans dispo" << std::endl;
   
    
@@ -60,12 +64,24 @@ void GamePlay::WaitForExit(){
 
         fenetre->clear();
         Affichage_Ecran("Accueil");
-        this->fenetre->display();
+        fenetre->display();
+        
 
         
        
     }
 }
+
+
+/**
+ * @brief Affiche l'écran actuel
+ * 
+ */
+void GamePlay::DisplayCurrentScreen(){
+    this->fenetre->clear(sf::Color::Black);
+    EcranActuel->drawScreens((this->fenetre));
+}
+
 
 void GamePlay::Run()
 {

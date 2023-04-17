@@ -10,7 +10,10 @@
 
 void WelcomeScreen::ajouterBouton(){
 
-    MapBoutons["Play"] = new Bouton(400, 800, 200, 100, "Play",  sf::Color(100,20,20,200));
+    // Bouton Plau en bleu
+    MapBoutons["Play"] = new Bouton(400, 800, 200, 100, "Play",  sf::Color(20,20,100,200));
+
+    // Bouton Quit en rouge
     MapBoutons["Quit"] = new Bouton(1300, 800, 200, 100, "Quit",  sf::Color(100,20,20,200));
     std::cout << "Ajout des boutons" << std::endl;
 }
@@ -41,7 +44,6 @@ WelcomeScreen::WelcomeScreen()
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }
 
-    // on applique la texture au rectangle    
     fullBackground.setTexture(&backgroundTexture);
 
      // On ajoute le titre
@@ -90,9 +92,9 @@ void WelcomeScreen::drawScreens(sf::RenderWindow* window){
 
         }
 
-void WelcomeScreen::handleEvent(const sf::Event& event)
+void WelcomeScreen::handleEvent()
 {
-  
+
 }
 
 WelcomeScreen::~WelcomeScreen()

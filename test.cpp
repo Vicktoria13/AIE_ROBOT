@@ -1,33 +1,33 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 int main()
 {
-    // Création de la fenêtre
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Ma fenêtre SFML");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Window");
 
-    // Chargement de la texture du fond d'écran
-    sf::Texture backgroundTexture;
-    if (!backgroundTexture.loadFromFile("Accueil.jpg"))
+    sf::Font font;
+    if (!font.loadFromFile("ccwild.ttf"))
     {
-        // Erreur lors du chargement de la texture
+        std::cout << "Error loading font\n";
         return 1;
     }
 
-    // Création du sprite du fond d'écran
-    sf::Sprite background(backgroundTexture);
+    sf::Text text1("Joueur 1", font, 60);
+    text1.setFillColor(sf::Color::White);
+    text1.setStyle(sf::Text::Bold);
+    sf::FloatRect text1Bounds = text1.getLocalBounds();
+    text1.setOrigin(text1Bounds.left + text1Bounds.width / 2.0f, text1Bounds.top + text1Bounds.height / 2.0f);
+    text1.setPosition(window.getSize().x / 2.0f, window.getSize().y / 3.0f);
 
-    // Création du rectangle
-    sf::RectangleShape rectangle(sf::Vector2f(200, 100));
-    rectangle.setFillColor(sf::Color::Red);
-    rectangle.setOrigin(rectangle.getSize() / 2.0f);
+    sf::Text text2("Joueur 2", font, 60);
+    text2.setFillColor(sf::Color::White);
+    text2.setStyle(sf::Text::Bold);
+    sf::FloatRect text2Bounds = text2.getLocalBounds();
+    text2.setOrigin(text2Bounds.left + text2Bounds.width / 2.0f, text2Bounds.top + text2Bounds.height / 2.0f);
+    text2.setPosition(window.getSize().x / 2.0f, window.getSize().y / 3.0f * 2);
 
-    // Calcul de la position initiale du rectangle
-    rectangle.setPosition(window.getSize().x / 2.0f, window.getSize().y / 2.0f);
-
-    // Boucle principale
     while (window.isOpen())
     {
-        // Gestion des événements
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -37,14 +37,9 @@ int main()
             }
         }
 
-        // Effacement de la fenêtre
-        window.clear();
-
-        // Affichage du fond d'écran et du rectangle
-        window.draw(background);
-        window.draw(rectangle);
-
-        // Affichage de la fenêtre
+        window.clear(sf::Color::Black);
+        window.draw(text1);
+        window.draw(text2);
         window.display();
     }
 

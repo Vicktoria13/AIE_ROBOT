@@ -1,3 +1,14 @@
+/**
+ * @file Bouton.cpp
+ * @author Victoria
+ * @brief 
+ * @version 0.1
+ * @date 2023-04-17
+ * 
+ * @copyright 
+ * 
+ */
+
 #include "Bouton.hpp"
 #include <iostream>
 
@@ -40,45 +51,59 @@ Bouton::Bouton()
     this->isActivated = false;
 }
 
-
-
 /**
- * @brief Permet d'initialiser un bouton a une pose donnée
+ * @brief Constructeur surcharge. La couleur du bouton est passée en paramètre, celle de la souris est fixée
+ * 
+ * @param x coordonnée x du bouton
+ * @param y coordonnée y du bouton
+ * @param width largeur du bouton
+ * @param height hauteur du bouton
+ * @param text contenu du bouton
+ * @param couleurBouton  couleur du bouton
  */
 
-/*
-Bouton::Bouton(float pos_x, float pos_y, float width, float height, 
-                 std::string texte, sf::Color couleurBouton) : texteBouton(texte, sf::Font(), 20), couleurBouton(couleurBouton) {
+Bouton::Bouton(float x, float y, float width, float height, std::string text, sf::Color couleurBouton) 
+    {
+
+    std::cout << "creation d'un nouveau Bouton constructeur 1 : nom = " << text << std::endl;
+    /* fond du bouton*/
+
+    this->pos_x = x;
+    this->pos_y = y;
+    this-> width = width;
+    this->height = height;
 
     
-    // ici on met les autres attributs , qui sont des types de bases
-    this->isActivated = false;
+    // on charge une police
+    
+    if (!this->police.loadFromFile("ccwild.ttf"))
+    {
+        std::cout << "erreur chargement police" << std::endl;
+    } 
+    
 
-    this->pos_x = pos_x;
-    this->pos_y = pos_y;
-
-}
-*/
-
-Bouton::Bouton(float x, float y, float width, float height, std::string text, sf::Color couleurBouton){
-
-    /* fond du bouton*/
-    formeBouton.setPosition(sf::Vector2f(x,y));
-    formeBouton.setSize(sf::Vector2f(width,height));
+    formeBouton.setPosition(pos_x, pos_y);
+    formeBouton.setSize(sf::Vector2f(this->width,this->height));
     formeBouton.setFillColor(couleurBouton);
 
 
-
     /* Texte du bouton +*/
-    texteBouton.setString(text);
-    texteBouton.setFillColor(sf::Color::Black);
-    texteBouton.setCharacterSize(30);
-    texteBouton.setPosition(
-        formeBouton.getPosition().x + (formeBouton.getGlobalBounds().width/2.f) - texteBouton.getGlobalBounds().width/2.f,
-        formeBouton.getPosition().y + (formeBouton.getGlobalBounds().height/2.f) - texteBouton.getGlobalBounds().height/2.f);
+
+    this->texteBouton.setFont(this->police);
+    this->texteBouton.setFillColor(sf::Color::White);
+    this->texteBouton.setCharacterSize(30);
+    this->texteBouton.setString(text);
     
-    
-    
+    // on centre le texte dans le bouton
+    texteBouton.setPosition(formeBouton.getPosition() + 
+    sf::Vector2f((formeBouton.getSize().x - texteBouton.getGlobalBounds().width) / 2.f, 
+    (formeBouton.getSize().y - texteBouton.getGlobalBounds().height) / 2.f));
+
+    this->isActivated = false;
+
+    // couleur si je passe la souris : gris
+    this->couleurMouseOn = sf::Color(100, 100, 100, 100);
+
 }
 
 
@@ -87,12 +112,12 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
 /**
  * @brief Permet de dessiner un bouton au centre dans la fenêtre
  * 
- * @param window 
+ * @param window  fenêtre dans laquelle on dessine : par référence
  */
 
 void Bouton::drawButton(sf::RenderWindow& window){
     window.draw(formeBouton);
-    window.draw(texteBouton);
+    window.draw(this->texteBouton);
 }
 
 
@@ -107,3 +132,48 @@ bool Bouton::getIsActivated() const{
 }
 
 
+
+/**
+ * @brief Permet d'afficher les infos du bouton
+ * 
+ */
+void Bouton::AfficheInfos() const{
+    std::cout << "pos_x : " << this->pos_x << std::endl;
+    std::cout << "pos_y : " << this->pos_y << std::endl;
+    std::cout << "width : " << this->width << std::endl;
+    std::cout << "height : " << this->height << std::endl;
+    std::cout << "isActivated : " << this->isActivated << std::endl;
+
+}
+
+
+/**
+ * @brief Permet de savoir si la souris est sur le bouton
+ * 
+ * @param x coordonnée x de la souris
+ * @param y coordonnée y de la souris
+ */
+void Bouton::MouseAction(int x, int y){
+
+    if (this->formeBouton.getGlobalBounds().contains(x,y)){
+        this->HasBeenPressed();
+        // On change la couleur du bouton
+        this->formeBouton.setFillColor(this->couleurMouseOn);
+    }
+
+    else {
+        // on garde la couleur originelle
+        this->formeBouton.setFillColor(this->couleurBouton);
+
+    }
+}
+
+
+/**
+ * @brief detruit le  Bouton
+ * 
+ */
+Bouton::~Bouton()
+{
+    std::cout << "Destruction d'un bouton" << std::endl;
+}

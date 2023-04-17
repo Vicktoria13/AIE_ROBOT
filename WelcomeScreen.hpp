@@ -37,8 +37,7 @@ class WelcomeScreen : public Screen{
 
         void ajoutBouton();
 
-        void handleEvent(const sf::Event& event);
-
+        void handleEvent();
 
         
         void ajouterBouton();

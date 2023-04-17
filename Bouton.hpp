@@ -28,10 +28,12 @@ private:
 
     /* visuel du texte*/
     sf::Text texteBouton;
+    sf::Font police;
     
 
     /* couleur du fond du bouton */
     sf :: Color couleurBouton;
+    sf::Color couleurMouseOn;
 
 
 public:
@@ -44,15 +46,19 @@ public:
 
     Bouton(float x, float y, float width, float height, std::string text, sf::Color couleurBouton);
     /* Destructeur */
+    ~Bouton();
 
     /*rendu dessin d'un Bouton*/
     void drawButton(sf::RenderWindow& window);
 
 
-
+    void AfficheInfos() const;
    
     void HasBeenPressed();
     bool getIsActivated() const;
+
+    void MouseAction(int x, int y);
+
 };
 
 

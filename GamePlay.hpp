@@ -26,6 +26,7 @@ private:
     //std::vector<Screen*> EcransDisponibles;
 
     std::map<std::string,Screen*> MapEcransDisponibles;
+    Screen* EcranActuel;
 
   
     
@@ -36,6 +37,8 @@ public:
     void Ajout_Ecran( std::string name, Screen* ecran);
 
     void Affichage_Ecran(std::string name);
+
+    void DisplayCurrentScreen();
 
     void Run();
 

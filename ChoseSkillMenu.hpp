@@ -6,16 +6,27 @@ class ChoseSkillMenu
 {
 private:
     
-    bool isPlay = false;
+       bool isPlay = false;
+
+        sf::Text Title;
+        sf::Font fontTitle;
         /* le fond d"'écran de l'accueil */
 
-    sf::RectangleShape fullBackground;
-    sf::Texture backgroundTexture;
+        sf::RectangleShape fullBackground;
+        sf::Texture backgroundTexture;
 
-    std::map<std::string,Bouton*> MapBoutons;
+
+        /*liste de Boutons a afficher : polymorphisme */
+        std::map<std::string,Bouton*> MapBoutons;
+
+public:
 
     
-public:
+
+    void ajoutBouton();
+    void ajoutTexte();
+    void drawScreens(sf::RenderWindow* window);
+
    
 };
 
