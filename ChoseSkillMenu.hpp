@@ -15,7 +15,6 @@ class ChoseSkillMenu: public Screen
 {
 private:
     
-       bool isPlay = false;
 
         sf::Text Title;
         sf::Font fontTitle;

@@ -40,6 +40,10 @@ public:
         return ScreenName;
     };
 
+    bool getQuit() const {
+        return Quit;
+    };
+
 };
 
 

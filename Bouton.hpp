@@ -51,7 +51,7 @@ public:
 
     Bouton(float x, float y, float width, float height, std::string text, sf::Color couleurBouton,bool Activate);
     /* Destructeur */
-    ~Bouton();
+    ~Bouton(){};
 
     /*rendu dessin d'un Bouton*/
     void drawButton(sf::RenderWindow& window);

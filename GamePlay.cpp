@@ -21,8 +21,6 @@ GamePlay::GamePlay()
     // on met l'ecran d'accueil comme ecran actuel
     EcranActuel = MapEcransDisponibles["Accueil"];
 
-
-    std::cout<< " il y a " << MapEcransDisponibles.size()<< " ecrans dispo" << std::endl;
   
    
    
@@ -54,21 +52,34 @@ void GamePlay::Ajout_Ecran(std::string name, Screen *ecran)
 
 /**
  * @brief Regarde si sa fenetre actuel demande un changement d'ecran
- * Si oui, alors on change d'ecran
+ * Si oui, alors on change d'ecran ou on quitte le jeu
  * 
  */
-void GamePlay::CheckFenetreChanges(){
-    std::string newScreenName = EcranActuel->getProchainScreen();
-    if(newScreenName != ""){
-        
-        this->EcranActuel = MapEcransDisponibles[newScreenName];
+int GamePlay::CheckFenetreChanges(){
+
+    // si le joueur a clique sur le bouton quitter de l'ecran actuel
+    if(EcranActuel->getQuit()){
+        this->fenetre->close();
+        std::cout << "on quitte le jeu" << std::endl;
+        return -1;
     }
+
+    else {
+        std::string newScreenName = EcranActuel->getProchainScreen();
+        if (newScreenName != "" && MapEcransDisponibles.empty() == false)
+        {
+            this->EcranActuel = MapEcransDisponibles[newScreenName];
+            return 1;
+        }
+    }
+
+    return 0; // pas de changement d'ecran
 }
 
 
 
-void GamePlay::WaitForExit(){
 
+void GamePlay::WaitForExit(){
     while (this->fenetre->isOpen())
     {
         sf::Event event;

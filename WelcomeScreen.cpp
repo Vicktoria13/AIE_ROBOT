@@ -22,7 +22,6 @@ void WelcomeScreen::ajouterBouton(){
     
     // par defaut , le bouton a Gauche est entouré de rouge
     
-    std::cout << "Ajout des boutons" << std::endl;
 }
 
 
@@ -174,9 +173,14 @@ void WelcomeScreen::handleEvent()
             // on recherche celui qui est activé : si on le trouve, on renvoit 1
             if (bouton.second->EnterPressed()==1){
                 // faire une fonction qui renvoie le nom du bouton pressé 
-                this->ProchainScreen = bouton.first; // on donne le nom du nouveau screen via le nom du bouton donc ils doivent avoir le meme nom
+                if (bouton.first == "Quit")
+                    // on quitte le jeu
+                    this->Quit = true;
+                else {
+                    this->Quit = false;
+                    this->ProchainScreen = bouton.first; // on donne le nom du nouveau screen via le nom du bouton donc ils doivent avoir le meme nom
+                }
             }
-            
         }
     }
 }

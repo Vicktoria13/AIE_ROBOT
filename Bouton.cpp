@@ -217,11 +217,4 @@ int Bouton::EnterPressed(){
     
 }
 
-/**
- * @brief detruit le  Bouton
- * 
- */
-Bouton::~Bouton()
-{
-    std::cout << "Destruction d'un bouton" << std::endl;
-}
+

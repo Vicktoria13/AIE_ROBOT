@@ -25,8 +25,6 @@ void ChoseSkillMenu::ajoutBouton(){
  */
 ChoseSkillMenu::ChoseSkillMenu(){
 
-    std::cout<<"Creation de l'ecran de  choix "<<std::endl;
-
     this->ajoutBouton();
 
     // Chargement de l'image de fond
@@ -49,6 +47,9 @@ ChoseSkillMenu::ChoseSkillMenu(){
     Title.setPosition(380,80);
     Title.setCharacterSize(80);
     Title.setString("Choisissez vos skills !");
+
+    this->ScreenName = "ChoseSkillMenu";
+    this->Quit = false; // on ne quitte pas par defaut
 
 
 
@@ -75,4 +76,8 @@ void ChoseSkillMenu::handleEvent(){
 ChoseSkillMenu::~ChoseSkillMenu(){
 
     std::cout<<"Destruction de l'ecran de  choix "<<std::endl;
+    for (auto& bouton : MapBoutons)
+    {
+        delete bouton.second;
+    }
 }
