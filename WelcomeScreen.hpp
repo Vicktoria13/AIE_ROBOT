@@ -10,7 +10,7 @@ class WelcomeScreen : public Screen{
 
     private:
 
-        bool isPlay = false;
+        bool isPlay ;
 
         sf::Text Title;
         sf::Font fontTitle;
@@ -35,8 +35,6 @@ class WelcomeScreen : public Screen{
 
         void drawScreens(sf::RenderWindow* window);
 
-        void ajoutBouton();
-
         void handleEvent();
 
         
@@ -52,6 +50,8 @@ class WelcomeScreen : public Screen{
         void getTheMostLeftButton();
 
         void getLeftButton(Bouton *boutonActif);
+
+
 
         
 

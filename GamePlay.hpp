@@ -4,6 +4,7 @@
 
 #include "Screen.hpp"
 #include "WelcomeScreen.hpp"
+#include "ChoseSkillMenu.hpp"
 #include <vector>
 #include <memory>
 
@@ -36,13 +37,13 @@ public:
 
     void Ajout_Ecran( std::string name, Screen* ecran);
 
-    void Affichage_Ecran(std::string name);
-
     void DisplayCurrentScreen();
 
     void Run();
 
     void WaitForExit();
+
+    void ChangerFenetreCourante(std::string name);
 
 
 

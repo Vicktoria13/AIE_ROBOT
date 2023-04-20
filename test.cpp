@@ -92,3 +92,5 @@ int main() {
     game.run();
     return 0;
 }
+
+//g++ test.cpp -o test -lsfml-graphics -lsfml-window -lsfml-system

@@ -7,7 +7,14 @@ GamePlay::GamePlay()
     /* on cree la fenetre de jeu !*/
     fenetre = new sf::RenderWindow(sf::VideoMode(1920,1080), "Aie Robot!");
     fenetre->setFramerateLimit(20);
+
+    /* Ajout des ecrans*/
+
+    /* Ecran d'accueil */
     Ajout_Ecran("Accueil",new WelcomeScreen());
+
+    /* Ecran Menu Choix Skills*/
+    Ajout_Ecran("ChoixSkills",new ChoseSkillMenu());
 
 
 
@@ -38,14 +45,17 @@ void GamePlay::Ajout_Ecran(std::string name, Screen *ecran)
     std::cout << "Ajout de l'ecran " << name << std::endl;
 }
 
-void GamePlay::Affichage_Ecran(std::string name)
-{
-    this->fenetre->clear(sf::Color::Black);
-    MapEcransDisponibles[name]->drawScreens((this->fenetre));
-    
-    
-}
 
+
+/**
+ * @brief change l'ecran actuel par celui dont le nom est passe en parametre
+ * 
+ * @param name nom de l'ecran a afficher
+ */
+void GamePlay::ChangerFenetreCourante(std::string name)
+{
+    EcranActuel = MapEcransDisponibles[name];
+}
 
 void GamePlay::WaitForExit(){
 
@@ -60,6 +70,10 @@ void GamePlay::WaitForExit(){
 
         }
 
+
+
+        /* update + affichage */
+        
         fenetre->clear();
         EcranActuel->handleEvent();
         DisplayCurrentScreen();
@@ -67,6 +81,8 @@ void GamePlay::WaitForExit(){
 
     }
 }
+
+
 
 
 /**

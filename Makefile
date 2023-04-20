@@ -13,7 +13,7 @@ EXES= main
 all: $(EXES)
 
 main: main.o GamePlay.o WelcomeScreen.o Bouton.o ChoseSkillMenu.o
-	$(LD) $(LDFLAGS) main.o GamePlay.o  WelcomeScreen.o Bouton.o -o main $(LIBS)
+	$(LD) $(LDFLAGS) main.o GamePlay.o  WelcomeScreen.o Bouton.o ChoseSkillMenu.o -o main $(LIBS)
 
 main.o: main.cpp GamePlay.hpp
 	$(CPP) $(CPPFLAGS) -c main.cpp

@@ -5,7 +5,13 @@
 #include "Bouton.hpp"
 #include <iostream>
 
-class ChoseSkillMenu
+
+/**
+ * @brief Ecran ou on pourra choisir les skills pour chaque joueur
+ * 
+ */
+
+class ChoseSkillMenu: public Screen
 {
 private:
     
@@ -25,10 +31,12 @@ private:
 public:
 
     ChoseSkillMenu();
+    ~ChoseSkillMenu();
 
     void ajoutBouton();
-    void ajoutTexte();
-    void drawScreens(sf::RenderWindow& window);
+    void drawScreens(sf::RenderWindow* window);
+
+    void handleEvent() ;    
 
    
 };

@@ -11,7 +11,11 @@
 class Bouton
 {
 private:
+    /*permet de savoir si le bouton et survolé !*/
     bool isActivated;
+
+    /* Permet de savoir si un bouton a été selectionné via la touche Entrée*/
+    bool isPressed;
 
     /* position dans l'écran */
 
@@ -33,8 +37,8 @@ private:
 
     /* couleur du fond du bouton */
     sf :: Color couleurBouton;
-    sf::Color couleurMouseOn;
-    sf::Color couleurPressed;
+    sf::Color couleurBoutonActive;
+
 
 
 public:
@@ -67,6 +71,13 @@ public:
     //setters
 
     void setFlagActivated(bool flag);
+
+    bool getIsPressed() const;
+
+    void setIsPressed(bool newIsPressed);
+
+    int EnterPressed();
+    
 
 };
 

@@ -98,11 +98,10 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
     sf::Vector2f((formeBouton.getSize().x - texteBouton.getGlobalBounds().width) / 2.f, 
     (formeBouton.getSize().y - texteBouton.getGlobalBounds().height) / 2.f));
 
+
+    couleurBoutonActive = sf::Color(100, 100, 100, 100);
     this->isActivated = Activate;
-
-    // couleur si je passe la souris : gris
-    this->couleurMouseOn = sf::Color(100, 100, 100, 100);
-
+    this->isPressed = false; // faux par defaut
 }
 
 
@@ -147,8 +146,12 @@ void Bouton::AfficheInfos() const{
  * @param window fenêtre sur laquelle on dessine
  */
 void Bouton::drawContoursBoutton(sf::RenderWindow& window){
-   this->formeBouton.setOutlineThickness(5);
+   this->formeBouton.setOutlineThickness(7);
    this->formeBouton.setOutlineColor(sf::Color::Red);
+
+
+   formeBouton.setFillColor(couleurBoutonActive);
+
    window.draw(this->formeBouton);
    window.draw(this->texteBouton);
 }
@@ -162,7 +165,10 @@ void Bouton::drawContoursBoutton(sf::RenderWindow& window){
 
 void Bouton::drawButton(sf::RenderWindow& window){
     // on n'oublie pas de remettre le contour a 0 !!
+    
+    this->formeBouton.setFillColor(couleurBouton);
     this->formeBouton.setOutlineThickness(0);
+
     window.draw(formeBouton);
     window.draw(this->texteBouton);
 }
@@ -181,6 +187,37 @@ int Bouton::getPosY() const{
 void Bouton::setFlagActivated(bool flag){
     this->isActivated = flag;
 }
+
+
+/* Permet de savoir si le bouton a été survolé */
+bool Bouton::getIsPressed() const{
+     return this->isPressed;
+}
+
+
+/* Permet de savoir si le bouton a été pressé*/
+void Bouton::setIsPressed(bool newIsPressed){
+    this->isPressed = newIsPressed;
+}
+
+
+
+/**
+ * @brief Permet de presser un bouton qui est activé
+ * 
+ * @return int 
+ */
+int Bouton::EnterPressed(){
+    if (this->isActivated ==true){
+        this->isPressed = true;
+
+        std::cout << "Bouton Pressé " << std::endl;
+        return 1;   
+    }
+    return 0;
+    
+}
+
 /**
  * @brief detruit le  Bouton
  * 

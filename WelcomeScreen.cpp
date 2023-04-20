@@ -20,7 +20,6 @@ void WelcomeScreen::ajouterBouton(){
     MapBoutons["Quit"] = new Bouton(1300, 800, 200, 100, "Quit",  sf::Color(100,20,20,200),false);
 
     
-
     // par defaut , le bouton a Gauche est entouré de rouge
     
     std::cout << "Ajout des boutons" << std::endl;
@@ -40,6 +39,8 @@ void WelcomeScreen::ajouterBouton(){
 WelcomeScreen::WelcomeScreen()
 {
     std::cout<<"Creation de l'ecran d'accueil"<<std::endl;
+
+    this->isPlay = true;
     //Ajout des boutons a la liste de boutons : Play et Quit
     this->ajouterBouton();
 
@@ -49,7 +50,7 @@ WelcomeScreen::WelcomeScreen()
     // Chargement de l'image de fond
 
     fullBackground.setSize(sf::Vector2f(1920,1080));
-    if (!backgroundTexture.loadFromFile("Accueil.jpg"))
+    if (!backgroundTexture.loadFromFile("galaxy.jpg"))
     {
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }
@@ -109,7 +110,6 @@ void WelcomeScreen::drawScreens(sf::RenderWindow* window){
                     }
                 }
 
-                // puis le titre
                 
 
         }
@@ -138,29 +138,6 @@ void WelcomeScreen::getTheMostLeftButton(){
 
 }
 
-/**
- * @brief Met le bouton a gauche du bouton actif a true, et le bouton actif a false
- * le bouton a gauche se traduit par un x plus petit.
- * 
- */
-void WelcomeScreen::getLeftButton(Bouton *boutonActif){
-    
-    for (auto& bouton : MapBoutons)
-    {
-        if (bouton.second->getPosX() <= boutonActif->getPosX()){
-            bouton.second->setFlagActivated(false);
-            boutonActif->setFlagActivated(true);
-        }
-    }
-}
-
-
-
-/**
- * @brief Permettra de gerer les evenements clavier : 
- * Si les touches <- ou -> sont appuyées, on change de bouton, ce qui change sa couleur et l'entoure
- * 
- */
 
 void WelcomeScreen::handleEvent()
 {
@@ -183,11 +160,23 @@ void WelcomeScreen::handleEvent()
         if (MapBoutons["Quit"]->getIsActivated() == true){
 
             MapBoutons["Quit"]->setFlagActivated(false);
-            MapBoutons["Play"]->setFlagActivated(true);
-        }
+            MapBoutons["Play"]->setFlagActivated(true);  }
         
         // sinon : on ne fait rien, car on ne peut pas aller plus loin a gauche
-}
+    }
+
+    // on verifie si la touche entrée est appuyée
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+        for (auto& bouton : MapBoutons)
+        {
+            // on recherche celui qui est activé : si on le trouve, on renvoit 1
+            if (bouton.second->EnterPressed()==1){
+                // faire une fonction qui renvoie le nom du bouton pressé 
+                
+            }
+            
+        }
+    }
 }
 
 
