@@ -38,16 +38,12 @@ void WelcomeScreen::ajouterBouton(){
 */
 WelcomeScreen::WelcomeScreen()
 {
-    std::cout<<"Creation de l'ecran d'accueil"<<std::endl;
 
-    this->isPlay = true;
-    //Ajout des boutons a la liste de boutons : Play et Quit
     this->ajouterBouton();
 
     // On met le bouton le plus en haut a gauche a true
     this->getTheMostLeftButton();
    
-    // Chargement de l'image de fond
 
     fullBackground.setSize(sf::Vector2f(1920,1080));
     if (!backgroundTexture.loadFromFile("galaxy.jpg"))
@@ -67,6 +63,12 @@ WelcomeScreen::WelcomeScreen()
     Title.setPosition(380,80);
     Title.setCharacterSize(80);
     Title.setString("Welcome to Aie Robot");
+
+    // chaine vide par defaut
+    this->ProchainScreen = "";
+    this->ScreenName = "WelcomeScreen";
+
+    this->Quit = false; // on ne quitte pas par defaut
 
 
    
@@ -172,7 +174,7 @@ void WelcomeScreen::handleEvent()
             // on recherche celui qui est activé : si on le trouve, on renvoit 1
             if (bouton.second->EnterPressed()==1){
                 // faire une fonction qui renvoie le nom du bouton pressé 
-                
+                this->ProchainScreen = bouton.first; // on donne le nom du nouveau screen via le nom du bouton donc ils doivent avoir le meme nom
             }
             
         }
@@ -184,6 +186,10 @@ void WelcomeScreen::handleEvent()
 WelcomeScreen::~WelcomeScreen()
 {   
     std::cout << "Destruction de l'ecran d'accueil" << std::endl;
+    for (auto& bouton : MapBoutons)
+    {
+        delete bouton.second;
+    }
     
 }
 

@@ -67,7 +67,6 @@ void ChoseSkillMenu::drawScreens(sf::RenderWindow* window){
 
 
 void ChoseSkillMenu::handleEvent(){
-    std::cout<<"handleEvent de l'ecran de  choix "<<std::endl;
     
 }
 

@@ -10,7 +10,6 @@ class WelcomeScreen : public Screen{
 
     private:
 
-        bool isPlay ;
 
         sf::Text Title;
         sf::Font fontTitle;
@@ -22,6 +21,8 @@ class WelcomeScreen : public Screen{
 
         /*liste de Boutons a afficher : polymorphisme */
         std::map<std::string,Bouton*> MapBoutons;
+
+        
 
         
 

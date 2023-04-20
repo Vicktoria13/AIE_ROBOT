@@ -14,7 +14,7 @@ GamePlay::GamePlay()
     Ajout_Ecran("Accueil",new WelcomeScreen());
 
     /* Ecran Menu Choix Skills*/
-    Ajout_Ecran("ChoixSkills",new ChoseSkillMenu());
+    Ajout_Ecran("Play",new ChoseSkillMenu());
 
 
 
@@ -33,7 +33,10 @@ GamePlay::GamePlay()
 GamePlay::~GamePlay()
 {
     delete fenetre;
-    delete MapEcransDisponibles["Accueil"];
+    for (auto it = MapEcransDisponibles.begin(); it != MapEcransDisponibles.end(); ++it)
+    {
+        delete it->second;
+    }
     
 }
 
@@ -42,20 +45,27 @@ void GamePlay::Ajout_Ecran(std::string name, Screen *ecran)
 {
     //EcransDisponibles.push_back(ecran);
     this->MapEcransDisponibles[name] = ecran;
-    std::cout << "Ajout de l'ecran " << name << std::endl;
+    
 }
+
+
 
 
 
 /**
- * @brief change l'ecran actuel par celui dont le nom est passe en parametre
+ * @brief Regarde si sa fenetre actuel demande un changement d'ecran
+ * Si oui, alors on change d'ecran
  * 
- * @param name nom de l'ecran a afficher
  */
-void GamePlay::ChangerFenetreCourante(std::string name)
-{
-    EcranActuel = MapEcransDisponibles[name];
+void GamePlay::CheckFenetreChanges(){
+    std::string newScreenName = EcranActuel->getProchainScreen();
+    if(newScreenName != ""){
+        
+        this->EcranActuel = MapEcransDisponibles[newScreenName];
+    }
 }
+
+
 
 void GamePlay::WaitForExit(){
 
@@ -76,6 +86,7 @@ void GamePlay::WaitForExit(){
         
         fenetre->clear();
         EcranActuel->handleEvent();
+        CheckFenetreChanges();
         DisplayCurrentScreen();
         fenetre->display();
 

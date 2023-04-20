@@ -211,7 +211,6 @@ int Bouton::EnterPressed(){
     if (this->isActivated ==true){
         this->isPressed = true;
 
-        std::cout << "Bouton Pressé " << std::endl;
         return 1;   
     }
     return 0;

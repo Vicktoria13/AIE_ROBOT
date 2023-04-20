@@ -45,6 +45,8 @@ public:
 
     void ChangerFenetreCourante(std::string name);
 
+    void CheckFenetreChanges();
+
 
 
 };
