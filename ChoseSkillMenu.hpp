@@ -24,19 +24,19 @@ private:
         sf::Texture backgroundTexture;
 
 
-        /*liste de Boutons a afficher : polymorphisme */
-        std::map<std::string,Bouton*> MapBoutons;
+      
 
 public:
 
     ChoseSkillMenu();
     ~ChoseSkillMenu();
 
-    void ajoutBouton();
+    void ajouterBouton();
     void drawScreens(sf::RenderWindow* window);
 
     void handleEvent() ;    
 
+    
    
 };
 

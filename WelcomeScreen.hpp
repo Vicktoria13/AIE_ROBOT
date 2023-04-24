@@ -20,7 +20,7 @@ class WelcomeScreen : public Screen{
 
 
         /*liste de Boutons a afficher : polymorphisme */
-        std::map<std::string,Bouton*> MapBoutons;
+        
 
         
 
@@ -45,12 +45,8 @@ class WelcomeScreen : public Screen{
 
         // getters
 
-        bool getIsPlay() const;
-        Bouton* getBouton(std::string name) const;
 
-        void getTheMostLeftButton();
 
-        void getLeftButton(Bouton *boutonActif);
 
 
 

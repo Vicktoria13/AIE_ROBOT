@@ -1,5 +1,7 @@
 #include "WelcomeScreen.hpp"
+#include "Screen.hpp"
 #include <iostream>
+
 // classe dérivée de Screen
 // donc possède une fenêtre déja
 // pas besoin de la créer
@@ -14,7 +16,7 @@
 
 void WelcomeScreen::ajouterBouton(){
 
-    MapBoutons["Play"] = new Bouton(400, 800, 200, 100, "Play",  sf::Color(20,20,100,200),false);
+    MapBoutons["Play"] = new Bouton(400, 800, 200, 100, "Play",  sf::Color(100,20,20,200),false);
 
     // Bouton Quit en rouge
     MapBoutons["Quit"] = new Bouton(1300, 800, 200, 100, "Quit",  sf::Color(100,20,20,200),false);
@@ -41,7 +43,7 @@ WelcomeScreen::WelcomeScreen()
     this->ajouterBouton();
 
     // On met le bouton le plus en haut a gauche a true
-    this->getTheMostLeftButton();
+    getTheMostLeftButton();
    
 
     fullBackground.setSize(sf::Vector2f(1920,1080));
@@ -65,7 +67,7 @@ WelcomeScreen::WelcomeScreen()
 
     // chaine vide par defaut
     this->ProchainScreen = "";
-    this->ScreenName = "WelcomeScreen";
+    this->ScreenName = "Accueil";
 
     this->Quit = false; // on ne quitte pas par defaut
 
@@ -97,49 +99,22 @@ void WelcomeScreen::drawScreens(sf::RenderWindow* window){
                 window->draw(Title);
 
                 // puis les boutons
-                for (auto& bouton : MapBoutons)
-                {
-                    
-                    if (bouton.second->getIsActivated() == true ){
-                        
-                        bouton.second->drawContoursBoutton(*window);
-                        
-                    }
-
-                    else if (bouton.second->getIsActivated() == false){
-                        bouton.second->drawButton(*window);
-                    }
-                }
-
+                dessinerBoutons(window);
                 
 
         }
 
 
 
+
+
 /**
- * @brief Met le bouton le plus en haut a gauche a true.
- * Cela se traduit par le y et le x minimum parmi tous les boutons
+ * @brief Gère les évènements clavier :
+ * - flèche droite : on passe au bouton suivant
+ * - flèche gauche : on passe au bouton précédent
+ * - entrée : on lance le jeu ou on quitte
  * 
- * @return Bouton* 
  */
-void WelcomeScreen::getTheMostLeftButton(){
-    int min_x = 100000;
-    int min_y = 100000;
-    Bouton* boutonHautGauche = nullptr;
-    for (auto& bouton : MapBoutons)
-    {
-        if (bouton.second->getPosX() <= min_x && bouton.second->getPosY() <= min_y){
-            min_x = bouton.second->getPosX();
-            min_y = bouton.second->getPosY();
-            boutonHautGauche = bouton.second;
-        }
-    }
-    boutonHautGauche->setFlagActivated(true);
-
-}
-
-
 void WelcomeScreen::handleEvent()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -167,18 +142,19 @@ void WelcomeScreen::handleEvent()
     }
 
     // on verifie si la touche entrée est appuyée
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
         for (auto& bouton : MapBoutons)
         {
-            // on recherche celui qui est activé : si on le trouve, on renvoit 1
+            // on recherche celui qui est pressé : si on le trouve, on renvoit 1
             if (bouton.second->EnterPressed()==1){
                 // faire une fonction qui renvoie le nom du bouton pressé 
                 if (bouton.first == "Quit")
                     // on quitte le jeu
                     this->Quit = true;
                 else {
-                    this->Quit = false;
                     this->ProchainScreen = bouton.first; // on donne le nom du nouveau screen via le nom du bouton donc ils doivent avoir le meme nom
+                    // soit "Play" soit "Quit"
                 }
             }
         }

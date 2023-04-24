@@ -53,30 +53,24 @@ public:
     /* Destructeur */
     ~Bouton(){};
 
+    int EnterPressed();
+    
     /*rendu dessin d'un Bouton*/
     void drawButton(sf::RenderWindow& window);
-
-
-    void AfficheInfos() const;
-   
-    bool getIsActivated() const;
-
-
     void drawContoursBoutton(sf::RenderWindow& window);
 
     //getters
     int getPosX() const;
     int getPosY() const;
+    bool getIsPressed() const;
+    bool getIsActivated() const;
 
     //setters
 
     void setFlagActivated(bool flag);
-
-    bool getIsPressed() const;
-
     void setIsPressed(bool newIsPressed);
 
-    int EnterPressed();
+    
     
 
 };

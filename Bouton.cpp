@@ -100,6 +100,8 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
 
 
     couleurBoutonActive = sf::Color(100, 100, 100, 100);
+
+    
     this->isActivated = Activate;
     this->isPressed = false; // faux par defaut
 }
@@ -118,20 +120,6 @@ bool Bouton::getIsActivated() const{
 }
 
 
-
-/**
- * @brief Permet d'afficher les infos du bouton
- * 
- */
-void Bouton::AfficheInfos() const{
-    std::cout << "pos_x : " << this->pos_x << std::endl;
-    std::cout << "pos_y : " << this->pos_y << std::endl;
-    std::cout << "width : " << this->width << std::endl;
-    std::cout << "height : " << this->height << std::endl;
-    std::cout << "isActivated : " << this->isActivated << std::endl;
-    std::cout<<"\n"<<std::endl;
-
-}
 
 
 
@@ -205,7 +193,7 @@ void Bouton::setIsPressed(bool newIsPressed){
 /**
  * @brief Permet de presser un bouton qui est activé
  * 
- * @return int 
+ * @return 1 si le bouton a été pressé, 0 sinon 
  */
 int Bouton::EnterPressed(){
     if (this->isActivated ==true){

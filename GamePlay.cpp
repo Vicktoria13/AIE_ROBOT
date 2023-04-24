@@ -16,9 +16,13 @@ GamePlay::GamePlay()
     /* Ecran Menu Choix Skills*/
     Ajout_Ecran("Play",new ChoseSkillMenu());
 
+    /* Ecran Plateau de jeu */
+    Ajout_Ecran("PlateauJeu",new PlateauJeu());
+
 
 
     // on met l'ecran d'accueil comme ecran actuel
+    // ecran actuel est un pointeur vers un ecran  : Screen* EcranActuel
     EcranActuel = MapEcransDisponibles["Accueil"];
 
   
@@ -68,7 +72,16 @@ int GamePlay::CheckFenetreChanges(){
         std::string newScreenName = EcranActuel->getProchainScreen();
         if (newScreenName != "" && MapEcransDisponibles.empty() == false)
         {
-            this->EcranActuel = MapEcransDisponibles[newScreenName];
+            std::cout << " nouvelle fenetre : " << newScreenName << std::endl;
+            this->EcranActuel->setProchainScreen("");
+            if (MapEcransDisponibles.find(newScreenName) == MapEcransDisponibles.end())
+            {
+                throw std::runtime_error("Ecran non trouve");
+            }
+            else {
+                this->EcranActuel = MapEcransDisponibles[newScreenName];
+            }
+
             return 1;
         }
     }
@@ -96,10 +109,16 @@ void GamePlay::WaitForExit(){
         /* update + affichage */
         
         fenetre->clear();
+
         EcranActuel->handleEvent();
+
         CheckFenetreChanges();
+
         DisplayCurrentScreen();
+
         fenetre->display();
+
+        WaitPeriod();
 
     }
 }
@@ -112,7 +131,13 @@ void GamePlay::WaitForExit(){
  * 
  */
 void GamePlay::DisplayCurrentScreen(){
+    if (EcranActuel != nullptr){
     EcranActuel->drawScreens((this->fenetre));
+    }
+
+    else{
+        throw std::runtime_error("EcranActuel est null");
+    }
 }
 
 
@@ -121,4 +146,24 @@ void GamePlay::Run()
     // on affiche l'ecran d'accueil
     WaitForExit();
     
+}
+
+
+/**
+ * @brief Attend un certain temps avant de passer a l'ecran suivant
+ * quand on est sur l'ecran d'accueil ou le menu de jeu
+ * car sinon, l'appui sur une touche est pris en compte 2 fois
+ * 
+ */
+void GamePlay::WaitPeriod() const
+{
+    if (EcranActuel != nullptr)
+    {
+       if (EcranActuel->getScreenName() == "Accueil" || EcranActuel->getScreenName() == "Play"){
+       
+           sf::sleep(sf::seconds(0.08f));
+        }
+       
+    }
+   
 }

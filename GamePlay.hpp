@@ -5,6 +5,7 @@
 #include "Screen.hpp"
 #include "WelcomeScreen.hpp"
 #include "ChoseSkillMenu.hpp"
+#include "PlateauJeu.hpp"
 #include <vector>
 #include <memory>
 
@@ -47,6 +48,7 @@ public:
 
     int CheckFenetreChanges();
 
+    void WaitPeriod() const;
 
 
 
