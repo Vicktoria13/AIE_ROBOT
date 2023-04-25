@@ -19,7 +19,7 @@ int main()
     const int width = cols * cellSize;
     const int height = rows * cellSize;
 
-    sf::RenderWindow window(sf::VideoMode(width, height), "Labyrinth");
+    sf::RenderWindow window(sf::VideoMode(1920,1080), "Labyrinth");
     window.setFramerateLimit(60);
 
     while (window.isOpen())
@@ -39,15 +39,15 @@ int main()
         {
             for (int j = 0; j < cols; j++)
             {
-                sf::RectangleShape cell(sf::Vector2f(cellSize, cellSize));
+                sf::RectangleShape cell(sf::Vector2f(cellSize-5, cellSize-5));
                 cell.setPosition(j * cellSize, i * cellSize);
                 if (maze[i][j] == 0)
                 {
-                    cell.setFillColor(sf::Color::Black);
+                    cell.setFillColor(sf::Color::White);
                 }
                 else
                 {
-                    cell.setFillColor(sf::Color::White);
+                    cell.setFillColor(sf::Color::Black);
                 }
                 window.draw(cell);
             }

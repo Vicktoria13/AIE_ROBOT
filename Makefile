@@ -12,8 +12,8 @@ EXES= main
 
 all: $(EXES)
 
-main: main.o GamePlay.o WelcomeScreen.o Bouton.o ChoseSkillMenu.o PlateauJeu.o Screen.o
-	$(LD) $(LDFLAGS) main.o GamePlay.o  WelcomeScreen.o Bouton.o ChoseSkillMenu.o  PlateauJeu.o  -o main $(LIBS)
+main: main.o GamePlay.o WelcomeScreen.o Bouton.o ChoseSkillMenu.o PlateauJeu.o Screen.o RobotPlayer.o
+	$(LD) $(LDFLAGS) main.o GamePlay.o  WelcomeScreen.o Bouton.o ChoseSkillMenu.o  PlateauJeu.o RobotPlayer.o -o main $(LIBS)
 
 main.o: main.cpp GamePlay.hpp
 	$(CPP) $(CPPFLAGS) -c main.cpp
@@ -31,11 +31,14 @@ WelcomeScreen.o : WelcomeScreen.cpp WelcomeScreen.hpp Bouton.hpp Screen.o
 ChoseSkillMenu.o : ChoseSkillMenu.cpp ChoseSkillMenu.hpp Bouton.hpp 
 	$(CPP) $(CPPFLAGS) -c ChoseSkillMenu.cpp
 
-PlateauJeu.o : PlateauJeu.cpp PlateauJeu.hpp
+PlateauJeu.o : PlateauJeu.cpp PlateauJeu.hpp 
 	$(CPP) $(CPPFLAGS) -c PlateauJeu.cpp
 
 Bouton.o : Bouton.cpp Bouton.hpp
 	$(CPP) $(CPPFLAGS) -c Bouton.cpp
+
+RobotPlayer.o : RobotPlayer.cpp RobotPlayer.hpp
+	$(CPP) $(CPPFLAGS) -c RobotPlayer.cpp
 
 clean:
 	rm -f *.o $(EXES)

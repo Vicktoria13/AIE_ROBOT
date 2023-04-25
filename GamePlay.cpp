@@ -159,9 +159,9 @@ void GamePlay::WaitPeriod() const
 {
     if (EcranActuel != nullptr)
     {
-       if (EcranActuel->getScreenName() == "Accueil" || EcranActuel->getScreenName() == "Play"){
+       if (EcranActuel->getScreenName() == "Accueil" || EcranActuel->getScreenName() == "Play" || EcranActuel->getScreenName() == "PlateauJeu"){
        
-           sf::sleep(sf::seconds(0.08f));
+           sf::sleep(sf::seconds(0.1f));
         }
        
     }
