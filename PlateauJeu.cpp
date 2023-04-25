@@ -11,7 +11,7 @@ void PlateauJeu::ajouterBouton(){
 
 
 PlateauJeu::PlateauJeu(){
-    
+    /*
     labyrinthe = {{
         {1,1,1,1,1,1,1,1,1,1},
         {1,0,1,0,0,0,0,0,0,1},
@@ -24,6 +24,25 @@ PlateauJeu::PlateauJeu(){
         {1,0,0,0,0,0,0,0,0,1},
         {1,1,1,1,1,1,1,1,1,1}
     }};
+    */
+
+   labyrinthe = {{
+    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,1,1,1,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,1,1,1,1,1,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,1,1,1,1,1,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+   }};
    
     //ajouterBouton();
     //getTheMostLeftButton();
@@ -59,14 +78,12 @@ void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) const{
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }
 
-    int taille = 10;
-    for (int i = 0; i < taille; i++){
-        for (int j = 0; j < taille; j++){
+    for (int i = 0; i < TAILLE_LABYRINTHE; i++){
+        for (int j = 0; j < TAILLE_LABYRINTHE; j++){
             int pas = 4; // si le pas est trop faible, alors on ne voit pas le quadrillage lors du resize
             
             sf::RectangleShape rectangle(sf::Vector2f(case_size-pas, case_size-pas));
             rectangle.setPosition(j*case_size, i*case_size);
-            std::cout<< "rectange position : " << j*case_size << " " << i*case_size << std::endl;
 
             if (labyrinthe[i][j] == 1){
                 // noir
@@ -168,6 +185,18 @@ void PlateauJeu::handleEvent(){
             }
         }
     }
+
+
+    /* Personnages */
+
+    if (!characters.empty()){
+
+     characters["JoueurA"]->KeyBoardEventARROW();
+     characters["JoueurB"]->KeyBoardEventZQSD();   
+    
+    }
+
+    
     
 }
 

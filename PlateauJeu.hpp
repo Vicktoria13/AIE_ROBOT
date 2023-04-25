@@ -12,7 +12,7 @@ const int TAILLE_LABYRINTHE = 15;
 class PlateauJeu: public Screen
 {
 private:
-    int case_size = 70 ;
+    int case_size = 60 ;
 
    
     std::array<std::array<int, TAILLE_LABYRINTHE>, TAILLE_LABYRINTHE> labyrinthe; 
