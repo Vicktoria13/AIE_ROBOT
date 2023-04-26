@@ -29,10 +29,10 @@ private:
 
 
 public:
-    RobotPlayer(int x, int y);
+    RobotPlayer(int x, int y, int max_x, int max_y);
     ~RobotPlayer();
 
-    void DisplayEntite(sf::RenderWindow* window);
+    void DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15> );
     void UpdateEvent(std::string NameIfPlayer);
 
     void KeyBoardEventARROW();

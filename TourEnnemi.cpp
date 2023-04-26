@@ -4,12 +4,12 @@
 
 
 /**
- * @brief Constructeur d'une Tour Ennemi:: Tour Ennemi object
+ * @brief Constructeur d'une Tour Ennemi:: Tour Ennemi. Valable a l'initialisation du jeu
  * 
  * @param x position x
  * @param y position y
  */
-TourEnnemi::TourEnnemi(int x, int y) {
+TourEnnemi::TourEnnemi() {
 
     std::cout << "Construction du tour ennemi" << std::endl;
 
@@ -22,8 +22,9 @@ TourEnnemi::TourEnnemi(int x, int y) {
     /* on l'associe au sprite*/
     _sprite.setTexture(_texture);
     _sprite.scale(0.5, 0.5);
-    _sprite.setPosition(x, y);
+   // _sprite.setPosition(360, 180);
 
+    this->estPositionne = false; // par defaut, lorsque l'on crée une tour ennemi, elle n'est pas positionnée
 
 }
 
@@ -49,8 +50,9 @@ void TourEnnemi::UpdateEvent(std::string NameIfPlayer){
 
 }
 
-void TourEnnemi::DisplayEntite(sf::RenderWindow* window)
+void TourEnnemi::DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15> )
 {
+    std::cout<<"Position de l'ennemi dans displayEn : "<<this->getPositionX()<<" "<<this->getPositionY()<<std::endl;
     window->draw(_sprite);
     DisplayTirs(window);
 }

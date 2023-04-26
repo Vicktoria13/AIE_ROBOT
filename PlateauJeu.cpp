@@ -30,15 +30,15 @@ PlateauJeu::PlateauJeu(){
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
     {1,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,1,0,2,0,0,0,0,0,1,1,1},
     {1,0,0,0,1,0,0,0,0,0,0,0,1,1,1},
-    {1,0,0,0,1,0,0,0,0,0,0,0,1,1,1},
-    {1,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,1,1,1,1,1,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1,1,1,1,1,1},
+    {1,0,0,0,1,0,0,0,1,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,1,1,0,0,0,0,0,1},
+    {1,0,1,0,0,0,1,1,1,1,1,0,0,0,1},
+    {1,0,1,0,0,0,1,1,0,0,0,0,0,0,1},
+    {1,2,0,0,0,0,1,0,0,0,2,0,0,0,1},
+    {1,0,0,0,0,0,1,0,0,0,0,0,0,0,1},
+    {1,1,1,0,0,0,1,0,0,1,1,1,1,1,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
@@ -53,10 +53,12 @@ PlateauJeu::PlateauJeu(){
 
 
     // liste des entités affichables
-    characters["JoueurA"] = new RobotPlayer(100,100);
-    characters["JoueurB"] = new RobotPlayer(500,500);
+    characters["JoueurA"] = new RobotPlayer(100,100,case_size*(TAILLE_LABYRINTHE-1),case_size*(TAILLE_LABYRINTHE-1));
+    characters["JoueurB"] = new RobotPlayer(500,500,case_size*(TAILLE_LABYRINTHE-1),case_size*(TAILLE_LABYRINTHE-1));
 
-    characters["EnnemiA"] = new TourEnnemi(300,300);
+    characters["EnnemiA"] = new TourEnnemi();
+    characters["EnnemiB"] = new TourEnnemi();
+    characters["EnnemiC"] = new TourEnnemi();
 
 }
 
@@ -95,7 +97,25 @@ void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) const{
             }
             else{
                 // blanc
-                rectangle.setFillColor(sf::Color::White);             
+                rectangle.setFillColor(sf::Color::White);  
+
+                if (labyrinthe[i][j] == 2){
+                    int dec = 10; // permet le redecalage a cause du fait que le sprite n'est pas centré
+                    rectangle.setFillColor(sf::Color(100, 100, 100, 250));
+                    if (!characters.empty()){
+                        if (characters.at("EnnemiA")->estPositionne == false){
+                            characters.at("EnnemiA")->setPositionX_Y(j*case_size -dec,i*case_size);
+                        }
+
+                        else if (characters.at("EnnemiB")->estPositionne == false){
+                            characters.at("EnnemiB")->setPositionX_Y(j*case_size-dec,i*case_size);
+                        }
+
+                        else if (characters.at("EnnemiC")->estPositionne == false){
+                            characters.at("EnnemiC")->setPositionX_Y(j*case_size-dec,i*case_size);
+                        }
+                    }
+                }
             }
             window->draw(rectangle);
         }
@@ -118,7 +138,7 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
 
 void PlateauJeu::drawCharacters(sf::RenderWindow* window) const{
     for (auto& perso : characters){
-        perso.second->DisplayEntite(window);
+        perso.second->DisplayEntite(window,labyrinthe);
     }
 }
 

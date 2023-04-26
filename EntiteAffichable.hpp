@@ -11,6 +11,8 @@
 class EntiteAffichable
 {
 protected:
+
+    
     sf::Sprite _sprite;
     sf::Texture _texture;
     
@@ -19,8 +21,10 @@ protected:
 
 public:
 
+    bool estPositionne;
+
     /* Methodes abstraite qui doivent être redefinies dans les classes dérivées !!  */
-    virtual void DisplayEntite(sf::RenderWindow* window) = 0;
+    virtual void DisplayEntite(sf::RenderWindow* window, std::array<std::array<int, 15>, 15> ) = 0;
     virtual void UpdateEvent(std::string NameIfPlayer) = 0;
 
     /*------------------------------------------------------------------------------*/
@@ -42,6 +46,12 @@ public:
         return this->_sprite.getPosition().y;
     }
 
+    /* setters */
+
+    virtual void setPositionX_Y(int x, int y){
+        this->_sprite.setPosition(x, y);
+    
+    }
 };
 
 

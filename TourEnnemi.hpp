@@ -6,16 +6,29 @@
 
 class TourEnnemi : public EntiteAffichable
 
+
 {
+    private:
+
+        
     public :
 
-        TourEnnemi(int x, int y);
+        TourEnnemi();
         ~TourEnnemi();
 
         void DisplayTirs(sf::RenderWindow* window);
 
-        void DisplayEntite(sf::RenderWindow* window);
+        void DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15> );
         void UpdateEvent( std::string NameIfPlayer);
+
+
+        /*setter qui change le flag que si on a changé la position*/
+        void setPositionX_Y(int x, int y){
+            this->_sprite.setPosition(x, y);
+            this->estPositionne = true;
+        }
+    
+    
 
   
 

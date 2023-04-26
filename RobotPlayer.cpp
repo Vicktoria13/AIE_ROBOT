@@ -5,7 +5,7 @@
 // void DisplayEntite(sf::RenderWindow* window) doit être définie dans RobotPlayer.cpp
 
 
-RobotPlayer::RobotPlayer(int x, int y)
+RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y)
 {
     std::cout << "Construction du robot joueur" << std::endl;
 
@@ -15,6 +15,9 @@ RobotPlayer::RobotPlayer(int x, int y)
 
     this->positionX = x;
     this->positionY = y;
+
+    this->limite_deplacement_x = max_x;
+    this->limite_deplacement_y = max_y;
 
     /* On charge la texture */
     if (!_texture.loadFromFile("robotPlayer.png"))
@@ -28,6 +31,7 @@ RobotPlayer::RobotPlayer(int x, int y)
     _sprite.setPosition(x, y);
 
     this->ADrapeau = false;
+    this->estPositionne=true;
 
     
 
@@ -106,20 +110,21 @@ void RobotPlayer::KeyBoardEventZQSD(){
 void RobotPlayer::CheckPosition(){
     // si on atteint le bord de l'écran, on ne peut plus aller plus loin
 
+    
     if (this->_sprite.getPosition().x < 0){
         this->_sprite.setPosition(0, this->_sprite.getPosition().y);
     }
 
-    if (this->_sprite.getPosition().x > 800){
-        this->_sprite.setPosition(800, this->_sprite.getPosition().y);
+    if (this->_sprite.getPosition().x > this->limite_deplacement_x){
+        this->_sprite.setPosition(this->limite_deplacement_x, this->_sprite.getPosition().y);
     }
 
     if (this->_sprite.getPosition().y < 0){
         this->_sprite.setPosition(this->_sprite.getPosition().x, 0);
     }
 
-    if (this->_sprite.getPosition().y > 600){
-        this->_sprite.setPosition(this->_sprite.getPosition().x, 600);
+    if (this->_sprite.getPosition().y > this->limite_deplacement_y){
+        this->_sprite.setPosition(this->_sprite.getPosition().x, this->limite_deplacement_y);
     }
 }
 
@@ -146,7 +151,7 @@ RobotPlayer::~RobotPlayer()
 
 
 
-void RobotPlayer::DisplayEntite(sf::RenderWindow* window)
+void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15> )
 {
     window->draw(_sprite);
 }
