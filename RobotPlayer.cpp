@@ -27,6 +27,8 @@ RobotPlayer::RobotPlayer(int x, int y)
     _sprite.scale(0.2, 0.2);
     _sprite.setPosition(x, y);
 
+    this->ADrapeau = false;
+
     
 
 }
@@ -69,7 +71,6 @@ void RobotPlayer::KeyBoardEventARROW(){
  * 
  */
 void RobotPlayer::KeyBoardEventZQSD(){
-    std::cout<<"ZQSD"<<std::endl;
     // joueur B
 
     /*********DEPLACEMENT******************************/
@@ -97,6 +98,11 @@ void RobotPlayer::KeyBoardEventZQSD(){
 
 }
 
+/**
+ * @brief Verifie si le robot est dans les limites du labyrinthe
+ * 
+ */
+
 void RobotPlayer::CheckPosition(){
     // si on atteint le bord de l'écran, on ne peut plus aller plus loin
 
@@ -116,6 +122,22 @@ void RobotPlayer::CheckPosition(){
         this->_sprite.setPosition(this->_sprite.getPosition().x, 600);
     }
 }
+
+
+/**
+ * @brief Met a jour les attributs du robot en fonction des evenements
+ * 
+ * @param NameIfPlayer pour distinguer les joueurs et donc les evenements clavier
+ */
+void RobotPlayer::UpdateEvent(std::string NameIfPlayer){
+    if (NameIfPlayer =="JoueurA"){
+        KeyBoardEventZQSD();
+    }
+    else if (NameIfPlayer =="JoueurB"){
+        KeyBoardEventARROW();
+}
+}
+
 
 RobotPlayer::~RobotPlayer()
 {

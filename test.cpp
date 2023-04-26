@@ -1,29 +1,37 @@
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 int main()
 {
+    // Définir la taille de la fenêtre
+    const int windowWidth = 500;
+    const int windowHeight = 500;
+
+    // Définir la taille de la cellule du labyrinthe
+    const int cellSize = 50;
+
+    // Définir la grille du labyrinthe
     const int rows = 10;
     const int cols = 10;
-    int maze[rows][cols] = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                            {1, 0, 1, 0, 0, 0, 0, 0, 0, 1},
-                            {1, 0, 1, 0, 1, 1, 1, 1, 0, 1},
-                            {1, 0, 1, 0, 1, 0, 0, 1, 0, 1},
-                            {1, 0, 1, 0, 1, 0, 1, 1, 0, 1},
-                            {1, 0, 0, 0, 1, 0, 0, 0, 0, 1},
-                            {1, 0, 1, 1, 1, 1, 1, 1, 0, 1},
-                            {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
 
-    const int cellSize = 50;
-    const int width = cols * cellSize;
-    const int height = rows * cellSize;
+    // Créer la fenêtre
+    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Labyrinthe");
 
-    sf::RenderWindow window(sf::VideoMode(1920,1080), "Labyrinth");
-    window.setFramerateLimit(60);
+    // Créer la matrice représentant le labyrinthe
+    std::vector<std::vector<int>> maze(rows, std::vector<int>(cols, 1));
 
+    // Dessiner les murs
+    sf::RectangleShape wall(sf::Vector2f(cellSize, cellSize));
+    wall.setFillColor(sf::Color::White);
+
+    // Dessiner les chemins
+    sf::RectangleShape path(sf::Vector2f(cellSize, cellSize));
+    path.setFillColor(sf::Color::Black);
+
+    // Boucle principale du programme
     while (window.isOpen())
     {
+        // Gestion des événements
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -33,26 +41,34 @@ int main()
             }
         }
 
+        // Effacer l'écran
         window.clear();
 
+        // Dessiner le labyrinthe
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < cols; j++)
             {
-                sf::RectangleShape cell(sf::Vector2f(cellSize-5, cellSize-5));
-                cell.setPosition(j * cellSize, i * cellSize);
-                if (maze[i][j] == 0)
+                if (maze[i][j] == 1)
                 {
-                    cell.setFillColor(sf::Color::White);
+                    wall.setPosition(j * cellSize, i * cellSize);
+                    window.draw(wall);
                 }
                 else
                 {
-                    cell.setFillColor(sf::Color::Black);
+                    path.setPosition(j * cellSize, i * cellSize);
+                    window.draw(path);
                 }
-                window.draw(cell);
             }
         }
 
+        // Dessiner un objet à la case (2, 3)
+        sf::CircleShape object(20);
+        object.setFillColor(sf::Color::Red);
+        object.setPosition(3 * cellSize + cellSize/2 - object.getRadius(), 2 * cellSize + cellSize/2 - object.getRadius());
+        window.draw(object);
+
+        // Afficher la fenêtre
         window.display();
     }
 

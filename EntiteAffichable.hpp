@@ -1,5 +1,5 @@
 #ifndef ENTITEAFFICHABLE_HPP
-#define CHOSESKILLMENU_HPP
+#define ENTITEAFFICHABLE_HPP
 
 #include <SFML/Graphics.hpp>
 
@@ -17,16 +17,13 @@ protected:
     int positionX;
     int positionY;
 
-
-    
 public:
 
-
+    /* Methodes abstraite qui doivent être redefinies dans les classes dérivées !!  */
     virtual void DisplayEntite(sf::RenderWindow* window) = 0;
+    virtual void UpdateEvent(std::string NameIfPlayer) = 0;
 
-    virtual void KeyBoardEventARROW() = 0;
-
-    virtual void KeyBoardEventZQSD() = 0;
+    /*------------------------------------------------------------------------------*/
 
     // getter
     int getPositionX() const{

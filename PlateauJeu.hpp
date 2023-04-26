@@ -4,6 +4,7 @@
 #include "Screen.hpp"
 #include "Bouton.hpp"
 #include "RobotPlayer.hpp"
+#include "TourEnnemi.hpp"
 #include <iostream>
 #include <vector>
 

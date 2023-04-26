@@ -36,7 +36,7 @@ ChoseSkillMenu::ChoseSkillMenu(){
     // Chargement de l'image de fond
 
     fullBackground.setSize(sf::Vector2f(1920,1080));
-    if (!backgroundTexture.loadFromFile("lab.jpg"))
+    if (!backgroundTexture.loadFromFile("MenuSkill.jpg"))
     {
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }
@@ -65,7 +65,8 @@ ChoseSkillMenu::ChoseSkillMenu(){
 
 void ChoseSkillMenu::drawScreens(sf::RenderWindow* window){
 
-    window->clear();
+    window->clear();    
+
     // d'abord le fond
 
     window->draw(fullBackground);

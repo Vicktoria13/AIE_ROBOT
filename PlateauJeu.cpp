@@ -28,12 +28,12 @@ PlateauJeu::PlateauJeu(){
 
    labyrinthe = {{
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,1,1,1,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,1,0,0,0,0,0,0,0,1,1,1},
+    {1,0,0,0,1,0,0,0,0,0,0,0,1,1,1},
+    {1,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,1,1,1,1,1,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -55,6 +55,9 @@ PlateauJeu::PlateauJeu(){
     // liste des entités affichables
     characters["JoueurA"] = new RobotPlayer(100,100);
     characters["JoueurB"] = new RobotPlayer(500,500);
+
+    characters["EnnemiA"] = new TourEnnemi(300,300);
+
 }
 
 
@@ -191,8 +194,9 @@ void PlateauJeu::handleEvent(){
 
     if (!characters.empty()){
 
-     characters["JoueurA"]->KeyBoardEventARROW();
-     characters["JoueurB"]->KeyBoardEventZQSD();   
+    characters["JoueurA"]->UpdateEvent("JoueurA"); // on met a jour les evenements du joueur A
+    characters["JoueurB"]->UpdateEvent("JoueurB"); // on met a jour les evenements du joueur B  
+     
     
     }
 
