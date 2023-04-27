@@ -46,13 +46,12 @@ void TourEnnemi::DisplayTirs(sf::RenderWindow* window)
 
 
 
-void TourEnnemi::UpdateEvent(std::string NameIfPlayer){
+void TourEnnemi::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int, 15>, 15> maze){
 
 }
 
-void TourEnnemi::DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15> )
+void TourEnnemi::DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15> maze )
 {
-    std::cout<<"Position de l'ennemi dans displayEn : "<<this->getPositionX()<<" "<<this->getPositionY()<<std::endl;
     window->draw(_sprite);
     DisplayTirs(window);
 }

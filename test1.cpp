@@ -1,9 +1,11 @@
 //g++ main.cpp -lsfml-graphics -lsfml-window -lsfml-system
-//g++ test1.cpp -o test1 -lsfml-graphics -lsfml-window -lsfml-system
+
 
 
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <vector>
 
 int main()
 {
@@ -14,14 +16,17 @@ int main()
     texbonhomme.loadFromFile("robotPlayer.png");
     sf::Sprite sprite(texbonhomme);
     // On redimensionne le sprite pour le rendre 5 fois plus petit
-    sprite.scale(0.2, 0.2);
+    sprite.scale(0.5, 0.5);
     sprite.setPosition(0, 0);
 
     sf::Texture texrock;
-    texrock.loadFromFile("block.png");
+    texrock.loadFromFile("TourEnnemie.png");
     sf::Sprite sprite2(texrock);
-    sprite2.scale(0.1, 0.1);
+    sprite2.scale(1, 1);
     sprite2.setPosition(400, 300);
+
+    sf::Vector2f previous;
+    
 
 
 
@@ -36,22 +41,25 @@ int main()
             }
         }
 
+        previous.x = sprite.getPosition().x;
+        previous.y = sprite.getPosition().y;
+
         // Gestion des mouvements
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
         {
-            sprite.move(0, -0.2);
+            sprite.setPosition(sprite.getPosition().x, sprite.getPosition().y - 0.2);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         {
-            sprite.move(0, 0.2);
+            sprite.setPosition(sprite.getPosition().x, sprite.getPosition().y + 0.2);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
         {
-            sprite.move(-0.2, 0);
+            sprite.setPosition(sprite.getPosition().x - 0.2, sprite.getPosition().y);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
-            sprite.move(0.2, 0);
+            sprite.setPosition(sprite.getPosition().x + 0.2, sprite.getPosition().y);
         }
 
         //On gère les collisions contre le bord de la fenêtre
@@ -75,23 +83,39 @@ int main()
         //On gère les collisions entre les deux sprites : le sprite bonhomme doit s'arrêter quand il touche le sprite rock, et ce de tous les côtés
         if (sprite.getGlobalBounds().intersects(sprite2.getGlobalBounds()))
         {
+
+                //sprite2 : rock
+                //sprite : bonhomme
+
+            // collision par la gauche
             if (sprite.getPosition().x < sprite2.getPosition().x)
             {
-                sprite.setPosition(sprite2.getPosition().x - sprite.getGlobalBounds().width, sprite.getPosition().y);
+                sprite.setPosition(previous.x ,previous.y);
             }
+
+            // collision par la droite
             if (sprite.getPosition().x > sprite2.getPosition().x)
             {
-                sprite.setPosition(sprite2.getPosition().x + sprite2.getGlobalBounds().width, sprite.getPosition().y);
+                //sprite.setPosition(sprite2.getPosition().x + sprite2.getGlobalBounds().width, sprite.getPosition().y);
+               sprite.setPosition(previous.x ,previous.y);
             }
             if (sprite.getPosition().y < sprite2.getPosition().y)
             {
-                sprite.setPosition(sprite.getPosition().x, sprite2.getPosition().y - sprite.getGlobalBounds().height);
+                sprite.setPosition(previous.x ,previous.y);
             }
             if (sprite.getPosition().y > sprite2.getPosition().y)
             {
-                sprite.setPosition(sprite.getPosition().x, sprite2.getPosition().y + sprite2.getGlobalBounds().height);
+                sprite.setPosition(previous.x ,previous.y);
             }
         }
+
+        sf::RectangleShape boundingPerso(sf::Vector2f(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
+    boundingPerso.setPosition(sprite.getPosition().x, sprite.getPosition().y);
+    boundingPerso.setFillColor(sf::Color(255, 0, 0, 128));
+
+    sf::RectangleShape boundingRock(sf::Vector2f(sprite2.getGlobalBounds().width, sprite2.getGlobalBounds().height));
+    boundingRock.setPosition(sprite2.getPosition().x, sprite2.getPosition().y);
+    boundingRock.setFillColor(sf::Color(0, 0, 255, 128));
         
 
 
@@ -101,6 +125,9 @@ int main()
         // Affichage du sprite
         window.draw(sprite);
         window.draw(sprite2);
+
+        window.draw(boundingPerso);
+        window.draw(boundingRock);
 
         // Actualisation de la fenêtre
         window.display();

@@ -65,16 +65,16 @@ PlateauJeu::PlateauJeu(){
 
 
 
-
-
 /**
- * @brief Dessine le labyrinthe 2D ! 
+ * @brief Dessine le labyrinthe 2D  et tous les elements statiques lors du jeu (Tour + lab)
  * 
  * @param window 
  */
 
 
-void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) const{
+void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) {
+
+    int dec = 10; // permet le redecalage a cause du fait que le sprite n'est pas centré
 
     FondBlanc(window);
     sf::Texture texture;
@@ -87,21 +87,28 @@ void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) const{
         for (int j = 0; j < TAILLE_LABYRINTHE; j++){
             int pas = 4; // si le pas est trop faible, alors on ne voit pas le quadrillage lors du resize
             
+            // allocation statique
             sf::RectangleShape rectangle(sf::Vector2f(case_size-pas, case_size-pas));
             rectangle.setPosition(j*case_size, i*case_size);
 
+            
+            
+
             if (labyrinthe[i][j] == 1){
                 // noir
-                //rectangle.setFillColor(sf::Color::Black);
-                rectangle.setTexture(&texture);
+                rectangle.setFillColor(sf::Color::Black);
+                //rectangle.setTexture(&texture);
+
+              
             }
             else{
                 // blanc
                 rectangle.setFillColor(sf::Color::White);  
 
                 if (labyrinthe[i][j] == 2){
-                    int dec = 10; // permet le redecalage a cause du fait que le sprite n'est pas centré
+                    
                     rectangle.setFillColor(sf::Color(100, 100, 100, 250));
+
                     if (!characters.empty()){
                         if (characters.at("EnnemiA")->estPositionne == false){
                             characters.at("EnnemiA")->setPositionX_Y(j*case_size -dec,i*case_size);
@@ -214,8 +221,8 @@ void PlateauJeu::handleEvent(){
 
     if (!characters.empty()){
 
-    characters["JoueurA"]->UpdateEvent("JoueurA"); // on met a jour les evenements du joueur A
-    characters["JoueurB"]->UpdateEvent("JoueurB"); // on met a jour les evenements du joueur B  
+    characters["JoueurA"]->UpdateEvent("JoueurA", this->labyrinthe); // on met a jour les evenements du joueur A
+    characters["JoueurB"]->UpdateEvent("JoueurB",this->labyrinthe); // on met a jour les evenements du joueur B  
      
     
     }

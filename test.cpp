@@ -1,34 +1,31 @@
 #include <SFML/Graphics.hpp>
-#include <vector>
 
 int main()
 {
-    // Définir la taille de la fenêtre
-    const int windowWidth = 500;
-    const int windowHeight = 500;
+    // Création de la fenêtre
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Jeu avec sprite et obstacle");
 
-    // Définir la taille de la cellule du labyrinthe
-    const int cellSize = 50;
+    // Chargement des textures
+    sf::Texture playerTexture;
+    if (!playerTexture.loadFromFile("player.png"))
+    {
+        return EXIT_FAILURE;
+    }
 
-    // Définir la grille du labyrinthe
-    const int rows = 10;
-    const int cols = 10;
+    sf::Texture obstacleTexture;
+    if (!obstacleTexture.loadFromFile("obstacle.png"))
+    {
+        return EXIT_FAILURE;
+    }
 
-    // Créer la fenêtre
-    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Labyrinthe");
+    // Création des sprites
+    sf::Sprite playerSprite(playerTexture);
+    playerSprite.setPosition(50, 50);
 
-    // Créer la matrice représentant le labyrinthe
-    std::vector<std::vector<int>> maze(rows, std::vector<int>(cols, 1));
+    sf::Sprite obstacleSprite(obstacleTexture);
+    obstacleSprite.setPosition(375, 275);
 
-    // Dessiner les murs
-    sf::RectangleShape wall(sf::Vector2f(cellSize, cellSize));
-    wall.setFillColor(sf::Color::White);
-
-    // Dessiner les chemins
-    sf::RectangleShape path(sf::Vector2f(cellSize, cellSize));
-    path.setFillColor(sf::Color::Black);
-
-    // Boucle principale du programme
+    // Boucle de jeu
     while (window.isOpen())
     {
         // Gestion des événements
@@ -41,38 +38,71 @@ int main()
             }
         }
 
-        // Effacer l'écran
-        window.clear();
-
-        // Dessiner le labyrinthe
-        for (int i = 0; i < rows; i++)
+        // Déplacement du personnage
+        float speed = 5.0;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
-            for (int j = 0; j < cols; j++)
+            playerSprite.move(-speed, 0);
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        {
+            playerSprite.move(speed, 0);
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        {
+            playerSprite.move(0, -speed);
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            playerSprite.move(0, speed);
+        }
+
+        // Détection de la collision entre le joueur et l'obstacle
+        if (playerSprite.getGlobalBounds().intersects(obstacleSprite.getGlobalBounds()))
+        {
+            // Calcul de la distance entre les deux sprites sur l'axe x et y
+            float deltaX = playerSprite.getPosition().x - obstacleSprite.getPosition().x;
+            float deltaY = playerSprite.getPosition().y - obstacleSprite.getPosition().y;
+
+            // Empêchement du déplacement dans la direction de l'obstacle
+            if (abs(deltaX) > abs(deltaY))
             {
-                if (maze[i][j] == 1)
+                if (deltaX > 0)
                 {
-                    wall.setPosition(j * cellSize, i * cellSize);
-                    window.draw(wall);
+                    // Collision à droite de l'obstacle
+                    playerSprite.setPosition(obstacleSprite.getPosition().x + obstacleSprite.getGlobalBounds().width, playerSprite.getPosition().y);
                 }
                 else
                 {
-                    path.setPosition(j * cellSize, i * cellSize);
-                    window.draw(path);
+                    // Collision à gauche de l'obstacle
+                    playerSprite.setPosition(obstacleSprite.getPosition().x - playerSprite.getGlobalBounds().width, playerSprite.getPosition().y);
+                }
+            }
+            else
+            {
+                if (deltaY > 0)
+                {
+                    // Collision en dessous de l'obstacle
+                    playerSprite.setPosition(playerSprite.getPosition().x, obstacleSprite.getPosition().y + obstacleSprite.getGlobalBounds().height);
+                }
+                else
+                {
+                    // Collision au dessus de l'obstacle
+                    playerSprite.setPosition(playerSprite.getPosition().x, obstacleSprite.getPosition().y - playerSprite.getGlobalBounds().height);
                 }
             }
         }
 
-        // Dessiner un objet à la case (2, 3)
-        sf::CircleShape object(20);
-        object.setFillColor(sf::Color::Red);
-        object.setPosition(3 * cellSize + cellSize/2 - object.getRadius(), 2 * cellSize + cellSize/2 - object.getRadius());
-        window.draw(object);
+        // Affichage des sprites et de la fenêtre
+        window.clear(sf::Color::White);
+        window.draw(playerSprite);
+        window.draw(obstacleSprite);
 
-        // Afficher la fenêtre
         window.display();
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
 
-// g++ test.cpp -o test -lsfml-graphics -lsfml-window -lsfml-system
+//g++ -c test.cpp -o test.o -lsfml-graphics -lsfml-window -lsfml-system
+       

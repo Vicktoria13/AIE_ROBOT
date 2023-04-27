@@ -32,13 +32,15 @@ public:
     RobotPlayer(int x, int y, int max_x, int max_y);
     ~RobotPlayer();
 
-    void DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15> );
-    void UpdateEvent(std::string NameIfPlayer);
+    void DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15> maze);
+    void UpdateEvent(std::string NameIfPlayer,std::array<std::array<int, 15>, 15> maze);
 
-    void KeyBoardEventARROW();
-    void KeyBoardEventZQSD();
+    void KeyBoardEventARROW(std::array<std::array<int, 15>, 15> maze);
+    void KeyBoardEventZQSD(std::array<std::array<int, 15>, 15> maze);
 
     void CheckPosition();
+
+    void checkCollision(std::array<std::array<int, 15>, 15> maze, sf::Vector2f* previous);
 };
 
 #endif

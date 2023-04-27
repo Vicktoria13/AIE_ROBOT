@@ -25,7 +25,7 @@ public:
     PlateauJeu();
     ~PlateauJeu();
 
-    void DrawLabyrinthe(sf::RenderWindow* window) const;
+    void DrawLabyrinthe(sf::RenderWindow* window) ;
     
     void FondBlanc(sf::RenderWindow* window) const;
 
@@ -35,6 +35,11 @@ public:
 
     void handleEvent();
     void ajouterBouton();
+
+    /*getter*/
+    std::array<std::array<int, TAILLE_LABYRINTHE>, TAILLE_LABYRINTHE> getLabyrinthe() const{
+        return this->labyrinthe;
+    }
 
 
 };
