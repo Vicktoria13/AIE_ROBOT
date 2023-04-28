@@ -28,7 +28,7 @@ PlateauJeu::PlateauJeu(){
 
    labyrinthe = {{
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-    {1,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,1,0,0,0,0,0,0,0,0,4,1},
     {1,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,1,0,2,0,0,0,0,0,1,1,1},
     {1,0,0,0,1,0,0,0,0,0,0,0,1,1,1},
@@ -40,10 +40,17 @@ PlateauJeu::PlateauJeu(){
     {1,0,0,0,0,0,1,0,0,0,0,0,0,0,1},
     {1,1,1,0,0,0,1,0,0,1,1,1,1,1,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,3,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
    }};
    
+
+    // 4 : drapeau du joueur B (doit etre ramassé par le joueur A)
+    // 3 : drapeau du joueur A (doit etre ramassé par le joueur B)
+    // 2 : tour ennemi
+    // 1 : mur
+    // 0 : chemin libre
+
     //ajouterBouton();
     //getTheMostLeftButton();
 
@@ -52,13 +59,24 @@ PlateauJeu::PlateauJeu(){
     this->Quit = false; // on ne quitte pas par defaut
 
 
-    // liste des entités affichables
-    characters["JoueurA"] = new RobotPlayer(100,100,case_size*(TAILLE_LABYRINTHE-1),case_size*(TAILLE_LABYRINTHE-1));
-    characters["JoueurB"] = new RobotPlayer(500,500,case_size*(TAILLE_LABYRINTHE-1),case_size*(TAILLE_LABYRINTHE-1));
+    // liste des entités affichables : JoueurA en bas a gauche, JoueurB en haut a droite
+    characters["JoueurA"] = new RobotPlayer(100,700,case_size*(TAILLE_LABYRINTHE-1),case_size*(TAILLE_LABYRINTHE-1),"JoueurA");
+    characters["JoueurB"] = new RobotPlayer(700,100,case_size*(TAILLE_LABYRINTHE-1),case_size*(TAILLE_LABYRINTHE-1),"JoueurB");
 
     characters["EnnemiA"] = new TourEnnemi();
     characters["EnnemiB"] = new TourEnnemi();
     characters["EnnemiC"] = new TourEnnemi();
+
+    characters["DrapeauJoueurA"] = new Drapeau("DrapeauJoueurA");
+    characters["DrapeauJoueurB"] = new Drapeau("DrapeauJoueurB");
+
+
+    // Le masque de vision
+    float rayon_par_defaut = 80.0;
+
+    this->masque2D = new Masque(rayon_par_defaut,rayon_par_defaut,characters.at("JoueurA")->getPositionX(),characters.at("JoueurA")->getPositionY(),
+    characters.at("JoueurB")->getPositionX(),characters.at("JoueurB")->getPositionY());
+
 
 }
 
@@ -93,43 +111,80 @@ void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) {
 
             
             
-
+            // on place les murs
             if (labyrinthe[i][j] == 1){
                 // noir
-                rectangle.setFillColor(sf::Color::Black);
-                //rectangle.setTexture(&texture);
+                //rectangle.setFillColor(sf::Color::Black);
+                rectangle.setTexture(&texture);
 
               
             }
-            else{
-                // blanc
+
+            // on place les chemins
+            else if (labyrinthe[i][j] == 0){ 
                 rectangle.setFillColor(sf::Color::White);  
+            }
 
-                if (labyrinthe[i][j] == 2){
-                    
-                    rectangle.setFillColor(sf::Color(100, 100, 100, 250));
+            // on place les tours
+            else if (labyrinthe[i][j] == 2){
 
-                    if (!characters.empty()){
-                        if (characters.at("EnnemiA")->estPositionne == false){
-                            characters.at("EnnemiA")->setPositionX_Y(j*case_size -dec,i*case_size);
-                        }
+                rectangle.setFillColor(sf::Color(0, 0, 255, 200));
 
-                        else if (characters.at("EnnemiB")->estPositionne == false){
-                            characters.at("EnnemiB")->setPositionX_Y(j*case_size-dec,i*case_size);
-                        }
+                if (!characters.empty())
+                {
+                    if (characters.at("EnnemiA")->estPositionne == false)
+                    {
+                        characters.at("EnnemiA")->setPositionX_Y(j * case_size - dec, i * case_size);
+                    }
 
-                        else if (characters.at("EnnemiC")->estPositionne == false){
-                            characters.at("EnnemiC")->setPositionX_Y(j*case_size-dec,i*case_size);
-                        }
+                    else if (characters.at("EnnemiB")->estPositionne == false)
+                    {
+                        characters.at("EnnemiB")->setPositionX_Y(j * case_size - dec, i * case_size);
+                    }
+
+                    else if (characters.at("EnnemiC")->estPositionne == false)
+                    {
+                        characters.at("EnnemiC")->setPositionX_Y(j * case_size - dec, i * case_size);
                     }
                 }
             }
-            window->draw(rectangle);
+
+            // on place les drapeaux
+            else if (labyrinthe[i][j] == 3){
+
+                //rectangle.setFillColor(sf::Color(0, 200, 200, 100));
+
+                if (!characters.empty()){
+
+                    if (characters.at("DrapeauJoueurA")->estPositionne == false){
+                        characters.at("DrapeauJoueurA")->setPositionX_Y(j*case_size + dec, i*case_size);
+                    }
+
+                 
+                }
+            }
+
+            else if (labyrinthe[i][j] == 4){
+
+
+                if (!characters.empty()){
+
+                    if (characters.at("DrapeauJoueurB")->estPositionne == false){
+                        characters.at("DrapeauJoueurB")->setPositionX_Y(j*case_size + dec, i*case_size);
+                    }
+
+                 
+                }
+            }
+
+             window->draw(rectangle);
+        }
+           
         }
     }
 
 
-}
+
 
 /**
  * @brief Rempli la fenêtre de blanc
@@ -156,6 +211,14 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
     DrawLabyrinthe(window);
     dessinerBoutons(window);
     drawCharacters(window);
+
+    // le masque; : met les positions des joeurs dans le centre des masques
+    masque2D->setPlayer1(characters.at("JoueurA")->getPositionXSprite(),characters.at("JoueurA")->getPositionYSprite());
+    masque2D->setPlayer2(characters.at("JoueurB")->getPositionXSprite(), characters.at("JoueurB")->getPositionYSprite());
+
+    //masque2D->updateMasque();
+    //masque2D->dessineMasque(window);
+
 }
 
 
@@ -224,6 +287,7 @@ void PlateauJeu::handleEvent(){
     characters["JoueurA"]->UpdateEvent("JoueurA", this->labyrinthe); // on met a jour les evenements du joueur A
     characters["JoueurB"]->UpdateEvent("JoueurB",this->labyrinthe); // on met a jour les evenements du joueur B  
      
+  
     
     }
 

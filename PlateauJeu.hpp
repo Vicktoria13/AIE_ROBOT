@@ -5,6 +5,9 @@
 #include "Bouton.hpp"
 #include "RobotPlayer.hpp"
 #include "TourEnnemi.hpp"
+#include "Drapeau.hpp"
+
+#include "Masque.hpp"
 #include <iostream>
 #include <vector>
 
@@ -20,6 +23,9 @@ private:
 
     
     std::map<std::string,EntiteAffichable*> characters;
+
+
+    Masque* masque2D;
 
 public:
     PlateauJeu();

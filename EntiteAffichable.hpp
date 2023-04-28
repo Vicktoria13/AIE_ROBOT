@@ -15,6 +15,8 @@ protected:
     
     sf::Sprite _sprite;
     sf::Texture _texture;
+
+    std::string _name;
     
     int positionX;
     int positionY;
@@ -43,6 +45,7 @@ public:
     }
 
     int getPositionYSprite() const{
+        // renvoie la position y du sprite
         return this->_sprite.getPosition().y;
     }
 
@@ -54,6 +57,8 @@ public:
 
     virtual void setPositionX_Y(int x, int y){
         this->_sprite.setPosition(x, y);
+        this->estPositionne = true;
+        
     
     }
 };

@@ -29,7 +29,7 @@ private:
 
 
 public:
-    RobotPlayer(int x, int y, int max_x, int max_y);
+    RobotPlayer(int x, int y, int max_x, int max_y, std::string name);
     ~RobotPlayer();
 
     void DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15> maze);
@@ -38,9 +38,11 @@ public:
     void KeyBoardEventARROW(std::array<std::array<int, 15>, 15> maze);
     void KeyBoardEventZQSD(std::array<std::array<int, 15>, 15> maze);
 
-    void CheckPosition();
 
     void checkCollision(std::array<std::array<int, 15>, 15> maze, sf::Vector2f* previous);
+
+    /* getter */
+    bool getADrapeau(){return this->ADrapeau;}
 };
 
 #endif

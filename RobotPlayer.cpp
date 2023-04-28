@@ -5,13 +5,13 @@
 // void DisplayEntite(sf::RenderWindow* window) doit être définie dans RobotPlayer.cpp
 
 
-RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y)
+RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name)
 {
     std::cout << "Construction du robot joueur" << std::endl;
 
     this->jaugeVie = 100;
     this->nb_munitions = 10;
-    this->nb_pixels_deplacement = 9;
+    this->nb_pixels_deplacement = 15;
 
     this->positionX = x;
     this->positionY = y;
@@ -27,11 +27,13 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y)
 
     /* on l'associe au sprite*/
     _sprite.setTexture(_texture);
-    _sprite.scale(0.2, 0.2);
+    _sprite.scale(0.13, 0.13);
     _sprite.setPosition(x, y);
 
     this->ADrapeau = false;
     this->estPositionne=true;
+
+    this->_name = name;
 
     
 
@@ -51,32 +53,52 @@ void RobotPlayer::checkCollision(std::array<std::array<int, 15>, 15> maze, sf::V
         for (int j = 0; j < 15; j++){
 
             // collision avec les elements statiques (murs + tours)
-            if (maze[i][j]==1 || maze[i][j]==2 ){
-                int pas = 4;
+            if (maze[i][j]==1 || maze[i][j]==2 || maze[i][j]==3 || maze[i][j]==4){
+                
+                /* On cree le rectangle correspondant a un obstacle/Entite externe*/
+
                 int case_size = 60;
                 sf::RectangleShape rectangle(sf::Vector2f(case_size, case_size));
                 rectangle.setPosition(j*case_size, i*case_size);
 
+
                 // on cree un rectangle qui contient le sprite : si la hit box est trop petite, on la réduit
+
                  sf::RectangleShape spriteBound(sf::Vector2f(_sprite.getGlobalBounds().width, _sprite.getGlobalBounds().height));
                  spriteBound.setPosition(_sprite.getPosition().x, _sprite.getPosition().y);
 
                  sf::RectangleShape Cropped(sf::Vector2f(_sprite.getGlobalBounds().width / 2, _sprite.getGlobalBounds().height / 2));
                  Cropped.setPosition(_sprite.getPosition().x + _sprite.getGlobalBounds().width / 4, _sprite.getPosition().y + _sprite.getGlobalBounds().height / 4);
 
-                 // si intersection avec un mur qui existe
+
+
                  if (Cropped.getGlobalBounds().intersects(rectangle.getGlobalBounds()) ){
-                     this->_sprite.setPosition(previous->x, previous->y);
+                    // si c'est un drapeau, on le ramasse. Attention, on le ramasse qui si drapeau ennemi
+
+                    if (maze[i][j]==3 && this->_name=="JoueurB"){
+                        this->ADrapeau = true;
+                        std::cout<<"Joueur B a ramasse le drapeau"<<std::endl;
+                    }
+
+                    else if (maze[i][j]==4 && this->_name=="JoueurA"){
+                        this->ADrapeau = true;
+                        std::cout<<"Joueur A a ramasse le drapeau"<<std::endl;
+                    }
+
+                    else if (maze[i][j]==2  || maze[i][j]==1){
+                        this->_sprite.setPosition(previous->x, previous->y);
+                    }
                  
                 }
             }
+
+            
         }
      }
 
 
   
 }
-
 
 
 
@@ -112,7 +134,6 @@ void RobotPlayer::KeyBoardEventARROW(std::array<std::array<int, 15>, 15> maze){
 
     // si on atteint le bord de l'écran, on ne peut plus aller plus loin
 
-    CheckPosition();
     checkCollision(maze, &previous);
 }
 
@@ -149,37 +170,11 @@ void RobotPlayer::KeyBoardEventZQSD(std::array<std::array<int, 15>, 15> maze){
 
     // si on atteint le bord de l'écran, on ne peut plus aller plus loin
 
-    CheckPosition();
     checkCollision(maze, &previous);
     /*********TIR******************************/
 
 }
 
-/**
- * @brief Verifie si le robot est dans les limites du labyrinthe
- * 
- */
-
-void RobotPlayer::CheckPosition(){
-    // si on atteint le bord de l'écran, on ne peut plus aller plus loin
-
-    
-    if (this->_sprite.getPosition().x < 0){
-        this->_sprite.setPosition(0, this->_sprite.getPosition().y);
-    }
-
-    if (this->_sprite.getPosition().x > this->limite_deplacement_x){
-        this->_sprite.setPosition(this->limite_deplacement_x, this->_sprite.getPosition().y);
-    }
-
-    if (this->_sprite.getPosition().y < 0){
-        this->_sprite.setPosition(this->_sprite.getPosition().x, 0);
-    }
-
-    if (this->_sprite.getPosition().y > this->limite_deplacement_y){
-        this->_sprite.setPosition(this->_sprite.getPosition().x, this->limite_deplacement_y);
-    }
-}
 
 
 /**
@@ -197,6 +192,12 @@ void RobotPlayer::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int
 }
 
 
+
+/**
+ * @brief Destucteur du robot joueur
+ * 
+ */
+
 RobotPlayer::~RobotPlayer()
 {
     std::cout << "Destruction du robot joueur" << std::endl;
@@ -204,25 +205,31 @@ RobotPlayer::~RobotPlayer()
 
 
 
+/**
+ * @brief Affiche le robot joueur
+ * 
+ * @param window la fenetre de rendu
+ * @param maze le labyrinthe 2D
+ */
 void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15> maze )
 {
     int facteur_retrecicement =2 ;
     window->draw(_sprite);
 
-    /* l'original */
+/*
     sf::RectangleShape spriteBound(sf::Vector2f(_sprite.getGlobalBounds().width, _sprite.getGlobalBounds().height));
     spriteBound.setPosition(_sprite.getPosition().x, _sprite.getPosition().y);
     spriteBound.setFillColor(sf::Color(255,0,0,128));
 
-    window->draw(spriteBound);
+    //window->draw(spriteBound);
 
     sf::RectangleShape Cropped;
     Cropped.setSize(sf::Vector2f(_sprite.getGlobalBounds().width/facteur_retrecicement, _sprite.getGlobalBounds().height/facteur_retrecicement));
     // il faut le centrer, donc on prend la moitié de la taille du sprite
     Cropped.setPosition(_sprite.getPosition().x + _sprite.getGlobalBounds().width/4, _sprite.getPosition().y + _sprite.getGlobalBounds().height/4);
-    Cropped.setFillColor(sf::Color(0,255,0,128));
+    Cropped.setFillColor(sf::Color(0,255,0,50));
 
     window->draw(Cropped);
-
+*/
    
 }
