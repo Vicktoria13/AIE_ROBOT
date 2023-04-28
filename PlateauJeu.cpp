@@ -96,7 +96,7 @@ void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) {
 
     FondBlanc(window);
     sf::Texture texture;
-    if (!texture.loadFromFile("block.png"))
+    if (!texture.loadFromFile("Assets/block.png"))
     {
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }

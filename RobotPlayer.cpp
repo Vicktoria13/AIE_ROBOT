@@ -20,7 +20,7 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name)
     this->limite_deplacement_y = max_y;
 
     /* On charge la texture */
-    if (!_texture.loadFromFile("robotPlayer.png"))
+    if (!_texture.loadFromFile("Assets/robotPlayer.png"))
     {
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }

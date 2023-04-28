@@ -75,7 +75,7 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
     
     // on charge une police
     
-    if (!this->police.loadFromFile("ccwild.ttf"))
+    if (!this->police.loadFromFile("Assets/ccwild.ttf"))
     {
         std::cout << "erreur chargement police" << std::endl;
     } 

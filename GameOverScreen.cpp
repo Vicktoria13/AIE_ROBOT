@@ -41,7 +41,7 @@ GameOverScreen::GameOverScreen(){
 
      // On ajoute le titre
 
-    if(!this->fontTitle.loadFromFile("ccwild.ttf")){
+    if(!this->fontTitle.loadFromFile("Assets/ccwild.ttf")){
         throw("ERROR FONT LOAD");}
 
 

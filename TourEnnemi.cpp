@@ -14,7 +14,7 @@ TourEnnemi::TourEnnemi() {
     std::cout << "Construction du tour ennemi" << std::endl;
 
     /* On charge la texture */
-    if (!_texture.loadFromFile("TourEnnemie.png"))
+    if (!_texture.loadFromFile("Assets/TourEnnemie.png"))
     {
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }

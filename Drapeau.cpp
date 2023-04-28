@@ -7,7 +7,7 @@ Drapeau::Drapeau(std::string nameOwner)
     std::cout << "Construction du d'un drapeau" << std::endl;
 
     /* On charge la texture */
-    if (!_texture.loadFromFile("flag.png"))
+    if (!_texture.loadFromFile("Assets/flag.png"))
     {
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }

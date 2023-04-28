@@ -47,7 +47,7 @@ WelcomeScreen::WelcomeScreen()
    
 
     fullBackground.setSize(sf::Vector2f(1920,1080));
-    if (!backgroundTexture.loadFromFile("galaxy.jpg"))
+    if (!backgroundTexture.loadFromFile("Assets/galaxy.jpg"))
     {
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }
@@ -56,7 +56,7 @@ WelcomeScreen::WelcomeScreen()
 
      // On ajoute le titre
 
-    if(!this->fontTitle.loadFromFile("ccwild.ttf")){
+    if(!this->fontTitle.loadFromFile("Assets/ccwild.ttf")){
         throw("ERROR FONT LOAD");}
 
 
