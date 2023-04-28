@@ -277,6 +277,8 @@ void PlateauJeu::handleEvent(){
                 }
             }
         }
+
+
     }
 
 
@@ -284,12 +286,16 @@ void PlateauJeu::handleEvent(){
 
     if (!characters.empty()){
 
-    characters["JoueurA"]->UpdateEvent("JoueurA", this->labyrinthe); // on met a jour les evenements du joueur A
-    characters["JoueurB"]->UpdateEvent("JoueurB",this->labyrinthe); // on met a jour les evenements du joueur B  
-     
+    if (characters["JoueurA"]->UpdateEvent("JoueurA", this->labyrinthe)==1 || characters["JoueurB"]->UpdateEvent("JoueurB",this->labyrinthe)==1){
+        this->ProchainScreen = "GameOver";
+    }
+    
   
     
     }
+
+    // on teste si un des joueurs a touché le flag adverse
+
 
     
     

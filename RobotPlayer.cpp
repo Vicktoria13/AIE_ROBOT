@@ -182,13 +182,26 @@ void RobotPlayer::KeyBoardEventZQSD(std::array<std::array<int, 15>, 15> maze){
  * 
  * @param NameIfPlayer pour distinguer les joueurs et donc les evenements clavier
  */
-void RobotPlayer::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int, 15>, 15> maze){
-    if (NameIfPlayer =="JoueurA"){
-        KeyBoardEventZQSD(maze);
+int RobotPlayer::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int, 15>, 15> maze){
+
+    if (this->ADrapeau == false){
+
+        if (NameIfPlayer == "JoueurA")
+        {
+            KeyBoardEventZQSD(maze);
+        }
+        else if (NameIfPlayer == "JoueurB")
+        {
+            KeyBoardEventARROW(maze);
+        }
+
+        return 0;
     }
-    else if (NameIfPlayer =="JoueurB"){
-        KeyBoardEventARROW(maze);
-}
+
+
+    // retourne 1 si un joueur a gagné
+    return 1;
+    
 }
 
 

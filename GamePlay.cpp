@@ -19,6 +19,9 @@ GamePlay::GamePlay()
     /* Ecran Plateau de jeu */
     Ajout_Ecran("PlateauJeu",new PlateauJeu());
 
+    /* Ecran Game Over */
+    Ajout_Ecran("GameOver",new GameOverScreen());
+
 
 
     // on met l'ecran d'accueil comme ecran actuel

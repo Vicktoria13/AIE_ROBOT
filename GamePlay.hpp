@@ -6,6 +6,7 @@
 #include "WelcomeScreen.hpp"
 #include "ChoseSkillMenu.hpp"
 #include "PlateauJeu.hpp"
+#include "GameOverScreen.hpp"
 #include <vector>
 #include <memory>
 

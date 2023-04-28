@@ -46,8 +46,8 @@ void TourEnnemi::DisplayTirs(sf::RenderWindow* window)
 
 
 
-void TourEnnemi::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int, 15>, 15> maze){
-
+int TourEnnemi::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int, 15>, 15> maze){
+    return 0;
 }
 
 void TourEnnemi::DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15> maze )

@@ -30,8 +30,8 @@ Drapeau::~Drapeau()
 }
 
 
-void Drapeau::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int, 15>, 15> maze){
-
+int Drapeau::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int, 15>, 15> maze){
+    return 0;
 }
 
 void Drapeau::DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15> maze )

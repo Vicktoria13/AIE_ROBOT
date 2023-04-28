@@ -32,7 +32,7 @@ GameOverScreen::GameOverScreen(){
    
 
     fullBackground.setSize(sf::Vector2f(1920,1080));
-    if (!backgroundTexture.loadFromFile("assets/GameOver.jpg"))
+    if (!backgroundTexture.loadFromFile("Assets/GameOver.jpg"))
     {
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }
