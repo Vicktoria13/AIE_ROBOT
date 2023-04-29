@@ -13,6 +13,11 @@
 #define  vitesse_deplacement 10
 
 
+//define pour l'affichage 3D
+#define XX (15+1)*60 
+#define LARGEUR (1300 - XX)/NB_RAYONS
+#define CENTRE 15*60/2
+#define HM (N)*60
 
 /**
  * @brief Classe représentant un robot joueur
@@ -40,6 +45,9 @@ private:
     float variation_angle ;
     float angle_actuel;
 
+    // pour stocker les longueurs de chaque rayon
+    int longueur_rayon[NB_RAYONS];
+
     //
 
 
@@ -56,10 +64,18 @@ public:
 
     void checkCollision(std::array<std::array<int, 15>, 15> maze, sf::Vector2f* previous);
 
+    
     /* getter */
     bool getADrapeau(){return this->ADrapeau;}
 
     void multi_rayon(std::array<std::array<int, 15>, 15> maze,float rayon_centre,sf::RenderWindow* window);
+
+
+    /*pour le 3D*/
+    void draw3D_rect(sf::RenderWindow* window, int hauteur, int largeur, int width, int offset, int ra);
+
+
+
 };
 
 #endif

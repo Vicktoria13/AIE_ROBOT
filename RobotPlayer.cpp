@@ -136,13 +136,13 @@ void RobotPlayer::KeyBoardEventARROW(std::array<std::array<int, 15>, 15> maze){
      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
         std::cout<< "position x : " << this->_sprite.getPosition().x << " position y : " << this->_sprite.getPosition().y << std::endl;
         //this->_sprite.move(-nb_pixels_deplacement,0);
-        this->angle_actuel=this->angle_actuel-vitesse_angulaire;
+        this->angle_actuel=this->angle_actuel+vitesse_angulaire;
         
      }
      
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){       
         //this->_sprite.move(nb_pixels_deplacement,0);
-        this->angle_actuel=this->angle_actuel+vitesse_angulaire;
+        this->angle_actuel=this->angle_actuel-vitesse_angulaire;
     }
 
     //on suit la direction du rayon central
@@ -182,10 +182,10 @@ void RobotPlayer::KeyBoardEventZQSD(std::array<std::array<int, 15>, 15> maze){
     /*********DEPLACEMENT******************************/
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
-        this->angle_actuel=this->angle_actuel-vitesse_angulaire;
+        this->angle_actuel=this->angle_actuel+vitesse_angulaire;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-        this->angle_actuel=this->angle_actuel+vitesse_angulaire;
+        this->angle_actuel=this->angle_actuel-vitesse_angulaire;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
@@ -256,6 +256,10 @@ int RobotPlayer::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int,
 RobotPlayer::~RobotPlayer()
 {
     std::cout << "Destruction du robot joueur" << std::endl;
+    for (auto& ray : this->rayons)
+    {
+        delete ray;
+    } 
 }
 
 
@@ -265,23 +269,43 @@ void RobotPlayer::multi_rayon(std::array<std::array<int, 15>, 15> maze,float ray
     /*Affiche T rayon et met les distances dans D*/
     float alpha= rayon_centre - M_PI/2 + ANGLE_FOCAL;
     int i=0;
+    sf::Color color;
+    // choix de la couleur 
+    if (this->_name == "JoueurA"){
+        color.r=255;
+        color.g=0;
+        color.b=0;
+        color.a=50;
+    }
+
+    else{
+        color.r=0;
+        color.g=0;
+        color.b=255;
+        color.a=50;
+    }
+
     for (auto& traits : this->rayons){
         // on update la position de chaque rayon
         traits->update(this->_sprite.getPosition().x+this->_sprite.getGlobalBounds().width/2, 
                         this->_sprite.getPosition().y+this->_sprite.getGlobalBounds().height/2);
         // on trace
 
-        if (this->_name == "JoueurA"){
-            traits->rayon_unitaire(alpha,  maze, window, 60,sf::Color(0,0,255,50));
-        }
-
-        else{
-            traits->rayon_unitaire(alpha,  maze, window, 60,sf::Color(0,255,0,120));
-        }
+        longueur_rayon[i]=traits->rayon_unitaire(alpha,  maze, window, 60,color);
+       
         i++;
         alpha += VARIATION_ANGLE;
     }
 }
+
+
+
+
+void draw3D_rect(sf::RenderWindow* window, int hauteur, int largeur, int width, int offset, int ra){
+    sf::RectangleShape rect(sf::Vector2f(largeur, hauteur));
+}
+
+
 
 
 /**

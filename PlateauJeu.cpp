@@ -83,10 +83,54 @@ PlateauJeu::PlateauJeu(){
 
 
 
+void PlateauJeu::background(sf::RenderWindow* window) const {
+    
+
+    sf::Vector2f dimensions((LARGEUR+1)*NB_RAYONS,CENTRE);
+    // pour le joueur A
+    sf::RectangleShape rect1(dimensions);
+    sf::RectangleShape rect2(dimensions);
+
+    //------position
+    rect1.setPosition(XX,0);
+    rect2.setPosition(XX,CENTRE);
+
+    //------couleur
+
+    rect1.setFillColor(sf::Color(135,206,235,255));
+    rect2.setFillColor(sf::Color(0,128,128,255));
+
+    window->draw(rect1);
+    window->draw(rect2);
+
+    std::cout<<"dimensions : "<<dimensions.x<<" "<<dimensions.y<<std::endl;
+    std::cout<<"rect1 : "<<rect1.getPosition().x<<" "<<rect1.getPosition().y<<std::endl;
+    std::cout<<"rect2 : "<<rect2.getPosition().x<<" "<<rect2.getPosition().y<<std::endl;
+
+    // pour le joueur B
+
+
+}
+
+
+
+/**
+ * @brief Dessine le cadre du jeu 3D
+ * 
+ * @param window fenetre de rendu
+ */
 
 void PlateauJeu::Dessine_cadre(sf::RenderWindow* window) const {
+
+    // cadre de
+    // largeur : (LARGEUR+1)*NB_RAYONS
+    // hauteur : (TAILLE_LABYRINTHE+1)*case_size
+
     sf::RectangleShape rectangle(sf::Vector2f((LARGEUR+1)*NB_RAYONS,(TAILLE_LABYRINTHE+1)*case_size));
-    rectangle.setFillColor(sf::Color(255,0,120,128));
+    //bordure
+    rectangle.setOutlineColor(sf::Color::White);
+    rectangle.setFillColor(sf::Color::Transparent);
+    rectangle.setOutlineThickness(5);
     rectangle.setPosition(XX,0);
 
     window->draw(rectangle);
@@ -226,10 +270,11 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
     masque2D->setPlayer1(characters.at("JoueurA")->getPositionXSpriteCenter(),characters.at("JoueurA")->getPositionYSpriteCenter());
     masque2D->setPlayer2(characters.at("JoueurB")->getPositionXSpriteCenter(), characters.at("JoueurB")->getPositionYSpriteCenter());
 
-    masque2D->updateMasque();
-    masque2D->dessineMasque(window);
+    //masque2D->updateMasque();
+    //masque2D->dessineMasque(window);
 
     Dessine_cadre(window);
+    background(window);
 
     
     // centre des 2 sprites :

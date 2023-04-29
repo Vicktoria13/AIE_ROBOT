@@ -15,11 +15,7 @@ const int TAILLE_LABYRINTHE = 15;
 
 
 
-//define pour l'affichage 3D
-#define XX (TAILLE_LABYRINTHE+1)*60
-#define LARGEUR (1300 - XX)/NB_RAYONS
-#define CENTRE TAILLE_LABYRINTHE*60/2
-#define HM (TAILLE_LABYRINTHE)*60
+
 
 
 class PlateauJeu: public Screen
@@ -52,6 +48,9 @@ public:
 
     void handleEvent();
     void ajouterBouton();
+
+    /* raycasting 3D*/
+    void background(sf::RenderWindow* window) const;
 
     /*getter*/
     std::array<std::array<int, TAILLE_LABYRINTHE>, TAILLE_LABYRINTHE> getLabyrinthe() const{

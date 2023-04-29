@@ -304,6 +304,16 @@ void Dessine_cadre(SDL_Renderer **renderer)
     SDL_RenderDrawRect(*renderer,&rect);
     
 }
+
+/**
+ * @brief dessine une slice de l'affichage 3D
+ * 
+ * @param renderer fenetre
+ * @param hauteur hauteur du rectangle
+ * @param largeur l largeur du rectangle
+ * @param x offset en x de chaque rectangle
+ * @param ra angle pour savoir si floo
+ */
 void draw3D_rect(SDL_Renderer **renderer,int hauteur,int largeur,int x,int ra)
 {
     /*Dessine un des rectangles de l'affichagce 3D*/
@@ -342,6 +352,8 @@ void draw3D(SDL_Renderer **renderer, int D[],float angle)
     }
 }
 
+
+
 void background(SDL_Renderer **renderer)
 {
     /*Affiche le ciel et le le sol de couleurs différentes */
@@ -356,6 +368,8 @@ void background(SDL_Renderer **renderer)
     //On affiche le sol
     SDL_SetRenderDrawColor(*renderer, 128, 128, 128, 255); //en bleu
     SDL_RenderFillRect(*renderer,&rect2);
+
+    printf("dimensions : %d %d\n",rect1.w,rect1.h);
 
 }
 
@@ -391,6 +405,11 @@ int main(int argc,char **argv)
     multi_rayon(D,map,px,py,angle,&renderer);
     Dessine_cadre(&renderer);
     SDL_RenderPresent(renderer);
+
+    printf("XX = %d\n",XX);
+    printf("LARGEUR = %d\n",LARGEUR);
+    printf("T = %d\n",T);
+    printf("CENTRE = %d\n",CENTRE);
     
     while(continuer !=-1){
         continuer = move_player(&px,&py,&angle,map);
@@ -402,7 +421,7 @@ int main(int argc,char **argv)
         Dessine_joueur(px,py,&renderer);
         multi_rayon(D,map,px,py,angle,&renderer);
         background(&renderer);
-        draw3D(&renderer,D,angle);
+        //draw3D(&renderer,D,angle);
         SDL_RenderPresent(renderer);
     }
 
