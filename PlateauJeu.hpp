@@ -50,13 +50,8 @@ public:
     void ajouterBouton();
 
     /* raycasting 3D*/
-    void background(sf::RenderWindow* window) const;
 
-    /*getter*/
-    std::array<std::array<int, TAILLE_LABYRINTHE>, TAILLE_LABYRINTHE> getLabyrinthe() const{
-        return this->labyrinthe;
-    }
-
+    
 
 };
 

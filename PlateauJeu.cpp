@@ -83,35 +83,6 @@ PlateauJeu::PlateauJeu(){
 
 
 
-void PlateauJeu::background(sf::RenderWindow* window) const {
-    
-
-    sf::Vector2f dimensions((LARGEUR+1)*NB_RAYONS,CENTRE);
-    // pour le joueur A
-    sf::RectangleShape rect1(dimensions);
-    sf::RectangleShape rect2(dimensions);
-
-    //------position
-    rect1.setPosition(XX,0);
-    rect2.setPosition(XX,CENTRE);
-
-    //------couleur
-
-    rect1.setFillColor(sf::Color(135,206,235,255));
-    rect2.setFillColor(sf::Color(0,128,128,255));
-
-    window->draw(rect1);
-    window->draw(rect2);
-
-    std::cout<<"dimensions : "<<dimensions.x<<" "<<dimensions.y<<std::endl;
-    std::cout<<"rect1 : "<<rect1.getPosition().x<<" "<<rect1.getPosition().y<<std::endl;
-    std::cout<<"rect2 : "<<rect2.getPosition().x<<" "<<rect2.getPosition().y<<std::endl;
-
-    // pour le joueur B
-
-
-}
-
 
 
 /**
@@ -245,7 +216,31 @@ void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) {
  * @param window 
  */
 void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
+
+    //2D
     window->clear(sf::Color::Black);
+
+    //3D
+     sf::Vector2f dimensions((LARGEUR+1)*NB_RAYONS,CENTRE);
+    // pour le joueur A
+    sf::RectangleShape rect1(dimensions);
+    sf::RectangleShape rect2(dimensions);
+
+    //------position
+    rect1.setPosition(XX,0);
+    rect2.setPosition(XX,CENTRE);
+
+    //------couleur
+
+    rect1.setFillColor(sf::Color(135,206,235,255));
+    rect2.setFillColor(sf::Color(0,128,128,255));
+
+    window->draw(rect1);
+    window->draw(rect2);
+
+    std::cout<<"dimensions : "<<dimensions.x<<" "<<dimensions.y<<std::endl;
+    std::cout<<"rect1 : "<<rect1.getPosition().x<<" "<<rect1.getPosition().y<<std::endl;
+    std::cout<<"rect2 : "<<rect2.getPosition().x<<" "<<rect2.getPosition().y<<std::endl;
 }
 
 
@@ -274,7 +269,6 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
     //masque2D->dessineMasque(window);
 
     Dessine_cadre(window);
-    background(window);
 
     
     // centre des 2 sprites :
