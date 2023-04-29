@@ -12,7 +12,7 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name)
 
     this->jaugeVie = 100;
     this->nb_munitions = 10;
-    this->nb_pixels_deplacement = 12;
+    this->nb_pixels_deplacement = 15;
 
     this->positionX = x;
     this->positionY = y;
@@ -39,17 +39,13 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name)
     this->_name = name;
 
     // pour le raycasting : on remplis std::vector<Ray*> rayons
-    this->angle_actuel = 0;
-
-
-    this->variation_angle = 0.001;
-
-
-    this->angle = M_PI_2;
-    for (int i = 0; i < 100; i++){
-        Ray* ray = new Ray(_sprite.getPosition().x, _sprite.getPosition().y, angle);
+    this->angle_actuel = M_PI_2;
+    this->variation_angle = 0.005;
+    
+    for (int i = 0; i < 150; i++){
+        Ray* ray = new Ray(_sprite.getPosition().x, _sprite.getPosition().y, angle_actuel);
         this->rayons.push_back(ray);
-        angle = angle+ this->variation_angle;
+        angle_actuel = angle_actuel+ this->variation_angle;
     }
 
     
@@ -135,21 +131,35 @@ void RobotPlayer::KeyBoardEventARROW(std::array<std::array<int, 15>, 15> maze){
     previous.x = this->_sprite.getPosition().x;
     previous.y = this->_sprite.getPosition().y;
 
+
+
      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-        this->_sprite.move(-nb_pixels_deplacement,0);
+        std::cout<< "position x : " << this->_sprite.getPosition().x << " position y : " << this->_sprite.getPosition().y << std::endl;
+        //this->_sprite.move(-nb_pixels_deplacement,0);
+        this->angle_actuel=this->angle_actuel-vitesse_angulaire;
+        
      }
      
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){       
-        this->_sprite.move(nb_pixels_deplacement,0);
+        //this->_sprite.move(nb_pixels_deplacement,0);
+        this->angle_actuel=this->angle_actuel+vitesse_angulaire;
     }
 
+    //on suit la direction du rayon central
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){  
-        this->_sprite.move(0,-nb_pixels_deplacement);      
+        //this->_sprite.move(0,-nb_pixels_deplacement);      
+        this->_sprite.move( vitesse_deplacement*cos(this->angle_actuel), 
+                          vitesse_deplacement*sin(this->angle_actuel));
+    
+        std::cout<< "position x : " << this->_sprite.getPosition().x << " position y : " << this->_sprite.getPosition().y << std::endl;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){        
-        this->_sprite.move(0,nb_pixels_deplacement);     
+        //this->_sprite.move(0,nb_pixels_deplacement); 
+        this->_sprite.move(-vitesse_deplacement*cos(this->angle_actuel), 
+                          -vitesse_deplacement*sin(this->angle_actuel));    
     }
+
 
     // si on atteint le bord de l'écran, on ne peut plus aller plus loin
 
@@ -172,18 +182,20 @@ void RobotPlayer::KeyBoardEventZQSD(std::array<std::array<int, 15>, 15> maze){
     /*********DEPLACEMENT******************************/
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
-        this->_sprite.move(-nb_pixels_deplacement,0);
+        this->angle_actuel=this->angle_actuel-vitesse_angulaire;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-        this->_sprite.move(nb_pixels_deplacement,0);
+        this->angle_actuel=this->angle_actuel+vitesse_angulaire;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
-        this->_sprite.move(0,-nb_pixels_deplacement);
+        this->_sprite.move( vitesse_deplacement*cos(this->angle_actuel), 
+                          vitesse_deplacement*sin(this->angle_actuel));
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-        this->_sprite.move(0,nb_pixels_deplacement);
+        this->_sprite.move(-vitesse_deplacement*cos(this->angle_actuel), 
+                          -vitesse_deplacement*sin(this->angle_actuel));   
 
     }
 
@@ -217,8 +229,12 @@ int RobotPlayer::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int,
         // On met a jour la position de chaque ray
         for (auto& ray : this->rayons)
         {
-            // on met a jour la position du rayon, qui est la meme que celle du robot
-            ray->update(this->_sprite.getPosition().x, this->_sprite.getPosition().y);
+            // on met a jour la position du rayon, bien centré
+            ray->update(this->_sprite.getPosition().x+this->_sprite.getGlobalBounds().width/2, 
+                        this->_sprite.getPosition().y+this->_sprite.getGlobalBounds().height/2);
+
+            //ray->affiche_info();
+        
         }
 
         return 0;
@@ -244,6 +260,30 @@ RobotPlayer::~RobotPlayer()
 
 
 
+void RobotPlayer::multi_rayon(std::array<std::array<int, 15>, 15> maze,float rayon_centre,sf::RenderWindow* window)
+{
+    /*Affiche T rayon et met les distances dans D*/
+    float alpha= rayon_centre - M_PI/2 + ANGLE_FOCAL;
+    int i=0;
+    for (auto& traits : this->rayons){
+        // on update la position de chaque rayon
+        traits->update(this->_sprite.getPosition().x+this->_sprite.getGlobalBounds().width/2, 
+                        this->_sprite.getPosition().y+this->_sprite.getGlobalBounds().height/2);
+        // on trace
+
+        if (this->_name == "JoueurA"){
+            traits->rayon_unitaire(alpha,  maze, window, 60,sf::Color(0,0,255,50));
+        }
+
+        else{
+            traits->rayon_unitaire(alpha,  maze, window, 60,sf::Color(0,255,0,120));
+        }
+        i++;
+        alpha += VARIATION_ANGLE;
+    }
+}
+
+
 /**
  * @brief Affiche le robot joueur
  * 
@@ -254,32 +294,20 @@ void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<i
 {
     int facteur_retrecicement =2 ;
     window->draw(_sprite);
-
+    sf::Color color(255,0,0,128);
     /*ray*/
-    int nb_ray = 0;
-    for (auto& traits : this->rayons)
-    {
-        traits->rayon_unitaire(traits->getAngle(),maze,window, 60);
-        nb_ray++;
-    }
-    std::cout<<"nb ray : "<<nb_ray<<std::endl;
-
-    // on trace un cercle autour de la position du sprite
-    sf::CircleShape cercle(5);
-    cercle.setPosition(_sprite.getPosition().x, _sprite.getPosition().y);
-    cercle.setFillColor(sf::Color(255,0,0,128));
-
-    window->draw(cercle);
-
-
     
+    multi_rayon(maze,angle_actuel,window);
+   
+
+    /*
     sf::RectangleShape spriteBound(sf::Vector2f(_sprite.getGlobalBounds().width, _sprite.getGlobalBounds().height));
     spriteBound.setPosition(_sprite.getPosition().x, _sprite.getPosition().y);
     spriteBound.setFillColor(sf::Color(255,0,0,128));
 
     window->draw(spriteBound);
 
-    /*
+    
 
     sf::RectangleShape Cropped;
     Cropped.setSize(sf::Vector2f(_sprite.getGlobalBounds().width/facteur_retrecicement, _sprite.getGlobalBounds().height/facteur_retrecicement));

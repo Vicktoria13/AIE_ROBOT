@@ -94,6 +94,49 @@ int GamePlay::CheckFenetreChanges(){
 
 
 
+/*
+int GamePlay::WaitForExit(){
+    
+    while (this->fenetre->isOpen())
+    {
+        sf::Event event;
+        
+        while (this->fenetre->waitEvent(event))
+        {
+            if (event.type == sf::Event::Closed){
+                return -1;}
+
+            else if (event.type == sf::Event::KeyPressed){
+                if (event.key.code == sf::Keyboard::Escape){
+                    return -1;
+                }
+
+        
+
+
+
+        /* update + affichage a faire pour chaque fenetre dès qu'une touche
+        est pressé
+
+                fenetre->clear();
+
+                EcranActuel->handleEvent();
+
+                CheckFenetreChanges();
+
+                DisplayCurrentScreen();
+                std::cout<<"rafraichissement"<<std::endl;
+
+                fenetre->display();
+
+                WaitPeriod();
+        }
+    }
+    }
+
+    return 0;
+}
+*/
 
 void GamePlay::WaitForExit(){
     while (this->fenetre->isOpen())
@@ -109,7 +152,6 @@ void GamePlay::WaitForExit(){
 
 
 
-        /* update + affichage */
         
         fenetre->clear();
 
@@ -125,7 +167,6 @@ void GamePlay::WaitForExit(){
 
     }
 }
-
 
 
 

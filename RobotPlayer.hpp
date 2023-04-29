@@ -4,6 +4,13 @@
 #include "EntiteAffichable.hpp"
 #include "Ray.hpp"
 
+#define PI 3.14159265
+#define ANGLE_FOCAL PI/4
+#define VARIATION_ANGLE 0.005
+#define NB_RAYONS (int)((PI-2*ANGLE_FOCAL)/VARIATION_ANGLE)
+//define pour le déplacement
+#define  vitesse_angulaire 0.15
+#define  vitesse_deplacement 10
 
 
 
@@ -27,12 +34,13 @@ private:
     int limite_deplacement_y;
 
     bool ADrapeau ;
-    float angle;
 
     //pour le raycasting
     std::vector<Ray*> rayons;
     float variation_angle ;
     float angle_actuel;
+
+    //
 
 
 public:
@@ -50,6 +58,8 @@ public:
 
     /* getter */
     bool getADrapeau(){return this->ADrapeau;}
+
+    void multi_rayon(std::array<std::array<int, 15>, 15> maze,float rayon_centre,sf::RenderWindow* window);
 };
 
 #endif

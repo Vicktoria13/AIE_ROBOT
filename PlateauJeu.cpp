@@ -85,7 +85,7 @@ PlateauJeu::PlateauJeu(){
 
 
 void PlateauJeu::Dessine_cadre(sf::RenderWindow* window) const {
-    sf::RectangleShape rectangle(sf::Vector2f((LARGEUR+1)*T,(TAILLE_LABYRINTHE+1)*case_size));
+    sf::RectangleShape rectangle(sf::Vector2f((LARGEUR+1)*NB_RAYONS,(TAILLE_LABYRINTHE+1)*case_size));
     rectangle.setFillColor(sf::Color(255,0,120,128));
     rectangle.setPosition(XX,0);
 
@@ -221,14 +221,19 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
     dessinerBoutons(window);
     drawCharacters(window);
 
-    // le masque; : met les positions des joeurs dans le centre des masques
-    masque2D->setPlayer1(characters.at("JoueurA")->getPositionXSprite(),characters.at("JoueurA")->getPositionYSprite());
-    masque2D->setPlayer2(characters.at("JoueurB")->getPositionXSprite(), characters.at("JoueurB")->getPositionYSprite());
+    // le masque; : met les positions central des joeurs dans le centre des masques
+    
+    masque2D->setPlayer1(characters.at("JoueurA")->getPositionXSpriteCenter(),characters.at("JoueurA")->getPositionYSpriteCenter());
+    masque2D->setPlayer2(characters.at("JoueurB")->getPositionXSpriteCenter(), characters.at("JoueurB")->getPositionYSpriteCenter());
 
-    //masque2D->updateMasque();
-    //masque2D->dessineMasque(window);
+    masque2D->updateMasque();
+    masque2D->dessineMasque(window);
 
     Dessine_cadre(window);
+
+    
+    // centre des 2 sprites :
+    
 
 }
 

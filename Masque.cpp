@@ -36,9 +36,9 @@ void Masque::updateMasque(){
     	 // Itération sur chaque pixel de l'image
 
     int nb= 0;
-    for (int x = 60; x < 830; x=x+5)
+    for (int x = 65;x < 830; x=x+5)
     {
-        for (int y = 60; y < 830; y=y+5)
+        for (int y = 65; y < 830; y=y+5)
         {
             // Récupération de la couleur du pixel
              nb++;

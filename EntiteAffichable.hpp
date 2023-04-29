@@ -45,8 +45,18 @@ public:
     }
 
     int getPositionYSprite() const{
-        // renvoie la position y du sprite
+        // renvoie la position en haut  a gauchey du sprite
         return this->_sprite.getPosition().y;
+    }
+
+    // retourne la position cenrale du sprite en x
+    int getPositionXSpriteCenter() const{
+        return this->_sprite.getPosition().x + this->_sprite.getGlobalBounds().width/2;
+    }
+
+    // retourne la position cenrale du sprite en y
+    int getPositionYSpriteCenter() const{
+        return this->_sprite.getPosition().y + this->_sprite.getGlobalBounds().height/2;
     }
 
     sf::Sprite getSprite() {

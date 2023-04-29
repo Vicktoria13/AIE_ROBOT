@@ -43,6 +43,7 @@ public:
 
     void Run();
 
+    //int WaitForExit();*
     void WaitForExit();
 
     void ChangerFenetreCourante(std::string name);
