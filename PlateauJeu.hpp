@@ -13,6 +13,18 @@
 
 const int TAILLE_LABYRINTHE = 15;
 
+#define PI 3.14159265
+#define ANGLE_FOCAL PI/4
+#define VARIATION_ANGLE 0.005
+#define T (int)((PI-2*ANGLE_FOCAL)/VARIATION_ANGLE)
+
+//define pour l'affichage 3D
+#define XX (TAILLE_LABYRINTHE+1)*60
+#define LARGEUR (1300 - XX)/T
+#define CENTRE TAILLE_LABYRINTHE*60/2
+#define HM (TAILLE_LABYRINTHE)*60
+
+
 class PlateauJeu: public Screen
 {
 private:
@@ -37,6 +49,8 @@ public:
 
     void drawScreens(sf::RenderWindow* window);
     void drawCharacters(sf::RenderWindow* window) const;
+
+    void Dessine_cadre(sf::RenderWindow* window) const;
 
 
     void handleEvent();

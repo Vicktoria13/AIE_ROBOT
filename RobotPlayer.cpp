@@ -1,4 +1,5 @@
 #include "RobotPlayer.hpp"
+#include <math.h>
 #include <iostream>
 
 
@@ -11,7 +12,7 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name)
 
     this->jaugeVie = 100;
     this->nb_munitions = 10;
-    this->nb_pixels_deplacement = 15;
+    this->nb_pixels_deplacement = 12;
 
     this->positionX = x;
     this->positionY = y;
@@ -30,10 +31,28 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name)
     _sprite.scale(0.13, 0.13);
     _sprite.setPosition(x, y);
 
+    
+
     this->ADrapeau = false;
     this->estPositionne=true;
 
     this->_name = name;
+
+    // pour le raycasting : on remplis std::vector<Ray*> rayons
+    this->angle_actuel = 0;
+
+
+    this->variation_angle = 0.001;
+
+
+    this->angle = M_PI_2;
+    for (int i = 0; i < 100; i++){
+        Ray* ray = new Ray(_sprite.getPosition().x, _sprite.getPosition().y, angle);
+        this->rayons.push_back(ray);
+        angle = angle+ this->variation_angle;
+    }
+
+    
 
     
 
@@ -195,6 +214,13 @@ int RobotPlayer::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int,
             KeyBoardEventARROW(maze);
         }
 
+        // On met a jour la position de chaque ray
+        for (auto& ray : this->rayons)
+        {
+            // on met a jour la position du rayon, qui est la meme que celle du robot
+            ray->update(this->_sprite.getPosition().x, this->_sprite.getPosition().y);
+        }
+
         return 0;
     }
 
@@ -229,12 +255,31 @@ void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<i
     int facteur_retrecicement =2 ;
     window->draw(_sprite);
 
-/*
+    /*ray*/
+    int nb_ray = 0;
+    for (auto& traits : this->rayons)
+    {
+        traits->rayon_unitaire(traits->getAngle(),maze,window, 60);
+        nb_ray++;
+    }
+    std::cout<<"nb ray : "<<nb_ray<<std::endl;
+
+    // on trace un cercle autour de la position du sprite
+    sf::CircleShape cercle(5);
+    cercle.setPosition(_sprite.getPosition().x, _sprite.getPosition().y);
+    cercle.setFillColor(sf::Color(255,0,0,128));
+
+    window->draw(cercle);
+
+
+    
     sf::RectangleShape spriteBound(sf::Vector2f(_sprite.getGlobalBounds().width, _sprite.getGlobalBounds().height));
     spriteBound.setPosition(_sprite.getPosition().x, _sprite.getPosition().y);
     spriteBound.setFillColor(sf::Color(255,0,0,128));
 
-    //window->draw(spriteBound);
+    window->draw(spriteBound);
+
+    /*
 
     sf::RectangleShape Cropped;
     Cropped.setSize(sf::Vector2f(_sprite.getGlobalBounds().width/facteur_retrecicement, _sprite.getGlobalBounds().height/facteur_retrecicement));
@@ -243,6 +288,7 @@ void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<i
     Cropped.setFillColor(sf::Color(0,255,0,50));
 
     window->draw(Cropped);
-*/
+    */
+
    
 }

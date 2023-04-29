@@ -83,6 +83,15 @@ PlateauJeu::PlateauJeu(){
 
 
 
+
+void PlateauJeu::Dessine_cadre(sf::RenderWindow* window) const {
+    sf::RectangleShape rectangle(sf::Vector2f((LARGEUR+1)*T,(TAILLE_LABYRINTHE+1)*case_size));
+    rectangle.setFillColor(sf::Color(255,0,120,128));
+    rectangle.setPosition(XX,0);
+
+    window->draw(rectangle);
+}
+
 /**
  * @brief Dessine le labyrinthe 2D  et tous les elements statiques lors du jeu (Tour + lab)
  * 
@@ -219,6 +228,8 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
     //masque2D->updateMasque();
     //masque2D->dessineMasque(window);
 
+    Dessine_cadre(window);
+
 }
 
 
@@ -308,4 +319,6 @@ PlateauJeu::~PlateauJeu(){
         delete perso.second;
         std::cout<<"Destruction du personnage "<<perso.first<<std::endl;
     }
+
+    delete masque2D;
 }

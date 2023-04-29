@@ -36,17 +36,45 @@ void Masque::updateMasque(){
     	 // Itération sur chaque pixel de l'image
 
     int nb= 0;
-    for (int x = 60; x < 840; x++)
+    for (int x = 60; x < 830; x=x+5)
     {
-        for (int y = 60; y < 840; y=y+3)
+        for (int y = 60; y < 830; y=y+5)
         {
             // Récupération de la couleur du pixel
-
+             nb++;
             // Vérification si le pixel est dans un des cercles avec la distance euclidienne
             if (std::sqrt(std::pow(x - player1.getPosition().x, 2) + std::pow(y - player1.getPosition().y, 2)) < player1.getRadius() ||
 				std::sqrt(std::pow(x - player2.getPosition().x, 2) + std::pow(y - player2.getPosition().y, 2)) < player2.getRadius())
             {
 				_imageMasque.setPixel(x, y, sf::Color::Transparent);
+                _imageMasque.setPixel(x, y - 1, sf::Color::Transparent);
+                _imageMasque.setPixel(x, y - 2, sf::Color::Transparent);
+                _imageMasque.setPixel(x, y - 3, sf::Color::Transparent);
+                _imageMasque.setPixel(x, y - 4, sf::Color::Transparent);
+                _imageMasque.setPixel(x, y - 5, sf::Color::Transparent);
+
+                 _imageMasque.setPixel(x - 1, y, sf::Color::Transparent);
+                _imageMasque.setPixel(x - 1, y-1, sf::Color::Transparent);
+                _imageMasque.setPixel(x - 1, y-2, sf::Color::Transparent);
+                _imageMasque.setPixel(x - 1, y-3, sf::Color::Transparent);
+                _imageMasque.setPixel(x - 1, y-4, sf::Color::Transparent);
+
+                _imageMasque.setPixel(x - 2, y, sf::Color::Transparent);
+                _imageMasque.setPixel(x - 2, y-1, sf::Color::Transparent);
+                _imageMasque.setPixel(x - 2, y-2, sf::Color::Transparent);
+                _imageMasque.setPixel(x - 2, y-3, sf::Color::Transparent);
+                _imageMasque.setPixel(x - 2, y-4, sf::Color::Transparent);
+                _imageMasque.setPixel(x - 2, y-5, sf::Color::Transparent);
+
+                _imageMasque.setPixel(x - 3, y, sf::Color::Transparent);
+                _imageMasque.setPixel(x - 3, y-1, sf::Color::Transparent);
+                _imageMasque.setPixel(x - 3, y-2, sf::Color::Transparent);
+                _imageMasque.setPixel(x - 3, y-3, sf::Color::Transparent);
+                _imageMasque.setPixel(x - 3, y-4, sf::Color::Transparent);
+                _imageMasque.setPixel(x - 3, y-5, sf::Color::Transparent);
+
+                
+
             }
 
 			else{
@@ -70,32 +98,55 @@ void Masque::updateMasque(){
                 if (alpha > 255)
                 {
                     alpha = 255; // noir
-                    _imageMasque.setPixel(x, y, sf::Color(0, 0, 0, alpha));
-                    _imageMasque.setPixel(x, y - 1, sf::Color(0, 0, 0, alpha));
-                    _imageMasque.setPixel(x, y - 2, sf::Color(0, 0, 0, alpha));
+                     
                 }
 
-                else
-                {
-                    if (alpha < 0)
-                    {
-                        alpha = 0;
-                    }
+                else if (alpha < 0){
+                    alpha = 0;
+                }
                     // Transparence
-                    _imageMasque.setPixel(x, y, sf::Color(0, 0, 0, alpha));
-                }
+                 _imageMasque.setPixel(x, y, sf::Color(0, 0, 0, alpha));
+                 
+                 _imageMasque.setPixel(x, y - 1, sf::Color(0, 0, 0, alpha));
+                 _imageMasque.setPixel(x, y - 2, sf::Color(0, 0, 0, alpha));
+                 _imageMasque.setPixel(x, y - 3, sf::Color(0, 0, 0, alpha));
+                 _imageMasque.setPixel(x, y - 4, sf::Color(0, 0, 0, alpha));
+                 _imageMasque.setPixel(x, y - 5, sf::Color(0, 0, 0, alpha));
 
-                nb++;
+                
+                 _imageMasque.setPixel(x - 1, y, sf::Color(0, 0, 0, alpha));
+                _imageMasque.setPixel(x - 1, y-1, sf::Color(0, 0, 0, alpha));
+                _imageMasque.setPixel(x - 1, y-2, sf::Color(0, 0, 0, alpha));
+                _imageMasque.setPixel(x - 1, y-3, sf::Color(0, 0, 0, alpha));
+                _imageMasque.setPixel(x - 1, y-4, sf::Color(0, 0, 0, alpha));
+
+                _imageMasque.setPixel(x - 2, y, sf::Color(0, 0, 0, alpha));
+                _imageMasque.setPixel(x - 2, y-1, sf::Color(0, 0, 0, alpha));
+                _imageMasque.setPixel(x - 2, y-2, sf::Color(0, 0, 0, alpha));
+                _imageMasque.setPixel(x - 2, y-3, sf::Color(0, 0, 0, alpha));
+                _imageMasque.setPixel(x - 2, y-4, sf::Color(0, 0, 0, alpha));
+                
+                _imageMasque.setPixel(x - 3, y, sf::Color(0, 0, 0, alpha));
+                _imageMasque.setPixel(x - 3, y-1, sf::Color(0, 0, 0, alpha));
+                _imageMasque.setPixel(x - 3, y-2, sf::Color(0, 0, 0, alpha));
+                _imageMasque.setPixel(x - 3, y-3, sf::Color(0, 0, 0, alpha));
+                _imageMasque.setPixel(x - 3, y-4, sf::Color(0, 0, 0, alpha));
+                _imageMasque.setPixel(x - 3, y-5, sf::Color(0, 0, 0, alpha));
+
+
+          
             }
+            
+        }
 
             
         }
-    }
+    
 
     this->_textureMasque.loadFromImage(_imageMasque);
     this->_spriteMasque.setTexture(_textureMasque);
 
-    //WelcomeScreenstd::cout<<"nb de pixels  : "<<nb<<std::endl;
+    //std::cout<<"nb de pixels  : "<<nb<<std::endl;
 
 }
 
@@ -113,6 +164,10 @@ void Masque::dessineMasque(sf::RenderWindow* window) const
 Masque::~Masque()
 {
     std::cout << "Destruction du masque" << std::endl;
+    delete &player1;
+    delete &player2;
+
+    
 }
 
 

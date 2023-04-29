@@ -2,6 +2,7 @@
 #define ROBOTPLAYER_HPP
 
 #include "EntiteAffichable.hpp"
+#include "Ray.hpp"
 
 
 
@@ -26,6 +27,12 @@ private:
     int limite_deplacement_y;
 
     bool ADrapeau ;
+    float angle;
+
+    //pour le raycasting
+    std::vector<Ray*> rayons;
+    float variation_angle ;
+    float angle_actuel;
 
 
 public:

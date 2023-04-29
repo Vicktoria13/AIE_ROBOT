@@ -12,8 +12,8 @@ EXES= main
 
 all: $(EXES)
 
-main: main.o GamePlay.o WelcomeScreen.o Bouton.o ChoseSkillMenu.o PlateauJeu.o Screen.o RobotPlayer.o TourEnnemi.o Drapeau.o Masque.o GameOverScreen.o 
-	$(LD) $(LDFLAGS) main.o GamePlay.o  WelcomeScreen.o Bouton.o ChoseSkillMenu.o  PlateauJeu.o RobotPlayer.o TourEnnemi.o Drapeau.o Masque.o GameOverScreen.o  -o main $(LIBS)
+main: main.o GamePlay.o WelcomeScreen.o Bouton.o ChoseSkillMenu.o PlateauJeu.o Screen.o RobotPlayer.o TourEnnemi.o Drapeau.o Masque.o GameOverScreen.o Ray.o
+	$(LD) $(LDFLAGS) main.o GamePlay.o  WelcomeScreen.o Bouton.o ChoseSkillMenu.o  PlateauJeu.o RobotPlayer.o TourEnnemi.o Drapeau.o Masque.o GameOverScreen.o Ray.o -o main $(LIBS)
 
 main.o: main.cpp GamePlay.hpp
 	$(CPP) $(CPPFLAGS) -c main.cpp
@@ -51,10 +51,13 @@ Drapeau.o : Drapeau.cpp Drapeau.hpp
 
 Masque.o : Masque.cpp Masque.hpp
 	$(CPP) $(CPPFLAGS) -c Masque.cpp
+
+Ray.o : Ray.cpp Ray.hpp
+	$(CPP) $(CPPFLAGS) -c Ray.cpp
 clean:
 	rm -f *.o $(EXES)
 
 vclean: clean
-	rm -f $(EXES)
+	rm -f $(EXES) test test1
 
 # valgrind --leak-check=full --show-leak-kinds=all ./main 

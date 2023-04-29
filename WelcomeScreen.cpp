@@ -170,6 +170,8 @@ WelcomeScreen::~WelcomeScreen()
     {
         delete bouton.second;
     }
+
+    
     
 }
 
