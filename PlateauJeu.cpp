@@ -221,16 +221,22 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
     window->clear(sf::Color::Black);
 
     //3D
-     sf::Vector2f dimensions((LARGEUR+1)*NB_RAYONS,CENTRE);
-    // pour le joueur A
+     sf::Vector2f dimensions((LARGEUR+1)*NB_RAYONS,CENTRE/2);
+
+     // sur x , la largeur est proportionnelle au nombre de rayons et
+    // a la largeur d'une slice
+
+    // sur y , la hauteur est proportionnelle a la hauteur de la fenetre
+
+    // -------------------------pour le joueur A
     sf::RectangleShape rect1(dimensions);
     sf::RectangleShape rect2(dimensions);
 
     //------position
     rect1.setPosition(XX,0);
-    rect2.setPosition(XX,CENTRE);
+    rect2.setPosition(XX,CENTRE-CENTRE/2);
 
-    //------couleur
+    //------couleur pour le ray cast : joueur 1 en haut
 
     rect1.setFillColor(sf::Color(135,206,235,255));
     rect2.setFillColor(sf::Color(0,128,128,255));
@@ -238,9 +244,23 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
     window->draw(rect1);
     window->draw(rect2);
 
-    std::cout<<"dimensions : "<<dimensions.x<<" "<<dimensions.y<<std::endl;
-    std::cout<<"rect1 : "<<rect1.getPosition().x<<" "<<rect1.getPosition().y<<std::endl;
-    std::cout<<"rect2 : "<<rect2.getPosition().x<<" "<<rect2.getPosition().y<<std::endl;
+    // -------------------------pour le joueur B
+/*
+    rect1.setFillColor(sf::Color(140,50,235,255));
+    rect2.setFillColor(sf::Color(57,120,100,255));
+
+    //------position
+    rect1.setPosition(XX,0);
+    rect1.setPosition(XX,CENTRE+30);
+    rect2.setPosition(XX,CENTRE+30+CENTRE/2);
+
+    //------couleur pour le ray cast : joueur 1 en haut
+
+ 
+
+    window->draw(rect1);
+    window->draw(rect2);
+*/
 }
 
 
@@ -265,8 +285,8 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
     masque2D->setPlayer1(characters.at("JoueurA")->getPositionXSpriteCenter(),characters.at("JoueurA")->getPositionYSpriteCenter());
     masque2D->setPlayer2(characters.at("JoueurB")->getPositionXSpriteCenter(), characters.at("JoueurB")->getPositionYSpriteCenter());
 
-    //masque2D->updateMasque();
-    //masque2D->dessineMasque(window);
+    masque2D->updateMasque();
+    masque2D->dessineMasque(window);
 
     Dessine_cadre(window);
 
@@ -355,6 +375,7 @@ void PlateauJeu::handleEvent(){
     
     
 }
+
 
 
 PlateauJeu::~PlateauJeu(){

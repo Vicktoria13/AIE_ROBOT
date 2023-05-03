@@ -42,10 +42,14 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name)
     this->angle_actuel = M_PI_2;
     this->variation_angle = 0.005;
     
-    for (int i = 0; i < 150; i++){
+    for (int i = 0; i < NB_RAYONS; i++){
+        // les rayons 
         Ray* ray = new Ray(_sprite.getPosition().x, _sprite.getPosition().y, angle_actuel);
         this->rayons.push_back(ray);
         angle_actuel = angle_actuel+ this->variation_angle;
+
+        // leurs longueurs
+        this->longueur_rayon[i] = 0;
     }
 
     
@@ -134,7 +138,6 @@ void RobotPlayer::KeyBoardEventARROW(std::array<std::array<int, 15>, 15> maze){
 
 
      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-        std::cout<< "position x : " << this->_sprite.getPosition().x << " position y : " << this->_sprite.getPosition().y << std::endl;
         //this->_sprite.move(-nb_pixels_deplacement,0);
         this->angle_actuel=this->angle_actuel+vitesse_angulaire;
         
@@ -151,7 +154,6 @@ void RobotPlayer::KeyBoardEventARROW(std::array<std::array<int, 15>, 15> maze){
         this->_sprite.move( vitesse_deplacement*cos(this->angle_actuel), 
                           vitesse_deplacement*sin(this->angle_actuel));
     
-        std::cout<< "position x : " << this->_sprite.getPosition().x << " position y : " << this->_sprite.getPosition().y << std::endl;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){        
@@ -285,6 +287,8 @@ void RobotPlayer::multi_rayon(std::array<std::array<int, 15>, 15> maze,float ray
         color.a=50;
     }
 
+    float fish=0;
+
     for (auto& traits : this->rayons){
         // on update la position de chaque rayon
         traits->update(this->_sprite.getPosition().x+this->_sprite.getGlobalBounds().width/2, 
@@ -293,20 +297,64 @@ void RobotPlayer::multi_rayon(std::array<std::array<int, 15>, 15> maze,float ray
 
         longueur_rayon[i]=traits->rayon_unitaire(alpha,  maze, window, 60,color);
        
+        // contre l'effet fish eye
+        fish = alpha - rayon_centre;
+        if (fish < 0){
+            fish += 2 * PI;
+        }
+
+        if (fish > 2 * PI){
+            fish -= 2 * PI;
+        }
+
+        longueur_rayon[i] *= cos(fish);
+        longueur_rayon[i]++;
+
         i++;
-        alpha += VARIATION_ANGLE;
+        alpha = alpha +VARIATION_ANGLE;
     }
 }
 
 
 
 
-void draw3D_rect(sf::RenderWindow* window, int hauteur, int largeur, int width, int offset, int ra){
-    sf::RectangleShape rect(sf::Vector2f(largeur, hauteur));
+void RobotPlayer::draw3D_rect(sf::RenderWindow* window, int haut, int larg, int x, int ra) const{
+    
+    sf::RectangleShape rectangle(sf::Vector2f(larg+1, haut));
+    rectangle.setPosition(x+XX,CENTRE-haut/2);
+
+    if ((ra > 0 && ra < PI) || (ra<0 && ra>-PI) ){
+        rectangle.setFillColor(sf::Color(135,206,235,255));
+       
+    }
+    else{
+        rectangle.setFillColor(sf::Color(140,50,235,255));
+    }
+    window->draw(rectangle);
+
 }
 
 
+void RobotPlayer::draw3D(sf::RenderWindow* window, float angul) const {
 
+    int i;
+    int hauteur=0;
+    int x=0;
+    int ra=0;
+
+    for(i=0;i<NB_RAYONS;i++){
+        hauteur = (int) (60*HM)/(longueur_rayon[i]); // thales
+        if(hauteur>HM)
+            hauteur=HM; // on ne peut pas dépasser la hauteur max
+        
+        x=i*LARGEUR;
+        ra= PI - (abs(angul) - PI/2 + ANGLE_FOCAL + i*VARIATION_ANGLE + M_PI/2);
+        draw3D_rect(window, hauteur, LARGEUR, x, ra);
+
+
+    }
+
+}
 
 /**
  * @brief Affiche le robot joueur
@@ -316,15 +364,15 @@ void draw3D_rect(sf::RenderWindow* window, int hauteur, int largeur, int width, 
  */
 void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15> maze )
 {
-    int facteur_retrecicement =2 ;
-    window->draw(_sprite);
-    sf::Color color(255,0,0,128);
-    /*ray*/
     
+    window->draw(_sprite);    
     multi_rayon(maze,angle_actuel,window);
+    draw3D(window,angle_actuel);
    
 
     /*
+    int facteur_retrecicement =2 ;
+
     sf::RectangleShape spriteBound(sf::Vector2f(_sprite.getGlobalBounds().width, _sprite.getGlobalBounds().height));
     spriteBound.setPosition(_sprite.getPosition().x, _sprite.getPosition().y);
     spriteBound.setFillColor(sf::Color(255,0,0,128));

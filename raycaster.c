@@ -421,7 +421,7 @@ int main(int argc,char **argv)
         Dessine_joueur(px,py,&renderer);
         multi_rayon(D,map,px,py,angle,&renderer);
         background(&renderer);
-        //draw3D(&renderer,D,angle);
+        draw3D(&renderer,D,angle);
         SDL_RenderPresent(renderer);
     }
 
@@ -433,3 +433,5 @@ int main(int argc,char **argv)
 
     return 0;
 }
+
+//gcc -o raycaster raycaster.c -lSDL2 -lm

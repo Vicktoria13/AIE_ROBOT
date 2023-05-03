@@ -49,6 +49,8 @@ public:
     void handleEvent();
     void ajouterBouton();
 
+    
+
     /* raycasting 3D*/
 
     
