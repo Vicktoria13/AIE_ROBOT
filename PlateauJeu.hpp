@@ -11,7 +11,6 @@
 #include <iostream>
 #include <vector>
 
-const int TAILLE_LABYRINTHE = 15;
 
 
 
@@ -23,11 +22,12 @@ class PlateauJeu: public Screen
 private:
     int case_size = 60 ;
 
-   
-    std::array<std::array<int, TAILLE_LABYRINTHE>, TAILLE_LABYRINTHE> labyrinthe; 
+   //pointeur
+   std::array<std::array<int, nb_cases>, nb_cases> labyrinthe; 
 
     
     std::map<std::string,EntiteAffichable*> characters;
+
 
 
     Masque* masque2D;

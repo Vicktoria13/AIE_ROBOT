@@ -60,8 +60,8 @@ PlateauJeu::PlateauJeu(){
 
 
     // liste des entités affichables : JoueurA en bas a gauche, JoueurB en haut a droite
-    characters["JoueurA"] = new RobotPlayer(100,700,case_size*(TAILLE_LABYRINTHE-1),case_size*(TAILLE_LABYRINTHE-1),"JoueurA");
-    characters["JoueurB"] = new RobotPlayer(700,100,case_size*(TAILLE_LABYRINTHE-1),case_size*(TAILLE_LABYRINTHE-1),"JoueurB");
+    characters["JoueurA"] = new RobotPlayer(100,700,case_size*(nb_cases-1),case_size*(nb_cases-1),"JoueurA");
+    characters["JoueurB"] = new RobotPlayer(700,100,case_size*(nb_cases-1),case_size*(nb_cases-1),"JoueurB");
 
     characters["EnnemiA"] = new TourEnnemi();
     characters["EnnemiB"] = new TourEnnemi();
@@ -72,7 +72,7 @@ PlateauJeu::PlateauJeu(){
 
 
     // Le masque de vision
-    float rayon_par_defaut = 80.0;
+    float rayon_par_defaut = 15.0;
 
     this->masque2D = new Masque(rayon_par_defaut,rayon_par_defaut,characters.at("JoueurA")->getPositionX(),characters.at("JoueurA")->getPositionY(),
     characters.at("JoueurB")->getPositionX(),characters.at("JoueurB")->getPositionY());
@@ -97,7 +97,7 @@ void PlateauJeu::Dessine_cadre(sf::RenderWindow* window) const {
     // largeur : (LARGEUR+1)*NB_RAYONS
     // hauteur : (TAILLE_LABYRINTHE+1)*case_size
 
-    sf::RectangleShape rectangle(sf::Vector2f((LARGEUR+1)*NB_RAYONS,(TAILLE_LABYRINTHE+1)*case_size));
+    sf::RectangleShape rectangle(sf::Vector2f((LARGEUR+1)*NB_RAYONS, (nb_cases+1)*case_size));
     //bordure
     rectangle.setOutlineColor(sf::Color::White);
     rectangle.setFillColor(sf::Color::Transparent);
@@ -125,8 +125,8 @@ void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) {
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }
 
-    for (int i = 0; i < TAILLE_LABYRINTHE; i++){
-        for (int j = 0; j < TAILLE_LABYRINTHE; j++){
+    for (int i = 0; i < nb_cases; i++){
+        for (int j = 0; j < nb_cases; j++){
             int pas = 4; // si le pas est trop faible, alors on ne voit pas le quadrillage lors du resize
             
             // allocation statique
@@ -138,8 +138,8 @@ void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) {
             // on place les murs
             if (labyrinthe[i][j] == 1){
                 // noir
-                //rectangle.setFillColor(sf::Color::Black);
-                rectangle.setTexture(&texture);
+                rectangle.setFillColor(sf::Color::Black);
+                //rectangle.setTexture(&texture);
 
               
             }
@@ -221,20 +221,14 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
     window->clear(sf::Color::Black);
 
     //3D
-     sf::Vector2f dimensions((LARGEUR+1)*NB_RAYONS,CENTRE/2);
-
-     // sur x , la largeur est proportionnelle au nombre de rayons et
-    // a la largeur d'une slice
-
-    // sur y , la hauteur est proportionnelle a la hauteur de la fenetre
-
+    sf::Vector2f dimensions((LARGEUR+1)*NB_RAYONS,CENTRE);
     // -------------------------pour le joueur A
     sf::RectangleShape rect1(dimensions);
     sf::RectangleShape rect2(dimensions);
 
     //------position
     rect1.setPosition(XX,0);
-    rect2.setPosition(XX,CENTRE-CENTRE/2);
+    rect2.setPosition(XX,CENTRE);
 
     //------couleur pour le ray cast : joueur 1 en haut
 
@@ -275,9 +269,14 @@ void PlateauJeu::drawCharacters(sf::RenderWindow* window) const{
 
 
 void PlateauJeu::drawScreens(sf::RenderWindow* window){
-    
+  
+
+    Dessine_cadre(window);
+
+    window->clear();
     DrawLabyrinthe(window);
     dessinerBoutons(window);
+
     drawCharacters(window);
 
     // le masque; : met les positions central des joeurs dans le centre des masques
@@ -288,7 +287,7 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
     masque2D->updateMasque();
     masque2D->dessineMasque(window);
 
-    Dessine_cadre(window);
+    
 
     
     // centre des 2 sprites :

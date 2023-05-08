@@ -28,7 +28,7 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name)
 
     /* on l'associe au sprite*/
     _sprite.setTexture(_texture);
-    _sprite.scale(0.13, 0.13);
+    _sprite.scale(0.11, 0.11);
     _sprite.setPosition(x, y);
 
     
@@ -49,7 +49,7 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name)
         angle_actuel = angle_actuel+ this->variation_angle;
 
         // leurs longueurs
-        this->longueur_rayon[i] = 0;
+        this->longueur_rayon.push_back(0);
     }
 
     
@@ -261,7 +261,9 @@ RobotPlayer::~RobotPlayer()
     for (auto& ray : this->rayons)
     {
         delete ray;
+        
     } 
+    longueur_rayon.clear();
 }
 
 
@@ -318,18 +320,20 @@ void RobotPlayer::multi_rayon(std::array<std::array<int, 15>, 15> maze,float ray
 
 
 
-void RobotPlayer::draw3D_rect(sf::RenderWindow* window, int haut, int larg, int x, int ra) const{
+void RobotPlayer::draw3D_rect(sf::RenderWindow* window, int haut, int larg, int x) const{
     
     sf::RectangleShape rectangle(sf::Vector2f(larg+1, haut));
-    rectangle.setPosition(x+XX,CENTRE-haut/2);
 
-    if ((ra > 0 && ra < PI) || (ra<0 && ra>-PI) ){
-        rectangle.setFillColor(sf::Color(135,206,235,255));
-       
+    if (this->_name=="JoueurA"){
+        rectangle.setPosition(x + XX, CENTRE - haut / 2);
+        rectangle.setFillColor(sf::Color(100, 149, 200, 255));
     }
-    else{
-        rectangle.setFillColor(sf::Color(140,50,235,255));
+
+    else {
+        rectangle.setPosition(x + XX, 3*CENTRE - haut / 2);
+        rectangle.setFillColor(sf::Color(100, 50, 140 ,255));
     }
+    
     window->draw(rectangle);
 
 }
@@ -337,10 +341,10 @@ void RobotPlayer::draw3D_rect(sf::RenderWindow* window, int haut, int larg, int 
 
 void RobotPlayer::draw3D(sf::RenderWindow* window, float angul) const {
 
+
     int i;
     int hauteur=0;
     int x=0;
-    int ra=0;
 
     for(i=0;i<NB_RAYONS;i++){
         hauteur = (int) (60*HM)/(longueur_rayon[i]); // thales
@@ -348,8 +352,7 @@ void RobotPlayer::draw3D(sf::RenderWindow* window, float angul) const {
             hauteur=HM; // on ne peut pas dépasser la hauteur max
         
         x=i*LARGEUR;
-        ra= PI - (abs(angul) - PI/2 + ANGLE_FOCAL + i*VARIATION_ANGLE + M_PI/2);
-        draw3D_rect(window, hauteur, LARGEUR, x, ra);
+        draw3D_rect(window, hauteur, LARGEUR, x-1);
 
 
     }
@@ -365,9 +368,12 @@ void RobotPlayer::draw3D(sf::RenderWindow* window, float angul) const {
 void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15> maze )
 {
     
+    //window->clear();
     window->draw(_sprite);    
     multi_rayon(maze,angle_actuel,window);
+    
     draw3D(window,angle_actuel);
+   
    
 
     /*

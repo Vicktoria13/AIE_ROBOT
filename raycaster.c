@@ -30,8 +30,8 @@
 //define pour l'affichage 3D
 #define XX (N+1)*CASE_SIZE 
 #define LARGEUR (1300 - XX)/T
-#define CENTRE N*CASE_SIZE/2
-#define HM (N)*CASE_SIZE
+#define CENTRE N*CASE_SIZE/2 //
+#define HM (N)*CASE_SIZE // représente la distance entre le joueur et le mur
 
 
 
@@ -314,22 +314,28 @@ void Dessine_cadre(SDL_Renderer **renderer)
  * @param x offset en x de chaque rectangle
  * @param ra angle pour savoir si floo
  */
-void draw3D_rect(SDL_Renderer **renderer,int hauteur,int largeur,int x,int ra)
+void draw3D_rect(SDL_Renderer **renderer,int hauteur,int largeur,int x)
 {
     /*Dessine un des rectangles de l'affichagce 3D*/
 
+
     SDL_Rect rect ={XX + x,CENTRE - hauteur/2,largeur+1,hauteur};
 
-    if((ra>0 && ra<PI) || (ra<0 && ra>-PI)){
+/*    if((ra>0 && ra<PI) || (ra<0 && ra>-PI)){
         //On dessine le rectangle
-        SDL_SetRenderDrawColor(*renderer, 100, 149, 193, 255); //en bleu
+        SDL_SetRenderDrawColor(*renderer, 100, 149, 200, 255); //en bleu
         SDL_RenderFillRect(*renderer,&rect);
+        printf("in the first if\n");
     }
     else{
         //On dessine le rectangle
         SDL_SetRenderDrawColor(*renderer, 100, 149, 200, 255); //en bleu
-        SDL_RenderFillRect(*renderer,&rect);    
+        SDL_RenderFillRect(*renderer,&rect);  
+        printf("in the 2n if\n");  
     }
+    */
+   SDL_SetRenderDrawColor(*renderer, 100, 149, 200, 255); //en bleu
+    SDL_RenderFillRect(*renderer,&rect); 
 }
 
 void draw3D(SDL_Renderer **renderer, int D[],float angle)
@@ -339,16 +345,15 @@ void draw3D(SDL_Renderer **renderer, int D[],float angle)
     int i;
     int hauteur=0;
     int x=0;
-    int ra=0;
     // float fish=0;
     for(i=0;i<T;i++){
         // fish=angle - (i*VARIATION_ANGLE +ANGLE_FOCAL);
-        hauteur = (int) (CASE_SIZE*HM)/D[i];
-        if(hauteur>HM)
+        hauteur = (int) (CASE_SIZE*HM)/D[i]; //D[i] est la longueur du rayon i
+        if(hauteur>HM){
             hauteur=HM;
+        }
         x=i*LARGEUR;
-        ra= PI - (abs(angle) - PI/2 + ANGLE_FOCAL + i*VARIATION_ANGLE + PI/2);
-        draw3D_rect(renderer,hauteur,LARGEUR,x-1,ra);
+        draw3D_rect(renderer,hauteur,LARGEUR,x-1);
     }
 }
 
@@ -369,7 +374,6 @@ void background(SDL_Renderer **renderer)
     SDL_SetRenderDrawColor(*renderer, 128, 128, 128, 255); //en bleu
     SDL_RenderFillRect(*renderer,&rect2);
 
-    printf("dimensions : %d %d\n",rect1.w,rect1.h);
 
 }
 
