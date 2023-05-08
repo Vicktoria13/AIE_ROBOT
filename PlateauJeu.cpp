@@ -51,8 +51,11 @@ PlateauJeu::PlateauJeu(){
     // 1 : mur
     // 0 : chemin libre
 
+   
+
     //ajouterBouton();
     //getTheMostLeftButton();
+
 
     this->ScreenName = "Valide";
     this->ProchainScreen = "";
@@ -99,11 +102,18 @@ void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) {
     int dec = 10; // permet le redecalage a cause du fait que le sprite n'est pas centré
 
     FondBlanc(window);
-    sf::Texture texture;
-    if (!texture.loadFromFile("Assets/block.png"))
+    sf::Texture textureWALL;
+    if (!textureWALL.loadFromFile("Assets/stone.png"))
     {
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }
+
+    sf::Texture textureFREE;
+    if (!textureFREE.loadFromFile("Assets/free.jpg"))
+    {
+        throw std::runtime_error("Erreur lors du chargement de l'image");
+    }
+
 
     for (int i = 0; i < nb_cases; i++){
         for (int j = 0; j < nb_cases; j++){
@@ -119,14 +129,15 @@ void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) {
             if (labyrinthe[i][j] == 1){
                 // noir
                 //rectangle.setFillColor(sf::Color::Black);
-                rectangle.setTexture(&texture);
+                rectangle.setTexture(&textureWALL);
 
               
             }
 
             // on place les chemins
             else if (labyrinthe[i][j] == 0){ 
-                rectangle.setFillColor(sf::Color::White);  
+                //rectangle.setFillColor(sf::Color::White);  
+                rectangle.setTexture(&textureFREE);
             }
 
             // on place les tours
@@ -266,8 +277,14 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
     masque2D->setPlayer1(characters.at("JoueurA")->getPositionXSpriteCenter(),characters.at("JoueurA")->getPositionYSpriteCenter());
     masque2D->setPlayer2(characters.at("JoueurB")->getPositionXSpriteCenter(), characters.at("JoueurB")->getPositionYSpriteCenter());
 
-    masque2D->updateMasque();
-    masque2D->dessineMasque(window);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    {
+       
+    }
+    else {
+        masque2D->updateMasque();
+        masque2D->dessineMasque(window);
+    }
 
     
 

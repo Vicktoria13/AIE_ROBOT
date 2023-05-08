@@ -7,14 +7,14 @@
 #define PI 3.14159265
 #define ANGLE_FOCAL PI/3
 #define VARIATION_ANGLE 0.005
-#define NB_RAYONS (int)((PI-2*ANGLE_FOCAL)/VARIATION_ANGLE) -60
+#define NB_RAYONS (int)((PI-2*ANGLE_FOCAL)/VARIATION_ANGLE) -80
 //define pour le déplacement
 #define  vitesse_angulaire 0.15
 #define  vitesse_deplacement 10
 
 #define nb_cases 15
 //define pour l'affichage 3D
-#define XX ((nb_cases+2)*60 ) // valeur en x ou commence l'affichage 3D : le premier slice
+#define XX ((nb_cases+4)*60 ) // valeur en x ou commence l'affichage 3D : le premier slice
 
 // -------- pour chaque slice
 #define LARGEUR (1920 - XX)/NB_RAYONS // largeur d'un slice :

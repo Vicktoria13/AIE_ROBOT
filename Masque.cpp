@@ -20,7 +20,7 @@ Masque::Masque(float r1, float r2, int x1, int y1, int x2, int y2)
     player2.setRadius(r2);
     player2.setPosition(x2, y2);
 
-    this->_imageMasque.create(860, 860, sf::Color::Black);
+    this->_imageMasque.create(860, 860, sf::Color(30, 30, 30, 255));
     this->_textureMasque.loadFromImage(_imageMasque);
     this->_spriteMasque.setTexture(_textureMasque);
 
@@ -64,7 +64,7 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
         for (int y = y2- 4*rayon1 ;y < player1.getPosition().y +rayon1; y=y+2)
         {
             nb++;
-            if (std::sqrt(std::pow(x - x1, 2) + std::pow(y - y1, 2)) < rayon1 || std::sqrt(std::pow(x - player2.getPosition().x, 2) + std::pow(y - player2.getPosition().y, 2)) < rayon2)
+            if (std::sqrt(std::pow(x - x1, 2) + std::pow(y - y1, 2)) < rayon1 || std::sqrt(std::pow(x - x2, 2) + std::pow(y - y2, 2)) < rayon2)
             {
                 _imageMasque.setPixel(x, y, sf::Color::Transparent);
          }
@@ -89,7 +89,7 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
                     alpha = 0;
                 }
                     // Transparence
-                 _imageMasque.setPixel(x, y, sf::Color(0, 0, 0, alpha));     
+                 _imageMasque.setPixel(x, y, sf::Color(30, 30, 30, alpha));     
             }
         }
     }
@@ -108,7 +108,7 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
             else{
 
                 int dmax = 60; float alpha ;
-                alpha = (255/dmax)*(std::sqrt(std::pow(x - player2.getPosition().x, 2) + std::pow(y - y2, 2)) - rayon2);
+                alpha = (255/dmax)*(std::sqrt(std::pow(x - x2, 2) + std::pow(y - y2, 2)) - rayon2);
                  if (alpha > 255){
                     alpha = 255; // noir    
                 }
@@ -117,7 +117,7 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
                     alpha = 0;
                 }
                     // Transparence
-                 _imageMasque.setPixel(x, y, sf::Color(0, 0, 0, alpha));     
+                 _imageMasque.setPixel(x, y, sf::Color(30, 30, 30, alpha));     
             }
             
         }
