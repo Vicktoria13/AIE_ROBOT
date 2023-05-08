@@ -26,8 +26,8 @@ public:
     bool estPositionne;
 
     /* Methodes abstraite qui doivent être redefinies dans les classes dérivées !!  */
-    virtual void DisplayEntite(sf::RenderWindow* window, std::array<std::array<int, 15>, 15> maze) = 0;
-    virtual int UpdateEvent(std::string NameIfPlayer,std::array<std::array<int, 15>, 15> maze) = 0;
+    virtual void DisplayEntite(sf::RenderWindow* window, std::array<std::array<int, 15>, 15>* maze)  = 0;
+    virtual int UpdateEvent(std::string NameIfPlayer,std::array<std::array<int, 15>, 15>* maze) = 0;
 
     /*------------------------------------------------------------------------------*/
 

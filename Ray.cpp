@@ -25,7 +25,7 @@ Ray::~Ray()
  * @param taille_case la taille d'une case du labyrinthe
  */
 
-int Ray::rayon_unitaire(float alpha,  std::array<std::array<int, 15>, 15> maze, sf::RenderWindow* window, int taille_case,sf::Color colorRayon){
+int Ray::rayon_unitaire(float alpha,  std::array<std::array<int, 15>, 15>* maze, sf::RenderWindow* window, int taille_case,sf::Color colorRayon){
     
     int distance = 0;
     int nx = this->pos_x;
@@ -35,7 +35,7 @@ int Ray::rayon_unitaire(float alpha,  std::array<std::array<int, 15>, 15> maze, 
     int Ny = (ny)/taille_case;
     sf::CircleShape point(2.f); // Crée un cercle de rayon 1
 
-    while (Ny < 15 && Nx<15 && maze[Ny][Nx] != 1 && maze[Ny][Nx] != 2 && maze[Ny][Nx] !=3){
+    while (Ny < 15 && Nx<15 && (*maze)[Ny][Nx] != 1 && (*maze)[Ny][Nx] != 2 && (*maze)[Ny][Nx] !=3 && (*maze)[Ny][Nx] !=4){
         nx = this->pos_x + distance*cos(alpha);
         ny = this->pos_y + distance*sin(alpha);
 

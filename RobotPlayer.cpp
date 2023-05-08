@@ -28,7 +28,7 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name)
 
     /* on l'associe au sprite*/
     _sprite.setTexture(_texture);
-    _sprite.scale(0.11, 0.11);
+    _sprite.scale(0.1, 0.1);
     _sprite.setPosition(x, y);
 
     
@@ -66,13 +66,13 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name)
  * @param maze le labyrinthe 2D
  * @param previous les coordonnees precedentes du joueur avant de se deplacer
  */
-void RobotPlayer::checkCollision(std::array<std::array<int, 15>, 15> maze, sf::Vector2f* previous){
+void RobotPlayer::checkCollision(std::array<std::array<int, 15>, 15>* maze, sf::Vector2f* previous){
 
     for (int i = 0; i < 15; i++){
         for (int j = 0; j < 15; j++){
 
             // collision avec les elements statiques (murs + tours)
-            if (maze[i][j]==1 || maze[i][j]==2 || maze[i][j]==3 || maze[i][j]==4){
+            if ((*maze)[i][j]==1 || (*maze)[i][j]==2 || (*maze)[i][j]==3 || (*maze)[i][j]==4){
                 
                 /* On cree le rectangle correspondant a un obstacle/Entite externe*/
 
@@ -94,17 +94,17 @@ void RobotPlayer::checkCollision(std::array<std::array<int, 15>, 15> maze, sf::V
                  if (Cropped.getGlobalBounds().intersects(rectangle.getGlobalBounds()) ){
                     // si c'est un drapeau, on le ramasse. Attention, on le ramasse qui si drapeau ennemi
 
-                    if (maze[i][j]==3 && this->_name=="JoueurB"){
+                    if ((*maze)[i][j]==3 && this->_name=="JoueurB"){
                         this->ADrapeau = true;
                         std::cout<<"Joueur B a ramasse le drapeau"<<std::endl;
                     }
 
-                    else if (maze[i][j]==4 && this->_name=="JoueurA"){
+                    else if ((*maze)[i][j]==4 && this->_name=="JoueurA"){
                         this->ADrapeau = true;
                         std::cout<<"Joueur A a ramasse le drapeau"<<std::endl;
                     }
 
-                    else if (maze[i][j]==2  || maze[i][j]==1){
+                    else if ((*maze)[i][j]==2  || (*maze)[i][j]==1){
                         this->_sprite.setPosition(previous->x, previous->y);
                     }
                  
@@ -126,7 +126,7 @@ void RobotPlayer::checkCollision(std::array<std::array<int, 15>, 15> maze, sf::V
  * 
  */
 
-void RobotPlayer::KeyBoardEventARROW(std::array<std::array<int, 15>, 15> maze){
+void RobotPlayer::KeyBoardEventARROW(std::array<std::array<int, 15>, 15>* maze){
     // joueur A
     /*********DEPLACEMENT******************************/
 
@@ -173,7 +173,7 @@ void RobotPlayer::KeyBoardEventARROW(std::array<std::array<int, 15>, 15> maze){
  * @brief Permet un controlle via les touches ZQSD
  * 
  */
-void RobotPlayer::KeyBoardEventZQSD(std::array<std::array<int, 15>, 15> maze){
+void RobotPlayer::KeyBoardEventZQSD(std::array<std::array<int, 15>, 15>* maze){
     // joueur B
 
     sf::Vector2f previous;
@@ -215,7 +215,7 @@ void RobotPlayer::KeyBoardEventZQSD(std::array<std::array<int, 15>, 15> maze){
  * 
  * @param NameIfPlayer pour distinguer les joueurs et donc les evenements clavier
  */
-int RobotPlayer::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int, 15>, 15> maze){
+int RobotPlayer::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int, 15>, 15>* maze){
 
     if (this->ADrapeau == false){
 
@@ -228,16 +228,7 @@ int RobotPlayer::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int,
             KeyBoardEventARROW(maze);
         }
 
-        // On met a jour la position de chaque ray
-        for (auto& ray : this->rayons)
-        {
-            // on met a jour la position du rayon, bien centré
-            ray->update(this->_sprite.getPosition().x+this->_sprite.getGlobalBounds().width/2, 
-                        this->_sprite.getPosition().y+this->_sprite.getGlobalBounds().height/2);
-
-            //ray->affiche_info();
-        
-        }
+      
 
         return 0;
     }
@@ -250,25 +241,9 @@ int RobotPlayer::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int,
 
 
 
-/**
- * @brief Destucteur du robot joueur
- * 
- */
-
-RobotPlayer::~RobotPlayer()
-{
-    std::cout << "Destruction du robot joueur" << std::endl;
-    for (auto& ray : this->rayons)
-    {
-        delete ray;
-        
-    } 
-    longueur_rayon.clear();
-}
 
 
-
-void RobotPlayer::multi_rayon(std::array<std::array<int, 15>, 15> maze,float rayon_centre,sf::RenderWindow* window)
+void RobotPlayer::multi_rayon(std::array<std::array<int, 15>, 15>* maze,float rayon_centre,sf::RenderWindow* window)
 {
     /*Affiche T rayon et met les distances dans D*/
     float alpha= rayon_centre - M_PI/2 + ANGLE_FOCAL;
@@ -290,6 +265,11 @@ void RobotPlayer::multi_rayon(std::array<std::array<int, 15>, 15> maze,float ray
     }
 
     float fish=0;
+    int val;
+
+    // on vide le vecteur
+    longueur_rayon.clear();
+
 
     for (auto& traits : this->rayons){
         // on update la position de chaque rayon
@@ -297,8 +277,11 @@ void RobotPlayer::multi_rayon(std::array<std::array<int, 15>, 15> maze,float ray
                         this->_sprite.getPosition().y+this->_sprite.getGlobalBounds().height/2);
         // on trace
 
-        longueur_rayon[i]=traits->rayon_unitaire(alpha,  maze, window, 60,color);
-       
+        //longueur_rayon[i]=traits->rayon_unitaire(alpha,  maze, window, 60,color);
+       //on push back
+        val = traits->rayon_unitaire(alpha,  maze, window, 60,color);
+        longueur_rayon.push_back(val);
+
         // contre l'effet fish eye
         fish = alpha - rayon_centre;
         if (fish < 0){
@@ -315,6 +298,7 @@ void RobotPlayer::multi_rayon(std::array<std::array<int, 15>, 15> maze,float ray
         i++;
         alpha = alpha +VARIATION_ANGLE;
     }
+    //209 rayons
 }
 
 
@@ -327,6 +311,7 @@ void RobotPlayer::draw3D_rect(sf::RenderWindow* window, int haut, int larg, int 
     if (this->_name=="JoueurA"){
         rectangle.setPosition(x + XX, CENTRE - haut / 2);
         rectangle.setFillColor(sf::Color(100, 149, 200, 255));
+        
     }
 
     else {
@@ -339,7 +324,7 @@ void RobotPlayer::draw3D_rect(sf::RenderWindow* window, int haut, int larg, int 
 }
 
 
-void RobotPlayer::draw3D(sf::RenderWindow* window, float angul) const {
+void RobotPlayer::draw3D(sf::RenderWindow* window) const {
 
 
     int i;
@@ -365,14 +350,14 @@ void RobotPlayer::draw3D(sf::RenderWindow* window, float angul) const {
  * @param window la fenetre de rendu
  * @param maze le labyrinthe 2D
  */
-void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15> maze )
+void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15>* maze )
 {
     
     //window->clear();
     window->draw(_sprite);    
     multi_rayon(maze,angle_actuel,window);
     
-    draw3D(window,angle_actuel);
+    draw3D(window);
    
    
 
@@ -398,3 +383,21 @@ void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<i
 
    
 }
+
+
+/**
+ * @brief Destucteur du robot joueur
+ * 
+ */
+
+RobotPlayer::~RobotPlayer()
+{
+    std::cout << "Destruction du robot joueur" << std::endl;
+    for (auto& ray : this->rayons)
+    {
+        delete ray;
+        
+    } 
+    longueur_rayon.clear();
+}
+

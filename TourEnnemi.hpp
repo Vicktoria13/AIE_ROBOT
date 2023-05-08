@@ -18,8 +18,8 @@ class TourEnnemi : public EntiteAffichable
 
         void DisplayTirs(sf::RenderWindow* window);
 
-        void DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15>  maze );
-        int UpdateEvent( std::string NameIfPlayer,std::array<std::array<int, 15>, 15> maze);
+        void DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15>*  maze );
+        int UpdateEvent( std::string NameIfPlayer,std::array<std::array<int, 15>, 15>* maze);
 
 
         /*setter qui change le flag que si on a changé la position*/

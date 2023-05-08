@@ -85,27 +85,7 @@ PlateauJeu::PlateauJeu(){
 
 
 
-/**
- * @brief Dessine le cadre du jeu 3D
- * 
- * @param window fenetre de rendu
- */
 
-void PlateauJeu::Dessine_cadre(sf::RenderWindow* window) const {
-
-    // cadre de
-    // largeur : (LARGEUR+1)*NB_RAYONS
-    // hauteur : (TAILLE_LABYRINTHE+1)*case_size
-
-    sf::RectangleShape rectangle(sf::Vector2f((LARGEUR+1)*NB_RAYONS, (nb_cases+1)*case_size));
-    //bordure
-    rectangle.setOutlineColor(sf::Color::White);
-    rectangle.setFillColor(sf::Color::Transparent);
-    rectangle.setOutlineThickness(5);
-    rectangle.setPosition(XX,0);
-
-    window->draw(rectangle);
-}
 
 /**
  * @brief Dessine le labyrinthe 2D  et tous les elements statiques lors du jeu (Tour + lab)
@@ -138,8 +118,8 @@ void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) {
             // on place les murs
             if (labyrinthe[i][j] == 1){
                 // noir
-                rectangle.setFillColor(sf::Color::Black);
-                //rectangle.setTexture(&texture);
+                //rectangle.setFillColor(sf::Color::Black);
+                rectangle.setTexture(&texture);
 
               
             }
@@ -221,6 +201,7 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
     window->clear(sf::Color::Black);
 
     //3D
+    /*
     sf::Vector2f dimensions((LARGEUR+1)*NB_RAYONS,CENTRE);
     // -------------------------pour le joueur A
     sf::RectangleShape rect1(dimensions);
@@ -237,6 +218,8 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
 
     window->draw(rect1);
     window->draw(rect2);
+
+    */
 
     // -------------------------pour le joueur B
 /*
@@ -260,9 +243,9 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
 
 
 
-void PlateauJeu::drawCharacters(sf::RenderWindow* window) const{
+void PlateauJeu::drawCharacters(sf::RenderWindow* window) {
     for (auto& perso : characters){
-        perso.second->DisplayEntite(window,labyrinthe);
+        perso.second->DisplayEntite(window,&labyrinthe);
     }
 }
 
@@ -271,7 +254,6 @@ void PlateauJeu::drawCharacters(sf::RenderWindow* window) const{
 void PlateauJeu::drawScreens(sf::RenderWindow* window){
   
 
-    Dessine_cadre(window);
 
     window->clear();
     DrawLabyrinthe(window);
@@ -360,7 +342,7 @@ void PlateauJeu::handleEvent(){
 
     if (!characters.empty()){
 
-    if (characters["JoueurA"]->UpdateEvent("JoueurA", this->labyrinthe)==1 || characters["JoueurB"]->UpdateEvent("JoueurB",this->labyrinthe)==1){
+    if (characters["JoueurA"]->UpdateEvent("JoueurA", &labyrinthe)==1 || characters["JoueurB"]->UpdateEvent("JoueurB",&labyrinthe)==1){
         this->ProchainScreen = "GameOver";
     }
     

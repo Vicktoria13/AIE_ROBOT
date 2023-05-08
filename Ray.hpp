@@ -20,7 +20,7 @@ class Ray
            
             return angle_horizontal;}
         
-        int rayon_unitaire(float alpha, std::array<std::array<int, 15>, 15> maze, sf::RenderWindow* window,int taille_case,sf::Color colorRayon);
+        int rayon_unitaire(float alpha, std::array<std::array<int, 15>, 15>* maze, sf::RenderWindow* window,int taille_case,sf::Color colorRayon);
 
         void affiche_info() const;
 

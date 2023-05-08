@@ -19,5 +19,16 @@ for(int i = 0; i < nb_cases; i++) {
     }
 }
 
+// initialisation avec accolades
+
+
+//affichage
+for(int i = 0; i < nb_cases; i++) {
+    for(int j = 0; j < nb_cases; j++) {
+        std::cout << (*labyrinthe)[i][j] << " ";
+    }
+    std::cout << std::endl;
+}
+
 return 0;
 }

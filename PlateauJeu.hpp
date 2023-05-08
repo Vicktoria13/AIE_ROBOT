@@ -41,9 +41,8 @@ public:
     void FondBlanc(sf::RenderWindow* window) const;
 
     void drawScreens(sf::RenderWindow* window);
-    void drawCharacters(sf::RenderWindow* window) const;
+    void drawCharacters(sf::RenderWindow* window) ;
 
-    void Dessine_cadre(sf::RenderWindow* window) const;
 
 
     void handleEvent();
