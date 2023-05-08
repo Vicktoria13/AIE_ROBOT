@@ -62,7 +62,11 @@ ChoseSkillMenu::ChoseSkillMenu(){
 
 } 
 
-
+/**
+ * @brief Dessine les boutons sur la fenetre
+ * 
+ * @param window 
+ */
 void ChoseSkillMenu::drawScreens(sf::RenderWindow* window){
 
     window->clear();    

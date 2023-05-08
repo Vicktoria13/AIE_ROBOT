@@ -2,6 +2,10 @@
 
 
 
+/**
+ * @brief ajoute un bouton dans la map des boutons
+ * 
+ */
 void PlateauJeu::ajouterBouton(){
     // en bas a droite
     MapBoutons["Quit"] = new Bouton(1500, 900, 100, 80, "Quit",  sf::Color(20,20,100,200),false);
@@ -136,14 +140,12 @@ void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) {
 
             // on place les chemins
             else if (labyrinthe[i][j] == 0){ 
-                //rectangle.setFillColor(sf::Color::White);  
-                rectangle.setTexture(&textureFREE);
+                rectangle.setFillColor(sf::Color(200, 255, 255, 200));  
             }
 
             // on place les tours
             else if (labyrinthe[i][j] == 2){
-
-                rectangle.setFillColor(sf::Color(0, 0, 255, 200));
+                rectangle.setFillColor(sf::Color(200, 255, 255, 200));  
 
                 if (!characters.empty())
                 {
@@ -254,6 +256,11 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
 
 
 
+/**
+ * @brief Permet de dessiner chaque entité du jeu
+ * 
+ * @param window 
+ */
 void PlateauJeu::drawCharacters(sf::RenderWindow* window) {
     for (auto& perso : characters){
         perso.second->DisplayEntite(window,&labyrinthe);
@@ -261,6 +268,13 @@ void PlateauJeu::drawCharacters(sf::RenderWindow* window) {
 }
 
 
+
+/**
+ * @brief Permet de dessiner chaque entité du jeu
+ * 
+ * @param window fenêtre de rendu
+ 
+ */
 
 void PlateauJeu::drawScreens(sf::RenderWindow* window){
   
@@ -277,11 +291,8 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
     masque2D->setPlayer1(characters.at("JoueurA")->getPositionXSpriteCenter(),characters.at("JoueurA")->getPositionYSpriteCenter());
     masque2D->setPlayer2(characters.at("JoueurB")->getPositionXSpriteCenter(), characters.at("JoueurB")->getPositionYSpriteCenter());
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-    {
-       
-    }
-    else {
+    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+    
         masque2D->updateMasque();
         masque2D->dessineMasque(window);
     }
@@ -289,12 +300,14 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
     
 
     
-    // centre des 2 sprites :
-    
 
 }
 
 
+/**
+ * @brief gere les evenements clavier
+ * 
+ */
 void PlateauJeu::handleEvent(){
 
 
@@ -375,7 +388,10 @@ void PlateauJeu::handleEvent(){
 }
 
 
-
+/**
+ * @brief Destructeur
+ * 
+ */
 PlateauJeu::~PlateauJeu(){
     std::cout<<"Destruction du plateau de jeu"<<std::endl;
     for (auto& perso : characters){

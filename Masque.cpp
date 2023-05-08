@@ -67,6 +67,8 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
             if (std::sqrt(std::pow(x - x1, 2) + std::pow(y - y1, 2)) < rayon1 || std::sqrt(std::pow(x - x2, 2) + std::pow(y - y2, 2)) < rayon2)
             {
                 _imageMasque.setPixel(x, y, sf::Color::Transparent);
+                _imageMasque.setPixel(x, y-1, sf::Color::Transparent);
+
          }
 
             else{
@@ -90,6 +92,7 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
                 }
                     // Transparence
                  _imageMasque.setPixel(x, y, sf::Color(30, 30, 30, alpha));     
+                  _imageMasque.setPixel(x, y-1, sf::Color(30, 30, 30, alpha));     
             }
         }
     }
@@ -103,6 +106,7 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
             if (std::sqrt(std::pow(x - x2, 2) + std::pow(y - y2, 2)) < rayon2 ){
             
                 _imageMasque.setPixel(x, y, sf::Color::Transparent);
+                _imageMasque.setPixel(x, y-1, sf::Color::Transparent);
             }
 
             else{

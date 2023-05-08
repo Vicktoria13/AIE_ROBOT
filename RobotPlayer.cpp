@@ -3,9 +3,16 @@
 #include <iostream>
 
 
-// void DisplayEntite(sf::RenderWindow* window) doit être définie dans RobotPlayer.cpp
 
 
+/**
+ * @brief Constructeur du robot joueur
+ * @param x position x
+ * @param y position y
+ * @param max_x limite x
+ * @param max_y limite y
+ * @param name nom robot
+ */
 RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name)
 {
     std::cout << "Construction du robot joueur" << std::endl;
@@ -242,7 +249,13 @@ int RobotPlayer::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int,
 
 
 
-
+/**
+ * @brief Affiche les rayons du robot
+ * 
+ * @param maze le labyrinthe
+ * @param rayon_centre le rayon central
+ * @param window la fenetre de jeu
+ */
 void RobotPlayer::multi_rayon(std::array<std::array<int, 15>, 15>* maze,float rayon_centre,sf::RenderWindow* window)
 {
     /*Affiche T rayon et met les distances dans D*/
@@ -303,7 +316,14 @@ void RobotPlayer::multi_rayon(std::array<std::array<int, 15>, 15>* maze,float ra
 
 
 
-
+/**
+ * @brief Affiche les rayons du robot
+ * 
+ * @param window 
+ * @param haut 
+ * @param larg 
+ * @param x 
+ */
 void RobotPlayer::draw3D_rect(sf::RenderWindow* window, int haut, int larg, int x) const{
     
     sf::RectangleShape rectangle(sf::Vector2f(larg+1, haut));
@@ -323,6 +343,11 @@ void RobotPlayer::draw3D_rect(sf::RenderWindow* window, int haut, int larg, int 
 
 }
 
+/**
+ * @brief dessine la fenetre de raycasting
+ * 
+ * @param window 
+ */
 
 void RobotPlayer::draw3D(sf::RenderWindow* window) const {
 
