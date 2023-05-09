@@ -59,7 +59,10 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name)
         this->longueur_rayon.push_back(0);
     }
 
-    
+    // on cree l'arme
+    if (name == "JoueurB")
+        this->_arme = new Arme("bazooka");
+   
 
     
 
@@ -111,7 +114,7 @@ void RobotPlayer::checkCollision(std::array<std::array<int, 15>, 15>* maze, sf::
                         std::cout<<"Joueur A a ramasse le drapeau"<<std::endl;
                     }
 
-                    else if ((*maze)[i][j]==2  || (*maze)[i][j]==1){
+                    else if ((*maze)[i][j]==1){
                         this->_sprite.setPosition(previous->x, previous->y);
                     }
                  
@@ -143,36 +146,50 @@ void RobotPlayer::KeyBoardEventARROW(std::array<std::array<int, 15>, 15>* maze){
     previous.y = this->_sprite.getPosition().y;
 
 
+    if (sf::Keyboard::isKeyPressed){
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        {
+            // this->_sprite.move(-nb_pixels_deplacement,0);
+            this->angle_actuel = this->angle_actuel + vitesse_angulaire;
+        }
 
-     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-        //this->_sprite.move(-nb_pixels_deplacement,0);
-        this->angle_actuel=this->angle_actuel+vitesse_angulaire;
-        
-     }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        {
+            // this->_sprite.move(nb_pixels_deplacement,0);
+            this->angle_actuel = this->angle_actuel - vitesse_angulaire;
+        }
+
+        // on suit la direction du rayon central
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        {
+            // this->_sprite.move(0,-nb_pixels_deplacement);
+            this->_sprite.move(vitesse_deplacement * cos(this->angle_actuel),
+                               vitesse_deplacement * sin(this->angle_actuel));
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            // this->_sprite.move(0,nb_pixels_deplacement);
+            this->_sprite.move(-vitesse_deplacement * cos(this->angle_actuel),
+                               -vitesse_deplacement * sin(this->angle_actuel));
+        }
+
+        // si on atteint le bord de l'écran, on ne peut plus aller plus loin
+
+
+
+        checkCollision(maze, &previous);
+
+        // si on appuie sur 0
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
+            std::cout<<"ajout d'un projectile"<<std::endl;
+            this->_arme->addProjectile(this->_sprite.getPosition().x+this->_sprite.getGlobalBounds().width/2, 
+                                        this->_sprite.getPosition().y+this->_sprite.getGlobalBounds().height/2, 
+                                        this->angle_actuel);
+        }
+    }
+
      
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){       
-        //this->_sprite.move(nb_pixels_deplacement,0);
-        this->angle_actuel=this->angle_actuel-vitesse_angulaire;
-    }
-
-    //on suit la direction du rayon central
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){  
-        //this->_sprite.move(0,-nb_pixels_deplacement);      
-        this->_sprite.move( vitesse_deplacement*cos(this->angle_actuel), 
-                          vitesse_deplacement*sin(this->angle_actuel));
-    
-    }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){        
-        //this->_sprite.move(0,nb_pixels_deplacement); 
-        this->_sprite.move(-vitesse_deplacement*cos(this->angle_actuel), 
-                          -vitesse_deplacement*sin(this->angle_actuel));    
-    }
-
-
-    // si on atteint le bord de l'écran, on ne peut plus aller plus loin
-
-    checkCollision(maze, &previous);
 }
 
 
@@ -190,28 +207,34 @@ void RobotPlayer::KeyBoardEventZQSD(std::array<std::array<int, 15>, 15>* maze){
 
     /*********DEPLACEMENT******************************/
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
-        this->angle_actuel=this->angle_actuel+vitesse_angulaire;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+    {
+        this->angle_actuel = this->angle_actuel + vitesse_angulaire;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-        this->angle_actuel=this->angle_actuel-vitesse_angulaire;
-    }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
-        this->_sprite.move( vitesse_deplacement*cos(this->angle_actuel), 
-                          vitesse_deplacement*sin(this->angle_actuel));
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    {
+        this->angle_actuel = this->angle_actuel - vitesse_angulaire;
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-        this->_sprite.move(-vitesse_deplacement*cos(this->angle_actuel), 
-                          -vitesse_deplacement*sin(this->angle_actuel));   
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+    {
+        this->_sprite.move(vitesse_deplacement * cos(this->angle_actuel),
+                           vitesse_deplacement * sin(this->angle_actuel));
+    }
 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    {
+        this->_sprite.move(-vitesse_deplacement * cos(this->angle_actuel),
+                           -vitesse_deplacement * sin(this->angle_actuel));
     }
 
     // si on atteint le bord de l'écran, on ne peut plus aller plus loin
 
     checkCollision(maze, &previous);
+
     /*********TIR******************************/
+
+  
 
 }
 
@@ -335,7 +358,7 @@ void RobotPlayer::draw3D_rect(sf::RenderWindow* window, int haut, int larg, int 
     }
 
     else {
-        rectangle.setPosition(x + XX, 3*CENTRE - haut / 2);
+        rectangle.setPosition(x + XX, 3*CENTRE - haut / 2 +OFFSET_Y);
         rectangle.setFillColor(sf::Color(100, 50, 140 ,255));
     }
     
@@ -356,6 +379,7 @@ void RobotPlayer::draw3D(sf::RenderWindow* window) const {
     int hauteur=0;
     int x=0;
 
+    
     for(i=0;i<NB_RAYONS;i++){
         hauteur = (int) (60*HM)/(longueur_rayon[i]); // thales
         if(hauteur>HM)
@@ -381,8 +405,23 @@ void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<i
     //window->clear();
     window->draw(_sprite);    
     multi_rayon(maze,angle_actuel,window);
+
+    if(!_arme->estVide() && this->_name == "JoueurB"){
+        _arme->Tir(window,60);
+
+        
+    }
+   
+
+    /*
+    if(!_arme->estVide() && this->_name == "JoueurB"){
+        _arme->Tir(maze,window,60);
+    }
+    */
     
     draw3D(window);
+    
+    
    
    
 
@@ -423,6 +462,9 @@ RobotPlayer::~RobotPlayer()
         delete ray;
         
     } 
+  
     longueur_rayon.clear();
+    rayons.clear();
+    delete _arme;
 }
 

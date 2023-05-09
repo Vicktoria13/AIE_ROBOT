@@ -12,12 +12,9 @@
  * @param x2 position x du joueur 2
  * @param y2 position y du joueur 2
  */
-Masque::Masque(float r1, float r2, int x1, int y1, int x2, int y2)
+Masque::Masque(float r1, float r2, int x1, int y1, int x2, int y2):player1(r1), player2(r2)
 {
-    player1.setRadius(r1);
     player1.setPosition(x1, y1);
-
-    player2.setRadius(r2);
     player2.setPosition(x2, y2);
 
     this->_imageMasque.create(860, 860, sf::Color(30, 30, 30, 255));
@@ -57,7 +54,7 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
     int x2 = player2.getPosition().x;
     int y2 = player2.getPosition().y;
 
-    
+    /*
 
     for (int x = x1 - 4*rayon1; x < player1.getPosition().x + rayon1; x=x+2)
     {
@@ -128,9 +125,8 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
     }
 
 
+*/
 
-
-/*
     
     for (int x = 65; x < 830; x=x+5)
     {
@@ -227,7 +223,7 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
 
             
         }
-        */
+        
     
 
     this->_textureMasque.loadFromImage(_imageMasque);

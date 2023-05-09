@@ -2,6 +2,7 @@
 #define ENTITEAFFICHABLE_HPP
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 /**
  * @brief classe abstraite
@@ -31,8 +32,9 @@ public:
 
     /*------------------------------------------------------------------------------*/
 
+
     // getter
-    int getPositionX() const{
+    int getPositionX() const{   
         return this->positionX;
     }
 

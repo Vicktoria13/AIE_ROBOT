@@ -40,8 +40,11 @@ GamePlay::~GamePlay()
     delete fenetre;
     for (auto it = MapEcransDisponibles.begin(); it != MapEcransDisponibles.end(); ++it)
     {
+        std::cout << "deleting " << it->first << std::endl;
         delete it->second;
     }
+    
+    MapEcransDisponibles.clear();
     
 }
 

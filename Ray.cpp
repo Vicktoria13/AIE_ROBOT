@@ -33,7 +33,7 @@ int Ray::rayon_unitaire(float alpha,  std::array<std::array<int, 15>, 15>* maze,
 
     int Nx = (nx)/taille_case;
     int Ny = (ny)/taille_case;
-    sf::CircleShape point(2.f); // Crée un cercle de rayon 1
+    sf::CircleShape point(2.f); // Crée un cercle de rayon 2
 
     while (Ny < 15 && Nx<15 && (*maze)[Ny][Nx] != 1 && (*maze)[Ny][Nx] != 2 && (*maze)[Ny][Nx] !=3 && (*maze)[Ny][Nx] !=4){
         nx = this->pos_x + distance*cos(alpha);

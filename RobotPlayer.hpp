@@ -3,24 +3,26 @@
 
 #include "EntiteAffichable.hpp"
 #include "Ray.hpp"
+#include "Arme.hpp"
 
 #define PI 3.14159265
 #define ANGLE_FOCAL PI/3
 #define VARIATION_ANGLE 0.005
-#define NB_RAYONS (int)((PI-2*ANGLE_FOCAL)/VARIATION_ANGLE) -80
+#define NB_RAYONS (int)((PI-2*ANGLE_FOCAL)/VARIATION_ANGLE) -100
 //define pour le déplacement
 #define  vitesse_angulaire 0.15
 #define  vitesse_deplacement 10
 
 #define nb_cases 15
 //define pour l'affichage 3D
-#define XX ((nb_cases+4)*60 ) // valeur en x ou commence l'affichage 3D : le premier slice
+#define XX ((nb_cases+3)*60 ) // valeur en x ou commence l'affichage 3D : le premier slice
 
 // -------- pour chaque slice
-#define LARGEUR (1920 - XX)/NB_RAYONS // largeur d'un slice :
+#define LARGEUR 6//(1920 - XX)/NB_RAYONS // largeur d'un slice :
 #define HM (nb_cases)*60/2 // /2 pour que les 2 joueurs puissent entrer
 #define CENTRE nb_cases*60/4
 
+#define OFFSET_Y 15
 /**
  * @brief Classe représentant un robot joueur
  * derivera de EntiteAffichable
@@ -51,6 +53,8 @@ private:
     //int longueur_rayon[NB_RAYONS];
     std::vector<int> longueur_rayon;
 
+    //arme
+    Arme* _arme;
     //
 
 

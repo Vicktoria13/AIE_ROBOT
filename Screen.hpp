@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Bouton.hpp"
+#include <iostream>
 /**
  * @brief 
  * 
@@ -24,7 +25,9 @@ public:
 // pas de constructeur car c'est une classe abstraite : pas d'inst
     
     /* destructeur virtuel pour eviter les fuites mémoires */
-    virtual ~Screen()  {}
+    virtual ~Screen()  {
+        std::cout<<"destructeur vrtuel de screen"<<std::endl;
+    }
 
 
     /* methode virtuelle pure */

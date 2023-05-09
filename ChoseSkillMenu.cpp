@@ -144,8 +144,11 @@ void ChoseSkillMenu::handleEvent()
 ChoseSkillMenu::~ChoseSkillMenu(){
 
     std::cout<<"Destruction de l'ecran de  choix "<<std::endl;
-    for (auto& bouton : MapBoutons)
-    {
-        delete bouton.second;
+    if (this->MapBoutons.empty() == false){
+        for (auto &bouton : MapBoutons)
+        {
+            delete bouton.second;
+        }
     }
+    std::cout<<"sortie de la destruction de l'ecran de choix"<<std::endl;
 }

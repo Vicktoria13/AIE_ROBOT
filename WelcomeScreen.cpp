@@ -170,6 +170,7 @@ WelcomeScreen::~WelcomeScreen()
     {
         delete bouton.second;
     }
+    MapBoutons.clear();
 
     
     

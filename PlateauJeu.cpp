@@ -79,7 +79,7 @@ PlateauJeu::PlateauJeu(){
 
 
     // Le masque de vision
-    float rayon_par_defaut = 15.0;
+    float rayon_par_defaut = 20.0;
 
     this->masque2D = new Masque(rayon_par_defaut,rayon_par_defaut,characters.at("JoueurA")->getPositionX(),characters.at("JoueurA")->getPositionY(),
     characters.at("JoueurB")->getPositionX(),characters.at("JoueurB")->getPositionY());
@@ -140,7 +140,7 @@ void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) {
 
             // on place les chemins
             else if (labyrinthe[i][j] == 0){ 
-                rectangle.setFillColor(sf::Color(200, 255, 255, 200));  
+                rectangle.setFillColor(sf::Color::White);  
             }
 
             // on place les tours
@@ -213,16 +213,17 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
     //2D
     window->clear(sf::Color::Black);
 
-    //3D
-    /*
-    sf::Vector2f dimensions((LARGEUR+1)*NB_RAYONS,CENTRE);
-    // -------------------------pour le joueur A
+   //3D
+
+    sf::Vector2f dimensions((LARGEUR)*NB_RAYONS  ,CENTRE);
+
     sf::RectangleShape rect1(dimensions);
     sf::RectangleShape rect2(dimensions);
 
     //------position
     rect1.setPosition(XX,0);
     rect2.setPosition(XX,CENTRE);
+
 
     //------couleur pour le ray cast : joueur 1 en haut
 
@@ -232,17 +233,16 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
     window->draw(rect1);
     window->draw(rect2);
 
-    */
+
 
     // -------------------------pour le joueur B
-/*
+
     rect1.setFillColor(sf::Color(140,50,235,255));
-    rect2.setFillColor(sf::Color(57,120,100,255));
+    rect2.setFillColor(sf::Color(150,120,100,255));
 
     //------position
-    rect1.setPosition(XX,0);
-    rect1.setPosition(XX,CENTRE+30);
-    rect2.setPosition(XX,CENTRE+30+CENTRE/2);
+    rect1.setPosition(XX,3*CENTRE + OFFSET_Y);
+    rect2.setPosition(XX,2*CENTRE+ OFFSET_Y);
 
     //------couleur pour le ray cast : joueur 1 en haut
 
@@ -250,7 +250,6 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
 
     window->draw(rect1);
     window->draw(rect2);
-*/
 }
 
 
@@ -393,10 +392,16 @@ void PlateauJeu::handleEvent(){
  * 
  */
 PlateauJeu::~PlateauJeu(){
+
     std::cout<<"Destruction du plateau de jeu"<<std::endl;
     for (auto& perso : characters){
         delete perso.second;
         std::cout<<"Destruction du personnage "<<perso.first<<std::endl;
+    }
+    characters.clear();
+
+    for (auto& bouton : MapBoutons){
+        delete bouton.second;
     }
 
     delete masque2D;
