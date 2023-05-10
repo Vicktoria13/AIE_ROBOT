@@ -79,7 +79,7 @@ PlateauJeu::PlateauJeu(){
 
 
     // Le masque de vision
-    float rayon_par_defaut = 20.0;
+    float rayon_par_defaut = 12.0;
 
     this->masque2D = new Masque(rayon_par_defaut,rayon_par_defaut,characters.at("JoueurA")->getPositionX(),characters.at("JoueurA")->getPositionY(),
     characters.at("JoueurB")->getPositionX(),characters.at("JoueurB")->getPositionY());
@@ -282,8 +282,8 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
     window->clear();
     DrawLabyrinthe(window);
     dessinerBoutons(window);
-
     drawCharacters(window);
+    
 
     // le masque; : met les positions central des joeurs dans le centre des masques
     
@@ -295,6 +295,7 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
         masque2D->updateMasque();
         masque2D->dessineMasque(window);
     }
+
 
     
 

@@ -181,11 +181,10 @@ void RobotPlayer::KeyBoardEventARROW(std::array<std::array<int, 15>, 15>* maze){
         checkCollision(maze, &previous);
 
         // si on appuie sur 0
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
-            std::cout<<"ajout d'un projectile"<<std::endl;
-            this->_arme->addProjectile(this->_sprite.getPosition().x+this->_sprite.getGlobalBounds().width/2, 
-                                        this->_sprite.getPosition().y+this->_sprite.getGlobalBounds().height/2, 
-                                        this->angle_actuel);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) ){
+           this->_arme->addProjectile(this->_sprite.getPosition().x+this->_sprite.getGlobalBounds().width/2, 
+                                       this->_sprite.getPosition().y+this->_sprite.getGlobalBounds().height/2, 
+                                       this->angle_actuel);
         }
     }
 
@@ -407,19 +406,13 @@ void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<i
     multi_rayon(maze,angle_actuel,window);
 
     if(!_arme->estVide() && this->_name == "JoueurB"){
-        _arme->Tir(window,60);
-
-        
+       _arme->Tir(window,60);
     }
-   
 
-    /*
-    if(!_arme->estVide() && this->_name == "JoueurB"){
-        _arme->Tir(maze,window,60);
-    }
-    */
-    
+
     draw3D(window);
+
+    //affiche la taille du vecteur
     
     
    
@@ -456,7 +449,6 @@ void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<i
 
 RobotPlayer::~RobotPlayer()
 {
-    std::cout << "Destruction du robot joueur" << std::endl;
     for (auto& ray : this->rayons)
     {
         delete ray;
@@ -465,6 +457,11 @@ RobotPlayer::~RobotPlayer()
   
     longueur_rayon.clear();
     rayons.clear();
-    delete _arme;
+    if (_name == "JoueurB")
+    {
+        delete _arme;
+    }
+    
+    std::cout<<"fin destruction robot joueur"<<std::endl;
 }
 

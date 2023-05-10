@@ -77,4 +77,5 @@ GameOverScreen::~GameOverScreen(){
     {
         delete bouton.second;
     }
+    MapBoutons.clear();
 }

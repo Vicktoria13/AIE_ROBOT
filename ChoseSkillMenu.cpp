@@ -150,5 +150,5 @@ ChoseSkillMenu::~ChoseSkillMenu(){
             delete bouton.second;
         }
     }
-    std::cout<<"sortie de la destruction de l'ecran de choix"<<std::endl;
+    MapBoutons.clear();
 }

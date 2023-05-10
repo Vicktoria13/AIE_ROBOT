@@ -54,11 +54,45 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
     int x2 = player2.getPosition().x;
     int y2 = player2.getPosition().y;
 
+    // on itere sur tous les pixels se situant dans un cercle de rayon rayon1 et rayon2 autour des joueurs
+    
+    for (int x = x1 - rayon1; x < player1.getPosition().x + rayon1; x=x+2)
+    {
+        for (int y = y1- 2*rayon1 ;y < player1.getPosition().y +rayon1; y=y+2)
+        {
+            nb++;
+            if (std::sqrt(std::pow(x - x1, 2) + std::pow(y - y1, 2)) < rayon1 || std::sqrt(std::pow(x - x2, 2) + std::pow(y - y2, 2)) < rayon2)
+            {
+                _imageMasque.setPixel(x, y, sf::Color::Transparent);
+                _imageMasque.setPixel(x, y-1, sf::Color::Transparent);
+
+         }
+
+            
+        }
+    }
+
+    for (int x = x2 - rayon2; x < player2.getPosition().x + rayon2; x=x+2)
+    {
+        for (int y = y2- 2*rayon2 ;y < player2.getPosition().y +rayon2; y=y+2)
+        {
+            nb++;
+            if (std::sqrt(std::pow(x - x1, 2) + std::pow(y - y1, 2)) < rayon1 || std::sqrt(std::pow(x - x2, 2) + std::pow(y - y2, 2)) < rayon2)
+            {
+                _imageMasque.setPixel(x, y, sf::Color::Transparent);
+                _imageMasque.setPixel(x, y-1, sf::Color::Transparent);
+
+         }
+
+           
+        }
+    }
+    
     /*
 
-    for (int x = x1 - 4*rayon1; x < player1.getPosition().x + rayon1; x=x+2)
+    for (int x = x1 - 3*rayon1; x < player1.getPosition().x + rayon1; x=x+2)
     {
-        for (int y = y2- 4*rayon1 ;y < player1.getPosition().y +rayon1; y=y+2)
+        for (int y = y2- 3*rayon1 ;y < player1.getPosition().y +rayon1; y=y+2)
         {
             nb++;
             if (std::sqrt(std::pow(x - x1, 2) + std::pow(y - y1, 2)) < rayon1 || std::sqrt(std::pow(x - x2, 2) + std::pow(y - y2, 2)) < rayon2)
@@ -96,9 +130,9 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
 
 
     // pour le joueur 2
-    for (int x = x2 - 4*rayon2; x < player2.getPosition().x + rayon2; x=x+2)
+    for (int x = x2 - 3*rayon2; x < player2.getPosition().x + rayon2; x=x+2)
     {
-        for (int y = y2- 4*rayon2 ;y < player2.getPosition().y +rayon2; y=y+2)
+        for (int y = y2- 3*rayon2 ;y < player2.getPosition().y +rayon2; y=y+2)
         {
             if (std::sqrt(std::pow(x - x2, 2) + std::pow(y - y2, 2)) < rayon2 ){
             
@@ -123,9 +157,9 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
             
         }
     }
-
-
 */
+
+/*
 
     
     for (int x = 65; x < 830; x=x+5)
@@ -223,13 +257,14 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
 
             
         }
+        */
         
     
 
     this->_textureMasque.loadFromImage(_imageMasque);
     this->_spriteMasque.setTexture(_textureMasque);
 
-    //std::cout<<"nb de pixels  : "<<nb<<std::endl;
+    std::cout<<"nb de pixels  : "<<nb<<std::endl;
 
 }
 

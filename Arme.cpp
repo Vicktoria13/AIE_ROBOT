@@ -1,34 +1,36 @@
 #include "Arme.hpp"
 #include <iostream>
 
-Arme::Arme(std::string name) : munitions()
+Arme::Arme(std::string name) 
 {
     
     this->_name = name;
     this->isActivated = true;
     this->nbMunitions = 10;
 
-    if (this->munitions.empty())
-    {
-        std::cout << "Le vecteur de munitions est vide" << std::endl;
-    }
-    else
-    {
-        std::cout << "Le vecteur de munitions n'est pas vide" << std::endl;
-    }
+    //on s'assure que le tableau des projectiles est vide
+    munitions.clear();
 
-    
+
 
     
 }
 
 Arme::~Arme()
 {
-    std::cout << "Arme détruite" << std::endl;
-    for (auto& munition : this->munitions)
+    std::cout <<"destruction des "<<this->munitions.size()<<" projectiles ..."<<std::endl;
+    if (this->munitions.size() != 0)
     {
-        delete munition;
+        
+        for (size_t i = 0; i < this->munitions.size(); i++){
+            delete munitions[i];
+
+            
+        }
     }
+
+    
+    
     munitions.clear();
 }
 
@@ -38,6 +40,8 @@ Arme::~Arme()
 void Arme::addProjectile(int new_x, int new_y,float ang){
    this->munitions.push_back(new Projectile(new_x,new_y,ang));
 }
+
+
 
 void Arme::Tir(sf::RenderWindow* window, int taille_case){
     for (size_t i = 0; i < munitions.size(); i++)

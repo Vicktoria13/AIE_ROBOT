@@ -22,7 +22,6 @@ Projectile::Projectile(int x, int y, float ang ): _projectile(){
         std::cout << "Erreur lors du chargement de l'arme" << std::endl;
     }
     this->_projectile.setTexture(&this->_texture);
-    std::cout << "Projectile créé" << std::endl;
 
 }
 
@@ -30,9 +29,8 @@ Projectile::Projectile(int x, int y, float ang ): _projectile(){
 int Projectile::Shot( sf::RenderWindow* window, int taille_case){
     
 
-    _projectile.move(10*cos(angle_shot),10*sin(angle_shot));
-    if (_projectile.getPosition().y < 0)
-    {
+    _projectile.move(20*cos(angle_shot),20*sin(angle_shot));
+    if (_projectile.getPosition().y < 0 ){
         return -1;
     }
     window->draw(_projectile); // Dessine le cercle dans la fenêtre de rendu
@@ -70,5 +68,4 @@ int Projectile::Shot( sf::RenderWindow* window, int taille_case){
  * 
  */
 Projectile::~Projectile(){
-    std::cout << "Projectile détruit" << std::endl;
 }

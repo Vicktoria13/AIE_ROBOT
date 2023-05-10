@@ -25,9 +25,7 @@ public:
 // pas de constructeur car c'est une classe abstraite : pas d'inst
     
     /* destructeur virtuel pour eviter les fuites mémoires */
-    virtual ~Screen()  {
-        std::cout<<"destructeur vrtuel de screen"<<std::endl;
-    }
+    virtual ~Screen()  {}
 
 
     /* methode virtuelle pure */

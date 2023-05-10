@@ -8,7 +8,7 @@
 #define PI 3.14159265
 #define ANGLE_FOCAL PI/3
 #define VARIATION_ANGLE 0.005
-#define NB_RAYONS (int)((PI-2*ANGLE_FOCAL)/VARIATION_ANGLE) -100
+#define NB_RAYONS (int)((PI-2*ANGLE_FOCAL)/VARIATION_ANGLE) -120
 //define pour le déplacement
 #define  vitesse_angulaire 0.15
 #define  vitesse_deplacement 10
@@ -18,7 +18,7 @@
 #define XX ((nb_cases+3)*60 ) // valeur en x ou commence l'affichage 3D : le premier slice
 
 // -------- pour chaque slice
-#define LARGEUR 6//(1920 - XX)/NB_RAYONS // largeur d'un slice :
+#define LARGEUR 9//(1920 - XX)/NB_RAYONS // largeur d'un slice :
 #define HM (nb_cases)*60/2 // /2 pour que les 2 joueurs puissent entrer
 #define CENTRE nb_cases*60/4
 

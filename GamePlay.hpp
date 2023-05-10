@@ -26,10 +26,12 @@ private:
     sf::Clock clock;
 
   
-    //std::vector<Screen*> EcransDisponibles;
+    std::vector<Screen*> EcransDisponibles;
 
     std::map<std::string,Screen*> MapEcransDisponibles;
     Screen* EcranActuel;
+    // ptr unique pour ecran actuel
+    //std::unique_ptr<Screen> EcranActuel;
 
   
     
