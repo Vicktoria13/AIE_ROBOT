@@ -79,7 +79,8 @@ PlateauJeu::PlateauJeu(){
 
 
     // Le masque de vision
-    float rayon_par_defaut = 12.0;
+    this->count_frames = 0;
+    float rayon_par_defaut = 35.0;
 
     this->masque2D = new Masque(rayon_par_defaut,rayon_par_defaut,characters.at("JoueurA")->getPositionX(),characters.at("JoueurA")->getPositionY(),
     characters.at("JoueurB")->getPositionX(),characters.at("JoueurB")->getPositionY());
@@ -290,13 +291,31 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
     masque2D->setPlayer1(characters.at("JoueurA")->getPositionXSpriteCenter(),characters.at("JoueurA")->getPositionYSpriteCenter());
     masque2D->setPlayer2(characters.at("JoueurB")->getPositionXSpriteCenter(), characters.at("JoueurB")->getPositionYSpriteCenter());
 
-    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+    /*if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
     
         masque2D->updateMasque();
         masque2D->dessineMasque(window);
     }
+    */
 
+    // on dessine le masque que en mode eclair
+    if (count_frames != SEUIL_FRAME  ){
+        masque2D->updateMasque();
+        masque2D->dessineMasque(window);
 
+        
+
+    }
+    else if (count_frames == SEUIL_FRAME || count_frames == SEUIL_FRAME +1 || count_frames == SEUIL_FRAME +2){
+        // on n'affiche pas le masque
+         masque2D->eraseMasque();
+    }
+
+    
+    
+    count_frames++;
+    if (count_frames == SEUIL_FRAME+3){
+            count_frames = 0;}
     
 
     

@@ -12,7 +12,7 @@
 #include <vector>
 
 
-
+#define SEUIL_FRAME 50 // a partir de 100 frames on affiche le masque
 
 
 
@@ -31,6 +31,8 @@ private:
 
 
     Masque* masque2D;
+
+    int count_frames;
 
 public:
     PlateauJeu();

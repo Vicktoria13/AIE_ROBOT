@@ -28,6 +28,8 @@ public:
 
     void updateMasque();
 
+    void eraseMasque();
+
     /*setters */
     void setPlayer1(int x, int y);
     void setPlayer2(int x, int y);

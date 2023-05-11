@@ -11,7 +11,7 @@
 #define NB_RAYONS (int)((PI-2*ANGLE_FOCAL)/VARIATION_ANGLE) -120
 //define pour le déplacement
 #define  vitesse_angulaire 0.15
-#define  vitesse_deplacement 10
+#define  vitesse_deplacement 15
 
 #define nb_cases 15
 //define pour l'affichage 3D

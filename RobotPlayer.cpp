@@ -393,7 +393,7 @@ void RobotPlayer::draw3D(sf::RenderWindow* window) const {
 }
 
 /**
- * @brief Affiche le robot joueur
+ * @brief Affiche le robot joueur + les rayons + les tirs + le rendu 3D
  * 
  * @param window la fenetre de rendu
  * @param maze le labyrinthe 2D
