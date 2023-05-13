@@ -84,9 +84,12 @@ int GamePlay::CheckFenetreChanges(){
             {
                 throw std::runtime_error("Ecran non trouve");
             }
+                        
+
             else {
                 this->EcranActuel = MapEcransDisponibles[newScreenName];
             }
+            
 
             return 1;
         }

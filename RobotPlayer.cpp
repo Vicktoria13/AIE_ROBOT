@@ -60,12 +60,11 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name)
     }
 
     // on cree l'arme
-    if (name == "JoueurB")
-        this->_arme = new Arme("bazooka");
+    //if (name == "JoueurB")
+    //    this->_arme = new Arme("bazooka");
    
 
-    
-
+  
 }
 
 
@@ -181,11 +180,13 @@ void RobotPlayer::KeyBoardEventARROW(std::array<std::array<int, 15>, 15>* maze){
         checkCollision(maze, &previous);
 
         // si on appuie sur 0
+        /*
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) ){
            this->_arme->addProjectile(this->_sprite.getPosition().x+this->_sprite.getGlobalBounds().width/2, 
                                        this->_sprite.getPosition().y+this->_sprite.getGlobalBounds().height/2, 
                                        this->angle_actuel);
         }
+        */
     }
 
      
@@ -405,9 +406,9 @@ void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<i
     window->draw(_sprite);    
     multi_rayon(maze,angle_actuel,window);
 
-    if(!_arme->estVide() && this->_name == "JoueurB"){
-       _arme->Tir(window,60);
-    }
+    //if(!_arme->estVide() && this->_name == "JoueurB"){
+     //  _arme->Tir(window,60);
+   // }
 
 
     draw3D(window);
@@ -459,7 +460,7 @@ RobotPlayer::~RobotPlayer()
     rayons.clear();
     if (_name == "JoueurB")
     {
-        delete _arme;
+        //delete _arme;
     }
     
     std::cout<<"fin destruction robot joueur"<<std::endl;

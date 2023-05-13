@@ -85,6 +85,24 @@ PlateauJeu::PlateauJeu(){
     this->masque2D = new Masque(rayon_par_defaut,rayon_par_defaut,characters.at("JoueurA")->getPositionX(),characters.at("JoueurA")->getPositionY(),
     characters.at("JoueurB")->getPositionX(),characters.at("JoueurB")->getPositionY());
 
+    //texture lumiere
+    
+    if (!_textureLight.loadFromFile("Assets/light.png"))
+    {
+        throw std::runtime_error("Erreur lors du chargement de l'image");
+    }
+
+
+    _spriteLight.setTexture(_textureLight);
+    _spriteLight.setScale(0.5,0.5);
+
+    //position en bas
+    _spriteLight.setPosition(850,800);
+
+
+   
+
+
 
 }
 
@@ -298,23 +316,27 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
     }
     */
 
-    // on dessine le masque que en mode eclair
-    if (count_frames != SEUIL_FRAME  ){
+    
+    if (count_frames>=SEUIL_FRAME-15){
+        
+        window->draw(_spriteLight);
+    }
+    if (count_frames>=SEUIL_FRAME && count_frames < SEUIL_FRAME+TEMPS_EVEIL){
+
+        // on efface une premiere fois 
+         masque2D->eraseMasque();
+
+    }
+    
+    else if (count_frames != SEUIL_FRAME  ){
         masque2D->updateMasque();
         masque2D->dessineMasque(window);
-
         
-
-    }
-    else if (count_frames == SEUIL_FRAME || count_frames == SEUIL_FRAME +1 || count_frames == SEUIL_FRAME +2){
-        // on n'affiche pas le masque
-         masque2D->eraseMasque();
     }
 
-    
-    
     count_frames++;
-    if (count_frames == SEUIL_FRAME+3){
+    
+    if (count_frames == SEUIL_FRAME+TEMPS_EVEIL){
             count_frames = 0;}
     
 

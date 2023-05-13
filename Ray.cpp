@@ -8,10 +8,7 @@ Ray::Ray(int x, int y, float angle)
     this->pos_y = y;
     this->angle_horizontal = angle;
 
-    if (!this->Walltexture.loadFromFile("Assets/stone.png"))
-    {
-        std::cout << "Erreur lors du chargement de l'arme" << std::endl;
-    }
+  
 }
 
 Ray::~Ray()

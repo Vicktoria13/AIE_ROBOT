@@ -10,7 +10,7 @@ class Ray
         float pos_y;
         float angle_horizontal;
 
-        sf::Texture Walltexture;
+        
     public:
         Ray(int x, int y, float angle);
         ~Ray();

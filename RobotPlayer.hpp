@@ -55,7 +55,7 @@ private:
 
     //arme
     Arme* _arme;
-    //
+
 
 
 public:

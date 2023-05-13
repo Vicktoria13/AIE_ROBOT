@@ -12,7 +12,8 @@
 #include <vector>
 
 
-#define SEUIL_FRAME 50 // a partir de 100 frames on affiche le masque
+#define SEUIL_FRAME 150 // a partir de 100 frames on affiche le masque
+#define TEMPS_EVEIL 10
 
 
 
@@ -33,6 +34,9 @@ private:
     Masque* masque2D;
 
     int count_frames;
+    
+    sf::Sprite _spriteLight;
+    sf::Texture _textureLight;
 
 public:
     PlateauJeu();
