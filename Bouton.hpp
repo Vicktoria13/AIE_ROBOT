@@ -32,6 +32,8 @@ private:
 
     /* visuel du texte*/
     sf::Text texteBouton;
+    std::string name;
+
     sf::Font police;
     
 
@@ -59,16 +61,24 @@ public:
     void drawButton(sf::RenderWindow& window);
     void drawContoursBoutton(sf::RenderWindow& window);
 
+    void changeStateButton();
+    
+
     //getters
     int getPosX() const;
     int getPosY() const;
     bool getIsPressed() const;
     bool getIsActivated() const;
 
+    std::string getName() const{
+        return this->name;
+    }
+
     //setters
 
     void setFlagActivated(bool flag);
     void setIsPressed(bool newIsPressed);
+
 
     
     

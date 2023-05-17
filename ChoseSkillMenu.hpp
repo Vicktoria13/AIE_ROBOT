@@ -23,10 +23,19 @@ private:
         sf::RectangleShape fullBackground;
         sf::Texture backgroundTexture;
 
+        int nb_skills_A;
+        int nb_skills_B;
+
+  
+        
+
 
       
 
 public:
+    //map de skill
+        std::map<std::string, bool> skills_joueurA;
+        std::map<std::string, bool> skills_joueurB;
 
     ChoseSkillMenu();
     ~ChoseSkillMenu();
@@ -35,6 +44,9 @@ public:
     void drawScreens(sf::RenderWindow* window);
 
     void handleEvent() ;    
+
+    /*****infos******/
+    void AfficheInfosSkills();
 
     
    

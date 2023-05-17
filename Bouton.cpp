@@ -87,7 +87,8 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
 
 
     /* Texte du bouton +*/
-
+    this->name = text;
+    
     this->texteBouton.setFont(this->police);
     this->texteBouton.setFillColor(sf::Color::White);
     this->texteBouton.setCharacterSize(30);
@@ -99,7 +100,7 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
     (formeBouton.getSize().y - texteBouton.getGlobalBounds().height) / 2.f));
 
 
-    couleurBoutonActive = sf::Color(100, 100, 100, 100);
+    couleurBoutonActive = sf::Color(150, 250, 120, 100);
 
     
     this->isActivated = Activate;
@@ -162,6 +163,9 @@ void Bouton::drawButton(sf::RenderWindow& window){
 }
 
 
+void Bouton::changeStateButton(){
+    this->couleurBouton = couleurBoutonActive;
+}
 
 
 int Bouton::getPosX() const{

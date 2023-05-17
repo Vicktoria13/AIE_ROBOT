@@ -18,7 +18,7 @@ void GameOverScreen::ajouterBouton(){
 
 
     // Bouton Quit en rouge
-    MapBoutons["Quit"] = new Bouton(1300, 800, 200, 100, "Quit",  sf::Color(100,20,20,200),false);
+    //MapBoutons["Quit"] = new Bouton(1300, 800, 200, 100, "Quit",  sf::Color(100,20,20,200),false);
 
         
 }
@@ -32,7 +32,7 @@ GameOverScreen::GameOverScreen(){
    
 
     fullBackground.setSize(sf::Vector2f(1920,1080));
-    if (!backgroundTexture.loadFromFile("Assets/GameOver.jpg"))
+    if (!backgroundTexture.loadFromFile("Assets/win.jpg"))
     {
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }
@@ -46,9 +46,9 @@ GameOverScreen::GameOverScreen(){
 
 
     Title.setFont(fontTitle);
-    Title.setPosition(380,80);
+    Title.setPosition(580,80);
     Title.setCharacterSize(80);
-    Title.setString("Final");
+    Title.setString("Fin du jeu !");
 
     // chaine vide par defaut
     this->ProchainScreen = "";
@@ -62,20 +62,33 @@ GameOverScreen::GameOverScreen(){
 void GameOverScreen::drawScreens(sf::RenderWindow* window){
     window->draw(fullBackground);
     window->draw(Title);
-    for (auto& bouton : MapBoutons)
-    {
-        bouton.second->drawContoursBoutton(*window);
-    }
-}
-
-void GameOverScreen::handleEvent(){
     
 }
 
-GameOverScreen::~GameOverScreen(){
-    for (auto& bouton : MapBoutons)
-    {
-        delete bouton.second;
+
+
+
+void GameOverScreen::handleEvent(){
+
+   /* if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+        for (auto& bouton : MapBoutons)
+        {
+            // on recherche celui qui est pressé : si on le trouve, on renvoit 1
+            if (bouton.second->EnterPressed()==1){
+                // faire une fonction qui renvoie le nom du bouton pressé 
+                if (bouton.first == "Quit")
+                    // on quitte le jeu
+                    this->Quit = true;
+             
+            }
+        }
     }
-    MapBoutons.clear();
+    */
+}
+
+GameOverScreen::~GameOverScreen(){
+    for (auto& bouton : vector_buttons)
+    {
+        delete bouton;
+    }
 }

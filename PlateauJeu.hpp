@@ -39,7 +39,7 @@ private:
     sf::Texture _textureLight;
 
 public:
-    PlateauJeu();
+    PlateauJeu(std::map<std::string, bool>* skills_joueurA,std::map<std::string, bool>* skills_joueurB);
     ~PlateauJeu();
 
     void DrawLabyrinthe(sf::RenderWindow* window) ;

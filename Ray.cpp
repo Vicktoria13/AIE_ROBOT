@@ -51,9 +51,18 @@ int Ray::rayon_unitaire(float alpha,  std::array<std::array<int, 15>, 15>* maze,
         point.setPosition(nx, ny); // Positionne le cercle en (100, 100)
 
         window->draw(point); // Dessine le cercle dans la fenêtre de rendu
-        distance += 1;
+        distance =distance+ 1;
 
     }
+
+    //si on a croisé un drapeau, on met la distance à -100
+
+    if ((*maze)[Ny][Nx] ==3 || (*maze)[Ny][Nx] ==4){
+        
+        return -500;
+    }
+
+ 
     return distance;
 }
 

@@ -80,7 +80,7 @@ public:
 
     /*pour le 3D*/
 
-    void draw3D_rect(sf::RenderWindow* window, int haut, int larg, int x) const;
+    void draw3D_rect(sf::RenderWindow* window, int haut, int larg, int x,bool isAFlag) const;
     void draw3D(sf::RenderWindow* window) const;
 };
 

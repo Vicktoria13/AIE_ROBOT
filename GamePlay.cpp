@@ -6,18 +6,24 @@ GamePlay::GamePlay()
 {
     /* on cree la fenetre de jeu !*/
     fenetre = new sf::RenderWindow(sf::VideoMode(1920,1080), "Aie Robot!");
-    fenetre->setFramerateLimit(20);
+    fenetre->setFramerateLimit(80);
 
     /* Ajout des ecrans*/
 
     /* Ecran d'accueil */
+    std::cout<<"ajout ecran accueil"<<std::endl;
     Ajout_Ecran("Accueil",new WelcomeScreen());
 
     /* Ecran Menu Choix Skills*/
-    Ajout_Ecran("Play",new ChoseSkillMenu());
+    std::cout<<"ajout ecran choix"<<std::endl;
+    ChoseSkillMenu* ecran_choix = new ChoseSkillMenu();
+
+    std::cout<<"ajout ecran play"<<std::endl;
+    Ajout_Ecran("Start", ecran_choix);
 
     /* Ecran Plateau de jeu */
-    Ajout_Ecran("PlateauJeu",new PlateauJeu());
+    std::cout<<"ajout ecran plateau"<<std::endl;
+    Ajout_Ecran("Play",new PlateauJeu(&(ecran_choix->skills_joueurA), &(ecran_choix->skills_joueurB)));
 
     /* Ecran Game Over */
     Ajout_Ecran("GameOver",new GameOverScreen());
@@ -40,7 +46,6 @@ GamePlay::~GamePlay()
     delete fenetre;
     for (auto it = MapEcransDisponibles.begin(); it != MapEcransDisponibles.end(); ++it)
     {
-        std::cout << "deleting " << it->first << std::endl;
         delete it->second;
     }
     
@@ -70,24 +75,25 @@ int GamePlay::CheckFenetreChanges(){
     // si le joueur a clique sur le bouton quitter de l'ecran actuel
     if(EcranActuel->getQuit()){
         this->fenetre->close();
-        std::cout << "on quitte le jeu" << std::endl;
         return -1;
     }
 
     else {
         std::string newScreenName = EcranActuel->getProchainScreen();
+
         if (newScreenName != "" && MapEcransDisponibles.empty() == false)
         {
-            std::cout << " nouvelle fenetre : " << newScreenName << std::endl;
             this->EcranActuel->setProchainScreen("");
             if (MapEcransDisponibles.find(newScreenName) == MapEcransDisponibles.end())
             {
+                std::cout<<"Ecran non trouve : "<<newScreenName<<std::endl;
                 throw std::runtime_error("Ecran non trouve");
             }
                         
 
             else {
                 this->EcranActuel = MapEcransDisponibles[newScreenName];
+                std::cout<<"changement d'ecran pour "<<newScreenName<<std::endl;
             }
             
 
@@ -159,9 +165,12 @@ void GamePlay::WaitForExit(){
 
 
         
-        fenetre->clear();
+        fenetre->clear(sf::Color(120,128,20,200));
+
+        WaitPeriod();
 
         EcranActuel->handleEvent();
+
 
         CheckFenetreChanges();
 
@@ -169,7 +178,7 @@ void GamePlay::WaitForExit(){
 
         fenetre->display();
 
-        WaitPeriod();
+        //WaitPeriod();
 
     }
 }
@@ -209,9 +218,9 @@ void GamePlay::WaitPeriod() const
 {
     if (EcranActuel != nullptr)
     {
-       if (EcranActuel->getScreenName() == "Accueil" || EcranActuel->getScreenName() == "Play" || EcranActuel->getScreenName() == "PlateauJeu"){
+       if (EcranActuel->getScreenName() == "Accueil" || EcranActuel->getScreenName() == "Start" ){
        
-           sf::sleep(sf::seconds(0.1f));
+           sf::sleep(sf::seconds(0.12f));
         }
        
     }

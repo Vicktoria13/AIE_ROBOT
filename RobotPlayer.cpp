@@ -328,8 +328,10 @@ void RobotPlayer::multi_rayon(std::array<std::array<int, 15>, 15>* maze,float ra
             fish -= 2 * PI;
         }
 
-        longueur_rayon[i] *= cos(fish);
-        longueur_rayon[i]++;
+        if (longueur_rayon[i] > 0){
+            longueur_rayon[i] *= cos(fish);
+            longueur_rayon[i]++;
+        }
 
         i++;
         alpha = alpha +VARIATION_ANGLE;
@@ -347,19 +349,36 @@ void RobotPlayer::multi_rayon(std::array<std::array<int, 15>, 15>* maze,float ra
  * @param larg 
  * @param x 
  */
-void RobotPlayer::draw3D_rect(sf::RenderWindow* window, int haut, int larg, int x) const{
+void RobotPlayer::draw3D_rect(sf::RenderWindow* window, int haut, int larg, int x, bool isAFlag) const{
     
     sf::RectangleShape rectangle(sf::Vector2f(larg+1, haut));
 
     if (this->_name=="JoueurA"){
         rectangle.setPosition(x + XX, CENTRE - haut / 2);
-        rectangle.setFillColor(sf::Color(100, 149, 200, 255));
+        if (isAFlag) {
+
+            rectangle.setFillColor(sf::Color(100, 0, 0, 255));
+        }
+           
+        else{
+            rectangle.setFillColor(sf::Color(100, 149, 200, 255));
+        }
         
     }
 
     else {
         rectangle.setPosition(x + XX, 3*CENTRE - haut / 2 +OFFSET_Y);
-        rectangle.setFillColor(sf::Color(100, 50, 140 ,255));
+
+         if (isAFlag) {
+            
+            rectangle.setFillColor(sf::Color(100, 0, 0, 255));
+        }
+           
+        else{
+            rectangle.setFillColor(sf::Color(100, 50, 140 ,255));
+        }
+
+        
     }
     
     window->draw(rectangle);
@@ -379,14 +398,29 @@ void RobotPlayer::draw3D(sf::RenderWindow* window) const {
     int hauteur=0;
     int x=0;
 
+    bool FlagSeen;
+
     
     for(i=0;i<NB_RAYONS;i++){
-        hauteur = (int) (60*HM)/(longueur_rayon[i]); // thales
-        if(hauteur>HM)
-            hauteur=HM; // on ne peut pas dépasser la hauteur max
-        
-        x=i*LARGEUR;
-        draw3D_rect(window, hauteur, LARGEUR, x-1);
+
+       
+        if (longueur_rayon[i]==-500){
+            FlagSeen = true;
+            hauteur = HM-300;
+
+        }
+        else if (longueur_rayon[i]!=0){
+            FlagSeen = false;
+
+            hauteur = (int)(60 * HM) / (longueur_rayon[i]); // thales
+            if (hauteur > HM)
+                hauteur = HM; // on ne peut pas dépasser la hauteur max
+
+            x = i * LARGEUR;
+
+        }
+        x = i * LARGEUR;
+        draw3D_rect(window, hauteur, LARGEUR, x-1,FlagSeen);
 
 
     }

@@ -8,27 +8,13 @@
  */
 void PlateauJeu::ajouterBouton(){
     // en bas a droite
-    MapBoutons["Quit"] = new Bouton(1500, 900, 100, 80, "Quit",  sf::Color(20,20,100,200),false);
-    MapBoutons["Break"] = new Bouton(1700, 900, 100, 80, "Pause",  sf::Color(20,20,100,200),false);
+    //MapBoutons["Quit"] = new Bouton(1500, 900, 100, 80, "Quit",  sf::Color(20,20,100,200),false);
+    //MapBoutons["Break"] = new Bouton(1700, 900, 100, 80, "Pause",  sf::Color(20,20,100,200),false);
 }
 
 
 
-PlateauJeu::PlateauJeu(){
-    /*
-    labyrinthe = {{
-        {1,1,1,1,1,1,1,1,1,1},
-        {1,0,1,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,1},
-        {1,0,0,1,0,0,0,0,0,1},
-        {1,0,0,0,0,1,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,1},
-        {1,1,1,1,1,1,1,1,1,1}
-    }};
-    */
+PlateauJeu::PlateauJeu(std::map<std::string, bool>* skills_joueurA,std::map<std::string, bool>* skills_joueurB){
 
    labyrinthe = {{
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -61,7 +47,7 @@ PlateauJeu::PlateauJeu(){
     //getTheMostLeftButton();
 
 
-    this->ScreenName = "Valide";
+    this->ScreenName = "Play";
     this->ProchainScreen = "";
     this->Quit = false; // on ne quitte pas par defaut
 
@@ -247,7 +233,7 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
     //------couleur pour le ray cast : joueur 1 en haut
 
     rect1.setFillColor(sf::Color(135,206,235,255));
-    rect2.setFillColor(sf::Color(0,128,128,255));
+    rect2.setFillColor(sf::Color(20,89,128,255));
 
     window->draw(rect1);
     window->draw(rect2);
@@ -256,8 +242,8 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
 
     // -------------------------pour le joueur B
 
-    rect1.setFillColor(sf::Color(140,50,235,255));
-    rect2.setFillColor(sf::Color(150,120,100,255));
+    rect2.setFillColor(sf::Color(135,206,235,255));
+    rect1.setFillColor(sf::Color(20,89,128,255));
 
     //------position
     rect1.setPosition(XX,3*CENTRE + OFFSET_Y);
@@ -353,7 +339,7 @@ void PlateauJeu::handleEvent(){
 
 
     /* Boutons */
-
+/*
     if (!MapBoutons.empty()){
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -407,8 +393,7 @@ void PlateauJeu::handleEvent(){
 
 
     }
-
-
+*/
     /* Personnages */
 
     if (!characters.empty()){
@@ -442,8 +427,8 @@ PlateauJeu::~PlateauJeu(){
     }
     characters.clear();
 
-    for (auto& bouton : MapBoutons){
-        delete bouton.second;
+    for (auto& bouton : vector_buttons){
+        delete bouton;
     }
 
     delete masque2D;

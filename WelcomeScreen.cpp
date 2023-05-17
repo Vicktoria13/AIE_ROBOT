@@ -16,30 +16,18 @@
 
 void WelcomeScreen::ajouterBouton(){
 
-    MapBoutons["Play"] = new Bouton(400, 800, 200, 100, "Play",  sf::Color(100,20,20,200),false);
-
-    // Bouton Quit en rouge
-    MapBoutons["Quit"] = new Bouton(1300, 800, 200, 100, "Quit",  sf::Color(100,20,20,200),false);
-
-    
-    // par defaut , le bouton a Gauche est entouré de rouge
+    vector_buttons.push_back(new Bouton(400, 800, 200, 100, "Start",  sf::Color(100,20,20,200),false));
+    vector_buttons.push_back(new Bouton(1300, 800, 200, 100, "Quit",  sf::Color(100,20,20,200),false));
     
 }
 
 
 
-/*
-* Ici, les attribus de la classe WelcomeScreen sont des objets : 
-* Utiliser donc la liste d'initialisation pour appeler les constructeurs des attributs
-*/
 
-/*
-*L'ecran d'accueil par defaut a un bouton Play au centre et un background
-
-*/
 WelcomeScreen::WelcomeScreen()
 {
-
+    this->ScreenName = "Accueil";
+    
     this->ajouterBouton();
 
     // On met le bouton le plus en haut a gauche a true
@@ -47,7 +35,7 @@ WelcomeScreen::WelcomeScreen()
    
 
     fullBackground.setSize(sf::Vector2f(1920,1080));
-    if (!backgroundTexture.loadFromFile("Assets/galaxy.jpg"))
+    if (!backgroundTexture.loadFromFile("Assets/start.jpg"))
     {
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }
@@ -61,13 +49,14 @@ WelcomeScreen::WelcomeScreen()
 
 
     Title.setFont(fontTitle);
-    Title.setPosition(380,80);
+    Title.setPosition(550,80);
     Title.setCharacterSize(80);
-    Title.setString("Welcome to Aie Robot");
+
+    Title.setString("Aie Robot Game");
 
     // chaine vide par defaut
     this->ProchainScreen = "";
-    this->ScreenName = "Accueil";
+    
 
     this->Quit = false; // on ne quitte pas par defaut
 
@@ -117,48 +106,84 @@ void WelcomeScreen::drawScreens(sf::RenderWindow* window){
  */
 void WelcomeScreen::handleEvent()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    {
-        // Cas du play alors on prend le bouton a sa droite
-        if (MapBoutons["Play"]->getIsActivated() == true){
+   
 
-            MapBoutons["Play"]->setFlagActivated(false);
-            MapBoutons["Quit"]->setFlagActivated(true);
+   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+
+        //on cherche le bouton acrif
+        for (size_t i = 0; i < vector_buttons.size(); i++)
+        {
+            if (i==vector_buttons.size()-1){
+                if (vector_buttons[i]->getIsActivated() == true){
+                    vector_buttons[i]->setFlagActivated(false);
+                    vector_buttons[0]->setFlagActivated(true);
+                }
+                break;
+            }
+            else{
+
+                if (vector_buttons[i]->getIsActivated() == true){
+             
+                    vector_buttons[i]->setFlagActivated(false);
+                    vector_buttons[i + 1]->setFlagActivated(true);
+                    
+
+                break;
+            }
+            }
         }
         
-    
-        // sinon : on ne fait rien, car on ne peut pas aller plus loin a droite
+   
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    {
-        // Cas du play alors on prend le bouton a sa droite
-        if (MapBoutons["Quit"]->getIsActivated() == true){
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+        //on cherche le bouton acrif
+        for (size_t i = vector_buttons.size()-1; i >= 0; i--)
+        {
+            if (i==0){
+                if (vector_buttons[i]->getIsActivated() == true){
 
-            MapBoutons["Quit"]->setFlagActivated(false);
-            MapBoutons["Play"]->setFlagActivated(true);  }
+                    vector_buttons[0]->setFlagActivated(false);
+                    vector_buttons[vector_buttons.size()-1]->setFlagActivated(true);
+                    break;
+                    
+                }
+                
+            }
+            else{
+
+                if (vector_buttons[i]->getIsActivated() == true){
+             
+                    vector_buttons[i]->setFlagActivated(false);
+                    vector_buttons[i - 1]->setFlagActivated(true);
+                    
+
+                break;
+            }
+            }
+        }
         
-        // sinon : on ne fait rien, car on ne peut pas aller plus loin a gauche
+   
     }
-
-    // on verifie si la touche entrée est appuyée
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
-        for (auto& bouton : MapBoutons)
+        for (auto& bouton : vector_buttons)
         {
             // on recherche celui qui est pressé : si on le trouve, on renvoit 1
-            if (bouton.second->EnterPressed()==1){
+            if (bouton->EnterPressed()==1){
                 // faire une fonction qui renvoie le nom du bouton pressé 
-                if (bouton.first == "Quit")
+                if (bouton->getName() == "Quit")
                     // on quitte le jeu
                     this->Quit = true;
                 else {
-                    this->ProchainScreen = bouton.first; // on donne le nom du nouveau screen via le nom du bouton donc ils doivent avoir le meme nom
+                    this->ProchainScreen = bouton->getName(); // on donne le nom du nouveau screen via le nom du bouton donc ils doivent avoir le meme nom
                     // soit "Play" soit "Quit"
                 }
             }
         }
     }
+
+
 }
 
 
@@ -166,11 +191,10 @@ void WelcomeScreen::handleEvent()
 WelcomeScreen::~WelcomeScreen()
 {   
     std::cout << "Destruction de l'ecran d'accueil" << std::endl;
-    for (auto& bouton : MapBoutons)
+    for (auto& bouton : vector_buttons)
     {
-        delete bouton.second;
+        delete bouton;
     }
-    MapBoutons.clear();
 
     
     
