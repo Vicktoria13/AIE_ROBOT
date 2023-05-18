@@ -16,8 +16,8 @@
 
 void WelcomeScreen::ajouterBouton(){
 
-    vector_buttons.push_back(new Bouton(400, 800, 200, 100, "Start",  sf::Color(100,20,20,200),false));
-    vector_buttons.push_back(new Bouton(1300, 800, 200, 100, "Quit",  sf::Color(100,20,20,200),false));
+    vector_buttons.push_back(new Bouton(1450, 900, 150, 70, "Start",  sf::Color(100,20,20,200),false));
+    vector_buttons.push_back(new Bouton(1650, 900, 150, 70, "Quit",  sf::Color(100,20,20,200),false));
     
 }
 
@@ -84,12 +84,12 @@ void WelcomeScreen::drawScreens(sf::RenderWindow* window){
 
                 window->draw(fullBackground);
 
-                // puis le titre
-                window->draw(Title);
+    
 
                 // puis les boutons
                 dessinerBoutons(window);
-                
+
+                // puis les boites de dialogue
 
         }
 

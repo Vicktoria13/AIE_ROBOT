@@ -12,8 +12,8 @@ EXES= main
 
 all: $(EXES)
 
-main: main.o GamePlay.o WelcomeScreen.o Bouton.o ChoseSkillMenu.o PlateauJeu.o Screen.o RobotPlayer.o TourEnnemi.o Drapeau.o Masque.o GameOverScreen.o Ray.o Arme.o Projectile.o
-	$(LD) $(LDFLAGS) main.o GamePlay.o  WelcomeScreen.o Bouton.o ChoseSkillMenu.o  PlateauJeu.o RobotPlayer.o TourEnnemi.o Drapeau.o Masque.o GameOverScreen.o Ray.o Arme.o Projectile.o -o main $(LIBS)
+main: main.o GamePlay.o WelcomeScreen.o Bouton.o ChoseSkillMenu.o PlateauJeu.o Screen.o RobotPlayer.o TourEnnemi.o Drapeau.o Masque.o GameOverScreen.o Ray.o Arme.o Projectile.o Talkbox.o 
+	$(LD) $(LDFLAGS) main.o GamePlay.o  WelcomeScreen.o Bouton.o ChoseSkillMenu.o  PlateauJeu.o RobotPlayer.o TourEnnemi.o Drapeau.o Masque.o GameOverScreen.o Ray.o Arme.o Projectile.o Talkbox.o -o main $(LIBS)
 
 main.o: main.cpp GamePlay.hpp
 	$(CPP) $(CPPFLAGS) -c main.cpp
@@ -21,14 +21,14 @@ main.o: main.cpp GamePlay.hpp
 GamePlay.o: GamePlay.cpp GamePlay.hpp WelcomeScreen.hpp
 	$(CPP) $(CPPFLAGS) -c GamePlay.cpp
 
-Screen.o: Screen.cpp Screen.hpp Bouton.hpp
+Screen.o: Screen.cpp Screen.hpp Bouton.hpp 
 	$(CPP) $(CPPFLAGS) -c Screen.cpp
 
 
 WelcomeScreen.o : WelcomeScreen.cpp WelcomeScreen.hpp Bouton.hpp Screen.o
 	$(CPP) $(CPPFLAGS) -c WelcomeScreen.cpp 
 
-ChoseSkillMenu.o : ChoseSkillMenu.cpp ChoseSkillMenu.hpp Bouton.hpp 
+ChoseSkillMenu.o : ChoseSkillMenu.cpp ChoseSkillMenu.hpp Bouton.hpp Talkbox.hpp
 	$(CPP) $(CPPFLAGS) -c ChoseSkillMenu.cpp
 
 PlateauJeu.o : PlateauJeu.cpp PlateauJeu.hpp 
@@ -60,6 +60,9 @@ Arme.o : Arme.cpp Arme.hpp Projectile.hpp
 
 Projectiles.o : Projectiles.cpp Projectile.hpp
 	$(CPP) $(CPPFLAGS) -c Projectiles.cpp
+
+Talkbox.o : Talkbox.cpp Talkbox.hpp
+	$(CPP) $(CPPFLAGS) -c Talkbox.cpp
 
 clean:
 	rm -f *.o $(EXES)

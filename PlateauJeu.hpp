@@ -30,13 +30,17 @@ private:
     std::map<std::string,EntiteAffichable*> characters;
 
 
-
+    // pour le masque
     Masque* masque2D;
-
+    float radius_playerA;
+    float radius_playerB;
+    
     int count_frames;
     
     sf::Sprite _spriteLight;
     sf::Texture _textureLight;
+
+
 
 public:
     PlateauJeu(std::map<std::string, bool>* skills_joueurA,std::map<std::string, bool>* skills_joueurB);

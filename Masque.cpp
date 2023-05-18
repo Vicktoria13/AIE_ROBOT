@@ -216,6 +216,15 @@ Masque::~Masque()
     
 }
 
+void Masque::setPlayer1Radius(float r)
+{
+    player1.setRadius(r);
+}
+
+void Masque::setPlayer2Radius(float r)
+{
+    player2.setRadius(r);
+}
 
 
 void Masque::setPlayer1(int x, int y)

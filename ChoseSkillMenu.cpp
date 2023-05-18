@@ -12,21 +12,23 @@ void ChoseSkillMenu::ajouterBouton(){
 
      
     //Boutons skills : du joueur A, devant etre alignés selon y
-    vector_buttons.push_back(new Bouton(900, 900, 200, 100, "Play",  sf::Color(20,20,100,200),false));
-    vector_buttons.push_back(new Bouton(1300, 900, 200, 100, "Quit",  sf::Color(100,20,20,200),false));
+    vector_buttons.push_back(new Bouton(1400, 900, 120, 80, "Play",  sf::Color(20,20,100,200),false));
+    vector_buttons.push_back(new Bouton(1600, 900, 120, 80, "Quit",  sf::Color(100,20,20,200),false));
 
-    int x_bouton = 400;
+    int x_bouton = 350;
     int y_bouton = 100;
 
-    vector_buttons.push_back(new Bouton(400, 300, x_bouton, y_bouton, "Capteur profondeur A",  sf::Color(20,20,100,200),false));
-    vector_buttons.push_back(new Bouton(400, 500, x_bouton, y_bouton, "Capteur distance A",  sf::Color(20,20,100,200),false));
-    vector_buttons.push_back(new Bouton(400, 700, x_bouton, y_bouton, "Vitesse A",  sf::Color(20,20,100,200),false));
+    sf::Color color_bouton(150,0,0,255);
+
+    vector_buttons.push_back(new Bouton(450, 550, x_bouton, y_bouton, "Capteur 3D A", color_bouton,false));
+    vector_buttons.push_back(new Bouton(950, 550, x_bouton, y_bouton, "Capteur distance A", color_bouton,false));
+    vector_buttons.push_back(new Bouton(1450, 550, x_bouton, y_bouton, "Vitesse A",  color_bouton,false));
 
     //Boutons skills : du joueur B, devant etre alignés selon y
 
-    vector_buttons.push_back(new Bouton(1300, 300, x_bouton, y_bouton, "Capteur profondeur B",  sf::Color(20,20,100,200),false));
-    vector_buttons.push_back(new Bouton(1300, 500, x_bouton, y_bouton, "Capteur distance B",  sf::Color(20,20,100,200),false));
-    vector_buttons.push_back(new Bouton(1300, 700, x_bouton, y_bouton, "Vitesse B",  sf::Color(20,20,100,200),false));
+    vector_buttons.push_back(new Bouton(450, 770, x_bouton, y_bouton, "Capteur 3D B",  color_bouton,false));
+    vector_buttons.push_back(new Bouton(950, 770, x_bouton, y_bouton, "Capteur distance B",  color_bouton,false));
+    vector_buttons.push_back(new Bouton(1450, 770, x_bouton, y_bouton, "Vitesse B", color_bouton,false));
 
     //aucun skill
     nb_skills_A = 0;
@@ -47,6 +49,7 @@ void ChoseSkillMenu::ajouterBouton(){
  * 
  */
 ChoseSkillMenu::ChoseSkillMenu(){
+   
     this->ScreenName = "Start";
 
     this->ajouterBouton();
@@ -55,7 +58,6 @@ ChoseSkillMenu::ChoseSkillMenu(){
     this->getTheMostLeftButton(); // On met le bouton le plus en haut a gauche a true
 
     // Chargement de l'image de fond
-
     fullBackground.setSize(sf::Vector2f(1920,1080));
     if (!backgroundTexture.loadFromFile("Assets/MenuSkill.jpg"))
     {
@@ -83,16 +85,17 @@ ChoseSkillMenu::ChoseSkillMenu(){
     //skills des joueurs
     // On initialise tous a faux par defaut, le joueur pourra selectionner 2 parmi les 3 skills présents
     skills_joueurA["Capteur Ultrasons"] = false;
-    skills_joueurA["Capteur profondeur"] = false;
+    skills_joueurA["Capteur 3D"] = false;
     skills_joueurA["Vitesse rapide"] = false;
 
     skills_joueurB["Capteur Ultrasons"] = false;
-    skills_joueurB["Capteur profondeur"] = false;
+    skills_joueurB["Capteur 3D"] = false;
     skills_joueurB["Vitesse rapide"] = false;
 
 
     
     std::cout <<"fin du constructeur de chose skill menu"<<std::endl;
+
 
 
 
@@ -111,11 +114,16 @@ void ChoseSkillMenu::drawScreens(sf::RenderWindow* window){
 
     window->draw(fullBackground);
 
-    // puis le titre
-    window->draw(Title);
+   
 
     // puis les boutons
     dessinerBoutons(window);
+
+    // puis les boites de dialogue
+    for (auto& talkbox : vector_talkbox){
+        talkbox->AfficheTalkBox(window);
+    }
+   
 }
 
 
@@ -205,9 +213,9 @@ void ChoseSkillMenu::handleEvent()
 
                 /****************** SKILLS DU JOUEUR A ***************************/
 
-                else if (bouton->getName() == "Capteur profondeur A" && nb_skills_A<2){
+                else if (bouton->getName() == "Capteur 3D A" && nb_skills_A<2){
 
-                    skills_joueurA["Capteur profondeur"] = true;
+                    skills_joueurA["Capteur 3D"] = true;
                     nb_skills_A++;
                 }
 
@@ -231,9 +239,9 @@ void ChoseSkillMenu::handleEvent()
 
                
 
-                else if (bouton->getName() == "Capteur profondeur B" && nb_skills_B<2){
+                else if (bouton->getName() == "Capteur 3D B" && nb_skills_B<2){
 
-                    skills_joueurB["Capteur profondeur"] = true; // donner le skill au joueur A
+                    skills_joueurB["Capteur 3D"] = true; // donner le skill au joueur A
                     nb_skills_B++;
                 }
 
@@ -262,6 +270,9 @@ void ChoseSkillMenu::handleEvent()
                     std::cout<<" Car vous avez choisi "<<nb_skills_A<<" skills pour le joueur A et "<<nb_skills_B<<" skills pour le joueur B"<<std::endl;
 
                     //alors on affiche une boite de dialogue
+                    vector_talkbox.push_back(new Talkbox("2 skills par joueur !",100,830));
+
+
                 }
 
 
@@ -285,6 +296,7 @@ void ChoseSkillMenu::AfficheInfosSkills(){
         std::cout<<skill.first << " = " << skill.second <<std::endl;
     }
 
+    std::cout<<"------------------------------------------------"<<std::endl;
     std::cout<<"Pour le joueur B, l'état des skills est : "<<std::endl;
     for (auto& skill :skills_joueurB ){
         std::cout<<skill.first << " = " << skill.second <<std::endl;
@@ -305,4 +317,11 @@ ChoseSkillMenu::~ChoseSkillMenu(){
             delete bouton;
         }
     }
+
+    for (auto &talkbox : vector_talkbox)
+    {
+        delete talkbox;
+    }
+
+   
 }

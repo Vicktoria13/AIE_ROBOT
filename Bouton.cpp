@@ -84,6 +84,7 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
     formeBouton.setPosition(pos_x, pos_y);
     formeBouton.setSize(sf::Vector2f(this->width,this->height));
     formeBouton.setFillColor(couleurBouton);
+    
 
 
     /* Texte du bouton +*/
@@ -91,7 +92,7 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
     
     this->texteBouton.setFont(this->police);
     this->texteBouton.setFillColor(sf::Color::White);
-    this->texteBouton.setCharacterSize(30);
+    this->texteBouton.setCharacterSize(25);
     this->texteBouton.setString(text);
     
     // on centre le texte dans le bouton
@@ -100,7 +101,7 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
     (formeBouton.getSize().y - texteBouton.getGlobalBounds().height) / 2.f));
 
 
-    couleurBoutonActive = sf::Color(150, 250, 120, 100);
+    couleurBoutonActive = sf::Color(150, 50, 150, 200);
 
     
     this->isActivated = Activate;
@@ -136,7 +137,7 @@ bool Bouton::getIsActivated() const{
  */
 void Bouton::drawContoursBoutton(sf::RenderWindow& window){
    this->formeBouton.setOutlineThickness(7);
-   this->formeBouton.setOutlineColor(sf::Color::Red);
+   this->formeBouton.setOutlineColor(sf::Color(150, 50,100, 255));
 
 
    formeBouton.setFillColor(couleurBoutonActive);

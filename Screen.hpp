@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Bouton.hpp"
 #include <iostream>
+#include "Talkbox.hpp"
 /**
  * @brief 
  * 
@@ -21,6 +22,11 @@ protected:
    std::vector<Bouton*> vector_buttons;
 
    Bouton* boutonActif; // celui sur lequel l'user est, donc entouré en rouge
+
+   
+
+   
+
 
 
 public:

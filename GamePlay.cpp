@@ -23,6 +23,7 @@ GamePlay::GamePlay()
 
     /* Ecran Plateau de jeu */
     std::cout<<"ajout ecran plateau"<<std::endl;
+    
     Ajout_Ecran("Play",new PlateauJeu(&(ecran_choix->skills_joueurA), &(ecran_choix->skills_joueurB)));
 
     /* Ecran Game Over */

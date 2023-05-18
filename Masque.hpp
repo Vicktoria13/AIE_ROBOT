@@ -34,6 +34,9 @@ public:
     void setPlayer1(int x, int y);
     void setPlayer2(int x, int y);
 
+    void setPlayer1Radius(float r);
+    void setPlayer2Radius(float r);
+
     
 };
 

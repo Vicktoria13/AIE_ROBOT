@@ -4,6 +4,8 @@
 #include "Screen.hpp"
 #include "Bouton.hpp"
 #include <iostream>
+#include "Talkbox.hpp"
+
 
 
 /**
@@ -26,6 +28,7 @@ private:
         int nb_skills_A;
         int nb_skills_B;
 
+        std::vector<Talkbox*> vector_talkbox;
   
         
 

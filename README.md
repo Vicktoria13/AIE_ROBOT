@@ -24,7 +24,7 @@ Au démarrage du jeu, chaque joueur doit selectionner 2 options (= skills). Il a
 - Capteur Ultrasons : cette option permet au robot de se doter d'un capteur a ultrasons , lui permettant donc d'avoir une plus grande
 vision du plateau 2D.
 
-- Capteur profondeur : cette option permet de donner au robot un capteur de type caméra 3D, lui permettant donc en plus de la vue 2D, d'obtenir une visualisation de la piste en profondeur.
+- Capteur 3D : cette option permet de donner au robot un capteur de type caméra 3D, lui permettant donc en plus de la vue 2D, d'obtenir une visualisation de la piste en 3D.
 
 - Vitesse rapide : Cette option donne au robot des moteurs puissants, lui permettant de se déplacer plus vite par rapport a son ennemi.
 

@@ -13,7 +13,7 @@
  * @param max_y limite y
  * @param name nom robot
  */
-RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name)
+RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name,std::map<std::string, bool>* skills_joueur)
 {
     std::cout << "Construction du robot joueur" << std::endl;
 

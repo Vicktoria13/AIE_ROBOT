@@ -53,8 +53,8 @@ PlateauJeu::PlateauJeu(std::map<std::string, bool>* skills_joueurA,std::map<std:
 
 
     // liste des entités affichables : JoueurA en bas a gauche, JoueurB en haut a droite
-    characters["JoueurA"] = new RobotPlayer(100,700,case_size*(nb_cases-1),case_size*(nb_cases-1),"JoueurA");
-    characters["JoueurB"] = new RobotPlayer(700,100,case_size*(nb_cases-1),case_size*(nb_cases-1),"JoueurB");
+    characters["JoueurA"] = new RobotPlayer(100,700,case_size*(nb_cases-1),case_size*(nb_cases-1),"JoueurA",skills_joueurA);
+    characters["JoueurB"] = new RobotPlayer(700,100,case_size*(nb_cases-1),case_size*(nb_cases-1),"JoueurB",skills_joueurB);
 
     characters["EnnemiA"] = new TourEnnemi();
     characters["EnnemiB"] = new TourEnnemi();
@@ -66,8 +66,9 @@ PlateauJeu::PlateauJeu(std::map<std::string, bool>* skills_joueurA,std::map<std:
 
     // Le masque de vision
     this->count_frames = 0;
-    float rayon_par_defaut = 35.0;
 
+    float rayon_par_defaut = 35.0;
+    
     this->masque2D = new Masque(rayon_par_defaut,rayon_par_defaut,characters.at("JoueurA")->getPositionX(),characters.at("JoueurA")->getPositionY(),
     characters.at("JoueurB")->getPositionX(),characters.at("JoueurB")->getPositionY());
 
@@ -84,9 +85,6 @@ PlateauJeu::PlateauJeu(std::map<std::string, bool>* skills_joueurA,std::map<std:
 
     //position en bas
     _spriteLight.setPosition(850,800);
-
-
-   
 
 
 
@@ -295,12 +293,7 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
     masque2D->setPlayer1(characters.at("JoueurA")->getPositionXSpriteCenter(),characters.at("JoueurA")->getPositionYSpriteCenter());
     masque2D->setPlayer2(characters.at("JoueurB")->getPositionXSpriteCenter(), characters.at("JoueurB")->getPositionYSpriteCenter());
 
-    /*if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-    
-        masque2D->updateMasque();
-        masque2D->dessineMasque(window);
-    }
-    */
+
 
     
     if (count_frames>=SEUIL_FRAME-15){

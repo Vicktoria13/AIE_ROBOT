@@ -59,7 +59,7 @@ private:
 
 
 public:
-    RobotPlayer(int x, int y, int max_x, int max_y, std::string name);
+    RobotPlayer(int x, int y, int max_x, int max_y, std::string name,std::map<std::string, bool>* skills_joueur);
     ~RobotPlayer();
 
     void DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15>* maze);
