@@ -7,11 +7,10 @@ class Drapeau : public EntiteAffichable
 {
 protected:
     bool isCollected;
-    std::string nomProprietaire;
 
 
 public:
-    Drapeau(std::string nameOwner);
+    Drapeau();
     ~Drapeau();
 
     /*Methodes a redefinir */

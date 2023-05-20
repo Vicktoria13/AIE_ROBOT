@@ -13,31 +13,31 @@ EXES= main
 all: $(EXES)
 
 main: main.o GamePlay.o WelcomeScreen.o Bouton.o ChoseSkillMenu.o PlateauJeu.o Screen.o RobotPlayer.o TourEnnemi.o Drapeau.o Masque.o GameOverScreen.o Ray.o Arme.o Projectile.o Talkbox.o LifeBar.o RuleScreen.o
-	$(LD) $(LDFLAGS) main.o GamePlay.o  WelcomeScreen.o Bouton.o ChoseSkillMenu.o  PlateauJeu.o RobotPlayer.o TourEnnemi.o Drapeau.o Masque.o GameOverScreen.o Ray.o Arme.o Projectile.o Talkbox.o  LifeBar.o RuleScreen.o -o main $(LIBS)
+	$(LD) $(LDFLAGS) main.o GamePlay.o  WelcomeScreen.o Bouton.o ChoseSkillMenu.o  Screen.o PlateauJeu.o RobotPlayer.o TourEnnemi.o Drapeau.o Masque.o GameOverScreen.o Ray.o Arme.o Projectile.o Talkbox.o  LifeBar.o RuleScreen.o -o main $(LIBS)
 
 main.o: main.cpp ../include/GamePlay.hpp
 	$(CPP) $(CPPFLAGS) -c main.cpp
 
-GamePlay.o: GamePlay.cpp ../include/GamePlay.hpp ../include/WelcomeScreen.hpp ../include/ChoseSkillMenu.hpp ../include/GameOverScreen.hpp 
+GamePlay.o: GamePlay.cpp ../include/GamePlay.hpp ../include/WelcomeScreen.hpp ../include/ChoseSkillMenu.hpp ../include/GameOverScreen.hpp  
 	$(CPP) $(CPPFLAGS) -c GamePlay.cpp
 
 Screen.o: Screen.cpp ../include/Screen.hpp ../include/Bouton.hpp 
 	$(CPP) $(CPPFLAGS) -c Screen.cpp
 
 
-WelcomeScreen.o : WelcomeScreen.cpp ../include/WelcomeScreen.hpp ../include/Bouton.hpp Screen.o
+WelcomeScreen.o : WelcomeScreen.cpp ../include/WelcomeScreen.hpp ../include/Bouton.hpp ../include/Screen.hpp
 	$(CPP) $(CPPFLAGS) -c WelcomeScreen.cpp 
 
-ChoseSkillMenu.o : ChoseSkillMenu.cpp ../include/ChoseSkillMenu.hpp ../include/Bouton.hpp ../include/Talkbox.hpp
+ChoseSkillMenu.o : ChoseSkillMenu.cpp ../include/ChoseSkillMenu.hpp ../include/Bouton.hpp ../include/Talkbox.hpp ../include/Screen.hpp
 	$(CPP) $(CPPFLAGS) -c ChoseSkillMenu.cpp
 
-PlateauJeu.o : PlateauJeu.cpp ../include/PlateauJeu.hpp 
+PlateauJeu.o : PlateauJeu.cpp ../include/PlateauJeu.hpp ../include/Screen.hpp
 	$(CPP) $(CPPFLAGS) -c PlateauJeu.cpp
 
-RuleScreen.o : RuleScreen.cpp ../include/RuleScreen.hpp ../include/Bouton.hpp
+RuleScreen.o : RuleScreen.cpp ../include/RuleScreen.hpp ../include/Bouton.hpp ../include/Screen.hpp
 	$(CPP) $(CPPFLAGS) -c RuleScreen.cpp
 
-GameOverScreen.o : GameOverScreen.cpp ../include/GameOverScreen.hpp ../include/Bouton.hpp
+GameOverScreen.o : GameOverScreen.cpp ../include/GameOverScreen.hpp ../include/Bouton.hpp ../include/Screen.hpp
 	$(CPP) $(CPPFLAGS) -c GameOverScreen.cpp
 
 Bouton.o : Bouton.cpp ../include/Bouton.hpp

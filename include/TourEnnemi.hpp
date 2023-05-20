@@ -16,8 +16,6 @@ class TourEnnemi : public EntiteAffichable
         TourEnnemi();
         ~TourEnnemi();
 
-        void DisplayTirs(sf::RenderWindow* window);
-
         void DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15>*  maze );
         int UpdateEvent( std::string NameIfPlayer,std::array<std::array<int, 15>, 15>* maze);
 

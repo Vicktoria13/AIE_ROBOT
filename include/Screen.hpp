@@ -21,9 +21,11 @@ protected:
 
    std::vector<Bouton*> vector_buttons;
 
-   Bouton* boutonActif; // celui sur lequel l'user est, donc entouré en rouge
 
-   
+   void getTheMostLeftButton();
+
+   sf::RectangleShape fullBackground;
+   sf::Texture backgroundTexture;
 
    
 
@@ -44,49 +46,9 @@ public:
 
     virtual void ajouterBouton()=0;
 
-    virtual void getTheMostLeftButton(){
-        int min_x = 100000;
-        int min_y = 100000;
-        Bouton *boutonHautGauche = nullptr;
-        
-        if (!vector_buttons.empty())
-        {  
+    
 
-            for (auto &bouton : vector_buttons)
-            {
-                if (bouton->getPosX() < min_x && bouton->getPosY() < min_y)
-                {
-                    min_x = bouton->getPosX();
-                    min_y = bouton->getPosY();
-                    boutonHautGauche = bouton;
-                }
-            }
-            boutonHautGauche->setFlagActivated(true);
-        }
-        
-        
-
-        std::cout<<"sortie de getTheMostLeftButton"<<std::endl;
-        
-}
-
-    void dessinerBoutons(sf::RenderWindow* window){
-        for (auto& bouton : vector_buttons)
-        {
-
-            if (bouton->getIsActivated() == true)
-            {
-
-                bouton->drawContoursBoutton(*window);
-            }
-
-            else if (bouton->getIsActivated() == false)
-            {
-                bouton->drawButton(*window);
-            }
-        }
-    }
-
+    void dessinerBoutons(sf::RenderWindow* window);
 
 
     /* getters */

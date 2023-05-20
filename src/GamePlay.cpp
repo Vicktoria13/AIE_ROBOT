@@ -99,16 +99,13 @@ int GamePlay::CheckFenetreChanges(){
 
             if (newScreenName == "Play")
             {
-                std::cout<<"On change d'ecran pour le plateau de jeu"<<std::endl;
                 Ajout_Ecran("Play",new PlateauJeu(&(menu_skills->skills_joueurA), &(menu_skills->skills_joueurB)));
-
-                //on met l'ecran de jeu comme ecran actuel
-
                 this->EcranActuel = MapEcransDisponibles["Play"];
+
 
     
             }
-            this->EcranActuel->setProchainScreen("");
+            
             if (MapEcransDisponibles.find(newScreenName) == MapEcransDisponibles.end())
             {
                 std::cout<<"Ecran non trouve : "<<newScreenName<<std::endl;
@@ -245,7 +242,7 @@ void GamePlay::WaitPeriod() const
     {
        if (EcranActuel->getScreenName() == "Accueil" || EcranActuel->getScreenName() == "Start" || EcranActuel->getScreenName() == "Ready" ){
        
-           sf::sleep(sf::seconds(0.12f));
+           sf::sleep(sf::seconds(0.11f));
         }
        
     }

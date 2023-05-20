@@ -51,15 +51,15 @@ PlateauJeu::PlateauJeu(std::map<std::string, bool>* skills_joueurA,std::map<std:
 
 
     // liste des entités affichables : JoueurA en bas a gauche, JoueurB en haut a droite
-    characters["JoueurA"] = new RobotPlayer(100,700,case_size*(nb_cases-1),case_size*(nb_cases-1),"JoueurA",skills_joueurA);
-    characters["JoueurB"] = new RobotPlayer(700,100,case_size*(nb_cases-1),case_size*(nb_cases-1),"JoueurB",skills_joueurB);
+    characters["JoueurA"] = new RobotPlayer(100,700,"JoueurA",skills_joueurA);
+    characters["JoueurB"] = new RobotPlayer(700,100,"JoueurB",skills_joueurB);
 
     characters["EnnemiA"] = new TourEnnemi();
     characters["EnnemiB"] = new TourEnnemi();
     characters["EnnemiC"] = new TourEnnemi();
 
-    characters["DrapeauJoueurA"] = new Drapeau("DrapeauJoueurA");
-    characters["DrapeauJoueurB"] = new Drapeau("DrapeauJoueurB");
+    characters["DrapeauJoueurA"] = new Drapeau();
+    characters["DrapeauJoueurB"] = new Drapeau();
 
 
     // Le masque de vision
@@ -98,7 +98,16 @@ PlateauJeu::PlateauJeu(std::map<std::string, bool>* skills_joueurA,std::map<std:
     _spriteLight.setScale(0.5,0.5);
 
     //position en bas
-    _spriteLight.setPosition(850,800);
+    _spriteLight.setPosition(850,750);
+
+
+    // fond
+    fullBackground.setSize(sf::Vector2f(1920,1080));
+    if (!backgroundTexture.loadFromFile("../Assets/Playground.jpg"))
+    {
+        throw std::runtime_error("Erreur lors du chargement de l'image");
+    }
+    fullBackground.setTexture(&backgroundTexture);
 
 
 
@@ -135,10 +144,9 @@ void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) {
         throw std::runtime_error("Erreur lors du chargement de l'image");
     }
 
-
+    int pas =4;// si le pas est trop faible, alors on ne voit pas le quadrillage lors du resize
     for (int i = 0; i < nb_cases; i++){
         for (int j = 0; j < nb_cases; j++){
-            int pas = 4; // si le pas est trop faible, alors on ne voit pas le quadrillage lors du resize
             
             // allocation statique
             sf::RectangleShape rectangle(sf::Vector2f(case_size-pas, case_size-pas));
@@ -229,6 +237,7 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
 
     //2D
     window->clear(sf::Color::Black);
+    window->draw(fullBackground);
 
    //3D
 
@@ -254,15 +263,15 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
     rect1.setFillColor(sf::Color(135,206,235,255));
     rect2.setFillColor(sf::Color(20,89,128,255));
 
-    //window->draw(rect1);
-    //window->draw(rect2);
+    window->draw(rect1);
+    window->draw(rect2);
     window->draw(bordure);
 
 
 
     // -------------------------pour le joueur B
 
-    rect2.setFillColor(sf::Color(135,206,235,255));
+    rect2.setFillColor(sf::Color(150,206,235,255));
     rect1.setFillColor(sf::Color(20,89,128,255));
 
     //------position
@@ -277,8 +286,8 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
 
  
 
-    //window->draw(rect1);
-    //window->draw(rect2);
+    window->draw(rect1);
+    window->draw(rect2);
     window->draw(bordure);
 }
 
@@ -310,6 +319,7 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
 
 
     //window->clear();
+    
     DrawLabyrinthe(window);
     dessinerBoutons(window);
     drawCharacters(window);
@@ -366,14 +376,9 @@ void PlateauJeu::handleEvent(){
         this->ProchainScreen = "GameOver";
     }
     
-  
-    
     }
 
-    // on teste si un des joueurs a touché le flag adverse
 
-
-    
     
 }
 

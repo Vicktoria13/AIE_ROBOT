@@ -9,22 +9,17 @@
  * @brief Constructeur du robot joueur
  * @param x position x
  * @param y position y
- * @param max_x limite x
- * @param max_y limite y
+
  * @param name nom robot
  */
-RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name,std::map<std::string, bool>* skills_joueur)
+RobotPlayer::RobotPlayer(int x, int y, std::string name,std::map<std::string, bool>* skills_joueur)
 {
     std::cout << "Construction du robot joueur" << std::endl;
 
-    this->jaugeVie = 100;
-    this->nb_munitions = 10;
-
+    //taille des skils
     this->positionX = x;
     this->positionY = y;
 
-    this->limite_deplacement_x = max_x;
-    this->limite_deplacement_y = max_y;
 
     /* On charge la texture */
     if (!_texture.loadFromFile("../Assets/robotPlayer.png"))
@@ -87,6 +82,8 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name,st
     // lifeBAR
 
     this->_lifeBar = new LifeBar(this->_name);
+
+    std::cout<<"fin construction robot joueur"<<std::endl;
   
 }
 

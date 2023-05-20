@@ -11,11 +11,8 @@ class WelcomeScreen : public Screen{
     private:
 
 
-      
-        /* le fond d"'écran de l'accueil */
-
-        sf::RectangleShape fullBackground;
-        sf::Texture backgroundTexture;
+   
+        
 
 
     public:

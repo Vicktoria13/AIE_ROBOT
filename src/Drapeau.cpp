@@ -1,7 +1,7 @@
 #include "../include/Drapeau.hpp"
 #include <iostream>
 
-Drapeau::Drapeau(std::string nameOwner)
+Drapeau::Drapeau()
 {
 
     std::cout << "Construction du d'un drapeau" << std::endl;
@@ -20,7 +20,6 @@ Drapeau::Drapeau(std::string nameOwner)
     this->estPositionne = false; // par defaut, lorsque l'on crée une tour ennemi, elle n'est pas positionnée
     this->isCollected = false; // par defaut, le drapeau n'est pas collecté encore
 
-    this->nomProprietaire = nameOwner;
 
 }
 

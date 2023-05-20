@@ -14,9 +14,7 @@ class RuleScreen : public Screen{
 
     private:
 
-        sf::RectangleShape fullBackground;
-        sf::Texture backgroundTexture;
-    
+   
     public:
         RuleScreen();
         ~RuleScreen();

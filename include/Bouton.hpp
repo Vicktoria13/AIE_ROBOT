@@ -62,6 +62,7 @@ public:
     void drawContoursBoutton(sf::RenderWindow& window);
 
     void changeStateButton();
+    void UnactivateButton();
     
 
     //getters

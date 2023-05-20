@@ -16,7 +16,7 @@ Talkbox::Talkbox(std::string text, int pos_x, int pos_y){
 
     _talkbox.setTexture(_texture);
     _talkbox.setPosition(pos_x,pos_y);
-    _talkbox.setScale(2,2);
+    _talkbox.setScale(0.5,0.5);
 
     // texte : il doit etre centré dans la boite de dialogue
     _text.setString(text);
@@ -28,7 +28,7 @@ Talkbox::Talkbox(std::string text, int pos_x, int pos_y){
 
     _text.setPosition(pos_x+85,pos_y+50);
     _text.setCharacterSize(25);
-    _text.setFillColor(sf::Color::White);
+    _text.setFillColor(sf::Color::Yellow);
 
 
 }

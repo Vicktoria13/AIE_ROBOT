@@ -24,19 +24,11 @@ private:
     int case_size = 60 ;
 
    //pointeur
-   std::array<std::array<int, nb_cases>, nb_cases> labyrinthe; 
-
-    
+    std::array<std::array<int, nb_cases>, nb_cases> labyrinthe; 
     std::map<std::string,EntiteAffichable*> characters;
-
-
     // pour le masque
     Masque* masque2D;
-    float radius_playerA;
-    float radius_playerB;
-    
     int count_frames;
-    
     sf::Sprite _spriteLight;
     sf::Texture _textureLight;
 
@@ -59,8 +51,6 @@ public:
     void ajouterBouton();
 
     
-
-    /* raycasting 3D*/
 
     
 

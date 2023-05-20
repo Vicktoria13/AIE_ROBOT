@@ -33,15 +33,10 @@
 
 class RobotPlayer : public EntiteAffichable
 {
-private:
+protected:
 
-    int jaugeVie;
-    int nb_munitions;
 
     int vitesse_player;
-
-    int limite_deplacement_x;
-    int limite_deplacement_y;
 
     bool ADrapeau ;
 
@@ -67,7 +62,7 @@ private:
 
 
 public:
-    RobotPlayer(int x, int y, int max_x, int max_y, std::string name,std::map<std::string, bool>* skills_joueur);
+    RobotPlayer(int x, int y,  std::string name,std::map<std::string, bool>* skills_joueur);
     ~RobotPlayer();
 
     void DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15>* maze);

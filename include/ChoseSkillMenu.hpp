@@ -18,43 +18,39 @@ class ChoseSkillMenu: public Screen
 private:
     
 
-        sf::Text Title;
-        sf::Font fontTitle;
-        /* le fond d"'écran de l'accueil */
-
-        sf::RectangleShape fullBackground;
-        sf::Texture backgroundTexture;
-
         int nb_skills_A;
         int nb_skills_B;
 
         std::vector<Talkbox*> vector_talkbox;
-  
-        
 
+        bool capteur3DA ;
+        bool capteur3DB ;
 
-      
+        bool VitesserapideA ;
+        bool VitesserapideB ;
 
-public:
-    //map de skill
-    std::map<std::string, bool> skills_joueurA;
-    std::map<std::string, bool> skills_joueurB;
+        bool capteurUltrasonsA ;
+        bool capteurUltrasonsB ;
 
+    public:
+        // map de skill
+        std::map<std::string, bool> skills_joueurA;
+        std::map<std::string, bool> skills_joueurB;
 
-    ChoseSkillMenu();
-    ~ChoseSkillMenu();
+        ChoseSkillMenu();
+        ~ChoseSkillMenu();
 
-    void ajouterBouton();
-    void drawScreens(sf::RenderWindow* window);
+        void ajouterBouton();
+        void drawScreens(sf::RenderWindow *window);
 
-    void handleEvent() ;    
+        void handleEvent();
 
-    /*****infos******/
-    void AfficheInfosSkills();
+        /*****infos******/
+        void AfficheInfosSkills();
 
-    /*****getters******/
-    std::map<std::string, bool> getSkills_joueurA(){return this->skills_joueurA;}
-    std::map<std::string, bool> getSkills_joueurB(){return this->skills_joueurB;}
+        /*****getters******/
+        std::map<std::string, bool> getSkills_joueurA() { return this->skills_joueurA; }
+        std::map<std::string, bool> getSkills_joueurB() { return this->skills_joueurB; }
 
     
    

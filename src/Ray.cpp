@@ -2,6 +2,14 @@
 #include <math.h>
 #include <iostream>
 
+
+/**
+ * @brief Constructeur d'un rayon unitaire
+ * 
+ * @param x position x du point de départ du rayon
+ * @param y position y du point de départ du rayon
+ * @param angle angle du rayon par rapport à l'horizontal
+ */
 Ray::Ray(int x, int y, float angle)
 {
     this->pos_x = x;
@@ -11,6 +19,11 @@ Ray::Ray(int x, int y, float angle)
   
 }
 
+
+/**
+ * @brief Destructeur
+ * 
+ */
 Ray::~Ray()
 {
 }

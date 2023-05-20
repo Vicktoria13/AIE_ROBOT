@@ -19,6 +19,7 @@ RuleScreen::RuleScreen(){
     }
 
     fullBackground.setTexture(&backgroundTexture);
+    fullBackground.setScale(1,1);
 
     // chaine vide par defaut
     this->ProchainScreen = "";
@@ -37,7 +38,65 @@ void RuleScreen::drawScreens(sf::RenderWindow* window){
 
 void RuleScreen::handleEvent(){
 
-   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+
+        //on cherche le bouton acrif
+        for (size_t i = 0; i < vector_buttons.size(); i++)
+        {
+            if (i==vector_buttons.size()-1){
+                if (vector_buttons[i]->getIsActivated() == true){
+                    vector_buttons[i]->setFlagActivated(false);
+                    vector_buttons[0]->setFlagActivated(true);
+                }
+                break;
+            }
+            else{
+
+                if (vector_buttons[i]->getIsActivated() == true){
+             
+                    vector_buttons[i]->setFlagActivated(false);
+                    vector_buttons[i + 1]->setFlagActivated(true);
+                    
+
+                break;
+            }
+            }
+        }
+        
+   
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+        //on cherche le bouton acrif
+        for (size_t i = vector_buttons.size()-1; i >= 0; i--)
+        {
+            if (i==0){
+                if (vector_buttons[i]->getIsActivated() == true){
+
+                    vector_buttons[0]->setFlagActivated(false);
+                    vector_buttons[vector_buttons.size()-1]->setFlagActivated(true);
+                    break;
+                    
+                }
+                
+            }
+            else{
+
+                if (vector_buttons[i]->getIsActivated() == true){
+             
+                    vector_buttons[i]->setFlagActivated(false);
+                    vector_buttons[i - 1]->setFlagActivated(true);
+                    
+
+                break;
+            }
+            }
+        }
+        
+   
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
         for (auto& bouton : vector_buttons)
         {
             // on recherche celui qui est pressé : si on le trouve, on renvoit 1
@@ -48,10 +107,12 @@ void RuleScreen::handleEvent(){
                     this->Quit = true;
                 else {
                     this->ProchainScreen = bouton->getName(); // on donne le nom du nouveau screen via le nom du bouton donc ils doivent avoir le meme nom
+                    // soit "Play" soit "Quit"
                 }
             }
         }
     }
+
 }
 
 RuleScreen::~RuleScreen(){

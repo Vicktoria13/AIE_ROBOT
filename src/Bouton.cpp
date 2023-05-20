@@ -111,21 +111,15 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
 
 
 
-
-
-
-
-
-
+/**
+ * @brief Permet de savoir si le bouton est activé ie si l'utilisateur est dessus actuellement 
+ * 
+ * @return true si le bouton est activé
+ * @return false sinon
+ */
 bool Bouton::getIsActivated() const{
     return this->isActivated;
 }
-
-
-
-
-
-
 
 
 
@@ -166,6 +160,10 @@ void Bouton::drawButton(sf::RenderWindow& window){
 
 void Bouton::changeStateButton(){
     this->couleurBouton = couleurBoutonActive;
+}
+
+void Bouton::UnactivateButton(){
+    this->couleurBouton = sf::Color::Black;
 }
 
 
