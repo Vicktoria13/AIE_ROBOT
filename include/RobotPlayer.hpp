@@ -2,6 +2,7 @@
 #define ROBOTPLAYER_HPP
 
 #include "EntiteAffichable.hpp"
+#include "LifeBar.hpp"
 #include "Ray.hpp"
 #include "Arme.hpp"
 
@@ -58,6 +59,9 @@ private:
 
     //flag sur les skills
     bool capteur3D;
+
+    // Nombre de vies
+    LifeBar* _lifeBar;
    
 
 

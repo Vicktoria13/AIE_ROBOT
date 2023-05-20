@@ -25,8 +25,8 @@ GamePlay::GamePlay()
 
     Ajout_Ecran("Start", ecran_choix);
 
-    /* Ecran Plateau de jeu */
-    //Ajout_Ecran("Play",new PlateauJeu(&(ecran_choix->skills_joueurA), &(ecran_choix->skills_joueurB)));
+    //Ecran d'infos
+    Ajout_Ecran("Ready",new RuleScreen());
 
     /* Ecran Game Over */
     Ajout_Ecran("GameOver",new GameOverScreen());
@@ -106,11 +106,7 @@ int GamePlay::CheckFenetreChanges(){
 
                 this->EcranActuel = MapEcransDisponibles["Play"];
 
-                
-
-
-
-
+    
             }
             this->EcranActuel->setProchainScreen("");
             if (MapEcransDisponibles.find(newScreenName) == MapEcransDisponibles.end())
@@ -121,7 +117,7 @@ int GamePlay::CheckFenetreChanges(){
                         
 
             else { 
-
+                std::cout<<"On change d'ecran pour : "<<newScreenName<<std::endl;
                 this->EcranActuel = MapEcransDisponibles[newScreenName];
             }
             
@@ -247,7 +243,7 @@ void GamePlay::WaitPeriod() const
 {
     if (EcranActuel != nullptr)
     {
-       if (EcranActuel->getScreenName() == "Accueil" || EcranActuel->getScreenName() == "Start" ){
+       if (EcranActuel->getScreenName() == "Accueil" || EcranActuel->getScreenName() == "Start" || EcranActuel->getScreenName() == "Ready" ){
        
            sf::sleep(sf::seconds(0.12f));
         }

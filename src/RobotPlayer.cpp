@@ -59,11 +59,9 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name,st
     }
 
     // on cree l'arme
-    //if (name == "JoueurB")
-    //    this->_arme = new Arme("bazooka");
-   
 
-   // skills :
+    this->_arme = new Arme("bazooka");
+   
 
 
    // facteur 2 pour le joueur rapide
@@ -86,7 +84,9 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name,st
 
 
 
+    // lifeBAR
 
+    this->_lifeBar = new LifeBar(this->_name);
   
 }
 
@@ -137,6 +137,12 @@ void RobotPlayer::checkCollision(std::array<std::array<int, 15>, 15>* maze, sf::
                     }
 
                     else if ((*maze)[i][j]==1){
+                        this->_sprite.setPosition(previous->x, previous->y);
+                    }
+
+                    else if ((*maze)[i][j]==2){
+                        // on perd une vie
+                        this->_lifeBar->Lost();
                         this->_sprite.setPosition(previous->x, previous->y);
                     }
                  
@@ -195,13 +201,13 @@ void RobotPlayer::KeyBoardEventARROW(std::array<std::array<int, 15>, 15>* maze){
         // si on atteint le bord de l'écran, on ne peut plus aller plus loin
         checkCollision(maze, &previous);
 
-        /*
+        
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) ){
            this->_arme->addProjectile(this->_sprite.getPosition().x+this->_sprite.getGlobalBounds().width/2, 
                                        this->_sprite.getPosition().y+this->_sprite.getGlobalBounds().height/2, 
                                        this->angle_actuel);
         }
-        */
+        
     }
 
      
@@ -248,6 +254,12 @@ void RobotPlayer::KeyBoardEventZQSD(std::array<std::array<int, 15>, 15>* maze){
     checkCollision(maze, &previous);
 
     /*********TIR******************************/
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) ){
+           this->_arme->addProjectile(this->_sprite.getPosition().x+this->_sprite.getGlobalBounds().width/2, 
+                                       this->_sprite.getPosition().y+this->_sprite.getGlobalBounds().height/2, 
+                                       this->angle_actuel);
+        }
 
   
 
@@ -453,12 +465,16 @@ void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<i
     window->draw(_sprite);    
     multi_rayon(maze,angle_actuel,window);
 
-    //if(!_arme->estVide() && this->_name == "JoueurB"){
-     //  _arme->Tir(window,60);
-   // }
+    if(!_arme->estVide()){
+        _arme->Tir(window,60);
+   }
 
 
     draw3D(window);
+
+    // on affiche la lifeBar
+
+    this->_lifeBar->drawLifeBar(window);
    
 }
 

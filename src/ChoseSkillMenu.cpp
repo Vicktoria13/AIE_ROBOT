@@ -12,7 +12,7 @@ void ChoseSkillMenu::ajouterBouton(){
 
      
     //Boutons skills : du joueur A, devant etre alignés selon y
-    vector_buttons.push_back(new Bouton(1400, 900, 120, 80, "Play",  sf::Color(20,20,100,200),false));
+    vector_buttons.push_back(new Bouton(1400, 900, 120, 80, "Ready",  sf::Color(20,20,100,200),false));
     vector_buttons.push_back(new Bouton(1600, 900, 120, 80, "Quit",  sf::Color(100,20,20,200),false));
 
     int x_bouton = 350;
@@ -196,86 +196,82 @@ void ChoseSkillMenu::handleEvent()
                 
                 /*********** QUIT ********************************/
 
-                if (bouton->getName() == "Quit")
+                if (bouton->getName() == "Quit"){
                     this->Quit = true;
+                    std::cout<<"Vous avez quitté le jeu"<<std::endl;
+                }
 
 
                 /****************** SKILLS DU JOUEUR A ***************************/
 
-                else if (bouton->getName() == "Capteur 3D A" && nb_skills_A<2){
+                else {
 
-                    skills_joueurA["Capteur 3D"] = true;
-                    nb_skills_A++;
-                }
+                    if (bouton->getName() == "Capteur 3D A" && nb_skills_A < 2)
+                    {
 
+                        skills_joueurA["Capteur 3D"] = true;
+                        nb_skills_A++;
+                    }
 
-                else if (bouton->getName()=="Capteur distance A" && nb_skills_A<2){
-                    
-                    skills_joueurA["Capteur Ultrasons"] = true;
-                    nb_skills_A++;
+                    if (bouton->getName() == "Capteur distance A" && nb_skills_A < 2)
+                    {
 
-                }
+                        skills_joueurA["Capteur Ultrasons"] = true;
+                        nb_skills_A++;
+                    }
 
-                else if (bouton->getName()=="Vitesse A" && nb_skills_A<2){
-                    
-                    skills_joueurA["Vitesse rapide"] = true;
-                    nb_skills_A++;
+                    if (bouton->getName() == "Vitesse A" && nb_skills_A < 2)
+                    {
 
-                }
-
+                        skills_joueurA["Vitesse rapide"] = true;
+                        nb_skills_A++;
+                    }
 
                 /****************** SKILLS DU JOUEUR B ***************************/
 
-               
+                    if (bouton->getName() == "Capteur 3D B" && nb_skills_B < 2)
+                    {
 
-                else if (bouton->getName() == "Capteur 3D B" && nb_skills_B<2){
+                        skills_joueurB["Capteur 3D"] = true; // donner le skill au joueur A
+                        nb_skills_B++;
+                    }
 
-                    skills_joueurB["Capteur 3D"] = true; // donner le skill au joueur A
-                    nb_skills_B++;
-                }
+                    if (bouton->getName() == "Capteur distance B" && nb_skills_B < 2)
+                    {
 
-                else if (bouton->getName() == "Capteur distance B"  && nb_skills_B<2 ){
+                        skills_joueurB["Capteur Ultrasons"] = true; // donner le skill au joueur A
+                        nb_skills_B++;
+                    }
 
-                    skills_joueurB["Capteur Ultrasons"] = true; // donner le skill au joueur A
-                    nb_skills_B++;
-                }
+                    if (bouton->getName() == "Vitesse B" && nb_skills_B < 2)
+                    {
 
-                else if (bouton->getName() == "Vitesse B"  && nb_skills_B<2){
-
-                    skills_joueurB["Vitesse rapide"] = true; // donner le skill au joueur A
-                    nb_skills_B++;
-                }
+                        skills_joueurB["Vitesse rapide"] = true; // donner le skill au joueur A
+                        nb_skills_B++;
+                    }
 
                 /******** Pour valider et changer de fenetre************************/
 
-                else if (bouton->getName() == "Play" && nb_skills_A==2 && nb_skills_B==2){
-                    this->ProchainScreen = bouton->getName(); // on donne le nom du nouveau screen via le nom du bouton donc ils doivent avoir le meme nom
-                    AfficheInfosSkills();
-                    break;
+                    if (bouton->getName() == "Ready" && nb_skills_A == 2 && nb_skills_B == 2)
+                    {
+                        this->ProchainScreen = bouton->getName(); // on donne le nom du nouveau screen via le nom du bouton donc ils doivent avoir le meme nom
+                        AfficheInfosSkills();
+                        break;
+                    }
+
+                    else
+                    {
+                     
+                        // alors on affiche une boite de dialogue
+                        vector_talkbox.push_back(new Talkbox("2 skills par joueur !", 100, 830));
+                    }
+
+                    bouton->changeStateButton();
                 }
-
-                else{
-                    std::cout<<"Vous n'avez pas choisi le bon nombre de skills"<<std::endl;
-                    std::cout<<" Car vous avez choisi "<<nb_skills_A<<" skills pour le joueur A et "<<nb_skills_B<<" skills pour le joueur B"<<std::endl;
-
-                    //alors on affiche une boite de dialogue
-                    vector_talkbox.push_back(new Talkbox("2 skills par joueur !",100,830));
-
-
-                }
-
-
-
-                bouton->changeStateButton();
             }
         }
-    }
-
-
-  
-
 }
-
+}
     
 
 void ChoseSkillMenu::AfficheInfosSkills(){

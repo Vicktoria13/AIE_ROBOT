@@ -10,9 +10,6 @@ Arme::Arme(std::string name)
 
     //on s'assure que le tableau des projectiles est vide
     munitions.clear();
-
-
-
     
 }
 
@@ -36,13 +33,25 @@ Arme::~Arme()
 
 
 
-
+/**
+ * @brief Permet d'ajouter des projectiles dans le vecteur de projectiles
+ * 
+ * @param new_x position x du projectile
+ * @param new_y position y du projectile
+ * @param ang angle de tir
+ */
 void Arme::addProjectile(int new_x, int new_y,float ang){
    this->munitions.push_back(new Projectile(new_x,new_y,ang));
 }
 
 
 
+/**
+ * @brief permet de tirer avec l'arme, jusqu'a ce que le projectile touche un mur ou sorte de la fenetre
+ * 
+ * @param window fenetre de rendu
+ * @param taille_case taille d'une case
+ */
 void Arme::Tir(sf::RenderWindow* window, int taille_case){
     for (size_t i = 0; i < munitions.size(); i++)
     {

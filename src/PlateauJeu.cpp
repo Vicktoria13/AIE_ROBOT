@@ -7,9 +7,7 @@
  * 
  */
 void PlateauJeu::ajouterBouton(){
-    // en bas a droite
-    //MapBoutons["Quit"] = new Bouton(1500, 900, 100, 80, "Quit",  sf::Color(20,20,100,200),false);
-    //MapBoutons["Break"] = new Bouton(1700, 900, 100, 80, "Pause",  sf::Color(20,20,100,200),false);
+  
 }
 
 
@@ -243,14 +241,22 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
     rect1.setPosition(XX,0);
     rect2.setPosition(XX,CENTRE);
 
+    //on fait une bordure
+    sf::RectangleShape bordure(sf::Vector2f(dimensions.x,dimensions.y * 2));
+    bordure.setPosition(XX,0);
+    bordure.setFillColor(sf::Color::Transparent);
+    bordure.setOutlineColor(sf::Color::Red);
+    bordure.setOutlineThickness(5);
+
 
     //------couleur pour le ray cast : joueur 1 en haut
 
     rect1.setFillColor(sf::Color(135,206,235,255));
     rect2.setFillColor(sf::Color(20,89,128,255));
 
-    window->draw(rect1);
-    window->draw(rect2);
+    //window->draw(rect1);
+    //window->draw(rect2);
+    window->draw(bordure);
 
 
 
@@ -263,12 +269,17 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
     rect1.setPosition(XX,3*CENTRE + OFFSET_Y);
     rect2.setPosition(XX,2*CENTRE+ OFFSET_Y);
 
-    //------couleur pour le ray cast : joueur 1 en haut
+    bordure.setPosition(XX,2*CENTRE+ OFFSET_Y);
+    bordure.setFillColor(sf::Color::Transparent);
+    bordure.setOutlineColor(sf::Color::Yellow);
+    bordure.setOutlineThickness(5);
+
 
  
 
-    window->draw(rect1);
-    window->draw(rect2);
+    //window->draw(rect1);
+    //window->draw(rect2);
+    window->draw(bordure);
 }
 
 
@@ -346,63 +357,7 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
  */
 void PlateauJeu::handleEvent(){
 
-
-    /* Boutons */
-/*
-    if (!MapBoutons.empty()){
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        {
-            // Cas du play alors on prend le bouton a sa droite
-            if (MapBoutons["Break"]->getIsActivated() == true)
-            {
-
-                MapBoutons["Break"]->setFlagActivated(false);
-                MapBoutons["Quit"]->setFlagActivated(true);
-
-                std::cout << "Bouton play activé" << std::endl;
-            }
-
-            // sinon : on ne fait rien, car on ne peut pas aller plus loin a droite
-        }
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        {
-            // Cas du play alors on prend le bouton a sa droite
-            if (MapBoutons["Quit"]->getIsActivated() == true)
-            {
-
-                MapBoutons["Quit"]->setFlagActivated(false);
-                MapBoutons["Break"]->setFlagActivated(true);
-            }
-
-            // sinon : on ne fait rien, car on ne peut pas aller plus loin a gauche
-        }
-
-        // on verifie si la touche entrée est appuyée
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
-        {
-            for (auto &bouton : MapBoutons)
-            {
-                // on recherche celui qui est activé : si on le trouve, on renvoit 1
-                if (bouton.second->EnterPressed() == 1)
-                {
-                    // faire une fonction qui renvoie le nom du bouton pressé
-                    if (bouton.first == "Quit")
-                        // on quitte le jeu
-                        this->Quit = true;
-                    else
-                    {
-                        this->Quit = false;
-                        this->ProchainScreen = bouton.first; // on donne le nom du nouveau screen via le nom du bouton donc ils doivent avoir le meme nom
-                    }
-                }
-            }
-        }
-
-
-    }
-*/
+      
     /* Personnages */
 
     if (!characters.empty()){

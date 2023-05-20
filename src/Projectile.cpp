@@ -29,8 +29,9 @@ Projectile::Projectile(int x, int y, float ang ): _projectile(){
 int Projectile::Shot( sf::RenderWindow* window, int taille_case){
     
 
-    _projectile.move(20*cos(angle_shot),20*sin(angle_shot));
-    if (_projectile.getPosition().y < 0 ){
+    _projectile.move(50*cos(angle_shot),50*sin(angle_shot));
+    
+    if (_projectile.getPosition().y < 0 || _projectile.getPosition().y > 15*taille_case || _projectile.getPosition().x < 0 || _projectile.getPosition().x > 15*taille_case){
         return -1;
     }
     window->draw(_projectile); // Dessine le cercle dans la fenêtre de rendu
