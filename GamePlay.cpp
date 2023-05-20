@@ -1,4 +1,4 @@
-#include "GamePlay.hpp"
+#include "include/GamePlay.hpp"
 #include <iostream>
 
 
@@ -102,7 +102,7 @@ int GamePlay::CheckFenetreChanges(){
                 std::cout<<"On change d'ecran pour le plateau de jeu"<<std::endl;
                 Ajout_Ecran("Play",new PlateauJeu(&(menu_skills->skills_joueurA), &(menu_skills->skills_joueurB)));
 
-                
+                //on met l'ecran de jeu comme ecran actuel
 
                 this->EcranActuel = MapEcransDisponibles["Play"];
 

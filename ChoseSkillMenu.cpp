@@ -1,5 +1,5 @@
-#include "ChoseSkillMenu.hpp"
-#include "Screen.hpp"
+#include "include/ChoseSkillMenu.hpp"
+#include "include/Screen.hpp"
 
 void ChoseSkillMenu::ajouterBouton(){
 

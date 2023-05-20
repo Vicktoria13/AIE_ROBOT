@@ -1,4 +1,4 @@
-#include "Talkbox.hpp"
+#include "include/Talkbox.hpp"
 
 /**
  * @brief Constructeur d'une nouvelle boite de dialogue

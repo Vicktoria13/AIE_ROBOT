@@ -1,5 +1,5 @@
-#include "GamePlay.hpp"
-#include "WelcomeScreen.hpp"
+#include "include/GamePlay.hpp"
+#include "include/WelcomeScreen.hpp"
 #include <iostream>
 #include "SFML/Audio.hpp"
 int main()

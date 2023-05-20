@@ -1,5 +1,5 @@
-#include "WelcomeScreen.hpp"
-#include "Screen.hpp"
+#include "include/WelcomeScreen.hpp"
+#include "include/Screen.hpp"
 #include <iostream>
 
 // classe dérivée de Screen
