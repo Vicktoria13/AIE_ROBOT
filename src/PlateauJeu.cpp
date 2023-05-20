@@ -298,7 +298,7 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
   
 
 
-    window->clear();
+    //window->clear();
     DrawLabyrinthe(window);
     dessinerBoutons(window);
     drawCharacters(window);

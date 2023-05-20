@@ -17,7 +17,7 @@ Masque::Masque(float r1, float r2, int x1, int y1, int x2, int y2):player1(r1), 
     player1.setPosition(x1, y1);
     player2.setPosition(x2, y2);
 
-    this->_imageMasque.create(860, 860, sf::Color(30, 30, 30, 255));
+    this->_imageMasque.create(860, 860, sf::Color(50, 50, 50, 200));
 
 
 
