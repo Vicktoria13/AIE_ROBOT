@@ -2,29 +2,31 @@
 #include <iostream>
 
 
+
+
+/**
+ * @brief Constructeur d'une partie de jeu
+ * 
+ */
 GamePlay::GamePlay() 
 {
     /* on cree la fenetre de jeu !*/
-    fenetre = new sf::RenderWindow(sf::VideoMode(1920,1080), "Aie Robot!");
+    fenetre = new sf::RenderWindow(sf::VideoMode(1920,1080), "Aîe Robot Game");
     fenetre->setFramerateLimit(80);
 
     /* Ajout des ecrans*/
 
     /* Ecran d'accueil */
-    std::cout<<"ajout ecran accueil"<<std::endl;
     Ajout_Ecran("Accueil",new WelcomeScreen());
 
     /* Ecran Menu Choix Skills*/
-    std::cout<<"ajout ecran choix"<<std::endl;
     ChoseSkillMenu* ecran_choix = new ChoseSkillMenu();
+    this->menu_skills = ecran_choix;
 
-    std::cout<<"ajout ecran play"<<std::endl;
     Ajout_Ecran("Start", ecran_choix);
 
     /* Ecran Plateau de jeu */
-    std::cout<<"ajout ecran plateau"<<std::endl;
-    
-    Ajout_Ecran("Play",new PlateauJeu(&(ecran_choix->skills_joueurA), &(ecran_choix->skills_joueurB)));
+    //Ajout_Ecran("Play",new PlateauJeu(&(ecran_choix->skills_joueurA), &(ecran_choix->skills_joueurB)));
 
     /* Ecran Game Over */
     Ajout_Ecran("GameOver",new GameOverScreen());
@@ -41,7 +43,10 @@ GamePlay::GamePlay()
 }
 
 
-
+/**
+ * @brief Destructeur d'une partie de jeu
+ * 
+ */
 GamePlay::~GamePlay()
 {
     delete fenetre;
@@ -55,6 +60,12 @@ GamePlay::~GamePlay()
 }
 
 
+/**
+ * @brief 
+ * 
+ * @param name 
+ * @param ecran 
+ */
 void GamePlay::Ajout_Ecran(std::string name, Screen *ecran)
 {
     //EcransDisponibles.push_back(ecran);
@@ -79,11 +90,28 @@ int GamePlay::CheckFenetreChanges(){
         return -1;
     }
 
-    else {
+    else { // on change d'ecran
+
         std::string newScreenName = EcranActuel->getProchainScreen();
 
         if (newScreenName != "" && MapEcransDisponibles.empty() == false)
         {
+
+            if (newScreenName == "Play")
+            {
+                std::cout<<"On change d'ecran pour le plateau de jeu"<<std::endl;
+                Ajout_Ecran("Play",new PlateauJeu(&(menu_skills->skills_joueurA), &(menu_skills->skills_joueurB)));
+
+                
+
+                this->EcranActuel = MapEcransDisponibles["Play"];
+
+                
+
+
+
+
+            }
             this->EcranActuel->setProchainScreen("");
             if (MapEcransDisponibles.find(newScreenName) == MapEcransDisponibles.end())
             {
@@ -92,9 +120,9 @@ int GamePlay::CheckFenetreChanges(){
             }
                         
 
-            else {
+            else { 
+
                 this->EcranActuel = MapEcransDisponibles[newScreenName];
-                std::cout<<"changement d'ecran pour "<<newScreenName<<std::endl;
             }
             
 

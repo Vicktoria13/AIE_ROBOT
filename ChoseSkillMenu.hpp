@@ -37,8 +37,9 @@ private:
 
 public:
     //map de skill
-        std::map<std::string, bool> skills_joueurA;
-        std::map<std::string, bool> skills_joueurB;
+    std::map<std::string, bool> skills_joueurA;
+    std::map<std::string, bool> skills_joueurB;
+
 
     ChoseSkillMenu();
     ~ChoseSkillMenu();
@@ -50,6 +51,10 @@ public:
 
     /*****infos******/
     void AfficheInfosSkills();
+
+    /*****getters******/
+    std::map<std::string, bool> getSkills_joueurA(){return this->skills_joueurA;}
+    std::map<std::string, bool> getSkills_joueurB(){return this->skills_joueurB;}
 
     
    

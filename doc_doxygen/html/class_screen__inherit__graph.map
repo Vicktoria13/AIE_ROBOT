@@ -1,0 +1,7 @@
+<map id="Screen" name="Screen">
+<area shape="rect" id="node1" title=" " alt="" coords="259,5,326,32"/>
+<area shape="rect" id="node2" href="$class_chose_skill_menu.html" title="Ecran ou on pourra choisir les skills pour chaque joueur." alt="" coords="5,80,132,107"/>
+<area shape="rect" id="node3" href="$class_game_over_screen.html" title=" " alt="" coords="157,80,293,107"/>
+<area shape="rect" id="node4" href="$class_plateau_jeu.html" title=" " alt="" coords="317,80,407,107"/>
+<area shape="rect" id="node5" href="$class_welcome_screen.html" title=" " alt="" coords="432,80,559,107"/>
+</map>

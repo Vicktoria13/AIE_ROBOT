@@ -1,0 +1,5 @@
+<map id="PlateauJeu" name="PlateauJeu">
+<area shape="rect" id="node1" title=" " alt="" coords="5,171,96,197"/>
+<area shape="rect" id="node2" href="$class_screen.html" title=" " alt="" coords="17,95,84,121"/>
+<area shape="rect" id="node3" href="$class_bouton.html" title="Construit des boutons cliquables." alt="" coords="17,5,85,32"/>
+</map>

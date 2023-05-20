@@ -42,18 +42,6 @@ WelcomeScreen::WelcomeScreen()
 
     fullBackground.setTexture(&backgroundTexture);
 
-     // On ajoute le titre
-
-    if(!this->fontTitle.loadFromFile("Assets/ccwild.ttf")){
-        throw("ERROR FONT LOAD");}
-
-
-    Title.setFont(fontTitle);
-    Title.setPosition(550,80);
-    Title.setCharacterSize(80);
-
-    Title.setString("Aie Robot Game");
-
     // chaine vide par defaut
     this->ProchainScreen = "";
     
@@ -78,19 +66,8 @@ WelcomeScreen::WelcomeScreen()
 
 void WelcomeScreen::drawScreens(sf::RenderWindow* window){
                
-
-                window->clear();
-                // d'abord le fond
-
                 window->draw(fullBackground);
-
-    
-
-                // puis les boutons
                 dessinerBoutons(window);
-
-                // puis les boites de dialogue
-
         }
 
 

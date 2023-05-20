@@ -16,7 +16,7 @@ void ChoseSkillMenu::ajouterBouton(){
     vector_buttons.push_back(new Bouton(1600, 900, 120, 80, "Quit",  sf::Color(100,20,20,200),false));
 
     int x_bouton = 350;
-    int y_bouton = 100;
+    int y_bouton = 70;
 
     sf::Color color_bouton(150,0,0,255);
 
@@ -67,18 +67,7 @@ ChoseSkillMenu::ChoseSkillMenu(){
     fullBackground.setTexture(&backgroundTexture);
     fullBackground.setScale(1,1);
 
-     // On ajoute le titre
 
-    if(!this->fontTitle.loadFromFile("Assets/ccwild.ttf")){
-        throw("ERROR FONT LOAD");}
-
-
-    Title.setFont(fontTitle);
-    Title.setPosition(370,60);
-    Title.setCharacterSize(65);
-    Title.setString("Choisissez 2 skills par joueur");
-
-    
     this->ProchainScreen = "";
     this->Quit = false; // on ne quitte pas par defaut
 

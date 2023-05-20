@@ -30,8 +30,10 @@ private:
 
     std::map<std::string,Screen*> MapEcransDisponibles;
     Screen* EcranActuel;
-    // ptr unique pour ecran actuel
-    //std::unique_ptr<Screen> EcranActuel;
+
+    /** Les skills de chaque player */
+
+    ChoseSkillMenu* menu_skills;
 
   
     

@@ -20,14 +20,14 @@ Talkbox::Talkbox(std::string text, int pos_x, int pos_y){
 
     // texte : il doit etre centré dans la boite de dialogue
     _text.setString(text);
-    if(!_font.loadFromFile("Assets/ccwild.ttf")){
+    if(!_font.loadFromFile("Assets/arcade.ttf")){
         throw("ERROR FONT LOAD");}
 
 
     _text.setFont(_font);
 
     _text.setPosition(pos_x+85,pos_y+50);
-    _text.setCharacterSize(40);
+    _text.setCharacterSize(25);
     _text.setFillColor(sf::Color::White);
 
 

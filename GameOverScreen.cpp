@@ -17,8 +17,7 @@
 void GameOverScreen::ajouterBouton(){
 
 
-    // Bouton Quit en rouge
-    //MapBoutons["Quit"] = new Bouton(1300, 800, 200, 100, "Quit",  sf::Color(100,20,20,200),false);
+   vector_buttons.push_back(new Bouton(1650, 900, 150, 70, "Quit",  sf::Color(100,20,20,200),false));
 
         
 }
@@ -39,17 +38,6 @@ GameOverScreen::GameOverScreen(){
 
     fullBackground.setTexture(&backgroundTexture);
 
-     // On ajoute le titre
-
-    if(!this->fontTitle.loadFromFile("Assets/ccwild.ttf")){
-        throw("ERROR FONT LOAD");}
-
-
-    Title.setFont(fontTitle);
-    Title.setPosition(580,80);
-    Title.setCharacterSize(80);
-    Title.setString("Fin du jeu !");
-
     // chaine vide par defaut
     this->ProchainScreen = "";
     this->ScreenName = "GameOver";
@@ -61,7 +49,7 @@ GameOverScreen::GameOverScreen(){
 
 void GameOverScreen::drawScreens(sf::RenderWindow* window){
     window->draw(fullBackground);
-    window->draw(Title);
+    dessinerBoutons(window);
     
 }
 
@@ -70,20 +58,21 @@ void GameOverScreen::drawScreens(sf::RenderWindow* window){
 
 void GameOverScreen::handleEvent(){
 
-   /* if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
-        for (auto& bouton : MapBoutons)
+   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+        for (auto& bouton : vector_buttons)
         {
             // on recherche celui qui est pressé : si on le trouve, on renvoit 1
-            if (bouton.second->EnterPressed()==1){
+            if (bouton->EnterPressed()==1){
                 // faire une fonction qui renvoie le nom du bouton pressé 
-                if (bouton.first == "Quit")
+                if (bouton->getName() == "Quit")
                     // on quitte le jeu
                     this->Quit = true;
-             
+                else {
+                    this->ProchainScreen = bouton->getName(); // on donne le nom du nouveau screen via le nom du bouton donc ils doivent avoir le meme nom
+                }
             }
         }
     }
-    */
 }
 
 GameOverScreen::~GameOverScreen(){

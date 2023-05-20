@@ -75,7 +75,7 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
     
     // on charge une police
     
-    if (!this->police.loadFromFile("Assets/ccwild.ttf"))
+    if (!this->police.loadFromFile("Assets/arcade.ttf"))
     {
         std::cout << "erreur chargement police" << std::endl;
     } 
@@ -92,7 +92,7 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
     
     this->texteBouton.setFont(this->police);
     this->texteBouton.setFillColor(sf::Color::White);
-    this->texteBouton.setCharacterSize(25);
+    this->texteBouton.setCharacterSize(19);
     this->texteBouton.setString(text);
     
     // on centre le texte dans le bouton

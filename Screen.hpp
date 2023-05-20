@@ -70,23 +70,6 @@ public:
         
 }
 
-/*
-    void dessinerBoutons(sf::RenderWindow* window){
-        for (auto& bouton : MapBoutons)
-                {
-                    
-                    if (bouton.second->getIsActivated() == true ){
-                        
-                        bouton.second->drawContoursBoutton(*window);
-                        
-                    }
-
-                    else if (bouton.second->getIsActivated() == false){
-                        bouton.second->drawButton(*window);
-                    }
-                }
-    }
-*/
     void dessinerBoutons(sf::RenderWindow* window){
         for (auto& bouton : vector_buttons)
         {

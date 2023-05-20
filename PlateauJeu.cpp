@@ -67,9 +67,25 @@ PlateauJeu::PlateauJeu(std::map<std::string, bool>* skills_joueurA,std::map<std:
     // Le masque de vision
     this->count_frames = 0;
 
-    float rayon_par_defaut = 35.0;
+  
+    float rayon_par_defaut = 30.0;
+    float rayon_joueurA, rayon_joueurB;
+
+    if (skills_joueurA->at("Capteur Ultrasons") == true){
+        rayon_joueurA = 2*rayon_par_defaut;
+    }
+    else{
+        rayon_joueurA = rayon_par_defaut;
+    }
+
+    if (skills_joueurB->at("Capteur Ultrasons") == true){
+        rayon_joueurB = 2*rayon_par_defaut;
+    }
+    else{
+        rayon_joueurB = rayon_par_defaut;
+    }
     
-    this->masque2D = new Masque(rayon_par_defaut,rayon_par_defaut,characters.at("JoueurA")->getPositionX(),characters.at("JoueurA")->getPositionY(),
+    this->masque2D = new Masque(rayon_joueurA,rayon_joueurB,characters.at("JoueurA")->getPositionX(),characters.at("JoueurA")->getPositionY(),
     characters.at("JoueurB")->getPositionX(),characters.at("JoueurB")->getPositionY());
 
     //texture lumiere

@@ -11,7 +11,7 @@
 #define NB_RAYONS (int)((PI-2*ANGLE_FOCAL)/VARIATION_ANGLE) -120
 //define pour le déplacement
 #define  vitesse_angulaire 0.15
-#define  vitesse_deplacement 15
+#define  vitesse_deplacement 30
 
 #define nb_cases 15
 //define pour l'affichage 3D
@@ -37,7 +37,7 @@ private:
     int jaugeVie;
     int nb_munitions;
 
-    int nb_pixels_deplacement;
+    int vitesse_player;
 
     int limite_deplacement_x;
     int limite_deplacement_y;
@@ -55,6 +55,10 @@ private:
 
     //arme
     Arme* _arme;
+
+    //flag sur les skills
+    bool capteur3D;
+   
 
 
 

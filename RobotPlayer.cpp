@@ -19,7 +19,6 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name,st
 
     this->jaugeVie = 100;
     this->nb_munitions = 10;
-    this->nb_pixels_deplacement = 15;
 
     this->positionX = x;
     this->positionY = y;
@@ -63,6 +62,30 @@ RobotPlayer::RobotPlayer(int x, int y, int max_x, int max_y, std::string name,st
     //if (name == "JoueurB")
     //    this->_arme = new Arme("bazooka");
    
+
+   // skills :
+
+
+   // facteur 2 pour le joueur rapide
+   if (skills_joueur->at("Vitesse rapide") == true){
+       this->vitesse_player = vitesse_deplacement;
+   }
+
+   else{
+       this->vitesse_player = vitesse_deplacement/(2);
+   }
+
+   //capteur 3D pour la raycasting
+   if (skills_joueur->at("Capteur 3D") == true){
+       this->capteur3D = true;
+   }
+
+   else{
+       this->capteur3D = false;
+   }
+
+
+
 
   
 }
@@ -148,38 +171,30 @@ void RobotPlayer::KeyBoardEventARROW(std::array<std::array<int, 15>, 15>* maze){
     if (sf::Keyboard::isKeyPressed){
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
-            // this->_sprite.move(-nb_pixels_deplacement,0);
             this->angle_actuel = this->angle_actuel + vitesse_angulaire;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
-            // this->_sprite.move(nb_pixels_deplacement,0);
             this->angle_actuel = this->angle_actuel - vitesse_angulaire;
         }
 
         // on suit la direction du rayon central
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
-            // this->_sprite.move(0,-nb_pixels_deplacement);
-            this->_sprite.move(vitesse_deplacement * cos(this->angle_actuel),
-                               vitesse_deplacement * sin(this->angle_actuel));
+            this->_sprite.move(vitesse_player * cos(this->angle_actuel),
+                               vitesse_player * sin(this->angle_actuel));
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
-            // this->_sprite.move(0,nb_pixels_deplacement);
-            this->_sprite.move(-vitesse_deplacement * cos(this->angle_actuel),
-                               -vitesse_deplacement * sin(this->angle_actuel));
+            this->_sprite.move(-vitesse_player * cos(this->angle_actuel),
+                               -vitesse_player * sin(this->angle_actuel));
         }
 
         // si on atteint le bord de l'écran, on ne peut plus aller plus loin
-
-
-
         checkCollision(maze, &previous);
 
-        // si on appuie sur 0
         /*
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) ){
            this->_arme->addProjectile(this->_sprite.getPosition().x+this->_sprite.getGlobalBounds().width/2, 
@@ -218,14 +233,14 @@ void RobotPlayer::KeyBoardEventZQSD(std::array<std::array<int, 15>, 15>* maze){
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
-        this->_sprite.move(vitesse_deplacement * cos(this->angle_actuel),
-                           vitesse_deplacement * sin(this->angle_actuel));
+        this->_sprite.move(vitesse_player * cos(this->angle_actuel),
+                           vitesse_player * sin(this->angle_actuel));
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
-        this->_sprite.move(-vitesse_deplacement * cos(this->angle_actuel),
-                           -vitesse_deplacement * sin(this->angle_actuel));
+        this->_sprite.move(-vitesse_player * cos(this->angle_actuel),
+                           -vitesse_player * sin(this->angle_actuel));
     }
 
     // si on atteint le bord de l'écran, on ne peut plus aller plus loin
@@ -342,12 +357,12 @@ void RobotPlayer::multi_rayon(std::array<std::array<int, 15>, 15>* maze,float ra
 
 
 /**
- * @brief Affiche les rayons du robot
+ * @brief Affiche les projections de chaque rayons
  * 
- * @param window 
- * @param haut 
- * @param larg 
- * @param x 
+ * @param window fenetre de rendu
+ * @param haut hauteur du rectangle
+ * @param larg largeur du rectangle
+ * @param x coordonnee x du rectangle
  */
 void RobotPlayer::draw3D_rect(sf::RenderWindow* window, int haut, int larg, int x, bool isAFlag) const{
     
@@ -393,36 +408,34 @@ void RobotPlayer::draw3D_rect(sf::RenderWindow* window, int haut, int larg, int 
 
 void RobotPlayer::draw3D(sf::RenderWindow* window) const {
 
+    if (capteur3D == true){
+        int i;
+        int hauteur = 0;
+        int x = 0;
 
-    int i;
-    int hauteur=0;
-    int x=0;
+        bool FlagSeen;
 
-    bool FlagSeen;
+        for (i = 0; i < NB_RAYONS; i++)
+        {
 
-    
-    for(i=0;i<NB_RAYONS;i++){
+            if (longueur_rayon[i] == -500)
+            {
+                FlagSeen = true;
+                hauteur = HM - 300;
+            }
+            else if (longueur_rayon[i] != 0)
+            {
+                FlagSeen = false;
 
-       
-        if (longueur_rayon[i]==-500){
-            FlagSeen = true;
-            hauteur = HM-300;
+                hauteur = (int)(60 * HM) / (longueur_rayon[i]); // thales
+                if (hauteur > HM)
+                    hauteur = HM; // on ne peut pas dépasser la hauteur max
 
-        }
-        else if (longueur_rayon[i]!=0){
-            FlagSeen = false;
-
-            hauteur = (int)(60 * HM) / (longueur_rayon[i]); // thales
-            if (hauteur > HM)
-                hauteur = HM; // on ne peut pas dépasser la hauteur max
-
+                x = i * LARGEUR;
+            }
             x = i * LARGEUR;
-
+            draw3D_rect(window, hauteur, LARGEUR, x - 1, FlagSeen);
         }
-        x = i * LARGEUR;
-        draw3D_rect(window, hauteur, LARGEUR, x-1,FlagSeen);
-
-
     }
 
 }
@@ -446,33 +459,6 @@ void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<i
 
 
     draw3D(window);
-
-    //affiche la taille du vecteur
-    
-    
-   
-   
-
-    /*
-    int facteur_retrecicement =2 ;
-
-    sf::RectangleShape spriteBound(sf::Vector2f(_sprite.getGlobalBounds().width, _sprite.getGlobalBounds().height));
-    spriteBound.setPosition(_sprite.getPosition().x, _sprite.getPosition().y);
-    spriteBound.setFillColor(sf::Color(255,0,0,128));
-
-    window->draw(spriteBound);
-
-    
-
-    sf::RectangleShape Cropped;
-    Cropped.setSize(sf::Vector2f(_sprite.getGlobalBounds().width/facteur_retrecicement, _sprite.getGlobalBounds().height/facteur_retrecicement));
-    // il faut le centrer, donc on prend la moitié de la taille du sprite
-    Cropped.setPosition(_sprite.getPosition().x + _sprite.getGlobalBounds().width/4, _sprite.getPosition().y + _sprite.getGlobalBounds().height/4);
-    Cropped.setFillColor(sf::Color(0,255,0,50));
-
-    window->draw(Cropped);
-    */
-
    
 }
 

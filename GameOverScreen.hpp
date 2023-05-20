@@ -11,8 +11,7 @@ class GameOverScreen : public Screen{
 
     private:
 
-        sf::Text Title;
-        sf::Font fontTitle;
+    
         /* le fond d"'écran de l'accueil */
 
         sf::RectangleShape fullBackground;
