@@ -30,6 +30,9 @@ Talkbox::Talkbox(std::string text, int pos_x, int pos_y){
     _text.setCharacterSize(25);
     _text.setFillColor(sf::Color::Yellow);
 
+    // boolen qui permet de savoir si la boite de dialogue est affichée ou non
+    Affiche = false;
+
 
 }
 
@@ -42,8 +45,11 @@ Talkbox::Talkbox(std::string text, int pos_x, int pos_y){
 
 void Talkbox::AfficheTalkBox(sf::RenderWindow* window){
 
-    window->draw(_talkbox);
-    window->draw(_text);
+    if (Affiche == true){
+        window->draw(_talkbox);
+        window->draw(_text);
+    }
+    
    
 }
 

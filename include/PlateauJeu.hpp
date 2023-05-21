@@ -16,7 +16,10 @@
 #define TEMPS_EVEIL 10
 
 
-
+/**
+ * @brief Ecran de jeu
+ * 
+ */
 
 class PlateauJeu: public Screen
 {
@@ -50,7 +53,7 @@ public:
     void handleEvent();
     void ajouterBouton();
 
-    
+ 
 
     
 

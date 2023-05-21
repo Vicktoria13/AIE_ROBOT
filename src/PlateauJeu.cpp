@@ -109,6 +109,9 @@ PlateauJeu::PlateauJeu(std::map<std::string, bool>* skills_joueurA,std::map<std:
     }
     fullBackground.setTexture(&backgroundTexture);
 
+    //boites de dialogue
+    vector_talkbox.push_back(new Talkbox("Lumiere dans l'arene !", 100, 850)); // 1ere position
+
 
 
 }
@@ -255,7 +258,7 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
     bordure.setPosition(XX,0);
     bordure.setFillColor(sf::Color::Transparent);
     bordure.setOutlineColor(sf::Color::Red);
-    bordure.setOutlineThickness(5);
+    bordure.setOutlineThickness(6);
 
 
     //------couleur pour le ray cast : joueur 1 en haut
@@ -280,8 +283,8 @@ void PlateauJeu::FondBlanc(sf::RenderWindow* window) const{
 
     bordure.setPosition(XX,2*CENTRE+ OFFSET_Y);
     bordure.setFillColor(sf::Color::Transparent);
-    bordure.setOutlineColor(sf::Color::Yellow);
-    bordure.setOutlineThickness(5);
+    bordure.setOutlineColor(sf::Color::Blue);
+    bordure.setOutlineThickness(6);
 
 
  
@@ -304,6 +307,7 @@ void PlateauJeu::drawCharacters(sf::RenderWindow* window) {
         perso.second->DisplayEntite(window,&labyrinthe);
     }
 }
+
 
 
 
@@ -333,20 +337,33 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
 
 
     
-    if (count_frames>=SEUIL_FRAME-15){
+    // on affiche la lumiere 20 frames avant le temps d'avertir le joueur
+    if (count_frames>=SEUIL_FRAME-20){
         
         window->draw(_spriteLight);
+        vector_talkbox[0]->setAffiche(true);
+        vector_talkbox[0]->AfficheTalkBox(window);
+        
     }
+
+    // Si on est dans l'intervalle d'eveil, on efface donc le masque
     if (count_frames>=SEUIL_FRAME && count_frames < SEUIL_FRAME+TEMPS_EVEIL){
 
         // on efface une premiere fois 
          masque2D->eraseMasque();
+         
+         
 
     }
     
+    //le reste du temps, on affiche le masque
     else if (count_frames != SEUIL_FRAME  ){
         masque2D->updateMasque();
         masque2D->dessineMasque(window);
+        vector_talkbox[0]->setAffiche(false);
+        
+        
+        
         
     }
 
@@ -356,6 +373,10 @@ void PlateauJeu::drawScreens(sf::RenderWindow* window){
             count_frames = 0;}
     
 
+    //
+    for (auto& talkbox : vector_talkbox){
+        talkbox->AfficheTalkBox(window);
+    }
     
 
 }
@@ -372,10 +393,19 @@ void PlateauJeu::handleEvent(){
 
     if (!characters.empty()){
 
-    if (characters["JoueurA"]->UpdateEvent("JoueurA", &labyrinthe)==1 || characters["JoueurB"]->UpdateEvent("JoueurB",&labyrinthe)==1){
-        this->ProchainScreen = "GameOver";
-    }
-    
+            int val_checkA = characters.at("JoueurA")->UpdateEvent("JoueurA", &labyrinthe);
+            int val_checkB = characters.at("JoueurB")->UpdateEvent("JoueurB", &labyrinthe);
+
+            if (val_checkA == 1 || val_checkB == 1)
+            {
+             std::cout <<" prise du drapeau"<<std::endl;
+             this->ProchainScreen = "GameOver";
+            }
+
+            else if (val_checkA==2 || val_checkB==2){
+                // plus de vie pour un des joueurs
+                this->ProchainScreen = "GameOver";
+            }
     }
 
 

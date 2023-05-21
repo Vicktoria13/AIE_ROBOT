@@ -33,24 +33,9 @@ void Masque::eraseMasque(){
 
 void Masque::updateMasque(){
 
-//Au lieu de tout update, on n'update qu'autour de la position des joueurs
-/*
-for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosition().x + player1.getRadius(); x++)
-{
-    for (int y = player1.getPosition().y - player1.getRadius(); y < player1.getPosition().y + player1.getRadius(); y++)
-    {
 
-    }
-}
-*/
     	 // Itération sur chaque pixel de l'image
-    this->_imageMasque.create(860, 860, sf::Color::Black);
-
-    int nb= 0;
-    float alpha = 0;
-
-
- 
+    this->_imageMasque.create(860, 860, sf::Color(10, 20, 20, 255));
     int rayon1 = player1.getRadius();
     int rayon2 = player2.getRadius();
 
@@ -75,7 +60,6 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
     {
         for (int y = y2- rayon2 ;y < player2.getPosition().y +rayon2; y=y+2)
         {
-            nb++;
             if (std::sqrt(std::pow(x - x2, 2) + std::pow(y - y2, 2)) < rayon2)
             {
                 _imageMasque.setPixel(x, y, sf::Color::Transparent);
@@ -87,122 +71,25 @@ for (int x = player1.getPosition().x - player1.getRadius(); x < player1.getPosit
     }
     
 
-/*
-
-    
-    for (int x = 65; x < 830; x=x+5)
-    {
-        for (int y = 65; y < 830; y=y+5)
-        {
-        
-    
-            // Récupération de la couleur du pixel
-             nb++;
-            // Vérification si le pixel est dans un des cercles avec la distance euclidienne
-            if (std::sqrt(std::pow(x -x1, 2) + std::pow(y - y1, 2)) < rayon1 ||
-				std::sqrt(std::pow(x - x2, 2) + std::pow(y - y2, 2)) < rayon2)
-            {
-				_imageMasque.setPixel(x, y, sf::Color::Transparent);
-                _imageMasque.setPixel(x, y - 1, sf::Color::Transparent);
-                _imageMasque.setPixel(x, y - 2, sf::Color::Transparent);
-                _imageMasque.setPixel(x, y - 3, sf::Color::Transparent);
-                _imageMasque.setPixel(x, y - 4, sf::Color::Transparent);
-                _imageMasque.setPixel(x, y - 5, sf::Color::Transparent);
-
-                 _imageMasque.setPixel(x - 1, y, sf::Color::Transparent);
-                _imageMasque.setPixel(x - 1, y-1, sf::Color::Transparent);
-                _imageMasque.setPixel(x - 1, y-2, sf::Color::Transparent);
-                _imageMasque.setPixel(x - 1, y-3, sf::Color::Transparent);
-                _imageMasque.setPixel(x - 1, y-4, sf::Color::Transparent);
-
-                _imageMasque.setPixel(x - 2, y, sf::Color::Transparent);
-                _imageMasque.setPixel(x - 2, y-1, sf::Color::Transparent);
-                _imageMasque.setPixel(x - 2, y-2, sf::Color::Transparent);
-                _imageMasque.setPixel(x - 2, y-3, sf::Color::Transparent);
-                _imageMasque.setPixel(x - 2, y-4, sf::Color::Transparent);
-                _imageMasque.setPixel(x - 2, y-5, sf::Color::Transparent);
-
-               
-                
-
-            }
-
-			else{
-
-                int dmax = 60; float alpha ;
-
-				int distance1 = std::sqrt(std::pow(x - x1, 2) + std::pow(y - y1, 2));
-				int distance2 = std::sqrt(std::pow(x - x2, 2) + std::pow(y - y2, 2));
-
-				if (distance1 < distance2){
-					// cerlce 1 est plus proche
-					
-					alpha = (255/dmax)*(std::sqrt(std::pow(x - x1, 2) + std::pow(y - y1, 2)) - rayon1);
-                }
-
-                else{
-
-                    alpha = (255/dmax)*(std::sqrt(std::pow(x - x2, 2) + std::pow(y - y2, 2)) - rayon2);
-                }
-
-                if (alpha > 255)
-                {
-                    alpha = 255; // noir
-                     
-                }
-
-                else if (alpha < 0){
-                    alpha = 0;
-                }
-                    // Transparence
-                 _imageMasque.setPixel(x, y, sf::Color(0, 0, 0, alpha));
-                 
-                 _imageMasque.setPixel(x, y - 1, sf::Color(0, 0, 0, alpha));
-                 _imageMasque.setPixel(x, y - 2, sf::Color(0, 0, 0, alpha));
-                 _imageMasque.setPixel(x, y - 3, sf::Color(0, 0, 0, alpha));
-                 _imageMasque.setPixel(x, y - 4, sf::Color(0, 0, 0, alpha));
-                 _imageMasque.setPixel(x, y - 5, sf::Color(0, 0, 0, alpha));
-
-                
-                 _imageMasque.setPixel(x - 1, y, sf::Color(0, 0, 0, alpha));
-                _imageMasque.setPixel(x - 1, y-1, sf::Color(0, 0, 0, alpha));
-                _imageMasque.setPixel(x - 1, y-2, sf::Color(0, 0, 0, alpha));
-                _imageMasque.setPixel(x - 1, y-3, sf::Color(0, 0, 0, alpha));
-                _imageMasque.setPixel(x - 1, y-4, sf::Color(0, 0, 0, alpha));
-
-                _imageMasque.setPixel(x - 2, y, sf::Color(0, 0, 0, alpha));
-                _imageMasque.setPixel(x - 2, y-1, sf::Color(0, 0, 0, alpha));
-                _imageMasque.setPixel(x - 2, y-2, sf::Color(0, 0, 0, alpha));
-                _imageMasque.setPixel(x - 2, y-3, sf::Color(0, 0, 0, alpha));
-                _imageMasque.setPixel(x - 2, y-4, sf::Color(0, 0, 0, alpha));
-                
-          
-
-          
-            }
-            
-        }
-
-            
-        }
-        */
-        
-    
-
     this->_textureMasque.loadFromImage(_imageMasque);
     this->_spriteMasque.setTexture(_textureMasque);
 
-    //std::cout<<"nb de pixels  : "<<nb<<std::endl;
 
 }
 
 
-
+/**
+ * @brief Dessine le masque sur la fenêtre, centré sur le joueur
+ * 
+ * @param window 
+ */
 void Masque::dessineMasque(sf::RenderWindow* window) const
 {
     
     window->draw(_spriteMasque);
 }
+
+
 
 /**
  * @brief Destructeur du masque
@@ -216,22 +103,48 @@ Masque::~Masque()
     
 }
 
+
+/**
+ * @brief Permet de modifier le rayon du joueur 
+ * 
+ * @param r rayon du joueur
+ */
 void Masque::setPlayer1Radius(float r)
 {
     player1.setRadius(r);
 }
 
+
+
+/**
+ * @brief Permet de modifier le rayon du joueur 2
+ * 
+ * @param r rayon du joueur 2
+ */
 void Masque::setPlayer2Radius(float r)
 {
     player2.setRadius(r);
 }
 
 
+/**
+ * @brief Permet de modifier la position du joueur 1
+ * 
+ * @param x position x du joueur 1
+ * @param y position y du joueur 1
+ */
 void Masque::setPlayer1(int x, int y)
 {
     player1.setPosition( x,  y);
 }
 
+
+/**
+ * @brief Permet de modifier la position du joueur 2
+ * 
+ * @param x position x du joueur 2
+ * @param y position y du joueur 2
+ */
 void Masque::setPlayer2(int x, int y)
 {
     player2.setPosition( x,  y);

@@ -82,6 +82,7 @@ RobotPlayer::RobotPlayer(int x, int y, std::string name,std::map<std::string, bo
     // lifeBAR
 
     this->_lifeBar = new LifeBar(this->_name);
+    this->IsAlive = true; // par defaut, le joueur est vivant
 
     std::cout<<"fin construction robot joueur"<<std::endl;
   
@@ -91,6 +92,7 @@ RobotPlayer::RobotPlayer(int x, int y, std::string name,std::map<std::string, bo
 
 /**
  * @brief Check les collisions joueur-murs-tours
+ * Permet aussi de savoir si un joueur a ramassé un drapeau ennemi : si oui, on met ADrapeau a true
  * 
  * @param maze le labyrinthe 2D
  * @param previous les coordonnees precedentes du joueur avant de se deplacer
@@ -141,6 +143,7 @@ void RobotPlayer::checkCollision(std::array<std::array<int, 15>, 15>* maze, sf::
                         // on perd une vie
                         this->_lifeBar->Lost();
                         this->_sprite.setPosition(previous->x, previous->y);
+
                     }
                  
                 }
@@ -268,10 +271,14 @@ void RobotPlayer::KeyBoardEventZQSD(std::array<std::array<int, 15>, 15>* maze){
  * @brief Met a jour les attributs du robot en fonction des evenements
  * 
  * @param NameIfPlayer pour distinguer les joueurs et donc les evenements clavier
+ * @return i0 si le joueur n'a pas ramasse le drapeau et qu'il n'est pas mort
+ *          1 si le joueur a ramasse le drapeau
+ *         2 si le joueur est mort
  */
 int RobotPlayer::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int, 15>, 15>* maze){
 
-    if (this->ADrapeau == false){
+    // si le joueur n'a pas ramasse le drapeau et qu'il n'est pas mort
+    if (this->ADrapeau == false && this->_lifeBar->getNoLife() == false){
 
         if (NameIfPlayer == "JoueurA")
         {
@@ -287,9 +294,15 @@ int RobotPlayer::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int,
         return 0;
     }
 
+    else if (this->ADrapeau == true){
+        return 1;
+    }
 
-    // retourne 1 si un joueur a gagné
-    return 1;
+    else  {
+        return 2;
+    }
+
+
     
 }
 
@@ -491,10 +504,9 @@ RobotPlayer::~RobotPlayer()
   
     longueur_rayon.clear();
     rayons.clear();
-    if (_name == "JoueurB")
-    {
-        //delete _arme;
-    }
+    delete _arme;
+
+    delete _lifeBar;
     
     std::cout<<"fin destruction robot joueur"<<std::endl;
 }

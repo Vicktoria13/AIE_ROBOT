@@ -40,6 +40,8 @@ protected:
 
     bool ADrapeau ;
 
+    bool IsAlive;
+
     //pour le raycasting
     std::vector<Ray*> rayons;
     float variation_angle ;

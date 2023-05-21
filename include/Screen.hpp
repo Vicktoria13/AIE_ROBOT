@@ -27,6 +27,7 @@ protected:
    sf::RectangleShape fullBackground;
    sf::Texture backgroundTexture;
 
+   std::vector<Talkbox*> vector_talkbox;
    
 
 

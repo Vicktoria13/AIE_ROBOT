@@ -56,6 +56,13 @@ void LifeBar::drawLifeBar(sf::RenderWindow* window)
 }
 
 
+/**
+ * @brief Décrémente la vie de la barre de vie
+ * et verifie que le joueur n'est pas mort
+ * @return NoLife mis a vrai si le joueur n'a plus de vie
+ *          false sinon
+ * 
+ */
 void LifeBar::Lost(){
     this->value--;
     if (this->value==0){

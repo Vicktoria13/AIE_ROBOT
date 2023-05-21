@@ -18,7 +18,7 @@ void ChoseSkillMenu::ajouterBouton(){
     int x_bouton = 350;
     int y_bouton = 70;
 
-    sf::Color color_bouton(150,0,0,255);
+    sf::Color color_bouton(255,20,100,200);
 
     vector_buttons.push_back(new Bouton(450, 550, x_bouton, y_bouton, "Capteur 3D A", color_bouton,false));
     vector_buttons.push_back(new Bouton(950, 550, x_bouton, y_bouton, "Capteur distance A", color_bouton,false));
@@ -194,6 +194,8 @@ void ChoseSkillMenu::handleEvent()
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+        
+
         for (auto& bouton : vector_buttons)
         {
             // on recherche celui qui est pressé : si on le trouve, on renvoit 1
@@ -220,6 +222,8 @@ void ChoseSkillMenu::handleEvent()
                         nb_skills_A++;
                         bouton->changeStateButton();
                         capteur3DA = true;
+
+                        
                     }
 
                     else if (bouton->getName() == "Capteur 3D A" && capteur3DA == true)
@@ -337,6 +341,7 @@ void ChoseSkillMenu::handleEvent()
 
                             // alors on affiche une boite de dialogue
                             vector_talkbox.push_back(new Talkbox("2 skills par joueur !", 100, 850));
+                            vector_talkbox[0]->setAffiche(true);
                         }
                     }
 

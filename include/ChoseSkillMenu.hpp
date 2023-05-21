@@ -15,13 +15,13 @@
 
 class ChoseSkillMenu: public Screen
 {
-private:
+protected:
     
 
         int nb_skills_A;
         int nb_skills_B;
 
-        std::vector<Talkbox*> vector_talkbox;
+        
 
         bool capteur3DA ;
         bool capteur3DB ;
