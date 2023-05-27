@@ -96,9 +96,8 @@ Bouton::Bouton(float x, float y, float width, float height, std::string text, sf
     this->texteBouton.setString(text);
     
     // on centre le texte dans le bouton
-    texteBouton.setPosition(formeBouton.getPosition() + 
-    sf::Vector2f((formeBouton.getSize().x - texteBouton.getGlobalBounds().width) / 2.f, 
-    (formeBouton.getSize().y - texteBouton.getGlobalBounds().height) / 2.f));
+    texteBouton.setPosition(formeBouton.getPosition() + sf::Vector2f((formeBouton.getSize().x - texteBouton.getGlobalBounds().width) / 2.f, 
+                            (formeBouton.getSize().y - texteBouton.getGlobalBounds().height) / 2.f));
 
 
     couleurBoutonActive = sf::Color(150, 50, 150, 200);

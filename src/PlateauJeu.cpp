@@ -173,7 +173,7 @@ void PlateauJeu::DrawLabyrinthe(sf::RenderWindow* window) {
 
             // on place les tours
             else if (labyrinthe[i][j] == 2){
-                rectangle.setFillColor(sf::Color(200, 255, 255, 200));  
+                rectangle.setFillColor(sf::Color(150, 50, 150, 128));  
 
                 if (!characters.empty())
                 {

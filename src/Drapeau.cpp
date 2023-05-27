@@ -15,7 +15,6 @@ Drapeau::Drapeau()
     /* on l'associe au sprite*/
     _sprite.setTexture(_texture);
     _sprite.scale(1, 1);
-   // _sprite.setPosition(360, 180);
 
     this->estPositionne = false; // par defaut, lorsque l'on crée une tour ennemi, elle n'est pas positionnée
     this->isCollected = false; // par defaut, le drapeau n'est pas collecté encore

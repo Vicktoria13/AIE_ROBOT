@@ -139,6 +139,19 @@ void Masque::setPlayer1(int x, int y)
 }
 
 
+
+float Masque::getPlayer1Radius() const
+{
+    return player1.getRadius();
+}
+
+float Masque::getPlayer2Radius() const
+{
+    return player2.getRadius();
+}
+
+
+
 /**
  * @brief Permet de modifier la position du joueur 2
  * 

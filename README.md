@@ -27,10 +27,9 @@ Pour obtenir le repository, il faut de cloner le repository git et compiler le c
 Le jeu est le suivant :
 
 C'est un jeu à deux joueurs, chaque joueur étant représenté par un robot. Le but, inspiré du simple jeu __Capture the Flag !__ est donc de recupérer le drapeau
-ennemi avant lui. Un joueur perd si le second joueur remplit l'objectif avant lui.
+ennemi avant lui. Un joueur perd si le second joueur remplit l'objectif avant lui, ou bien si son ennemi n'a plus de bar de vie.
  
 Le jeu se déroule dans une carte 2D vu du dessus. Les robots sont contrôlables en direction via les touches du clavier.
-
 
 Les flèches directionnelles Gauche et Droite permettent de naviger dans les écrans. La touche **Entrée** permet de valider un choix.
 
@@ -38,13 +37,13 @@ Ainsi, leur but est de naviguer dans une carte 2D jusqu'au drapeau ennemi et le 
 
 - Les "murs", qui se dressent sur leur chemins
 
-- des robots aimants : si le joueur est pris dans leur champ magnétique, alors ils sont bloqués pendant un certain temps.
+- des robots ennemies : si le joueur touches les robots ennemies, alors ils perdent des points de vie !
 
-![lab](Images/maze.png)
+![lab](Images/fonctionnement.gif)
 
 ## Choix des options de chaque robot
 
-Au démarrage du jeu, chaque joueur doit selectionner 2 options (= skills). Il a le choix entre :
+Au démarrage du jeu, chaque joueur doit selectionner 3 options (= skills). Il a le choix entre :
 
 - Capteur Ultrasons : cette option permet au robot de se doter d'un capteur a ultrasons , lui permettant donc d'avoir une plus grande
 vision du plateau 2D.

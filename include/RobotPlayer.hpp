@@ -5,6 +5,7 @@
 #include "LifeBar.hpp"
 #include "Ray.hpp"
 
+
 #define PI 3.14159265
 #define ANGLE_FOCAL PI/3
 #define VARIATION_ANGLE 0.005

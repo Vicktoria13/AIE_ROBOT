@@ -37,6 +37,13 @@ public:
     void setPlayer1Radius(float r);
     void setPlayer2Radius(float r);
 
+    /*getters*/
+
+    float getPlayer1Radius() const;
+    float getPlayer2Radius() const;
+
+    
+
     
 };
 
