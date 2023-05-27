@@ -51,7 +51,7 @@ PlateauJeu::PlateauJeu(std::map<std::string, bool>* skills_joueurA,std::map<std:
 
 
     // liste des entités affichables : JoueurA en bas a gauche, JoueurB en haut a droite
-    characters["JoueurA"] = new RobotPlayer(100,700,"JoueurA",skills_joueurA);
+    characters["JoueurA"] = new RobotPlayer(200,750,"JoueurA",skills_joueurA);
     characters["JoueurB"] = new RobotPlayer(700,100,"JoueurB",skills_joueurB);
 
     characters["EnnemiA"] = new TourEnnemi();
@@ -396,23 +396,16 @@ void PlateauJeu::handleEvent(){
             int val_checkA = characters.at("JoueurA")->UpdateEvent("JoueurA", &labyrinthe);
             int val_checkB = characters.at("JoueurB")->UpdateEvent("JoueurB", &labyrinthe);
 
-            // un des joueurs a pris le drapeau
-            if (val_checkA == 1 || val_checkB == 1)
+            // A a trouvé le drapeau de B OU B est mort : A a gagné
+            if (val_checkA == 1 || val_checkB == 2)
             {
-             this->ProchainScreen = "GameOver";
-
-             if (val_checkA == 1){
-                this->_winner_name = "JoueurA";
-             }
-
-             else if (val_checkB == 1){
-                this->_winner_name = "JoueurB";
-             }
+             this->ProchainScreen = "GameOver_B_Lost";
             }
 
-            else if (val_checkA==2 || val_checkB==2){
+            // B a trouvé le drapeau de A OU A est mort : B a gagné            
+            else if (val_checkA==2 || val_checkB==1){
                 // plus de vie pour un des joueurs
-                this->ProchainScreen = "GameOver";
+                this->ProchainScreen = "GameOver_A_Lost";
             }
     }
 

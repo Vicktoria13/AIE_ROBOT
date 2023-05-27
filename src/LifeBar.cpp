@@ -9,7 +9,7 @@ LifeBar::LifeBar(std::string NameJoueur)
         begin_x = 50;
         begin_y = 950;
 
-        color_bar = sf::Color::Blue;
+        color_bar = sf::Color(255,0,0,128);
 
     }
 
@@ -19,8 +19,7 @@ LifeBar::LifeBar(std::string NameJoueur)
         begin_x = 500;
         begin_y = 950;
 
-        color_bar = sf::Color::Red;
-
+        color_bar = sf::Color(0,0,255,128);
     }
 
     
@@ -30,6 +29,7 @@ LifeBar::LifeBar(std::string NameJoueur)
     // on dessine le cadre
     this->_lifeBar.setSize(sf::Vector2f(LIFE_BAR_WIDTH, LIFE_BAR_HEIGHT)); // 100x10
     this->_lifeBar.setFillColor(sf::Color::Transparent);
+
     if (NameJoueur=="JoueurA")
         this->_lifeBar.setOutlineColor(sf::Color::Blue);
     else

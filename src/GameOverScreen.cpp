@@ -23,7 +23,7 @@ void GameOverScreen::ajouterBouton(){
 }
 
 
-GameOverScreen::GameOverScreen(){
+GameOverScreen::GameOverScreen(std::string winner_letter){
     this->ajouterBouton();
 
     // On met le bouton le plus en haut a gauche a true
@@ -31,9 +31,19 @@ GameOverScreen::GameOverScreen(){
    
 
     fullBackground.setSize(sf::Vector2f(1920,1080));
-    if (!backgroundTexture.loadFromFile("../Assets/win.jpg"))
-    {
-        throw std::runtime_error("Erreur lors du chargement de l'image");
+    if (winner_letter=="A"){
+
+        if (!backgroundTexture.loadFromFile("../Assets/Player1_win.png"))
+        {
+            throw std::runtime_error("Erreur lors du chargement de l'image");
+        }
+    }
+
+    else {
+        if (!backgroundTexture.loadFromFile("../Assets/Player2_win.png"))
+        {
+            throw std::runtime_error("Erreur lors du chargement de l'image");
+        }
     }
 
     fullBackground.setTexture(&backgroundTexture);

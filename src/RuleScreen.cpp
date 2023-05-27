@@ -4,8 +4,8 @@
 void RuleScreen::ajouterBouton(){
 
 
-    vector_buttons.push_back(new Bouton(1400, 900, 120, 80, "Play",  sf::Color(20,20,100,200),false));
-    vector_buttons.push_back(new Bouton(1600, 900, 120, 80, "Quit",  sf::Color(100,20,20,200),false));
+    vector_buttons.push_back(new Bouton(1600, 900, 100, 70, "Play",  sf::Color(20,20,100,200),false));
+    vector_buttons.push_back(new Bouton(1730, 900, 100, 70, "Quit",  sf::Color(100,20,20,200),false));
 }
 
 RuleScreen::RuleScreen(){

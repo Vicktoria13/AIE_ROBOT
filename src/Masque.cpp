@@ -47,18 +47,18 @@ void Masque::updateMasque(){
 
     // on itere sur tous les pixels se situant dans un cercle de rayon rayon1 et rayon2 autour des joueurs
     
-    for (int x = x1 - rayon1; x < x1 + rayon1; x=x+2)
+    for (int x = x1 - rayon1; x < x1 + rayon1; x++)
     {
-        for (int y = y1- rayon1 ;y < y1+rayon1; y=y+2)
+        for (int y = y1- rayon1 ;y < y1+rayon1; y++)
         {
           _imageMasque.setPixel(x, y, sf::Color::Transparent);
             
     }
     }
 
-    for (int x = x2 - rayon2; x < player2.getPosition().x + rayon2; x=x+2)
+    for (int x = x2 - rayon2; x < player2.getPosition().x + rayon2; x++)
     {
-        for (int y = y2- rayon2 ;y < player2.getPosition().y +rayon2; y=y+2)
+        for (int y = y2- rayon2 ;y < player2.getPosition().y +rayon2; y++)
         {
             if (std::sqrt(std::pow(x - x2, 2) + std::pow(y - y2, 2)) < rayon2)
             {

@@ -29,7 +29,7 @@ GamePlay::GamePlay()
     Ajout_Ecran("Ready",new RuleScreen());
 
     /* Ecran Game Over */
-    Ajout_Ecran("GameOver",new GameOverScreen());
+    //Ajout_Ecran("GameOver",new GameOverScreen());
 
 
 
@@ -100,15 +100,23 @@ int GamePlay::CheckFenetreChanges(){
 
             if (newScreenName == "Play")
             {
-                Ajout_Ecran("Play",new PlateauJeu(&(menu_skills->skills_joueurA), &(menu_skills->skills_joueurB)));
-                this->EcranActuel = MapEcransDisponibles["Play"];
+                Ajout_Ecran(newScreenName,new PlateauJeu(&(menu_skills->skills_joueurA), &(menu_skills->skills_joueurB)));
+                this->EcranActuel = MapEcransDisponibles[newScreenName];
 
             }
 
+            else if (newScreenName=="GameOver_B_Lost"){
+                Ajout_Ecran(newScreenName,new GameOverScreen("A"));
+                this->EcranActuel = MapEcransDisponibles[newScreenName];
+            }
+
+            else if (newScreenName=="GameOver_A_Lost"){
+                Ajout_Ecran(newScreenName,new GameOverScreen("B"));
+                this->EcranActuel = MapEcransDisponibles[newScreenName];
+            }
+
            
-            else
-            
-            if (MapEcransDisponibles.find(newScreenName) == MapEcransDisponibles.end())
+            else if (MapEcransDisponibles.find(newScreenName) == MapEcransDisponibles.end())
             {
                 throw std::runtime_error("Ecran non trouve");
             }

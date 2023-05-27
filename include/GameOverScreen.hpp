@@ -14,7 +14,7 @@ class GameOverScreen : public Screen{
         std::string winner_name;
 
     public:
-        GameOverScreen();
+        GameOverScreen(std::string winner_letter);
 
         ~GameOverScreen();
 

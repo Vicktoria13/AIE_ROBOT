@@ -1,7 +1,7 @@
 #ifndef LIFE_HPP
 #define LIFE_HPP
 
-#define MAX_LIFE 60
+#define MAX_LIFE 25
 #define MIN_LIFE 0
 
 #define LIFE_BAR_WIDTH 200

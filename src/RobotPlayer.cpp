@@ -22,14 +22,26 @@ RobotPlayer::RobotPlayer(int x, int y, std::string name,std::map<std::string, bo
 
 
     /* On charge la texture */
-    if (!_texture.loadFromFile("../Assets/robotPlayer.png"))
-    {
-        throw std::runtime_error("Erreur lors du chargement de l'image");
+
+    if (name == "JoueurA"){
+
+        if (!_texture.loadFromFile("../Assets/robotPlayer.png"))
+        {
+            throw std::runtime_error("Erreur lors du chargement de l'image");
+        }
+        _sprite.scale(0.1, 0.1);
+    }
+
+    else{
+        if (!_texture.loadFromFile("../Assets/RobotPlayer2.png"))
+        {
+            throw std::runtime_error("Erreur lors du chargement de l'image");
+        }
+        _sprite.scale(1.2, 1.2);
     }
 
     /* on l'associe au sprite*/
     _sprite.setTexture(_texture);
-    _sprite.scale(0.1, 0.1);
     _sprite.setPosition(x, y);
 
     
@@ -126,12 +138,10 @@ void RobotPlayer::checkCollision(std::array<std::array<int, 15>, 15>* maze, sf::
 
                     if ((*maze)[i][j]==3 && this->_name=="JoueurB"){
                         this->ADrapeau = true;
-                        std::cout<<"Joueur B a ramasse le drapeau"<<std::endl;
                     }
 
                     else if ((*maze)[i][j]==4 && this->_name=="JoueurA"){
                         this->ADrapeau = true;
-                        std::cout<<"Joueur A a ramasse le drapeau"<<std::endl;
                     }
 
                     else if ((*maze)[i][j]==1){
@@ -140,7 +150,7 @@ void RobotPlayer::checkCollision(std::array<std::array<int, 15>, 15>* maze, sf::
 
 
                     // on touche une tour ennemi et donc on perd une vie
-                    else if ((*maze)[i][j]==2){
+                    else if ((*maze)[i][j]==2 ){
                         
                      
                             this->_lifeBar->Lost();
@@ -267,7 +277,7 @@ void RobotPlayer::KeyBoardEventZQSD(std::array<std::array<int, 15>, 15>* maze){
  * @param NameIfPlayer pour distinguer les joueurs et donc les evenements clavier
  * @return i0 si le joueur n'a pas ramasse le drapeau et qu'il n'est pas mort
  *          1 si le joueur a ramasse le drapeau
- *         2 si le joueur est mort
+ *          2 si le joueur est mort
  */
 int RobotPlayer::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int, 15>, 15>* maze){
 
