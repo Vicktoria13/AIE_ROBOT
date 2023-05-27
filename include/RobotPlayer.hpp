@@ -4,7 +4,6 @@
 #include "EntiteAffichable.hpp"
 #include "LifeBar.hpp"
 #include "Ray.hpp"
-#include "Arme.hpp"
 
 #define PI 3.14159265
 #define ANGLE_FOCAL PI/3
@@ -51,16 +50,14 @@ protected:
     //int longueur_rayon[NB_RAYONS];
     std::vector<int> longueur_rayon;
 
-    //arme
-    Arme* _arme;
 
     //flag sur les skills
     bool capteur3D;
 
     // Nombre de vies
     LifeBar* _lifeBar;
-   
 
+    
 
 
 public:
@@ -87,6 +84,8 @@ public:
 
     void draw3D_rect(sf::RenderWindow* window, int haut, int larg, int x,bool isAFlag) const;
     void draw3D(sf::RenderWindow* window) const;
+
+   
 };
 
 #endif

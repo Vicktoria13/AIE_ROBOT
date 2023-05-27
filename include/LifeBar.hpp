@@ -1,11 +1,11 @@
 #ifndef LIFE_HPP
 #define LIFE_HPP
 
-#define MAX_LIFE 5
+#define MAX_LIFE 60
 #define MIN_LIFE 0
 
-#define LIFE_BAR_WIDTH 100
-#define LIFE_BAR_HEIGHT 10
+#define LIFE_BAR_WIDTH 200
+#define LIFE_BAR_HEIGHT 40
 
 #include <SFML/Graphics.hpp>
 
@@ -14,8 +14,6 @@ class LifeBar
 private:
 
     int value; // entre 0 et MAX_LIFE
-    sf::Texture _textureLifeBar;
-    sf::Sprite _spriteLifeBar;
 
     sf::RectangleShape _lifeBar;
 
@@ -24,6 +22,7 @@ private:
 
     bool NoLife;
     
+    sf::Color color_bar;
 
 public:
     LifeBar(std::string NameJoueur);

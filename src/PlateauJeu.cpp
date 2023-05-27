@@ -396,10 +396,18 @@ void PlateauJeu::handleEvent(){
             int val_checkA = characters.at("JoueurA")->UpdateEvent("JoueurA", &labyrinthe);
             int val_checkB = characters.at("JoueurB")->UpdateEvent("JoueurB", &labyrinthe);
 
+            // un des joueurs a pris le drapeau
             if (val_checkA == 1 || val_checkB == 1)
             {
-             std::cout <<" prise du drapeau"<<std::endl;
              this->ProchainScreen = "GameOver";
+
+             if (val_checkA == 1){
+                this->_winner_name = "JoueurA";
+             }
+
+             else if (val_checkB == 1){
+                this->_winner_name = "JoueurB";
+             }
             }
 
             else if (val_checkA==2 || val_checkB==2){

@@ -35,6 +35,8 @@ private:
     sf::Sprite _spriteLight;
     sf::Texture _textureLight;
 
+    std::string _winner_name;
+
 
 
 public:

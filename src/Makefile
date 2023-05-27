@@ -12,8 +12,8 @@ EXES= main
 
 all: $(EXES)
 
-main: main.o GamePlay.o WelcomeScreen.o Bouton.o ChoseSkillMenu.o PlateauJeu.o Screen.o RobotPlayer.o TourEnnemi.o Drapeau.o Masque.o GameOverScreen.o Ray.o Arme.o Projectile.o Talkbox.o LifeBar.o RuleScreen.o
-	$(LD) $(LDFLAGS) main.o GamePlay.o  WelcomeScreen.o Bouton.o ChoseSkillMenu.o  Screen.o PlateauJeu.o RobotPlayer.o TourEnnemi.o Drapeau.o Masque.o GameOverScreen.o Ray.o Arme.o Projectile.o Talkbox.o  LifeBar.o RuleScreen.o -o main $(LIBS)
+main: main.o GamePlay.o WelcomeScreen.o Bouton.o ChoseSkillMenu.o PlateauJeu.o Screen.o RobotPlayer.o TourEnnemi.o Drapeau.o Masque.o GameOverScreen.o Ray.o Projectile.o Talkbox.o LifeBar.o RuleScreen.o
+	$(LD) $(LDFLAGS) main.o GamePlay.o  WelcomeScreen.o Bouton.o ChoseSkillMenu.o  Screen.o PlateauJeu.o RobotPlayer.o TourEnnemi.o Drapeau.o Masque.o GameOverScreen.o Ray.o Projectile.o Talkbox.o  LifeBar.o RuleScreen.o -o main $(LIBS)
 
 main.o: main.cpp ../include/GamePlay.hpp
 	$(CPP) $(CPPFLAGS) -c main.cpp
@@ -43,7 +43,7 @@ GameOverScreen.o : GameOverScreen.cpp ../include/GameOverScreen.hpp ../include/B
 Bouton.o : Bouton.cpp ../include/Bouton.hpp
 	$(CPP) $(CPPFLAGS) -c Bouton.cpp
 
-RobotPlayer.o : RobotPlayer.cpp ../include/RobotPlayer.hpp ../include/Arme.hpp ../include/Ray.hpp ../include/EntiteAffichable.hpp ../include/LifeBar.hpp
+RobotPlayer.o : RobotPlayer.cpp ../include/RobotPlayer.hpp ../include/Ray.hpp ../include/EntiteAffichable.hpp ../include/LifeBar.hpp
 	$(CPP) $(CPPFLAGS) -c RobotPlayer.cpp
 
 TourEnnemi.o : TourEnnemi.cpp ../include/TourEnnemi.hpp ../include/EntiteAffichable.hpp
@@ -58,8 +58,6 @@ Masque.o : Masque.cpp ../include/Masque.hpp
 Ray.o : Ray.cpp ../include/Ray.hpp
 	$(CPP) $(CPPFLAGS) -c Ray.cpp
 
-Arme.o : Arme.cpp ../include/Arme.hpp ../include/Projectile.hpp
-	$(CPP) $(CPPFLAGS) -c Arme.cpp
 
 Projectiles.o : Projectiles.cpp ../include/Projectile.hpp
 	$(CPP) $(CPPFLAGS) -c Projectiles.cpp

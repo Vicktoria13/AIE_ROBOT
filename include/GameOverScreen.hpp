@@ -11,6 +11,8 @@ class GameOverScreen : public Screen{
 
     private:
 
+        std::string winner_name;
+
     public:
         GameOverScreen();
 

@@ -52,7 +52,8 @@ GamePlay::~GamePlay()
     delete fenetre;
     for (auto it = MapEcransDisponibles.begin(); it != MapEcransDisponibles.end(); ++it)
     {
-        delete it->second;
+        if(it->second != nullptr)
+            delete it->second;
     }
     
     MapEcransDisponibles.clear();
@@ -102,19 +103,20 @@ int GamePlay::CheckFenetreChanges(){
                 Ajout_Ecran("Play",new PlateauJeu(&(menu_skills->skills_joueurA), &(menu_skills->skills_joueurB)));
                 this->EcranActuel = MapEcransDisponibles["Play"];
 
-
-    
             }
+
+           
+            else
             
             if (MapEcransDisponibles.find(newScreenName) == MapEcransDisponibles.end())
             {
-                std::cout<<"Ecran non trouve : "<<newScreenName<<std::endl;
                 throw std::runtime_error("Ecran non trouve");
             }
+
+
                         
 
             else { 
-                std::cout<<"On change d'ecran pour : "<<newScreenName<<std::endl;
                 this->EcranActuel = MapEcransDisponibles[newScreenName];
             }
             

@@ -53,9 +53,7 @@ RobotPlayer::RobotPlayer(int x, int y, std::string name,std::map<std::string, bo
         this->longueur_rayon.push_back(0);
     }
 
-    // on cree l'arme
-
-    this->_arme = new Arme("bazooka");
+  
    
 
 
@@ -85,6 +83,7 @@ RobotPlayer::RobotPlayer(int x, int y, std::string name,std::map<std::string, bo
     this->IsAlive = true; // par defaut, le joueur est vivant
 
     std::cout<<"fin construction robot joueur"<<std::endl;
+
   
 }
 
@@ -139,10 +138,15 @@ void RobotPlayer::checkCollision(std::array<std::array<int, 15>, 15>* maze, sf::
                         this->_sprite.setPosition(previous->x, previous->y);
                     }
 
+
+                    // on touche une tour ennemi et donc on perd une vie
                     else if ((*maze)[i][j]==2){
-                        // on perd une vie
-                        this->_lifeBar->Lost();
-                        this->_sprite.setPosition(previous->x, previous->y);
+                        
+                     
+                            this->_lifeBar->Lost();
+                            this->_sprite.setPosition(previous->x, previous->y);
+                        }
+                  
 
                     }
                  
@@ -155,7 +159,7 @@ void RobotPlayer::checkCollision(std::array<std::array<int, 15>, 15>* maze, sf::
 
 
   
-}
+
 
 
 
@@ -175,6 +179,8 @@ void RobotPlayer::KeyBoardEventARROW(std::array<std::array<int, 15>, 15>* maze){
 
 
     if (sf::Keyboard::isKeyPressed){
+
+        
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
             this->angle_actuel = this->angle_actuel + vitesse_angulaire;
@@ -202,12 +208,7 @@ void RobotPlayer::KeyBoardEventARROW(std::array<std::array<int, 15>, 15>* maze){
         checkCollision(maze, &previous);
 
         
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) ){
-           this->_arme->addProjectile(this->_sprite.getPosition().x+this->_sprite.getGlobalBounds().width/2, 
-                                       this->_sprite.getPosition().y+this->_sprite.getGlobalBounds().height/2, 
-                                       this->angle_actuel);
-        }
-        
+  
     }
 
      
@@ -253,13 +254,6 @@ void RobotPlayer::KeyBoardEventZQSD(std::array<std::array<int, 15>, 15>* maze){
 
     checkCollision(maze, &previous);
 
-    /*********TIR******************************/
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) ){
-           this->_arme->addProjectile(this->_sprite.getPosition().x+this->_sprite.getGlobalBounds().width/2, 
-                                       this->_sprite.getPosition().y+this->_sprite.getGlobalBounds().height/2, 
-                                       this->angle_actuel);
-        }
 
   
 
@@ -475,9 +469,6 @@ void RobotPlayer::DisplayEntite(sf::RenderWindow* window,std::array<std::array<i
     window->draw(_sprite);    
     multi_rayon(maze,angle_actuel,window);
 
-    if(!_arme->estVide()){
-        _arme->Tir(window,60);
-   }
 
 
     draw3D(window);
@@ -504,7 +495,6 @@ RobotPlayer::~RobotPlayer()
   
     longueur_rayon.clear();
     rayons.clear();
-    delete _arme;
 
     delete _lifeBar;
     

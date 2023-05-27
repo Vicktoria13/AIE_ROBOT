@@ -1,61 +1,77 @@
 #include "../include/LifeBar.hpp"
-
+#include <iostream>
 LifeBar::LifeBar(std::string NameJoueur)
 {
     this->value = MAX_LIFE;
 
+    
     if (NameJoueur=="JoueurA"){
-
-        if (!this->_textureLifeBar.loadFromFile("../Assets/heartLife.png"))
-            throw "ERROR LIFE BAR LOAD";
-
         begin_x = 50;
         begin_y = 950;
 
-        this->_spriteLifeBar.scale(0.15, 0.15);
+        color_bar = sf::Color::Blue;
+
     }
 
     else {
-        if (!this->_textureLifeBar.loadFromFile("../Assets/Diamond.png"))
-            throw "ERROR LIFE BAR LOAD";
 
+       
         begin_x = 500;
         begin_y = 950;
 
-        this->_spriteLifeBar.scale(0.35, 0.35);
+        color_bar = sf::Color::Red;
+
     }
 
-    this->_spriteLifeBar.setTexture(this->_textureLifeBar);
-
-    this->_lifeBar.setSize(sf::Vector2f(_spriteLifeBar.getGlobalBounds().width * MAX_LIFE + 20, _spriteLifeBar.getGlobalBounds().height+20));
     
 
+    
+
+    // on dessine le cadre
+    this->_lifeBar.setSize(sf::Vector2f(LIFE_BAR_WIDTH, LIFE_BAR_HEIGHT)); // 100x10
+    this->_lifeBar.setFillColor(sf::Color::Transparent);
+    if (NameJoueur=="JoueurA")
+        this->_lifeBar.setOutlineColor(sf::Color::Blue);
+    else
+        this->_lifeBar.setOutlineColor(sf::Color::Red);
+
+
+    this->_lifeBar.setOutlineThickness(2);
+    this->_lifeBar.setPosition(begin_x, begin_y);
+    
     NoLife = false;
    
 }
 
 
 
+
+/**
+ * @brief Dessine la barre de vie
+ * Le but est d''avvoir un cadre avec des rectangles de taille fine qui disparaisse
+ * 
+ * @param window 
+ */
 void LifeBar::drawLifeBar(sf::RenderWindow* window)
 {
+    
+    //on definit la taille de chaque rectangle
+    float width = LIFE_BAR_WIDTH / MAX_LIFE;
+    int height = LIFE_BAR_HEIGHT;
 
-    // on dessine le cadre
 
-    this->_lifeBar.setFillColor(sf::Color::Transparent);
-    this->_lifeBar.setOutlineColor(sf::Color::Red);
-    this->_lifeBar.setOutlineThickness(2);
-    this->_lifeBar.setPosition(begin_x, begin_y);
-
-    window->draw(this->_lifeBar);
-
+    //on rempli la barre de vie avec des rectangles
     for (int i = 0; i < this->value; i++)
     {
-        this->_spriteLifeBar.setPosition(begin_x + i * 40, begin_y);
-        window->draw(this->_spriteLifeBar);
+        sf::RectangleShape rectangle(sf::Vector2f(10, height));
+        rectangle.setFillColor(color_bar);
+        rectangle.setPosition(begin_x + i * width, begin_y);
+
+        window->draw(rectangle);
     }
+
+    
 }
-
-
 /**
  * @brief Décrémente la vie de la barre de vie
  * et verifie que le joueur n'est pas mort
