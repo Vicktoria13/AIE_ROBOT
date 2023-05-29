@@ -1,6 +1,10 @@
 #include "../include/RuleScreen.hpp"
 
 
+/**
+ * @brief Ajoute les boutons de l'ecran
+ * 
+ */
 void RuleScreen::ajouterBouton(){
 
 
@@ -8,6 +12,11 @@ void RuleScreen::ajouterBouton(){
     vector_buttons.push_back(new Bouton(1730, 900, 100, 70, "Quit",  sf::Color(100,20,20,200),false));
 }
 
+
+/**
+ * @brief Constructeur par defaut de la classe RuleScreen
+ * 
+ */
 RuleScreen::RuleScreen(){
     this->ajouterBouton();
     getTheMostLeftButton();
@@ -30,12 +39,24 @@ RuleScreen::RuleScreen(){
 
 }
 
+
+
+/**
+ * @brief Methode virtuelle pour dessiner l'ecran et ses boutons
+ * 
+ * @param window 
+ */
 void RuleScreen::drawScreens(sf::RenderWindow* window){
     window->draw(fullBackground);
     dessinerBoutons(window);
     
 }
 
+
+/**
+ * @brief Gere les evenements de l'ecran clavier
+ * 
+ */
 void RuleScreen::handleEvent(){
 
    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
@@ -115,6 +136,11 @@ void RuleScreen::handleEvent(){
 
 }
 
+
+/**
+ * @brief Destructeur de la classe RuleScreen
+ * 
+ */
 RuleScreen::~RuleScreen(){
     for (auto& bouton : vector_buttons)
     {

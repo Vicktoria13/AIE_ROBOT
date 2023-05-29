@@ -6,7 +6,6 @@
 #include "RobotPlayer.hpp"
 #include "TourEnnemi.hpp"
 #include "Drapeau.hpp"
-
 #include "Masque.hpp"
 #include <iostream>
 #include <vector>

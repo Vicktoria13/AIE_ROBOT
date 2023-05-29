@@ -22,16 +22,35 @@ Drapeau::Drapeau()
 
 }
 
+
+/**
+ * @brief Destructeur de la classe Drapeau
+ * 
+ */
 Drapeau::~Drapeau()
 {
-    std::cout << "Destruction du drapeau" << std::endl;
+
 }
 
 
+/**
+ * @brief update si l'on veut faire bouger le drapeau eventuellement avec un bonus
+ * 
+ * @param NameIfPlayer nom du joueur qui a le drapeau
+ * @param maze labyrinthe
+ * @return int 
+ */
 int Drapeau::UpdateEvent(std::string NameIfPlayer,std::array<std::array<int, 15>, 15>* maze){
     return 0;
 }
 
+
+/**
+ * @brief affiche le drapeau que si il n'est pas collecté
+ * 
+ * @param window fenetre de rendu
+ * @param maze labirynthe de jeu
+ */
 void Drapeau::DisplayEntite(sf::RenderWindow* window,std::array<std::array<int, 15>, 15>* maze )
 {
     if (this->isCollected == false){

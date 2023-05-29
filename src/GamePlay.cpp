@@ -1,4 +1,5 @@
 #include "../include/GamePlay.hpp"
+
 #include <iostream>
 
 
@@ -53,10 +54,13 @@ GamePlay::~GamePlay()
     for (auto it = MapEcransDisponibles.begin(); it != MapEcransDisponibles.end(); ++it)
     {
         if(it->second != nullptr)
+            std::cout << "delete " << it->first << std::endl;
             delete it->second;
     }
     
     MapEcransDisponibles.clear();
+
+
     
 }
 

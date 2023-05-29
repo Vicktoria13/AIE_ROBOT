@@ -167,10 +167,15 @@ void WelcomeScreen::handleEvent()
 
 WelcomeScreen::~WelcomeScreen()
 {   
-    std::cout << "Destruction de l'ecran d'accueil" << std::endl;
     for (auto& bouton : vector_buttons)
     {
         delete bouton;
+    }
+
+    //talk
+    for (auto &talkbox : vector_talkbox)
+    {
+        delete talkbox;
     }
 
     

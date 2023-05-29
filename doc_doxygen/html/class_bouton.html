@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AIE_ROBOT: Bouton Class Reference</title>
+<title>My Project: Bouton Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AIE_ROBOT
+   <div id="projectname">My Project
    </div>
   </td>
  </tr>
@@ -72,7 +72,7 @@ $(function() {
 <p>Construit des boutons cliquables.  
  <a href="class_bouton.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_bouton_8hpp_source.html">include/Bouton.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_bouton_8hpp_source.html">Bouton.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -94,6 +94,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1217977c46bc5da94059815ca9fe6f33"><td class="memItemLeft" align="right" valign="top"><a id="a1217977c46bc5da94059815ca9fe6f33"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>changeStateButton</b> ()</td></tr>
 <tr class="separator:a1217977c46bc5da94059815ca9fe6f33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91ce5160f2b3b37b17cf68e32a263f44"><td class="memItemLeft" align="right" valign="top"><a id="a91ce5160f2b3b37b17cf68e32a263f44"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>UnactivateButton</b> ()</td></tr>
+<tr class="separator:a91ce5160f2b3b37b17cf68e32a263f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bf626d93c57b695c82f280bf3d2ca40"><td class="memItemLeft" align="right" valign="top"><a id="a7bf626d93c57b695c82f280bf3d2ca40"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>getPosX</b> () const</td></tr>
 <tr class="separator:a7bf626d93c57b695c82f280bf3d2ca40"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,8 +106,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getPosY</b> () const</
 <tr class="memitem:af74c86fc231a1c0a2284b3c9b4ae4a85"><td class="memItemLeft" align="right" valign="top"><a id="af74c86fc231a1c0a2284b3c9b4ae4a85"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>getIsPressed</b> () const</td></tr>
 <tr class="separator:af74c86fc231a1c0a2284b3c9b4ae4a85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0b3388a82a05b1be6fe9ec0497e4c3c"><td class="memItemLeft" align="right" valign="top"><a id="ad0b3388a82a05b1be6fe9ec0497e4c3c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getIsActivated</b> () const</td></tr>
+<tr class="memitem:ad0b3388a82a05b1be6fe9ec0497e4c3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bouton.html#ad0b3388a82a05b1be6fe9ec0497e4c3c">getIsActivated</a> () const</td></tr>
+<tr class="memdesc:ad0b3388a82a05b1be6fe9ec0497e4c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de savoir si le bouton est activé ie si l'utilisateur est dessus actuellement.  <a href="class_bouton.html#ad0b3388a82a05b1be6fe9ec0497e4c3c">More...</a><br /></td></tr>
 <tr class="separator:ad0b3388a82a05b1be6fe9ec0497e4c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0993fb9ccaed3c8d6af7c9f19f92a221"><td class="memItemLeft" align="right" valign="top"><a id="a0993fb9ccaed3c8d6af7c9f19f92a221"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> () const</td></tr>
@@ -286,9 +289,31 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setIsPressed</b> (boo
 
 </div>
 </div>
+<a id="ad0b3388a82a05b1be6fe9ec0497e4c3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0b3388a82a05b1be6fe9ec0497e4c3c">&#9670;&nbsp;</a></span>getIsActivated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Bouton::getIsActivated </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de savoir si le bouton est activé ie si l'utilisateur est dessus actuellement. </p>
+<dl class="section return"><dt>Returns</dt><dd>true si le bouton est activé </dd>
+<dd>
+false sinon </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_bouton_8hpp_source.html">include/Bouton.hpp</a></li>
-<li><a class="el" href="_bouton_8cpp.html">Bouton.cpp</a></li>
+<li>include/<a class="el" href="_bouton_8hpp_source.html">Bouton.hpp</a></li>
+<li>src/<a class="el" href="_bouton_8cpp.html">Bouton.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

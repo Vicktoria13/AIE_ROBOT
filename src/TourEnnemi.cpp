@@ -11,8 +11,6 @@
  */
 TourEnnemi::TourEnnemi() {
 
-    std::cout << "Construction du tour ennemi" << std::endl;
-
     /* On charge la texture */
     if (!_texture.loadFromFile("../Assets/RobotEnnemi.png"))
     {
@@ -35,7 +33,6 @@ TourEnnemi::TourEnnemi() {
  */
 TourEnnemi::~TourEnnemi()
 {
-    std::cout << "Destruction du tour ennemi" << std::endl;
 }
 
 

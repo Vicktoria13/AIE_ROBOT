@@ -90,4 +90,10 @@ GameOverScreen::~GameOverScreen(){
     {
         delete bouton;
     }
+
+    for (auto &talkbox : vector_talkbox)
+    {
+        delete talkbox;
+    }
+
 }

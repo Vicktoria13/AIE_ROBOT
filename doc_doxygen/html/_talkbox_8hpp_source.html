@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AIE_ROBOT: include/Talkbox.hpp Source File</title>
+<title>My Project: include/Talkbox.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AIE_ROBOT
+   <div id="projectname">My Project
    </div>
   </td>
  </tr>
@@ -45,7 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,9 +59,14 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">include/Talkbox.hpp</div>  </div>
+<div class="title">Talkbox.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef TALKBOX_HPP</span></div>
@@ -73,7 +77,7 @@ $(function() {
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="class_talkbox.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_talkbox.html">Talkbox</a></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    sf::Sprite _talkbox;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    sf::Texture _texture;</div>
@@ -81,19 +85,28 @@ $(function() {
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    sf::Text _text;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    sf::Font _font;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="class_talkbox.html#ad049dcbb1f9d6291c5340eda45aa41a6">Talkbox</a>(std::string text, <span class="keywordtype">int</span> pos_x, <span class="keywordtype">int</span> pos_y);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="class_talkbox.html#a0e5796cbd8c9e6158111ddd038c803ac">~Talkbox</a>();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_talkbox.html#ac81776fc318403e17e5103cbb11890fb">AfficheTalkBox</a>(sf::RenderWindow* window);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;};</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">bool</span> Affiche;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_talkbox.html#ad049dcbb1f9d6291c5340eda45aa41a6">Talkbox</a>(std::string text, <span class="keywordtype">int</span> pos_x, <span class="keywordtype">int</span> pos_y);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_talkbox.html#a0e5796cbd8c9e6158111ddd038c803ac">~Talkbox</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_talkbox.html#ac81776fc318403e17e5103cbb11890fb">AfficheTalkBox</a>(sf::RenderWindow* window);</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclass_talkbox_html"><div class="ttname"><a href="class_talkbox.html">Talkbox</a></div><div class="ttdef"><b>Definition:</b> include/Talkbox.hpp:8</div></div>
-<div class="ttc" id="aclass_talkbox_html_a0e5796cbd8c9e6158111ddd038c803ac"><div class="ttname"><a href="class_talkbox.html#a0e5796cbd8c9e6158111ddd038c803ac">Talkbox::~Talkbox</a></div><div class="ttdeci">~Talkbox()</div><div class="ttdoc">Destruction de la boite de dialogue.</div><div class="ttdef"><b>Definition:</b> Talkbox.cpp:55</div></div>
-<div class="ttc" id="aclass_talkbox_html_ac81776fc318403e17e5103cbb11890fb"><div class="ttname"><a href="class_talkbox.html#ac81776fc318403e17e5103cbb11890fb">Talkbox::AfficheTalkBox</a></div><div class="ttdeci">void AfficheTalkBox(sf::RenderWindow *window)</div><div class="ttdoc">Affichage de la boite de dialogue.</div><div class="ttdef"><b>Definition:</b> Talkbox.cpp:43</div></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">/*getter*/</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> setAffiche(<span class="keywordtype">bool</span> affiche) { this-&gt;Affiche = affiche; }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">/*getter*/</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">bool</span> getAffiche() { <span class="keywordflow">return</span> this-&gt;Affiche; }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;};</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclass_talkbox_html"><div class="ttname"><a href="class_talkbox.html">Talkbox</a></div><div class="ttdef"><b>Definition:</b> Talkbox.hpp:8</div></div>
+<div class="ttc" id="aclass_talkbox_html_a0e5796cbd8c9e6158111ddd038c803ac"><div class="ttname"><a href="class_talkbox.html#a0e5796cbd8c9e6158111ddd038c803ac">Talkbox::~Talkbox</a></div><div class="ttdeci">~Talkbox()</div><div class="ttdoc">Destruction de la boite de dialogue.</div><div class="ttdef"><b>Definition:</b> Talkbox.cpp:61</div></div>
+<div class="ttc" id="aclass_talkbox_html_ac81776fc318403e17e5103cbb11890fb"><div class="ttname"><a href="class_talkbox.html#ac81776fc318403e17e5103cbb11890fb">Talkbox::AfficheTalkBox</a></div><div class="ttdeci">void AfficheTalkBox(sf::RenderWindow *window)</div><div class="ttdoc">Affichage de la boite de dialogue.</div><div class="ttdef"><b>Definition:</b> Talkbox.cpp:46</div></div>
 <div class="ttc" id="aclass_talkbox_html_ad049dcbb1f9d6291c5340eda45aa41a6"><div class="ttname"><a href="class_talkbox.html#ad049dcbb1f9d6291c5340eda45aa41a6">Talkbox::Talkbox</a></div><div class="ttdeci">Talkbox(std::string text, int pos_x, int pos_y)</div><div class="ttdoc">Constructeur d'une nouvelle boite de dialogue.</div><div class="ttdef"><b>Definition:</b> Talkbox.cpp:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

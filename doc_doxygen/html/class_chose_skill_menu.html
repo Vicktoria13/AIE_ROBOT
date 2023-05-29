@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AIE_ROBOT: ChoseSkillMenu Class Reference</title>
+<title>My Project: ChoseSkillMenu Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AIE_ROBOT
+   <div id="projectname">My Project
    </div>
   </td>
  </tr>
@@ -64,6 +64,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_chose_skill_menu-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ChoseSkillMenu Class Reference</div>  </div>
@@ -88,9 +89,8 @@ Collaboration diagram for ChoseSkillMenu:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_chose_skill_menu__coll__graph.png" border="0" usemap="#a_chose_skill_menu_coll__map" alt="Collaboration graph"/></div>
 <map name="a_chose_skill_menu_coll__map" id="a_chose_skill_menu_coll__map">
-<area shape="rect" title="Ecran ou on pourra choisir les skills pour chaque joueur." alt="" coords="5,171,132,197"/>
-<area shape="rect" href="class_screen.html" title=" " alt="" coords="35,95,102,121"/>
-<area shape="rect" href="class_bouton.html" title="Construit des boutons cliquables." alt="" coords="35,5,103,32"/>
+<area shape="rect" title="Ecran ou on pourra choisir les skills pour chaque joueur." alt="" coords="5,80,132,107"/>
+<area shape="rect" href="class_screen.html" title=" " alt="" coords="35,5,102,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -120,9 +120,6 @@ std::map&lt; std::string, bool &gt;&#160;</td><td class="memItemRight" valign="b
 std::map&lt; std::string, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getSkills_joueurB</b> ()</td></tr>
 <tr class="separator:a5c6868bd80e2eb0b2d2841652ae30d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_screen"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_screen')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_screen.html">Screen</a></td></tr>
-<tr class="memitem:abb3f4fc221d5f82fdd3f4b48fdf2c32f inherit pub_methods_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="abb3f4fc221d5f82fdd3f4b48fdf2c32f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>getTheMostLeftButton</b> ()</td></tr>
-<tr class="separator:abb3f4fc221d5f82fdd3f4b48fdf2c32f inherit pub_methods_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ca00539c2ee407eb328eab97027b989 inherit pub_methods_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="a7ca00539c2ee407eb328eab97027b989"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>dessinerBoutons</b> (sf::RenderWindow *window)</td></tr>
 <tr class="separator:a7ca00539c2ee407eb328eab97027b989 inherit pub_methods_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,8 +145,32 @@ std::map&lt; std::string, bool &gt;&#160;</td><td class="memItemRight" valign="b
 std::map&lt; std::string, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>skills_joueurB</b></td></tr>
 <tr class="separator:a77d1de847f64e2e0b9be6829d1cba25b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a57fa6a67282075c453e526ffb263868b"><td class="memItemLeft" align="right" valign="top"><a id="a57fa6a67282075c453e526ffb263868b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>nb_skills_A</b></td></tr>
+<tr class="separator:a57fa6a67282075c453e526ffb263868b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0782a627784ab9d0c0d7a5c392246eb2"><td class="memItemLeft" align="right" valign="top"><a id="a0782a627784ab9d0c0d7a5c392246eb2"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>nb_skills_B</b></td></tr>
+<tr class="separator:a0782a627784ab9d0c0d7a5c392246eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96a3f71d0a2ad9d72c0fdfbe58680391"><td class="memItemLeft" align="right" valign="top"><a id="a96a3f71d0a2ad9d72c0fdfbe58680391"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>capteur3DA</b></td></tr>
+<tr class="separator:a96a3f71d0a2ad9d72c0fdfbe58680391"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b2fb252b8234b7c01fafb9df53ee381"><td class="memItemLeft" align="right" valign="top"><a id="a1b2fb252b8234b7c01fafb9df53ee381"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>capteur3DB</b></td></tr>
+<tr class="separator:a1b2fb252b8234b7c01fafb9df53ee381"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80ffb6d7c0081d017ca19b90afca3f66"><td class="memItemLeft" align="right" valign="top"><a id="a80ffb6d7c0081d017ca19b90afca3f66"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>VitesserapideA</b></td></tr>
+<tr class="separator:a80ffb6d7c0081d017ca19b90afca3f66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dac51a2e0f45b022dc4889156e45e3e"><td class="memItemLeft" align="right" valign="top"><a id="a9dac51a2e0f45b022dc4889156e45e3e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>VitesserapideB</b></td></tr>
+<tr class="separator:a9dac51a2e0f45b022dc4889156e45e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94c039d35c73d89f2009040aee25b4ff"><td class="memItemLeft" align="right" valign="top"><a id="a94c039d35c73d89f2009040aee25b4ff"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>capteurUltrasonsA</b></td></tr>
+<tr class="separator:a94c039d35c73d89f2009040aee25b4ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32658790cbeedd75857322723387a80c"><td class="memItemLeft" align="right" valign="top"><a id="a32658790cbeedd75857322723387a80c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>capteurUltrasonsB</b></td></tr>
+<tr class="separator:a32658790cbeedd75857322723387a80c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_screen"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_screen')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_screen.html">Screen</a></td></tr>
 <tr class="memitem:a5cfbafaf23fbf6de24bea044a67a82fc inherit pro_attribs_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="a5cfbafaf23fbf6de24bea044a67a82fc"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>ProchainScreen</b></td></tr>
@@ -163,9 +184,22 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>Quit</b></td></tr>
 <tr class="memitem:a2b0ed15ff3c7488dcf14135178c117f3 inherit pro_attribs_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="a2b0ed15ff3c7488dcf14135178c117f3"></a>
 std::vector&lt; <a class="el" href="class_bouton.html">Bouton</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vector_buttons</b></td></tr>
 <tr class="separator:a2b0ed15ff3c7488dcf14135178c117f3 inherit pro_attribs_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44532615244970e93bea61984450c5d1 inherit pro_attribs_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="a44532615244970e93bea61984450c5d1"></a>
-<a class="el" href="class_bouton.html">Bouton</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>boutonActif</b></td></tr>
-<tr class="separator:a44532615244970e93bea61984450c5d1 inherit pro_attribs_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2899c3c226d583e105786b902ef696fd inherit pro_attribs_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="a2899c3c226d583e105786b902ef696fd"></a>
+sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>fullBackground</b></td></tr>
+<tr class="separator:a2899c3c226d583e105786b902ef696fd inherit pro_attribs_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab762775ec05d8d3d410aa3bfb0074207 inherit pro_attribs_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="ab762775ec05d8d3d410aa3bfb0074207"></a>
+sf::Texture&#160;</td><td class="memItemRight" valign="bottom"><b>backgroundTexture</b></td></tr>
+<tr class="separator:ab762775ec05d8d3d410aa3bfb0074207 inherit pro_attribs_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae35a95099cf0fd79ae732c15c4857ce0 inherit pro_attribs_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="ae35a95099cf0fd79ae732c15c4857ce0"></a>
+std::vector&lt; <a class="el" href="class_talkbox.html">Talkbox</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vector_talkbox</b></td></tr>
+<tr class="separator:ae35a95099cf0fd79ae732c15c4857ce0 inherit pro_attribs_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_class_screen"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_screen')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_screen.html">Screen</a></td></tr>
+<tr class="memitem:a32fb6562b2f947aa57e2212f08039861 inherit pro_methods_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="a32fb6562b2f947aa57e2212f08039861"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>getTheMostLeftButton</b> ()</td></tr>
+<tr class="separator:a32fb6562b2f947aa57e2212f08039861 inherit pro_methods_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Ecran ou on pourra choisir les skills pour chaque joueur. </p>
@@ -207,8 +241,8 @@ std::vector&lt; <a class="el" href="class_bouton.html">Bouton</a> * &gt;&#160;</
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_chose_skill_menu_8hpp_source.html">ChoseSkillMenu.hpp</a></li>
-<li>ChoseSkillMenu.cpp</li>
+<li>include/<a class="el" href="_chose_skill_menu_8hpp_source.html">ChoseSkillMenu.hpp</a></li>
+<li>src/ChoseSkillMenu.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

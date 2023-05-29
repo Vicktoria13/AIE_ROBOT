@@ -9,29 +9,25 @@
 #include "RuleScreen.hpp"
 #include "GameOverScreen.hpp"
 #include <vector>
-#include <memory>
 
 
 #define HAUTEUR_FENETRE 800
 #define LARGEUR_FENETRE 600
 
 
-
+/**
+ * @brief classe qui gere l'interaction entre les differents ecrans
+ *          et afiche chaque ecran
+ * 
+ */
 class GamePlay
 {
 private:
     /* Attributs */
 
     sf::RenderWindow *fenetre;
-    sf::Event event;
-    sf::Clock clock;
-
-  
-    std::vector<Screen*> EcransDisponibles;
-
     std::map<std::string,Screen*> MapEcransDisponibles;
     Screen* EcranActuel;
-
     /** Les skills de chaque player */
 
     ChoseSkillMenu* menu_skills;

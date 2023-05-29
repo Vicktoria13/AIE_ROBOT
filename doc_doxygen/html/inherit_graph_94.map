@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_entite_affichable.html" title="classe abstraite" alt="" coords="5,56,131,83"/>
+<area shape="rect" id="node2" href="$class_drapeau.html" title=" " alt="" coords="191,5,268,32"/>
+<area shape="rect" id="node3" href="$class_robot_player.html" title="Classe représentant un robot joueur derivera de EntiteAffichable." alt="" coords="179,56,280,83"/>
+<area shape="rect" id="node4" href="$class_tour_ennemi.html" title=" " alt="" coords="180,107,279,133"/>
+</map>

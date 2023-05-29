@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AIE_ROBOT: WelcomeScreen Class Reference</title>
+<title>My Project: WelcomeScreen Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AIE_ROBOT
+   <div id="projectname">My Project
    </div>
   </td>
  </tr>
@@ -82,9 +82,8 @@ Collaboration diagram for WelcomeScreen:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_welcome_screen__coll__graph.png" border="0" usemap="#a_welcome_screen_coll__map" alt="Collaboration graph"/></div>
 <map name="a_welcome_screen_coll__map" id="a_welcome_screen_coll__map">
-<area shape="rect" title=" " alt="" coords="5,171,132,197"/>
-<area shape="rect" href="class_screen.html" title=" " alt="" coords="35,95,102,121"/>
-<area shape="rect" href="class_bouton.html" title="Construit des boutons cliquables." alt="" coords="35,5,103,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,132,107"/>
+<area shape="rect" href="class_screen.html" title=" " alt="" coords="35,5,102,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -101,9 +100,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:abd837c3812080b249879fe8f5eee1eaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute des boutons selon la poisiton et la taille. Ils sont mis a false par defaut. <br /></td></tr>
 <tr class="separator:abd837c3812080b249879fe8f5eee1eaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_screen"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_screen')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_screen.html">Screen</a></td></tr>
-<tr class="memitem:abb3f4fc221d5f82fdd3f4b48fdf2c32f inherit pub_methods_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="abb3f4fc221d5f82fdd3f4b48fdf2c32f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>getTheMostLeftButton</b> ()</td></tr>
-<tr class="separator:abb3f4fc221d5f82fdd3f4b48fdf2c32f inherit pub_methods_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ca00539c2ee407eb328eab97027b989 inherit pub_methods_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="a7ca00539c2ee407eb328eab97027b989"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>dessinerBoutons</b> (sf::RenderWindow *window)</td></tr>
 <tr class="separator:a7ca00539c2ee407eb328eab97027b989 inherit pub_methods_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,6 +118,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setProchainScreen</b>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_class_screen"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_screen')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_screen.html">Screen</a></td></tr>
+<tr class="memitem:a32fb6562b2f947aa57e2212f08039861 inherit pro_methods_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="a32fb6562b2f947aa57e2212f08039861"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>getTheMostLeftButton</b> ()</td></tr>
+<tr class="separator:a32fb6562b2f947aa57e2212f08039861 inherit pro_methods_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_screen"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_screen')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_screen.html">Screen</a></td></tr>
 <tr class="memitem:a5cfbafaf23fbf6de24bea044a67a82fc inherit pro_attribs_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="a5cfbafaf23fbf6de24bea044a67a82fc"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>ProchainScreen</b></td></tr>
@@ -135,9 +135,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>Quit</b></td></tr>
 <tr class="memitem:a2b0ed15ff3c7488dcf14135178c117f3 inherit pro_attribs_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="a2b0ed15ff3c7488dcf14135178c117f3"></a>
 std::vector&lt; <a class="el" href="class_bouton.html">Bouton</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vector_buttons</b></td></tr>
 <tr class="separator:a2b0ed15ff3c7488dcf14135178c117f3 inherit pro_attribs_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44532615244970e93bea61984450c5d1 inherit pro_attribs_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="a44532615244970e93bea61984450c5d1"></a>
-<a class="el" href="class_bouton.html">Bouton</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>boutonActif</b></td></tr>
-<tr class="separator:a44532615244970e93bea61984450c5d1 inherit pro_attribs_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2899c3c226d583e105786b902ef696fd inherit pro_attribs_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="a2899c3c226d583e105786b902ef696fd"></a>
+sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>fullBackground</b></td></tr>
+<tr class="separator:a2899c3c226d583e105786b902ef696fd inherit pro_attribs_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab762775ec05d8d3d410aa3bfb0074207 inherit pro_attribs_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="ab762775ec05d8d3d410aa3bfb0074207"></a>
+sf::Texture&#160;</td><td class="memItemRight" valign="bottom"><b>backgroundTexture</b></td></tr>
+<tr class="separator:ab762775ec05d8d3d410aa3bfb0074207 inherit pro_attribs_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae35a95099cf0fd79ae732c15c4857ce0 inherit pro_attribs_class_screen"><td class="memItemLeft" align="right" valign="top"><a id="ae35a95099cf0fd79ae732c15c4857ce0"></a>
+std::vector&lt; <a class="el" href="class_talkbox.html">Talkbox</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vector_talkbox</b></td></tr>
+<tr class="separator:ae35a95099cf0fd79ae732c15c4857ce0 inherit pro_attribs_class_screen"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a2e157ddec685c02fdacf880cf983e56e"></a>
@@ -211,8 +217,8 @@ std::vector&lt; <a class="el" href="class_bouton.html">Bouton</a> * &gt;&#160;</
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_welcome_screen_8hpp_source.html">Welcomeinclude/Screen.hpp</a></li>
-<li>WelcomeScreen.cpp</li>
+<li>include/<a class="el" href="_welcome_screen_8hpp_source.html">WelcomeScreen.hpp</a></li>
+<li>src/WelcomeScreen.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

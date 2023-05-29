@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AIE_ROBOT: Talkbox Class Reference</title>
+<title>My Project: Talkbox Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AIE_ROBOT
+   <div id="projectname">My Project
    </div>
   </td>
  </tr>
@@ -63,6 +63,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_talkbox-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Talkbox Class Reference</div>  </div>
@@ -81,6 +82,30 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac81776fc318403e17e5103cbb11890fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_talkbox.html#ac81776fc318403e17e5103cbb11890fb">AfficheTalkBox</a> (sf::RenderWindow *window)</td></tr>
 <tr class="memdesc:ac81776fc318403e17e5103cbb11890fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affichage de la boite de dialogue.  <a href="class_talkbox.html#ac81776fc318403e17e5103cbb11890fb">More...</a><br /></td></tr>
 <tr class="separator:ac81776fc318403e17e5103cbb11890fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1752ade500973de18a7f99ec9c3f11a"><td class="memItemLeft" align="right" valign="top"><a id="aa1752ade500973de18a7f99ec9c3f11a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setAffiche</b> (bool affiche)</td></tr>
+<tr class="separator:aa1752ade500973de18a7f99ec9c3f11a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97d76e0535b71174ed257d1e24c360c5"><td class="memItemLeft" align="right" valign="top"><a id="a97d76e0535b71174ed257d1e24c360c5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>getAffiche</b> ()</td></tr>
+<tr class="separator:a97d76e0535b71174ed257d1e24c360c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:aaa13497121b2c56815f681f2cfe50869"><td class="memItemLeft" align="right" valign="top"><a id="aaa13497121b2c56815f681f2cfe50869"></a>
+sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>_talkbox</b></td></tr>
+<tr class="separator:aaa13497121b2c56815f681f2cfe50869"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9304589d8d9b00ff01030a1e0c788e7c"><td class="memItemLeft" align="right" valign="top"><a id="a9304589d8d9b00ff01030a1e0c788e7c"></a>
+sf::Texture&#160;</td><td class="memItemRight" valign="bottom"><b>_texture</b></td></tr>
+<tr class="separator:a9304589d8d9b00ff01030a1e0c788e7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcec224a756ea5e4c8405b0087955aed"><td class="memItemLeft" align="right" valign="top"><a id="afcec224a756ea5e4c8405b0087955aed"></a>
+sf::Text&#160;</td><td class="memItemRight" valign="bottom"><b>_text</b></td></tr>
+<tr class="separator:afcec224a756ea5e4c8405b0087955aed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4c64c563992832124413406a679e5e0"><td class="memItemLeft" align="right" valign="top"><a id="af4c64c563992832124413406a679e5e0"></a>
+sf::Font&#160;</td><td class="memItemRight" valign="bottom"><b>_font</b></td></tr>
+<tr class="separator:af4c64c563992832124413406a679e5e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69a5645e098a894c384a6d4bb8139007"><td class="memItemLeft" align="right" valign="top"><a id="a69a5645e098a894c384a6d4bb8139007"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>Affiche</b></td></tr>
+<tr class="separator:a69a5645e098a894c384a6d4bb8139007"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad049dcbb1f9d6291c5340eda45aa41a6"></a>
@@ -155,8 +180,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_talkbox_8hpp_source.html">include/Talkbox.hpp</a></li>
-<li>Talkbox.cpp</li>
+<li>include/<a class="el" href="_talkbox_8hpp_source.html">Talkbox.hpp</a></li>
+<li>src/Talkbox.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

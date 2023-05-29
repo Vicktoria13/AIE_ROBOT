@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['talkbox_98',['Talkbox',['../class_talkbox.html#ad049dcbb1f9d6291c5340eda45aa41a6',1,'Talkbox']]],
-  ['tourennemi_99',['TourEnnemi',['../class_tour_ennemi.html#ae80ad6b9617679317c7c0bece738b148',1,'TourEnnemi']]]
+  ['ray_403',['Ray',['../class_ray.html#a61c417dea7d947988440b3f7a2e52aba',1,'Ray']]],
+  ['rayon_5funitaire_404',['rayon_unitaire',['../class_ray.html#a1ff12a8bdb659028a14b25185a4db2a8',1,'Ray']]],
+  ['robotplayer_405',['RobotPlayer',['../class_robot_player.html#a6aa0795141e0fd32f48834d629bbe97e',1,'RobotPlayer']]]
 ];

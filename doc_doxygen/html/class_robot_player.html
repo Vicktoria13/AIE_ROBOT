@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AIE_ROBOT: RobotPlayer Class Reference</title>
+<title>My Project: RobotPlayer Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AIE_ROBOT
+   <div id="projectname">My Project
    </div>
   </td>
  </tr>
@@ -63,6 +63,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_robot_player-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">RobotPlayer Class Reference</div>  </div>
@@ -87,16 +88,17 @@ Collaboration diagram for RobotPlayer:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_robot_player__coll__graph.png" border="0" usemap="#a_robot_player_coll__map" alt="Collaboration graph"/></div>
 <map name="a_robot_player_coll__map" id="a_robot_player_coll__map">
-<area shape="rect" title="Classe représentant un robot joueur derivera de EntiteAffichable." alt="" coords="17,80,119,107"/>
+<area shape="rect" title="Classe représentant un robot joueur derivera de EntiteAffichable." alt="" coords="77,95,179,121"/>
 <area shape="rect" href="class_entite_affichable.html" title="classe abstraite" alt="" coords="5,5,131,32"/>
+<area shape="rect" href="class_life_bar.html" title=" " alt="" coords="155,5,223,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a811fb531e9b9a7bc25eb947338c67555"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot_player.html#a811fb531e9b9a7bc25eb947338c67555">RobotPlayer</a> (int x, int y, int max_x, int max_y, std::string name, std::map&lt; std::string, bool &gt; *skills_joueur)</td></tr>
-<tr class="memdesc:a811fb531e9b9a7bc25eb947338c67555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur du robot joueur.  <a href="class_robot_player.html#a811fb531e9b9a7bc25eb947338c67555">More...</a><br /></td></tr>
-<tr class="separator:a811fb531e9b9a7bc25eb947338c67555"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6aa0795141e0fd32f48834d629bbe97e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot_player.html#a6aa0795141e0fd32f48834d629bbe97e">RobotPlayer</a> (int x, int y, std::string name, std::map&lt; std::string, bool &gt; *skills_joueur)</td></tr>
+<tr class="memdesc:a6aa0795141e0fd32f48834d629bbe97e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur du robot joueur.  <a href="class_robot_player.html#a6aa0795141e0fd32f48834d629bbe97e">More...</a><br /></td></tr>
+<tr class="separator:a6aa0795141e0fd32f48834d629bbe97e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a699fb91cbe191308a795d065f8692bea"><td class="memItemLeft" align="right" valign="top"><a id="a699fb91cbe191308a795d065f8692bea"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot_player.html#a699fb91cbe191308a795d065f8692bea">~RobotPlayer</a> ()</td></tr>
 <tr class="memdesc:a699fb91cbe191308a795d065f8692bea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destucteur du robot joueur. <br /></td></tr>
@@ -116,7 +118,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a8a82eddf8773470957418c2c2c67fec8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet un controlle via les touches ZQSD. <br /></td></tr>
 <tr class="separator:a8a82eddf8773470957418c2c2c67fec8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa66459c562119e122e67b23a2d6e056c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot_player.html#aa66459c562119e122e67b23a2d6e056c">checkCollision</a> (std::array&lt; std::array&lt; int, 15 &gt;, 15 &gt; *maze, sf::Vector2f *previous)</td></tr>
-<tr class="memdesc:aa66459c562119e122e67b23a2d6e056c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check les collisions joueur-murs-tours.  <a href="class_robot_player.html#aa66459c562119e122e67b23a2d6e056c">More...</a><br /></td></tr>
+<tr class="memdesc:aa66459c562119e122e67b23a2d6e056c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check les collisions joueur-murs-tours Permet aussi de savoir si un joueur a ramassé un drapeau ennemi : si oui, on met ADrapeau a true.  <a href="class_robot_player.html#aa66459c562119e122e67b23a2d6e056c">More...</a><br /></td></tr>
 <tr class="separator:aa66459c562119e122e67b23a2d6e056c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af507c36dc2b0e6e89b77eaa677737230"><td class="memItemLeft" align="right" valign="top"><a id="af507c36dc2b0e6e89b77eaa677737230"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>getADrapeau</b> ()</td></tr>
@@ -125,7 +127,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>getADrapeau</b> ()</t
 <tr class="memdesc:a844973ce1f517071e39362648b09ab1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche les rayons du robot.  <a href="class_robot_player.html#a844973ce1f517071e39362648b09ab1e">More...</a><br /></td></tr>
 <tr class="separator:a844973ce1f517071e39362648b09ab1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86dcdb4f01bb1f45b1d47b56722c9414"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot_player.html#a86dcdb4f01bb1f45b1d47b56722c9414">draw3D_rect</a> (sf::RenderWindow *window, int haut, int larg, int x, bool isAFlag) const</td></tr>
-<tr class="memdesc:a86dcdb4f01bb1f45b1d47b56722c9414"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche les rayons du robot.  <a href="class_robot_player.html#a86dcdb4f01bb1f45b1d47b56722c9414">More...</a><br /></td></tr>
+<tr class="memdesc:a86dcdb4f01bb1f45b1d47b56722c9414"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche les projections de chaque rayons.  <a href="class_robot_player.html#a86dcdb4f01bb1f45b1d47b56722c9414">More...</a><br /></td></tr>
 <tr class="separator:a86dcdb4f01bb1f45b1d47b56722c9414"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c6bd08d7f8762e6c8a136567c0595df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot_player.html#a3c6bd08d7f8762e6c8a136567c0595df">draw3D</a> (sf::RenderWindow *window) const</td></tr>
 <tr class="memdesc:a3c6bd08d7f8762e6c8a136567c0595df"><td class="mdescLeft">&#160;</td><td class="mdescRight">dessine la fenetre de raycasting  <a href="class_robot_player.html#a3c6bd08d7f8762e6c8a136567c0595df">More...</a><br /></td></tr>
@@ -156,12 +158,35 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>getSprite</b> (
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setPositionX_Y</b> (int x, int y)</td></tr>
 <tr class="separator:a693dea2343696ee386b4068543777b50 inherit pub_methods_class_entite_affichable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_attribs_class_entite_affichable"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_entite_affichable')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_entite_affichable.html">EntiteAffichable</a></td></tr>
-<tr class="memitem:aca1536821a990d7426108f0ba0e9f74a inherit pub_attribs_class_entite_affichable"><td class="memItemLeft" align="right" valign="top"><a id="aca1536821a990d7426108f0ba0e9f74a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>estPositionne</b></td></tr>
-<tr class="separator:aca1536821a990d7426108f0ba0e9f74a inherit pub_attribs_class_entite_affichable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a8f04a15d2a53e9feb612f8750f346bac"><td class="memItemLeft" align="right" valign="top"><a id="a8f04a15d2a53e9feb612f8750f346bac"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>vitesse_player</b></td></tr>
+<tr class="separator:a8f04a15d2a53e9feb612f8750f346bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10b864ce404beccfe6b0a67156e50b7d"><td class="memItemLeft" align="right" valign="top"><a id="a10b864ce404beccfe6b0a67156e50b7d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>ADrapeau</b></td></tr>
+<tr class="separator:a10b864ce404beccfe6b0a67156e50b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada562f50c268609f5636e330daebc87d"><td class="memItemLeft" align="right" valign="top"><a id="ada562f50c268609f5636e330daebc87d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsAlive</b></td></tr>
+<tr class="separator:ada562f50c268609f5636e330daebc87d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8933b605ae720987c21af60cdaf2256f"><td class="memItemLeft" align="right" valign="top"><a id="a8933b605ae720987c21af60cdaf2256f"></a>
+std::vector&lt; <a class="el" href="class_ray.html">Ray</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>rayons</b></td></tr>
+<tr class="separator:a8933b605ae720987c21af60cdaf2256f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1911b3728abea52b169c409c5e53033c"><td class="memItemLeft" align="right" valign="top"><a id="a1911b3728abea52b169c409c5e53033c"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>variation_angle</b></td></tr>
+<tr class="separator:a1911b3728abea52b169c409c5e53033c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecb74fb59ae232697656d420b5b26079"><td class="memItemLeft" align="right" valign="top"><a id="aecb74fb59ae232697656d420b5b26079"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>angle_actuel</b></td></tr>
+<tr class="separator:aecb74fb59ae232697656d420b5b26079"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed10b2551ea851d48db3bf35c664cdc0"><td class="memItemLeft" align="right" valign="top"><a id="aed10b2551ea851d48db3bf35c664cdc0"></a>
+std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>longueur_rayon</b></td></tr>
+<tr class="separator:aed10b2551ea851d48db3bf35c664cdc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51330fdcc1059d1d7f49afe4d71d3e8e"><td class="memItemLeft" align="right" valign="top"><a id="a51330fdcc1059d1d7f49afe4d71d3e8e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>capteur3D</b></td></tr>
+<tr class="separator:a51330fdcc1059d1d7f49afe4d71d3e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3616cdfaff8659acb999ef65b017ef7"><td class="memItemLeft" align="right" valign="top"><a id="ad3616cdfaff8659acb999ef65b017ef7"></a>
+<a class="el" href="class_life_bar.html">LifeBar</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_lifeBar</b></td></tr>
+<tr class="separator:ad3616cdfaff8659acb999ef65b017ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_entite_affichable"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_entite_affichable')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_entite_affichable.html">EntiteAffichable</a></td></tr>
 <tr class="memitem:accfa9baede45805592d936141ba1424f inherit pro_attribs_class_entite_affichable"><td class="memItemLeft" align="right" valign="top"><a id="accfa9baede45805592d936141ba1424f"></a>
 sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>_sprite</b></td></tr>
@@ -178,12 +203,19 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>positionX</b></td></tr
 <tr class="memitem:a512ce97f4b1543eb96882baa7acbbdf2 inherit pro_attribs_class_entite_affichable"><td class="memItemLeft" align="right" valign="top"><a id="a512ce97f4b1543eb96882baa7acbbdf2"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>positionY</b></td></tr>
 <tr class="separator:a512ce97f4b1543eb96882baa7acbbdf2 inherit pro_attribs_class_entite_affichable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_class_entite_affichable"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_entite_affichable')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_entite_affichable.html">EntiteAffichable</a></td></tr>
+<tr class="memitem:aca1536821a990d7426108f0ba0e9f74a inherit pub_attribs_class_entite_affichable"><td class="memItemLeft" align="right" valign="top"><a id="aca1536821a990d7426108f0ba0e9f74a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>estPositionne</b></td></tr>
+<tr class="separator:aca1536821a990d7426108f0ba0e9f74a inherit pub_attribs_class_entite_affichable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Classe représentant un robot joueur derivera de <a class="el" href="class_entite_affichable.html" title="classe abstraite">EntiteAffichable</a>. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a811fb531e9b9a7bc25eb947338c67555"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a811fb531e9b9a7bc25eb947338c67555">&#9670;&nbsp;</a></span>RobotPlayer()</h2>
+<a id="a6aa0795141e0fd32f48834d629bbe97e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6aa0795141e0fd32f48834d629bbe97e">&#9670;&nbsp;</a></span>RobotPlayer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -199,18 +231,6 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>positionY</b></td></tr
           <td></td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>max_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>max_y</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -236,9 +256,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>positionY</b></td></tr
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">x</td><td>position x </td></tr>
-    <tr><td class="paramname">y</td><td>position y </td></tr>
-    <tr><td class="paramname">max_x</td><td>limite x </td></tr>
-    <tr><td class="paramname">max_y</td><td>limite y </td></tr>
+    <tr><td class="paramname">y</td><td>position y</td></tr>
     <tr><td class="paramname">name</td><td>nom robot </td></tr>
   </table>
   </dd>
@@ -273,7 +291,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>positionY</b></td></tr
       </table>
 </div><div class="memdoc">
 
-<p>Check les collisions joueur-murs-tours. </p>
+<p>Check les collisions joueur-murs-tours Permet aussi de savoir si un joueur a ramassé un drapeau ennemi : si oui, on met ADrapeau a true. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">maze</td><td>le labyrinthe 2D </td></tr>
@@ -401,13 +419,13 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>positionY</b></td></tr
       </table>
 </div><div class="memdoc">
 
-<p>Affiche les rayons du robot. </p>
+<p>Affiche les projections de chaque rayons. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">window</td><td></td></tr>
-    <tr><td class="paramname">haut</td><td></td></tr>
-    <tr><td class="paramname">larg</td><td></td></tr>
-    <tr><td class="paramname">x</td><td></td></tr>
+    <tr><td class="paramname">window</td><td>fenetre de rendu </td></tr>
+    <tr><td class="paramname">haut</td><td>hauteur du rectangle </td></tr>
+    <tr><td class="paramname">larg</td><td>largeur du rectangle </td></tr>
+    <tr><td class="paramname">x</td><td>coordonnee x du rectangle </td></tr>
   </table>
   </dd>
 </dl>
@@ -499,14 +517,15 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>positionY</b></td></tr
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>i0 si le joueur n'a pas ramasse le drapeau et qu'il n'est pas mort 1 si le joueur a ramasse le drapeau 2 si le joueur est mort </dd></dl>
 
 <p>Implements <a class="el" href="class_entite_affichable.html">EntiteAffichable</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_robot_player_8hpp_source.html">RobotPlayer.hpp</a></li>
-<li>RobotPlayer.cpp</li>
+<li>include/<a class="el" href="_robot_player_8hpp_source.html">RobotPlayer.hpp</a></li>
+<li>src/RobotPlayer.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

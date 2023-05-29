@@ -59,7 +59,6 @@ void Talkbox::AfficheTalkBox(sf::RenderWindow* window){
  * 
  */
 Talkbox::~Talkbox(){
-    std::cout<<"destruction de la talkbox"<<std::endl;
 }
 
 

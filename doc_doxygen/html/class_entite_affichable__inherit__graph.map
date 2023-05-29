@@ -1,7 +1,6 @@
 <map id="EntiteAffichable" name="EntiteAffichable">
-<area shape="rect" id="node1" title="classe abstraite" alt="" coords="147,5,272,32"/>
-<area shape="rect" id="node2" href="$class_arme_solo.html" title=" " alt="" coords="5,80,91,107"/>
-<area shape="rect" id="node3" href="$class_drapeau.html" title=" " alt="" coords="115,80,192,107"/>
-<area shape="rect" id="node4" href="$class_robot_player.html" title="Classe représentant un robot joueur derivera de EntiteAffichable." alt="" coords="216,80,317,107"/>
-<area shape="rect" id="node5" href="$class_tour_ennemi.html" title=" " alt="" coords="341,80,440,107"/>
+<area shape="rect" id="node1" title="classe abstraite" alt="" coords="95,5,220,32"/>
+<area shape="rect" id="node2" href="$class_drapeau.html" title=" " alt="" coords="5,80,83,107"/>
+<area shape="rect" id="node3" href="$class_robot_player.html" title="Classe représentant un robot joueur derivera de EntiteAffichable." alt="" coords="107,80,208,107"/>
+<area shape="rect" id="node4" href="$class_tour_ennemi.html" title=" " alt="" coords="232,80,331,107"/>
 </map>

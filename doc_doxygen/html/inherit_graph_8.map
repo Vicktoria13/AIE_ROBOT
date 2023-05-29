@@ -1,7 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_screen.html" title=" " alt="" coords="5,81,72,108"/>
-<area shape="rect" id="node2" href="$class_chose_skill_menu.html" title="Ecran ou on pourra choisir les skills pour chaque joueur." alt="" coords="125,5,251,32"/>
-<area shape="rect" id="node3" href="$class_game_over_screen.html" title=" " alt="" coords="120,56,256,83"/>
-<area shape="rect" id="node4" href="$class_plateau_jeu.html" title=" " alt="" coords="143,107,233,133"/>
-<area shape="rect" id="node5" href="$class_welcome_screen.html" title=" " alt="" coords="125,157,251,184"/>
+<area shape="rect" id="node1" href="$struct_catch_1_1_decomposer.html" title=" " alt="" coords="5,5,155,32"/>
 </map>

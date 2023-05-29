@@ -1,4 +1,5 @@
 <map id="RobotPlayer" name="RobotPlayer">
-<area shape="rect" id="node1" title="Classe représentant un robot joueur derivera de EntiteAffichable." alt="" coords="17,80,119,107"/>
+<area shape="rect" id="node1" title="Classe représentant un robot joueur derivera de EntiteAffichable." alt="" coords="77,95,179,121"/>
 <area shape="rect" id="node2" href="$class_entite_affichable.html" title="classe abstraite" alt="" coords="5,5,131,32"/>
+<area shape="rect" id="node3" href="$class_life_bar.html" title=" " alt="" coords="155,5,223,32"/>
 </map>

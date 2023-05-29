@@ -355,6 +355,10 @@ void ChoseSkillMenu::handleEvent()
 }
     
 
+/**
+ * @brief Affiche les skills choisis par les joueurs
+ * 
+ */
 void ChoseSkillMenu::AfficheInfosSkills(){
     std::cout<<"------------------------------------------------"<<std::endl;
     std::cout<<"Pour le joueur A, l'état des skills est : "<<std::endl;
@@ -373,10 +377,12 @@ void ChoseSkillMenu::AfficheInfosSkills(){
 
 
 
-
+/**
+ * @brief Destruxteur de la classe ChoseSkillMenu
+ * 
+ */
 ChoseSkillMenu::~ChoseSkillMenu(){
 
-    std::cout<<"Destruction de l'ecran de  choix "<<std::endl;
     if (this->vector_buttons.empty() == false){
         for (auto &bouton : vector_buttons)
         {

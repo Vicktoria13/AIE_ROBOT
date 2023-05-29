@@ -85,6 +85,11 @@ void LifeBar::Lost(){
         this->NoLife = true;
     }
 }
+
+/**
+ * @brief Destructeur
+ * 
+ */
 LifeBar::~LifeBar()
 {
 }

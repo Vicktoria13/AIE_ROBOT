@@ -1,5 +1,4 @@
 #include "../include/GamePlay.hpp"
-#include "../include/WelcomeScreen.hpp"
 #include <iostream>
 #include "SFML/Audio.hpp"
 int main()
@@ -12,7 +11,7 @@ int main()
 
     music.setLoop(true);
     music.setVolume(50);
-    music.play();
+    //music.play();
 
 
     GamePlay partie;

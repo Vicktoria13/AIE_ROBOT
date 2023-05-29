@@ -420,15 +420,21 @@ void PlateauJeu::handleEvent(){
  */
 PlateauJeu::~PlateauJeu(){
 
-    std::cout<<"Destruction du plateau de jeu"<<std::endl;
+    // on supprime les personnages
     for (auto& perso : characters){
         delete perso.second;
-        std::cout<<"Destruction du personnage "<<perso.first<<std::endl;
     }
     characters.clear();
 
+    // on supprime les boutons
     for (auto& bouton : vector_buttons){
         delete bouton;
+    }
+
+
+    // on supprime les talkbox
+    for (auto& talkbox : vector_talkbox){
+        delete talkbox;
     }
 
     delete masque2D;

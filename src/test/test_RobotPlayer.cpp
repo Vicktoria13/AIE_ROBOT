@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 
-#include "../include/catch.hpp"
-#include "../include/RobotPlayer.hpp"
+#include "../../include/catch.hpp"
+#include "../../include/RobotPlayer.hpp"
 #include <iostream>
 
 

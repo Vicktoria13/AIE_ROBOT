@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['waitperiod_101',['WaitPeriod',['../class_game_play.html#a0b8e89ab07d3195f97280487c2573c19',1,'GamePlay']]]
+  ['talkbox_410',['Talkbox',['../class_talkbox.html#ad049dcbb1f9d6291c5340eda45aa41a6',1,'Talkbox']]],
+  ['tourennemi_411',['TourEnnemi',['../class_tour_ennemi.html#ae80ad6b9617679317c7c0bece738b148',1,'TourEnnemi']]]
 ];

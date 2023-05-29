@@ -157,23 +157,51 @@ void Bouton::drawButton(sf::RenderWindow& window){
 }
 
 
+/**
+ * @brief Change la couleur du bouton lorsqu'il est activé
+ * 
+ */
 void Bouton::changeStateButton(){
     this->couleurBouton = couleurBoutonActive;
 }
 
+
+/**
+ * @brief Change la couleur du bouton lorsqu'il est désactivé
+ * 
+ */
 void Bouton::UnactivateButton(){
     this->couleurBouton = sf::Color::Black;
 }
 
 
+
+/**
+ * @brief retourne la position x du bouton
+ * 
+ * @return int 
+ */
 int Bouton::getPosX() const{
     return this->pos_x;
 }
 
+
+/**
+ * @brief retourne la position y du bouton
+ * 
+ * @return int 
+ */
 int Bouton::getPosY() const{
     return this->pos_y;
 }
 
+
+
+/**
+ * @brief retourne flag qui indique si le bouton est activé ou non
+ * 
+ * @param flag 
+ */
 void Bouton::setFlagActivated(bool flag){
     this->isActivated = flag;
 }

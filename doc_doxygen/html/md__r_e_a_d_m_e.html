@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AIE_ROBOT: Bienvenue sur Aie Robot !</title>
+<title>My Project: Bienvenue sur Aie Robot !</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AIE_ROBOT
+   <div id="projectname">My Project
    </div>
   </td>
  </tr>
@@ -65,38 +65,67 @@ $(function() {
 <div class="title">Bienvenue sur Aie Robot ! </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md1"></a>
+<div class="textblock"><p>Ce repository contient le code source du jeu Aie Robot !, un jeu de type Capture the Flag !, développé dans le cadre du projet de fin de semestre du cours de Programmation Orientée Objet (POO) de <a href="https://www.polytech.sorbonne-universite.fr/formations/robotique">Polytech Sorbonne</a>.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Pré-requis</h1>
+<p>Ce jeu a été développé en C++ et utilise la bibliothèque SFML. Il est donc nécessaire d'avoir un compilateur C++ et d'installer la bibliothèque SFML. Ce jeu a été developpé sur Ubuntu 22.04.</p>
+<p><b>Pour installer SFML sur Ubuntu, taper dans un terminal :</b></p>
+<div class="fragment"><div class="line">## Compilation et exécution</div>
+<div class="line">Pour obtenir le repository, il faut de cloner le repository git et compiler le code source. Pour cela, taper dans un terminal :</div>
+<div class="line"> </div>
+<div class="line">```$ git clone https://github.com/Vicktoria13/AIE_ROBOT.git </div>
+</div><!-- fragment --><div class="fragment"><div class="line"> {$}</div>
+<div class="line"> </div>
+<div class="line">```$ make </div>
+</div><!-- fragment --><p><code>$ ./main</code></p>
+<h1><a class="anchor" id="autotoc_md2"></a>
 But du jeu</h1>
 <p>Le jeu est le suivant :</p>
-<p>C'est un jeu a 2 joueurs, chaque joueur étant représenté par un robot. Le but, inspiré du simple jeu Capture the Flag ! est donc de recupérer le drapeau ennemi avant l'ennemi. Un joueur perd si le second joueur remplit l'objectif avant lui et/ou meurt car n'a plus de points de vie.</p>
-<p>Le jeu se déroule dans une carte 2D vu du dessus. Les robots sont controlables en direction via les touches du clavier.</p>
+<p>C'est un jeu à deux joueurs, chaque joueur étant représenté par un robot. Le but, inspiré du simple jeu <b>Capture the Flag !</b> est donc de recupérer le drapeau ennemi avant lui. Un joueur perd si le second joueur remplit l'objectif avant lui, ou bien si son ennemi n'a plus de bar de vie.</p>
+<p>Le jeu se déroule dans une carte 2D vu du dessus. Les robots sont contrôlables en direction via les touches du clavier.</p>
+<p>Les flèches directionnelles Gauche et Droite permettent de naviger dans les écrans. La touche <b>Entrée</b> permet de valider un choix.</p>
 <p>Ainsi, leur but est de naviguer dans une carte 2D jusqu'au drapeau ennemi et le toucher, tout cela en évitant les obstacles et ennemis :</p>
 <ul>
 <li>Les "murs", qui se dressent sur leur chemins</li>
-<li>des robots aimants : si le joueur est pris dans leur champ magnétique, alors ils sont bloqués pendant un certain temps.</li>
+<li>des robots ennemies : si le joueur touches les robots ennemies, alors ils perdent des points de vie !</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<p><img src="Images/fonctionnement.gif" alt="lab" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Choix des options de chaque robot</h1>
-<p>Au démarrage du jeu, chaque joueur doit selectionner 2 options (= skills). Il a le choix entre :</p>
+<p>Au démarrage du jeu, chaque joueur doit selectionner 3 options (= skills). Il a le choix entre :</p>
 <ul>
 <li>Capteur Ultrasons : cette option permet au robot de se doter d'un capteur a ultrasons , lui permettant donc d'avoir une plus grande vision du plateau 2D.</li>
 <li>Capteur 3D : cette option permet de donner au robot un capteur de type caméra 3D, lui permettant donc en plus de la vue 2D, d'obtenir une visualisation de la piste en 3D.</li>
 <li>Vitesse rapide : Cette option donne au robot des moteurs puissants, lui permettant de se déplacer plus vite par rapport a son ennemi.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3"></a>
+<p><img src="Images/Menu.png" alt="Menu" class="inline"/></p>
+<p>Pour choisir, il faut naviger avec les touches gauche droite et valider avec la touche Entrée.</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Aide aux joueurs</h1>
 <p>De manière périodique, une lampe ponctuelle s'allumera de manière brève, laissant ainsi l'occasion aux deux joueurs de visulaiser le temps d'un court instant, ou se situe le drapeau ennemi !</p>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h1><a class="anchor" id="autotoc_md5"></a>
 Controle du jeu</h1>
 <p>Chaque joueur maitrise 4 touches du clavier pour se déplacer dans l'environnement.</p>
 <ul>
 <li>les fleches directionnelles</li>
 <li>Les touches ZQSD</li>
 </ul>
+<p><img src="Images/keyBoardControl.png" alt="image" class="inline"/></p>
 <p>ainsi, les touches lattérales permettent de déplacer le champ de vision de chaque robot. Les touches du haut et bas, permettent respectivement d'avancer ou reculer selon la direction centrale du champ de vision.</p>
-<h1><a class="anchor" id="autotoc_md5"></a>
-Installation et Mise en place du jeu Aie Robot !</h1>
-<p>Il est nécessaire d'installer la bibliothèque SFML , via la commande : <code>sudo apt install</code> </p>
+<p>Le gagnant du jeu est donc le premier joueur a toucher le drapeau ennemi.</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Remarque</h1>
+<p>Ce jeu se base notamment sur un algorithme de raycasting, permettant de simuler un champ de vision pour chaque robot. Il est possible d'en modifier les paramètres, notamment :</p>
+<ul>
+<li>le nombre de rayons</li>
+<li>la distance maximale de vision</li>
+<li>la distance minimale de vision</li>
+<li>l'angle de vision</li>
+</ul>
+<p><img src="Images/raycast.png" alt="ray" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md7"></a>
+Documentation</h1>
+<p>Pour trouver la documentation du code source, il faut cliquer sur n'importe quel fichier html dans le dossier <code>doc/html/</code>. Cela mennera à la documentation du code source, genérée avec Doxygen. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->

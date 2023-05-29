@@ -79,7 +79,12 @@ int Ray::rayon_unitaire(float alpha,  std::array<std::array<int, 15>, 15>* maze,
     return distance;
 }
 
-
+/**
+ * @brief setter position x et y du rayon
+ * 
+ * @param posX position x du rayon
+ * @param posY position y du rayon
+ */
 void Ray::update(float posX, float posY)
 {
     this->pos_x = posX;
@@ -87,6 +92,11 @@ void Ray::update(float posX, float posY)
 }
 
 
+/**
+ * @brief affiche les informations du rayon
+ * 
+ * 
+ */
 void Ray::affiche_info() const
 {
     std::cout << "Angle du rayon par rapport a l'horizontal en radians: " << this->angle_horizontal << std::endl;
