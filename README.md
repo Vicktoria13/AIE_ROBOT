@@ -107,3 +107,9 @@ via la commande ```make ```. Exemple pour lancer le test lié au bouton :
 ```$ ./test_button```
 
 Le code source des tests est dans le dossier ```src/test/```.
+
+## Modelisation 
+
+Ci dessous l'UML du jeu
+
+![UML](AieRobotUML.png)
