@@ -188,7 +188,7 @@ void GamePlay::WaitForExit(){
     {
         sf::Event event;
         
-        while (this-Talkbox>fenetre->pollEvent(event))
+        while (this->fenetre->pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 this->fenetre->close();
