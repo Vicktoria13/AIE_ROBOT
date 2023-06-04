@@ -7,7 +7,7 @@ LD=g++ -g
 CPPFLAGS=-std=c++14
 LDFLAGS=-std=c++14
 LIBS=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio
-EXES=main test_ray test_masque test_bouton test_GamePlay test_RobotPlayer
+EXES=main test_ray test_masque test_bouton test_GamePlay test_RobotPlayer test_WelcomeScreen test_LifeBar test_Talkbox
 
 
 all: $(EXES)
@@ -55,7 +55,31 @@ test_bouton: test_bouton.o Bouton.o
 test_bouton.o: test/test_bouton.cpp ../include/Bouton.hpp
 	$(CPP) $(CPPFLAGS) -c test/test_bouton.cpp
 
+########
+test_WelcomeScreen : test_WelcomeScreen.o WelcomeScreen.o Bouton.o Screen.o Talkbox.o
+	$(LD) $(LDFLAGS) test_WelcomeScreen.o WelcomeScreen.o Bouton.o Screen.o Talkbox.o -o test_WelcomeScreen $(LIBS)
 
+test_WelcomeScreen.o: test/test_WelcomeScreen.cpp ../include/WelcomeScreen.hpp
+	$(CPP) $(CPPFLAGS) -c test/test_WelcomeScreen.cpp
+
+########
+
+test_LifeBar : test_LifeBar.o LifeBar.o
+	$(LD) $(LDFLAGS) test_LifeBar.o LifeBar.o -o test_LifeBar $(LIBS)
+
+test_LifeBar.o: test/test_LifeBar.cpp ../include/LifeBar.hpp
+	$(CPP) $(CPPFLAGS) -c test/test_LifeBar.cpp
+
+
+########
+test_Talkbox : test_Talkbox.o Talkbox.o
+	$(LD) $(LDFLAGS) test_Talkbox.o Talkbox.o -o test_Talkbox $(LIBS)
+
+test_Talkbox.o: test/test_Talkbox.cpp ../include/Talkbox.hpp
+	$(CPP) $(CPPFLAGS) -c test/test_Talkbox.cpp
+
+
+	
 ###################### CLASSES ######################
 main.o: main.cpp ../include/GamePlay.hpp
 	$(CPP) $(CPPFLAGS) -c main.cpp

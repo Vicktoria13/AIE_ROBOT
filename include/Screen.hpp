@@ -65,6 +65,10 @@ public:
         return Quit;
     };
 
+    std::vector<Bouton*> getvector_buttons()  {
+        return vector_buttons;
+    };
+
     /* setters */
     void setProchainScreen(std::string ProchainScreen) {
         this->ProchainScreen = ProchainScreen;

@@ -12,7 +12,7 @@
 GamePlay::GamePlay() 
 {
     /* on cree la fenetre de jeu !*/
-    fenetre = new sf::RenderWindow(sf::VideoMode(1920,1080), "Aîe Robot Game");
+    fenetre = new sf::RenderWindow(sf::VideoMode(1920,1080), "Aie Robot Game");
     fenetre->setFramerateLimit(80);
 
     /* Ajout des ecrans*/
@@ -29,13 +29,6 @@ GamePlay::GamePlay()
     //Ecran d'infos
     Ajout_Ecran("Ready",new RuleScreen());
 
-    /* Ecran Game Over */
-    //Ajout_Ecran("GameOver",new GameOverScreen());
-
-
-
-    // on met l'ecran d'accueil comme ecran actuel
-    // ecran actuel est un pointeur vers un ecran  : Screen* EcranActuel
     EcranActuel = MapEcransDisponibles["Accueil"];
 
   
@@ -54,7 +47,6 @@ GamePlay::~GamePlay()
     for (auto it = MapEcransDisponibles.begin(); it != MapEcransDisponibles.end(); ++it)
     {
         if(it->second != nullptr)
-            std::cout << "delete " << it->first << std::endl;
             delete it->second;
     }
     
@@ -186,12 +178,17 @@ int GamePlay::WaitForExit(){
 }
 */
 
+
+/**
+ * @brief Affiche l'écran actuel et ses updates a chaque frame, et attend un arret
+ * 
+ */
 void GamePlay::WaitForExit(){
     while (this->fenetre->isOpen())
     {
         sf::Event event;
         
-        while (this->fenetre->pollEvent(event))
+        while (this-Talkbox>fenetre->pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 this->fenetre->close();

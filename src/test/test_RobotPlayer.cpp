@@ -9,10 +9,18 @@
 TEST_CASE( "Robot Player operations", "[Robot Player]"){
 
     std::map<std::string, bool>* test;
-    RobotPlayer player(0,0,"player1",test);
+    *test = {{"Capteur 3D",true},
+    {"Vitesse rapide",true},
+    {"Capteur Ultrasons",false}
+    };
+    
+
+    RobotPlayer player(10,70,"JoueurA",test);
+   
 
     //Test du bool
     REQUIRE(player.getADrapeau() == false);
+    //REQUIRE(player.UpdateEvent("player1",maze) == 0);
     
 
 

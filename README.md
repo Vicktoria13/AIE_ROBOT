@@ -22,6 +22,11 @@ Pour obtenir le repository, il faut de cloner le repository git et compiler le c
 
 ```$ ./main```
 
+Pour enlever les exécutables, taper dans un terminal :
+
+```$ make vclean```
+
+
 ## But du jeu
 
 Le jeu est le suivant :
@@ -93,3 +98,12 @@ Ce jeu se base notamment sur un algorithme de raycasting, permettant de simuler 
 ## Documentation
 
 Pour trouver la documentation du code source, il faut cliquer sur n'importe quel fichier html dans le dossier ```doc/html/```. Cela mennera à la documentation du code source, genérée avec Doxygen.
+
+## Tests
+
+Des tests ont été réalisés pour tester les différentes fonctionnalités du jeu. Les executables sont obtenus
+via la commande ```make ```. Exemple pour lancer le test lié au bouton :
+    
+```$ ./test_button```
+
+Le code source des tests est dans le dossier ```src/test/```.

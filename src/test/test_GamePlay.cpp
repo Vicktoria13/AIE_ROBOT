@@ -10,6 +10,10 @@ TEST_CASE("GamePlay", "[GamePlay]"){
     
     GamePlay gamePlay;
     SECTION("Test appui sur entrée"){
-        REQUIRE(true==true);
+        REQUIRE(gamePlay.CheckFenetreChanges() == 0);
     }
+
+    
+
+
 }

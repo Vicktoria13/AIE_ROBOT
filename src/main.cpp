@@ -11,7 +11,7 @@ int main()
 
     music.setLoop(true);
     music.setVolume(50);
-    //music.play();
+    music.play();
 
 
     GamePlay partie;

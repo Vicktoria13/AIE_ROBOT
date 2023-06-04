@@ -4,8 +4,6 @@
 Drapeau::Drapeau()
 {
 
-    std::cout << "Construction du d'un drapeau" << std::endl;
-
     /* On charge la texture */
     if (!_texture.loadFromFile("../Assets/flag.png"))
     {

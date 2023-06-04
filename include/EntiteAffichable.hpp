@@ -75,7 +75,6 @@ public:
     }
 
     virtual ~EntiteAffichable(){
-        std::cout<<"Destruction de l'entite affichable"<<std::endl;
     }
 };
 
